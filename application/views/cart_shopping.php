@@ -14,7 +14,7 @@
             <div class="ps-section--shopping ps-shopping-cart">
                 <div class="container">
                     <div class="ps-section__header">
-                        <h3>Моя корзина</h1>
+                        <h3>Моя корзина</h3>
                     </div>
                     <div class="ps-section__content">
                         <div class="table-responsive">
@@ -53,7 +53,7 @@
                 <div class="order-content">
                     <div class="ps-section__content ps-section__border">
                         <div class="ps-section__header">
-                            <h3 class="px-5 fw-bold">Ваш заказ</h1>
+                            <h3 class="px-5 fw-bold">Ваш заказ</h3>
                         </div>
                         <div class="price-product px-4 justify-content-between">
                             <table class="table">

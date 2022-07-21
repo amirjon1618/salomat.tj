@@ -6,6 +6,7 @@ class Main extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        $this->load->library('session');
         $this->load->helper('cookie');
         $this->load->helper('url');
         $this->load->model('user');
@@ -156,12 +157,35 @@ class Main extends CI_Controller
         $data['meta_social_desc'] = 'Удобный поиск лекарств, можно заказать любые препараты недорого по выгодным ценам. Удобный каталог лекарств, инструкций и советы врачей! ☎ 9990 Salomat.tj';
         $data['title'] = 'Интернет аптека Salomat.tj, купить онлайн лекарственные препараты и товары для здоровья';
         $data['categories_for_main_page'] = $array;
+        $data['name'] =  $this->session->userdata('name');
         $data['content'] = $this->parser->parse('main', $data, TRUE);
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
+
+        $data['user_info'] =  $this->session->userdata('name');
+        $data['auth'] =   $this->input->cookie('auth_id');
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
         $this->parser->parse('template', $data);
     }
 
+    public function getUser($user_id)
+    {
+        $array = array();
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('user_id', $user_id);
+        $query = $this->db->get();
+        foreach ($query->result_array() as $row)
+        {
+            $array = $row;
+        }
+        return $array;
+    }
     public function categoryProducts($id)
     {
         $data = array('base_url' => base_url());
@@ -213,6 +237,13 @@ class Main extends CI_Controller
         $data['title'] = $category_with_parents['category_name'] . ' на Salomat.tj';
         $data['category_products'] = $res;
         $data['isOnlySecondCategory'] = $res['isOnlySecondCategory'];
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
         $data['content'] = $this->parser->parse('products_by_category', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
@@ -240,6 +271,12 @@ class Main extends CI_Controller
         }
         $data['meta_social_title'] = 'Salomat.tj ' . $sale['tag_name'];
         $data['title'] = $data['meta_social_title'];
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
 
         $data['content'] = $this->parser->parse('sales', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
@@ -325,6 +362,13 @@ class Main extends CI_Controller
         $data['prods_suggestions'] = $this->product->get_prods_by_slider_type('product_suggestions');
 
         $data['content'] = $this->parser->parse('product', $data, TRUE);
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
 
@@ -337,6 +381,14 @@ class Main extends CI_Controller
         $data['categories'] = $this->category->get_all();
         $data['categories_for_main_page'] = [];
         $data['title'] = 'Корзина Salomat.tj';
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
+
         $data['content'] = $this->parser->parse('cart_shopping', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
@@ -357,6 +409,14 @@ class Main extends CI_Controller
         };
         $data['delivery'] = $this->delivery->get_all();
         $data['title'] = 'Оформление заказа на Salomat.tj';
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
+
         $data['content'] = $this->parser->parse('checkout', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
@@ -383,6 +443,14 @@ class Main extends CI_Controller
         $data['title'] = 'Поиск: '.$this->input->get("srch_pr_inp").' на Salomat.tj';
 
         $data['content'] = $this->parser->parse('product_search_result', $data, TRUE);
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
+
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
         $this->parser->parse('template', $data);
@@ -399,6 +467,13 @@ class Main extends CI_Controller
         }
         $data['categories'] = $this->category->get_all();
         $data['prods_of_the_day'] = $this->product->get_prods_by_slider_type('product_of_the_day');
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
         $data['content'] = $this->parser->parse('blog_list_item_inside', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
@@ -411,6 +486,13 @@ class Main extends CI_Controller
         $data['tags'] = $this->tag->get_all();
         $data['categories'] = $this->category->get_all();
         $data['content'] = $this->parser->parse('blog_list', $data, TRUE);
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
         $this->parser->parse('template', $data);
@@ -423,6 +505,13 @@ class Main extends CI_Controller
         $data['categories'] = $this->category->get_all();
         $data['title'] = 'Семь основных причин, почему вакцинироваться должен каждый';
         $data['content'] = $this->parser->parse('blog_info', $data, TRUE);
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
         $this->parser->parse('template', $data);
@@ -434,6 +523,13 @@ class Main extends CI_Controller
         $data['categories'] = $this->category->get_all();
         $data['title'] = 'Полулярное';
         $data['content'] = $this->parser->parse('blog_popular', $data, TRUE);
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
         $this->parser->parse('template', $data);
@@ -445,13 +541,60 @@ class Main extends CI_Controller
         $data['categories'] = $this->category->get_all();
         $data['categories_for_main_page'] = [];
         $data['title'] = 'Личная страница Salomat.tj';
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['phone'] =  $user['login'] ?? null;
+        $data['birth_date'] =  $user['birth_date'] ?? null;
+        $data['gender'] =  $user['gender'] ?? null;
+        $data['address'] =  $user['address'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+
+        $this->db->select('*');
+        $this->db->from('user_order');
+        $this->db->order_by("order_id", "desc");
+        $this->db->where('user_id', $this->session->userdata('user_id'));
+        $this->db->join('order', 'user_order.order_id = order.id');
+        $query = $this->db->get();
+        $order = $query->result();
+        foreach ( $order as $item) {
+            $this->db->select('*');
+            $this->db->from('product_order');
+            $this->db->where('order_id', $item->id);
+            $this->db->join('product', 'product_order.product_id = product.id');
+            $this->db->order_by('order_id ASC');
+            $product = $this->db->get();
+            if ($product){
+                $this->db->select('delivery_price');
+                $this->db->from('delivery');
+                $this->db->where('delivery_id', $item->delivery_type);
+                $delivery = $this->db->get();
+            }
+            if ($product){
+                $this->db->select('status_text');
+                $this->db->from('status');
+                $this->db->where('id', $item->status_id);
+                $status = $this->db->get();
+            }
+            $order_product [] = [
+                'order' => $item,
+                'status' => $status->result(),
+                'delivery' => $delivery->result(),
+                'products' => $product->result()
+            ];
+        }
+
+        $data['orders'] = $order_product ?? null;
+
         $data['content'] = $this->parser->parse('user_info', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
 
         $this->parser->parse('template', $data);
     }
-    
+
     public function get_srch_results()
     {
         $data['base_url'] = base_url();
@@ -580,6 +723,8 @@ class Main extends CI_Controller
         $data['products'] = $answer;
         $data['categories'] = $this->category->get_all();
         $data['title'] = "Чек | Саломат-Аптека";
+
+
         $data['content'] = $this->parser->parse('user_order_receipt', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
@@ -621,6 +766,14 @@ class Main extends CI_Controller
             $data['text'] = $page_info['about'];
         }
         $data['content'] = $this->parser->parse('page', $data, TRUE);
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
+        ;
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
         $this->parser->parse('template', $data);
@@ -632,6 +785,13 @@ class Main extends CI_Controller
         $this->load->model('order');
         $data['categories'] = $this->category->get_all();
         $data['title'] = 'Отправить рецепт | Саломат-Аптека';
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
         $data['content'] = $this->parser->parse('recipe', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
@@ -752,7 +912,11 @@ class Main extends CI_Controller
             $rand_num = rand(1000, 9999);
             $array['code'] = $rand_num;
             $answer = $this->order->add($array);
-            
+            $this->load->library('session');
+            $user = $this->getUser( $this->session->userdata('user_id'));
+
+            $this->order->save_user_order_status_change($user['user_id'], $answer['order_id'],1,1,$this->input->post("comment"));
+
             $sms_id = $this->sms->add(array('sms_mobile' => $array["phone_number"], 'sms_text' => $rand_num));
             $sms_resp = $this->create_url_f55($array["phone_number"], $rand_num, $sms_id);
 
