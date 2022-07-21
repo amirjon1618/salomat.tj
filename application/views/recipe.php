@@ -45,11 +45,11 @@
         <h3 class="recipe_header">Расшифровка рецепта</h3>
         <h5>Выберите фото рецепта для отправки на расшифровку:</h5>
         <div class="row file_upload_div">
-            <div class=" col-sm-6 col-12">
+            <div class=" col-sm-8 col-12">
                 <input type="file" name="user_files[]" id="user_files">
             </div>
 
-            <div class="col-sm-6 col-12 send_recipe_btn_div">
+            <div class="col-sm-4 col-12 send_recipe_btn_div">
                 <button class="send_recipe_btn" onclick="sendFilesBtn()">
                     <i class="fa fa-check-circle"></i>
                     Отправить рецепт

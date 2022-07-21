@@ -3,7 +3,7 @@
                 <div class="ps-breadcrumb">
                 <div class="container">
                 <div class="ps-container category-products_breadcrumb padding">
-                        <ul class="breadcrumb">
+                        <ul class="breadcrumb ">
                         <li><a href="{base_url}index.php/main">Главная  /</a></li>
                                         <li>
                                         Блог                       </li>

@@ -27,7 +27,14 @@ class User extends CI_Model
         }
         return $array;
 	}
-	
+
+    public function get_users(){
+        $this->db->select("*");
+        $this->db->from('users');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 	public function getUserByAccess($access)
     {
         $array = array();
@@ -200,6 +207,7 @@ class User extends CI_Model
         }
     }
 
+
 	public function login_is_free($login)
 	{
 		$this->db->where('login', $login);
@@ -214,14 +222,70 @@ class User extends CI_Model
 		}
 	}
 
-	public function CreateSession($array)
-	{
-		$this->db->delete('session', array('user_id' => $array['user_id'])); 
-		
-		$array['auth_lastacces'] = time()+$this->sessionTime;
-		$this->db->insert("session", $array);
-		return $this->db->insert_id();
-	}
+
+    function get_keys()
+    {
+        $this->db->limit(1);
+        $this->db->order_by('id', 'desc');
+        $this->db->select('key');
+        $this->db->from('keys');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function register_user(array $data)
+    {
+        $this->db->insert('users', $data);
+        if($this->db->insert_id()!=0)
+        {
+            $name = $data['name'];
+            $login = $data['login'];
+
+            //--log table insertion--//
+            $this->db->insert('log_table', array(
+                'user_id' => 0,
+//                'datetime' => date("Y-m-d H:i:s"),
+//                'status' => 1, // insertion
+                'comment' => 'Новый пользователь: '.$name.', телефон: '.$login.', был добавлен.'
+            ));
+            //--log table insertion--//
+        }
+        return $this->db->insert_id();
+    }
+
+    function user_login($phone, $password, $key)
+    {
+
+        $this->db->where('login', $phone);
+        $query = $this->db->get('users');
+
+        // if($query->num_rows())
+        // {
+        //     $user_pass = $query->row('password');
+        //     if(hash('sha256', $phone.$password.$key) === $user_pass){
+        //         return $query->row();
+        //     }
+        //     return FALSE;
+        // }else{
+        //     return FALSE;
+        // }
+        if($query->num_rows()) {
+            $user_pass = $query->row('password');
+            if($this->hash_pass($password) === $user_pass){
+                return $query->row();
+            }
+        }
+        return FALSE;
+    }
+
+    public function CreateSession($array)
+    {
+        $this->db->delete('session', array('user_id' => $array['user_id']));
+
+        $array['auth_lastacces'] = time()+$this->sessionTime;
+        $this->db->insert("session", $array);
+        return $this->db->insert_id();
+    }
 
 	public function GetUserData($auth_id)
 	{

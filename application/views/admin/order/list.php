@@ -69,11 +69,12 @@
                 <th>ID</th>
                 <th>Имя Фамилия</th>
                 <th>Телефон</th>
-                <th>Адрес</th>
+                <th>Аддресс</th>
                 <th>Комментарий</th>
+                <th>Оплачено</th>
+                <th>Дата оплаты</th>
                 <th>Доставка</th>
                 <th>Цена доставки</th>
-                <th>Итого заказа</th>
                 <th>Дата</th>
                 <th>Статус</th>
                 <th style="text-align: center;">Подробно</th>
@@ -90,9 +91,15 @@
                   <td><?= $item['comment'] ?></td>
                   <?php if($item['wallet_name'] && $item['wallet_name'] == "MyBabilon") : ?>
                     <td>Через кошелёк <?= $item['wallet_name'] ?></td>
+                  <?php else: ?>
+                    <td>Нет</td>
+                  <?php endif; ?>
+                  <?php if($item['paid_date'] && $item['paid_date'] != null) : ?>
+                    <td><?= $item['paid_date'] ?></td>
+                  <?php else: ?>
+                    <td></td>
                   <?php endif; ?>
                   <td><?= $item['delivery_name'];?></td>
-                  <td><?= $item['delivery_price'];?></td>
                   <td><?= $item['delivery_price'];?></td>
                   <td><?= $item['created_at'] ?></td>
                   <td style="width: 100px;"><span class="label" style="background:<?= $item['status_color'] ?>;border-radius:.5em"><?= $item['status'] ?></span></td>
