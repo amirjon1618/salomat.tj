@@ -18,48 +18,47 @@
                     <div class="ps-form__content">
                         <div class="row">
                             <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
-                            <?php if(!$bUser): ?>
-                                <div class="ps-form__billing-info">
-                                    <div class="delivery-form">
-                                        <div class="form-input col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0">
-                                            <div class="form-group pr-3">
-                                                <label>Имя Фамилия <span class="red-star">*</span></label>
-                                                <input class="form-control" maxlength="80" required name="name" id="order_name" type="text" placeholder="Имя Фамилия">
+                                <?php if(!$bUser): ?>
+                                    <div class="ps-form__billing-info">
+                                        <div class="delivery-form">
+                                            <div class="form-input col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0">
+                                                <div class="form-group">
+                                                    <label>Имя Фамилия <span>*</span></label>
+                                                    <input class="form-control" maxlength="80" required name="order_name" id="order_name" type="text" placeholder="Имя Фамилия">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Номер телефона <span>*</span></label>
+                                                    <input class="form-control" required type="text" pattern="\d*" maxlength="9" id="order_phone" name="order_phone" placeholder="987654321">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Телефон, если не дозвонимся</label>
+                                                    <input class="form-control" required type="text" pattern="\d*" maxlength="9" id="order_phone2" name="order_phone2" placeholder="987654321">
+                                                </div>
                                             </div>
-                                            <div class="form-group pr-3">
-                                                <label>Дом 12 <span></span></label>
-                                                <input class="form-control" maxlength="250"   type="text" placeholder="Дом">
-                                            </div>
-                                            <div class="form-group pr-3">
-                                                <label>Номер телефона <span class="red-star">*</span></label>
-                                                <input class="form-control" required type="text" pattern="\d*" maxlength="9" id="order_phone" name="cell_phone" placeholder="987654321">
+                                            <div class="form-input ol-xl-6 col-lg-6 col-md-12 col-sm-12 pr-0">
+                                                <div class="form-group col-xl-8 col-lg-8 col-md-12 col-sm-12 p-0">
+                                                    <label>Улица <span>*</span></label>
+                                                    <input class="form-control" maxlength="250" required name="order_address" id="order_address" type="text" placeholder="Улица">
+                                                </div>
+                                                <div class="form-group col-xl-4 col-lg-4 col-md-12 col-sm-12" style="padding-right: 0">
+                                                    <label>Дом <span></span></label>
+                                                    <input class="form-control" maxlength="250"  name="building" id="building"  type="text" placeholder="Дом">
+                                                </div>
+                                                <div class="form-group col-xl-12 p-0">
+                                                    <label>Ориентир</label>
+                                                    <input class="form-control" maxlength="250" name="landmark"  id="landmark" type="text" placeholder="Ориентир">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-input col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0">
-                                            <div class="form-group">
-                                                <label>Улица <span class="red-star">*</span></label>
-                                                <input class="form-control" maxlength="250" required name="address" id="order_address" type="text" placeholder="Улица">
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label>Ориентир</label>
-                                                <input class="form-control" maxlength="250"  type="text" placeholder="Ориентир">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Телефон, если не дозвонимся</label>
-                                                <input class="form-control" required type="text" pattern="\d*" maxlength="9" id="order_phone2" name="cell_phone" placeholder="987654321">
-                                            </div>
+
+                                        <div class="form-group col-12 p-0">
+                                            <label>Комментарии</label>
+                                            <textarea class="form-control" maxlength="250" name="order_comment" id="order_comment" type="text" placeholder="Дополнительные пожелания"></textarea>
                                         </div>
                                     </div>
-                                    
-                                    <div class="form-group col-12 p-0">
-                                        <label>Комментарии</label>
-                                        <textarea class="form-control" maxlength="250" name="comment" id="order_comment" type="text" placeholder="Дополнительные пожелания"></textarea>
-                                    </div>
-                                </div>
-                                <div class="checkout_min_sum_div" style="display: none;">
+                                    <div class="checkout_min_sum_div" style="display: none;">
                                         <h4 style="color: #4d4dbf;font-size:16px">Минимальная сумма должна быть 35 сомони</h4>
-                                </div>
+                                    </div>
                                 <?php else: ?>
                                     <div class="checkout_ecom_div">
                                         <h4 class="checkout_ecom_type_title">Метод оплаты</h4>
@@ -69,7 +68,7 @@
                                                 </span>
                                             </div>
                                             <label for="bWallet" class="checkout_bWallet_label">MyBabilon
-                                            <img class="w-auto wlogo" src="{base_url}img/online_wallet/babilon-m.png" alt="MyBabilon">
+                                                <img class="w-auto wlogo" src="{base_url}img/online_wallet/babilon-m.png" alt="MyBabilon">
                                             </label>
                                         </div>
                                         <br>
@@ -99,10 +98,10 @@
                                             <figure class="delivery-figure product-form_text">
                                                 <figcaption><strong>Доставка</strong></figcaption>
                                                 {delivery}
-                                                    <div class="delivery-div">
-                                                        <input type="radio" name="delivery" id="{delivery_id}" value="{delivery_price}">
-                                                        <label for="{delivery_id}">{delivery_name} - <span style="font-weight: bold;">{delivery_price} сом</span></label><br>
-                                                    </div>
+                                                <div class="delivery-div">
+                                                    <input type="radio" name="delivery" id="{delivery_id}" value="{delivery_price}">
+                                                    <label for="{delivery_id}">{delivery_name} - <span style="font-weight: bold;">{delivery_price} сом</span></label><br>
+                                                </div>
                                                 {/delivery}
                                             </figure>
                                             <figure class="total-form_figure">
@@ -126,7 +125,7 @@
                                             </div>
                                         <?php endif; ?>
                                     </div>
-                                        <input onclick="order_confirm()" type="submit" style="height: 3em" value="Оформить заказ" class="ps-btn ps-btn--fullwidth">
+                                    <input onclick="order_confirm()" type="submit" style="height: 3em" value="Оформить заказ" class="ps-btn ps-btn--fullwidth">
                                 </div>
                             </div>
                         </div>
@@ -341,16 +340,20 @@
                 $('#checkout_loading').css('display', 'block');
                 var mydata = JSON.parse(localStorage.getItem("product_list"));
                 var phone_number = $('#order_phone').val();
+                var phone_number2 = $('#order_phone2').val();
                 var name = $('#order_name').val();
                 var address = $('#order_address').val();
+                var landmark = $('#landmark').val();
+                var building = $('#building').val();
                 var comment = $('#order_comment').val();
                 var delivery_id = $('input[name=delivery]:checked').attr("id")
                 // var cash_type = $('input[name=payment]:checked').val() ?? '';
                 
                 $.post("<?= $base_url; ?>index.php/main/confirmOrder", {
                     "phone_number": phone_number,
+                    "phone_number2": phone_number2,
                     "name": name,
-                    "address": address,
+                    "address": address+landmark+building,
                     "comment": comment,
                     "delivery_id": delivery_id,
                     // "cash_type": cash_type,
@@ -410,7 +413,7 @@
                     var html =
                         "<i class=\"fa fa-check-square-o\" id=\"success_icon\"></i>" +
                         "<h4 class=\"text-muted\">Ваш заказ принят!</h4>" +
-                        "<p><strong>Мы свяжемся с Вами в ближайшее время.</p>"+ 
+                        "<p><strong>Мы свяжемся с Вами в ближайшее время.</p>"+
                         "<div class=\"order_numb_div\"> Номер заказа <span style=\"color:#3c3a3a\">#" + data.order.id + "</span></strong> </div>" +
                         "<br />";
 
@@ -420,7 +423,7 @@
                     $('.modal_close_btn').hide();
 
                     $('#confirm_div').append(html);
-                  
+
                     $('#not_found_checkout').hide();
                     $('#checkout_loading').hide();
 
@@ -437,18 +440,18 @@
     function begin() {
         $('#not_received_sms_order').hide();
         $('#recend_timer_sms_order').show();
-    
-       timing = 60;
-       $('#timer_order').html(timing);
-       myTimer = setInterval(function() {
-         --timing;
-         $('#timer_order').html(timing);
-         if (timing === 0) {
-            $('#recend_timer_sms_order').hide();
-            $('#not_received_sms_order').show();
-           clearInterval(myTimer);
-         }
-       }, 1000);
+
+        timing = 60;
+        $('#timer_order').html(timing);
+        myTimer = setInterval(function() {
+            --timing;
+            $('#timer_order').html(timing);
+            if (timing === 0) {
+                $('#recend_timer_sms_order').hide();
+                $('#not_received_sms_order').show();
+                clearInterval(myTimer);
+            }
+        }, 1000);
     }
 
     function orderResendSms() {
@@ -505,7 +508,7 @@
             if (localStorage.getItem("product_list")) {
                 $('#checkout_loading').css('display', 'block');
                 var mydata = JSON.parse(localStorage.getItem("product_list"));
-                
+
                 $.post("<?= $base_url; ?>index.php/main/startTransMyBabilon", {
                     "products": mydata,
                     "phone_number": null,
@@ -522,21 +525,21 @@
                         <input name="createdTransactionId" type="hidden" id="createdTransactionId" value="${data["info"].TransactionId}" hidden>
                         `;
                         // $.removeCookie('product_list', {
-                            //     path: '/'
-                            // });
-                            localStorage.removeItem("product_list")
-                            $(".checkout_bContinue_div").hide();
-                            $(".checkout_ecom_div").append(`<h4>Пожалуйста подождите</h4>`);
-                            $("#checkout_main_tag").append(inputForB);
-                        } else {
-                            $('#checkout_loading').css('display', 'none');
-                            alert('Произошла ошибка, попробуйте позже');
-                        }
-                    }, "json");
-                } else {
-                    $('#checkout_loading').css('display', 'none');
-                    alert('Корзина пуста!');
-                }
+                        //     path: '/'
+                        // });
+                        localStorage.removeItem("product_list")
+                        $(".checkout_bContinue_div").hide();
+                        $(".checkout_ecom_div").append(`<h4>Пожалуйста подождите</h4>`);
+                        $("#checkout_main_tag").append(inputForB);
+                    } else {
+                        $('#checkout_loading').css('display', 'none');
+                        alert('Произошла ошибка, попробуйте позже');
+                    }
+                }, "json");
+            } else {
+                $('#checkout_loading').css('display', 'none');
+                alert('Корзина пуста!');
+            }
         } else {
             $('.delivery-figure').css("border-bottom", "2px solid red");
             // $('.delivery-figure').append("Пожалуйста выберите доставку.")
@@ -544,7 +547,7 @@
     }
 
     function countSumWithDelivery() {
-        $('input[type=radio][name="delivery"]').change(function () {   
+        $('input[type=radio][name="delivery"]').change(function () {
             $('.delivery-figure').css("border-bottom", "1px solid #eaeaea");
             if (localStorage.getItem("product_list")) {
                 var mydata = JSON.parse(localStorage.getItem("product_list"));
