@@ -27,7 +27,7 @@
                                                 <input class="form-control" maxlength="80" required name="name" id="order_name" type="text" placeholder="Имя Фамилия">
                                             </div>
                                             <div class="form-group pr-3">
-                                                <label>Дом <span></span></label>
+                                                <label>Дом 12 <span></span></label>
                                                 <input class="form-control" maxlength="250"   type="text" placeholder="Дом">
                                             </div>
                                             <div class="form-group pr-3">
