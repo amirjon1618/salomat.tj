@@ -113,7 +113,7 @@
                                 </div>
                             </div>
                             
-                            <div style="display: flex; justify-content: space-between;">
+                            <div style="display: flex; justify-content: flex-end;">
                             <?php if ($category_products['product_old_price'] != 0) : ?>
                                 <del><?= $category_products['product_old_price'] ?> сом.</del><?php endif; ?>
                                     <div class="like-icon">
@@ -126,7 +126,8 @@
                                      </div>
                             </div>
                             
-                            <h4 class="ps-product__price"><?= $category_products['product_price'] ?> сом.</h4>
+                            <h4 class="ps-product__price ps-pp_db"><?= $category_products['product_price'] ?> сом.</h4>
+                            <h4 class="ps-product__price ps-pp_dn">_ _._ _ сом.</h4>
                             <div class="ps-product__desc">
                                 <?php if ($category_products['total_count_in_store'] > 0) : ?>
                                     <p class="global-product-exist"><strong>В наличии</strong></p>
@@ -552,7 +553,7 @@
             $('#count_input').val(count);
         })
     }
-
+    
     function change_count() {
         $('#count_input').change(function() {
             // console.log('total_count_global:'+$('#count_input').val());
@@ -570,7 +571,17 @@
             // else if ($('#count_input').val() < 1 || Number($('#count_input').val()) == 0)
         })
     }
-
+    if(document.querySelector(".global-product-not-exist") === null){
+        $('.ps-pp_dn').css("display", "none");
+        $('.ps-pp_db').css("display", "block");
+    }else{
+        $('.ps-pp_db').css("display", "none");       
+    }
+    // if ($('.global-product-not-exist')){
+    //     $('.ps-product__price').hide();
+    //     $('.ps-pp_dn').css("display", "block");
+    // }else if($('.global-product-exist')){
+    // }
     function add_to_cart() {
         $('.buy_btn').on('click', function() {
             max_count_reached = false;

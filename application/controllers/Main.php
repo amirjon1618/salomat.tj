@@ -60,7 +60,7 @@ class Main extends CI_Controller
     }
 
     public function techIssue() {
-        redirect(base_url("../../technical_issues/index.html"));   
+        redirect(base_url("../../technical_issues/index.html"));
     }
 
     public function blog_pictures_upload()
@@ -299,7 +299,7 @@ class Main extends CI_Controller
                         $info["max_price"]
                     );
             }
-            
+
             $data['base_url'] = base_url();
             $data['total_products'] = $res;
             echo json_encode(array(
@@ -350,11 +350,11 @@ class Main extends CI_Controller
         } else {
             $data['meta_social_image'] = base_url('qwerty.png');
         }
-        
+
         $data['meta_social_title'] = 'Купить ' . $res['product_name'] . ' на Salomat.tj';
         $data['title'] = $data['meta_social_title'];
 
-       
+
         $data['meta_social_desc'] = strip_tags($res['product_about']);
         $data['comments'] = $this->rating->get_rating_info($id);
         $data['category_id'] = $category_id;
@@ -829,7 +829,7 @@ class Main extends CI_Controller
         }
     }
     public function update_sms($sms_id, $array, $source_id, $source_name)
-    {   
+    {
         $date = new DateTime($array['msg']['timestamp']);
         $new_date = date_format($date, 'Y-m-d H:i:s');
         $new_arr = array(
@@ -950,8 +950,8 @@ class Main extends CI_Controller
 
 			$sms_id = $this->sms->add(array('sms_mobile' => $obj['order_phone'], 'sms_text' => 'По данной ссылке вы можете проверить ваш заказ: ' . base_url() . 'index.php/main/userOrderReceipt/' . $order['hash']));
             $sms_resp = $this->create_url_f55($obj['order_phone'], 'По данной ссылке вы можете проверить ваш заказ: ' . base_url() . 'index.php/main/userOrderReceipt/' . $order['hash'], $sms_id);
-			
-			$this->update_sms($sms_id, $sms_resp, $obj['order_id'], 'order');   
+
+			$this->update_sms($sms_id, $sms_resp, $obj['order_id'], 'order');
 
 			$order_prods = $this->order->get_order_prods($obj['order_id']);
 			$array = array('stat' => 1, 'order' => $order, 'products' => $order_prods);
@@ -968,12 +968,12 @@ class Main extends CI_Controller
        		 	"verify_peer"=>false,
         		"verify_peer_name"=>false,
 		    ),
-		);  
+		);
 
 		file_get_contents("https://salomat.tj/bot/tsend.php?text=".$text, false, stream_context_create($arrContextOptions));
 	}
 
-    public function startTransMyBabilon() 
+    public function startTransMyBabilon()
     {
         $this->load->model("order");
         if ($this->input->post("products")) {
@@ -1037,8 +1037,8 @@ class Main extends CI_Controller
             }
             $returnArr = array('answ' => 1, 'info' => $result);
             if (isset($_COOKIE[$this->bUserInfoName])) {
-                unset($_COOKIE[$this->bUserInfoName]); 
-                setcookie($this->bUserInfoName, null, -1, '/'); 
+                unset($_COOKIE[$this->bUserInfoName]);
+                setcookie($this->bUserInfoName, null, -1, '/');
             }
 			echo json_encode($returnArr);
         }
@@ -1072,10 +1072,10 @@ class Main extends CI_Controller
         $curl = curl_init($_url);
 
         curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
-            
+
         /* Define content type */
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-            
+
         /* Return json */
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
@@ -1143,7 +1143,7 @@ class Main extends CI_Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => $method
         ));
-    
+
         $response = curl_exec($curl);
         $err = curl_error($curl);
         curl_close($curl);
