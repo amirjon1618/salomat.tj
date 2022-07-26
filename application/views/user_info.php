@@ -14,8 +14,8 @@
         <section class="section-forms section-tabs">
             <div class="container my-5">
                 <div class="user-info">
-                    <div class="up-left-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <ul class="user-info_ul nav nav-pills" id="myTab" role="tablist">
+                    <div class="up-left-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12 p-0">
+                        <ul class="user-info_ul nav nav-pills d-block" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation"><a id="webdisign-tab" data-toggle="tab" href="#user-info" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-user.svg" alt="Icon">Личная информация</a></li>
                             <li class="nav-item" role="presentation"><a id="webdisign-tab" data-toggle="tab" href="#user-order" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-cart.svg" alt="Icon">Мои заказы</a></li>
                             <li class="nav-item" role="presentation"><a id="webdisign-tab" data-toggle="tab" href="#user-favorite" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-like.svg" alt="Icon">Избранное</a></li>
@@ -25,7 +25,7 @@
                     <?php if (isset($auth)) : ?>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="user-info" role="tabpanel" aria-labelledby="webdisign-tab">
-                            <div class="up-content col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="up-content col-lg-6 col-md-6 col-sm-12 col-xs-12 p-4">
                                 <div class="up-content-info">
                                     <h2>Личная информация</h2>
                                     <form action="{base_url}users/update_user" method="post" class="up-content-info_form">
@@ -82,9 +82,9 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="up-right-sidebar col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                            <div class="up-right-sidebar col-lg-2 col-md-2 col-sm-12 col-xs-12 p-4">
                                 <div class="text-center">
-                                    <img src="{base_url}img/users/<?php echo $image ?>" alt="Icon">
+                                    <img src="{base_url}img/users/<?php echo $image ?>" alt="Icon" class="rounded-circle">
                                     <form class="form-del">
                                         <div class="input__wrapper">
                                             <input name="file" type="file" name="file" id="input__file" class="input input__file" multiple>

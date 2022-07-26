@@ -4,7 +4,7 @@
             <div class="container recipe_container_div">
                 <div class="recipe_div_main" col="12">
                     <div class="recipe_sheet_div">
-                        <a href="{base_url}index.php/main/recipe"><img src="img/photo.svg" alt="Recept" style="padding-right: 15px"> Фото рецепта</a>
+                        <a href="{base_url}index.php/main/recipe"><img src="img/photo.svg" alt="Recept" style="padding-right: 15px;"> Фото рецепта</a>
                     </div>
                 </div>
             </div>
@@ -183,7 +183,7 @@
                     <div class="content-bg">
                         <div class="blog-articles__nav">
                             <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb bg-content">
+                                <ol class="breadcrumb bg-content bg-white">
                                     <li class="breadcrumb-item ba-first"><a href="#">Блог </a></li>
                                     <a href="{base_url}main/blogpopular"><li class="active ba-last" aria-current="page" style="padding: 0 10px;">все статьи ></li></a>
                                 </ol>
