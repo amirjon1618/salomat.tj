@@ -40,22 +40,109 @@ class Products extends REST_Controller {
     {
         header("Access-Control-Allow-Origin: *");
 
-        $this->load->library('Authorization_Token');
+//        $this->load->library('Authorization_Token');
+//        $is_valid_token = $this->authorization_token->validateToken();
+
+//        if(!empty($is_valid_token) && $is_valid_token['status'] === TRUE) {
+//            $data['categories'] = $this->category->get_all();
+//            $data['main_slider'] = $this->slider->get_all('normal');
+//            $data['ad_mini'] = $this->advertisement->get_all('mini_pic');
+//            $data['prods_of_the_day'] = $this->product->get_prods_by_slider_type('product_of_the_day');
+//
+//            $isFromMyBabilon = $this->input->get('from');
+//            if ($isFromMyBabilon == 'babilon') {
+//                $babilonUser = $this->input->get('phone');
+//                $bUserInfo = array(
+//                    'from' => $isFromMyBabilon,
+//                    'phone' => $babilonUser
+//                );
+//                setcookie($this->bUserInfoName, json_encode($bUserInfo));
+//            }
+//
+//            $categories = $this->category->get_all();
+//            $j = 0;
+//            $array = array();
+//            for ($i = 0; $i < sizeof($categories); $i++) {
+//                if ($categories[$i]['category_in_main'] == 1 && $j < 3) {
+//                    $array[$j]['categ'] = $categories[$i];
+//                    $array[$j]['categ_slider'] = $this->slider->get_by_slider_category($categories[$i]['id']);
+//                    $array[$j]['categ_prods'] = $this->product->get_prods_in_categ($categories[$i]['id']);
+//                    $j++;
+//                }
+//            }
+            $data['meta_social_image'] = base_url('salomat_apteka.jpg');
+            $data['meta_social_url'] = base_url();
+            $data['meta_social_title'] = 'Интернет аптека Salomat.tj, купить онлайн лекарственные препараты и товары для здоровья';
+            $data['meta_social_desc'] = 'Удобный поиск лекарств, можно заказать любые препараты недорого по выгодным ценам. Удобный каталог лекарств, инструкций и советы врачей! ☎ 9990 Salomat.tj';
+            $data['title'] = 'Интернет аптека Salomat.tj, купить онлайн лекарственные препараты и товары для здоровья';
+//            $data['categories_for_main_page'] = $array;
+
+            $this->response($data, REST_Controller::HTTP_OK);
+
+//        } else {
+//            $message = [
+//                'status' => FALSE,
+//                'message' => $is_valid_token['message']
+//            ];
+//            $this->response($message, REST_Controller::HTTP_OK);
+//        }
+    }
+
+    /**
+     * Get category of products.
+     *
+     */
+    public function categories_get()
+    {
+        header("Access-Control-Allow-Origin: *");
         $data['categories'] = $this->category->get_all();
+
+        $this->response($data, REST_Controller::HTTP_OK);
+    }
+
+    /**
+     * Get main sliders for home.
+     *
+     */
+    public function main_sliders_get()
+    {
+        header("Access-Control-Allow-Origin: *");
         $data['main_slider'] = $this->slider->get_all('normal');
+
+        $this->response($data, REST_Controller::HTTP_OK);
+    }
+
+    /**
+     * Get main sliders for home.
+     *
+     */
+    public function ad_mini_get()
+    {
+        header("Access-Control-Allow-Origin: *");
         $data['ad_mini'] = $this->advertisement->get_all('mini_pic');
+
+        $this->response($data, REST_Controller::HTTP_OK);
+    }
+
+    /**
+     * Get main sliders for home.
+     *
+     */
+    public function prods_of_the_day_get()
+    {
+        header("Access-Control-Allow-Origin: *");
         $data['prods_of_the_day'] = $this->product->get_prods_by_slider_type('product_of_the_day');
 
-        $isFromMyBabilon = $this->input->get('from');
-        if ($isFromMyBabilon == 'babilon') {
-            $babilonUser = $this->input->get('phone');
-            $bUserInfo = array(
-                'from' => $isFromMyBabilon,
-                'phone' => $babilonUser
-            );
-            setcookie($this->bUserInfoName, json_encode($bUserInfo));
-        }
+        $this->response($data, REST_Controller::HTTP_OK);
+    }
 
+    /**
+     * Get main sliders for home.
+     *
+     */
+    public function categories_for_main_page_get()
+    {
+        header("Access-Control-Allow-Origin: *");
         $categories = $this->category->get_all();
         $j = 0;
         $array = array();
@@ -67,17 +154,9 @@ class Products extends REST_Controller {
                 $j++;
             }
         }
-        $data['meta_social_image'] = base_url('salomat_apteka.jpg');
-        $data['meta_social_url'] = base_url();
-        $data['meta_social_title'] = 'Интернет аптека Salomat.tj, купить онлайн лекарственные препараты и товары для здоровья';
-        $data['meta_social_desc'] = 'Удобный поиск лекарств, можно заказать любые препараты недорого по выгодным ценам. Удобный каталог лекарств, инструкций и советы врачей! ☎ 9990 Salomat.tj';
-        $data['title'] = 'Интернет аптека Salomat.tj, купить онлайн лекарственные препараты и товары для здоровья';
         $data['categories_for_main_page'] = $array;
-        $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
-        $this->parser->parse('template', $data);
 
         $this->response($data, REST_Controller::HTTP_OK);
-
     }
 
     public function user_orders_get($id)
@@ -127,5 +206,55 @@ class Products extends REST_Controller {
         $this->db->join('product', 'product_order.product_id = product.id');
         $query = $this->db->get();
         $this->response($query->result(), REST_Controller::HTTP_OK);
+    }
+
+    public function category_products_get($id)
+    {
+        var_dump($id);
+        $current_page = $this->input->get('page');
+        $sort_by = $this->input->get('sort_by');
+
+        if ($current_page == '' || $current_page < 0) {
+            $current_page = 1;
+        }
+        if ($sort_by == '') {
+            $sort_by = 'asc';
+        } else if ($sort_by == 'pr') {
+            $sort_by = 'product_rating';
+        }
+
+        $category_with_parents = $this->category->get_parent_categories($id);
+
+        if (sizeof($category_with_parents) == 0) {
+            redirect('errors/cli/error_404', TRUE);
+            return;
+        }
+
+        $res = $this->product->get_products_by_category($id, $current_page, $sort_by); //returns products with total count > 0
+        $data['total_products'] = $res['total_products'];
+        $data['category_with_parents'] = $category_with_parents;
+        unset($res['total_products']);
+
+        if (isset($category_with_parents['parent_cat']['parent_cat'])) {
+            $data['category'] = $this->category->get_with_children($category_with_parents['parent_cat']['id']);
+        } else {
+            $data['category'] = $this->category->get_with_children($category_with_parents['id']);
+        }
+        $data['second_category_id'] = $data['category']['id'];
+        $ad_slider = $this->advertisement->get_slider_by_category($id, 'slider');
+        $data['ad_slider'] = sizeof($ad_slider) != 0 ? $ad_slider : [];
+
+
+
+        $data['categories_for_main_page'] = [];
+
+        if (isset($res['prod_max_price'])) {
+            $data['prod_max_price'] = $res['prod_max_price'];
+        } else {
+            $data['prod_max_price'] = 9999;
+        }
+        $data['title'] = $category_with_parents['category_name'] . ' на Salomat.tj';
+        $data['isOnlySecondCategory'] = $res['isOnlySecondCategory'];
+        $this->response($data, REST_Controller::HTTP_OK);
     }
 }
