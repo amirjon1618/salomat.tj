@@ -4,7 +4,7 @@
             <div class="container recipe_container_div">
                 <div class="recipe_div_main" col="12">
                     <div class="recipe_sheet_div">
-                        <a href="{base_url}index.php/main/recipe"><img src="img/photo.svg" alt="Recept" style="padding-right: 15px;"> Фото рецепта</a>
+                        <a href="{base_url}index.php/main/recipe"><img src="/img/photo.svg" alt="Recept" style="padding-right: 15px;"> Фото рецепта</a>
                     </div>
                 </div>
             </div>
@@ -101,7 +101,7 @@
                         <div style="background-color: #fff; border: none; padding: 0;" class="card-header" id="headingOne">
                         <h2 class="mb-0">
                             <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <h3 style="display: flex; justify-content: space-between; align-items: center;"><?php echo $cat['categ']['category_name'] ?><i class="fa fa-bars" aria-hidden="true"></i></h3>
+                                <h3 style="display: flex; justify-content: space-between; align-items: center;" class="burger-mobail_icon"><?php echo $cat['categ']['category_name'] ?><i class="fa fa-bars" aria-hidden="true"></i></h3>
                             </button>
                         </h2>
                         </div>

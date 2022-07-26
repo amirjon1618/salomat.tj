@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-    <div class="mycart col-lg-4 col-md-6 col-sm-12 col-xs-12" style="display: flex; justify-content: center; align-items: center; padding-top: 9%;">
+    <div class="mycart col-lg-4 col-md-6 col-sm-12 col-xs-12" style="display: flex; justify-content: center; align-items: center; padding-top: 8%;">
         <div class="toast toast_empty2 fade hide">
             <div class="toast-body">
                 <i class="fa fa-exclamation-triangle"></i>
@@ -53,7 +53,7 @@
                 <div class="order-content">
                     <div class="ps-section__content ps-section__border">
                         <div class="ps-section__header">
-                            <h3 class="px-5 fw-bold">Ваш заказ</h3>
+                            <h3 class="fw-bold">Ваш заказ</h3>
                         </div>
                         <div class="price-product px-4 justify-content-between">
                             <table class="table">
@@ -62,10 +62,9 @@
                                         <td class="border-0 fw-bolder table-text-bold" style="font-weight: 500;">Стоимост товаров: </td>
                                         <td class="border-0 table-text-end table-text-bold"><span class="number-currency">150 </span><span class="text-currency">TJS</span></td>
                                     </tr>
-                                    <!--<tr>
                                         <td class="border-0">Стоимост доставки: </td>
-                                        <td class="border-0 table-text-end table-text-bold">10 <span class="text-currency">TJS</span></td>
-                                    </tr>-->
+                                        <td class="border-0 table-text-end table-text-bold font-weight-bold">10 <span class="text-currency">TJS</span></td>
+                                    </tr>
                                     
                                 </tbody>
                             </table>
@@ -81,7 +80,7 @@
                             </tbody>
                         </table>
                         </div>
-                        <div class="price-text p-5">
+                        <div class="price-text px-4 pb-4">
                             <input type="text" class="border price-text__input" placeholder="Активировать промо код">
                             <button class="price-text__btn"><img src="{base_url}img/right-arrow.svg" alt=""></button>
                         </div>

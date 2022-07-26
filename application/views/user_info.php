@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade show" id="user-order" role="tabpanel" aria-labelledby="webdisign-tab">
-                            <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-4">
                                 <div class="table-title">
                                     <h2 class="pb-5">Мои заказы</h2>
                                 </div>
@@ -117,7 +117,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
+                                        <tr data-toggle="collapse" class="accordion-toggle">
                                             <td class="table-id"><?php echo $order['order']->id; ?></td>
                                             <td><?php echo $order['order']->created_at; $price = 0;  ?></td>
                                             <td><span class="status-delivered"><?php echo $order['status'][0]->status_text; ?></span></td>
@@ -141,10 +141,10 @@
                                                                         <?php foreach ($order['products'] as $product): ?>
                                                                             <tbody>
                                                                             <tr>
-                                                                                <th scope="row"><img src="{base_url}upload_product/<?php echo $product->product_pic; ?>" alt="IMG"></th>
-                                                                                <td><?php echo $product->product_name; ?></td>
-                                                                                <td><?php echo $product->total_count; ?></td>
-                                                                                <td><?php echo $product->product_sold_price; ?></td>
+                                                                                <th scope="row"><img style="max-width: 100px" src="{base_url}upload_product/<?php echo $product->product_pic; ?>" alt="IMG"></th>
+                                                                                <td class="align-middle"><?php echo $product->product_name; ?></td>
+                                                                                <td class="align-middle"><?php echo $product->total_count; ?> шт</td>
+                                                                                <td class="align-middle"><?php echo $product->product_sold_price; ?> сом</td>
                                                                             </tr>
                                                                             </tbody>
                                                                         <?php endforeach; ?>
@@ -182,7 +182,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="tab-pane fade show" id="user-favorite" role="tabpanel" aria-labelledby="webdisign-tab">
-                    <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-4">
                         <div class="favorite-title pb-5">
                             <h2 class="border-bottom pb-4">Избранное</h2>
                         </div>
@@ -309,7 +309,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade show" id="user-save" role="tabpanel" aria-labelledby="webdisign-tab">
-                    <div class="up-content col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="up-content col-lg-6 col-md-6 col-sm-12 col-xs-12 p-4">
                         <div class="user-save-title mb-5">
                             <h2>Безопасность</h2>
                         </div>
@@ -361,5 +361,16 @@
     #red:checked+svg #shape {
         fill: #DD2E44;
         stroke: #DD2E44;
+    } 
+    .user-active + tr div{
+        display: block !important;
     }
 </style>
+<script>
+    const __toggles = document.getElementsByClassName("accordion-toggle");
+    for(let i = 0;i<__toggles.length;i++){
+        __toggles[i].addEventListener('click',function(){
+            this.classList.toggle("user-active");
+        })
+    }
+</script>
