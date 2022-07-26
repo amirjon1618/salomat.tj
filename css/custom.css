@@ -701,7 +701,8 @@ textarea.error {
 }
 
 .total_cart_sum {
-    color: orange !important;
+    color: #1E323C !important;
+    font-weight: 700;
 }
 
 .similar_product1 {
@@ -1008,9 +1009,10 @@ textarea.error {
 .recipe_error_msg {
     display: none;
     color: red;
-    border-bottom: 1px solid red;
     width: 80%;
     font-size: 12px;
+    text-align: end;
+    padding: 10px 0;
 }
 
 .recipe_error_msg_code {

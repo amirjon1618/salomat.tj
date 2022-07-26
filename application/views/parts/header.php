@@ -167,7 +167,7 @@
                                         </label>
                                     </div>
                                     <div class="form-row-last d-flex">
-                                        <a href="#"><input type="submit" name="register" class="enter ef1" value="Далее" ></a>
+                                        <a href="#"><input type="submit" name="enter" class="enter ef1" value="Далее" ></a>
                                         <a href="#"><input type="submit" name="register" class="register rf1" value="Регистрация"></a>
                                     </div>
                                 </div>
@@ -189,6 +189,17 @@
                                                 <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass1">
                                             </div>
                                         </label>
+                                    </div>
+                                    <div class="forgot-pass d-flex justify-content-between align-items-center pt-2">
+                                        <div class="form-check p-0">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Запомнить
+                                            </label>
+                                        </div>
+                                        <div class="forgot-pass_a">
+                                            <a href="#">Забыли пароль?</a>
+                                        </div>
                                     </div>
                                     <div class="form-row-last d-flex">
                                         <a href="{base_url}index.php/main/user_info"><input type="submit" name="register" class="enter ef2" value="Вход"></a>
@@ -213,8 +224,17 @@
                                         </label>
                                     </div>
                                     <div class="timer-agree">
-                                        <p>Повторная отправка сообщения будет доступна через:</p>
-                                        <span>02:47</span>
+                                        <div class="showTimer">
+                                            <p>Повторная отправка сообщения будет доступна через:</p>
+                                            <div class="text-center pb-4">
+                                                <span class="min-time"></span>
+                                                <span>:</span>
+                                                <span class="sec-time"></span>
+                                            </div>
+                                        </div>
+                                        <div class="hideTimer  justify-content-center" style="display: none;">
+                                            <a href="#" class="hideTimer_a">Повторная отправка</a>
+                                        </div>
                                         <svg class="mx-auto mb-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 19.5C7.24795 19.5 3.59625 15.8063 3.59625 11.25C3.59625 6.69365 7.24795 3 11.7526 3C16.2572 3 19.9089 6.69365 19.9089 11.25C19.9089 15.8063 16.2572 19.5 11.7526 19.5ZM2.11328 11.25C2.11328 16.6348 6.42893 21 11.7526 21C17.0762 21 21.3918 16.6348 21.3918 11.25C21.3918 5.86522 17.0762 1.5 11.7526 1.5C6.42893 1.5 2.11328 5.86522 2.11328 11.25Z" fill="#7A769D" />
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 15C12.1621 15 12.494 14.6642 12.494 14.25V11.25C12.494 10.8358 12.1621 10.5 11.7526 10.5C11.3431 10.5 11.0111 10.8358 11.0111 11.25V14.25C11.0111 14.6642 11.3431 15 11.7526 15Z" fill="#7A769D" />
@@ -362,9 +382,8 @@
                                 <div class="ps-cart__footer">
                                     <hr>
                                     <h3 class="cart_sum_h">Общая сумма:<strong class="total_cart_sum"></strong></h3>
+                                    <a class="ps-btn d-flex justify-content-center" href="{base_url}index.php/main/cart_shopping">Перейти в корзину</a>
                                     <figure>
-                                        <a class="ps-btn" href="{base_url}index.php/main/cart_shopping">Корзина</a>
-                                        <a class="ps-btn checkout" href="{base_url}index.php/main/checkout">Оформление</a>
                                     </figure>
                                 </div>
                             </div>
@@ -845,6 +864,9 @@
             -o-transition: all .2s ease;
             -ms-transition: all .2s ease;
         }
+        .forgot-pass_a a{
+            color: #1EBEBE;
+        }
 
         .text-label {
             padding: 10px 0;
@@ -870,7 +892,8 @@
         }
 
         .form-check-label {
-            padding: 0 25px;
+            padding: 0 30px;
+            color: #A8A8A8;
         }
 
         .form-v8-content .form-row .form-row-inner .border {
@@ -1031,6 +1054,7 @@
             };
 
         }
+        
         let isShowPass = false;
         let isShowPass2 = false;
         let isShowPass3 = false;
@@ -1358,16 +1382,46 @@
             document.querySelector(".enter-btn-bg").classList.add("active-animation");
             document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
         }
-
+        let __min = 1;
+        let __sec = 59;
+        $('.min-time').text(`${__min}`);
+        $('.sec-time').text(`${__sec}`);
+        const userTimer = () =>{
+           const countDown = setInterval(function(){
+            __sec--;
+            if(__min === 0 && __sec === 0) {
+                $('.showTimer').css("display","none");
+                $('.hideTimer').css("display","flex");
+                __min = 1;
+                $('.min-time').text(`${__min}`);
+                __sec = 59;
+                clearInterval(countDown);
+            }
+            if(__sec === 0){
+                __min = 0;
+                $('.min-time').text(`${__min}`);
+                __sec = 59;
+                __sec--;
+            }
+            $('.sec-time').text(`${__sec}`);
+        },1000);
+        }
+        
         $("#form1").submit((e) =>{
             e.preventDefault();
             $(".efr1").hide();
             $(".efr2").css("display","block");
         })
+        $(".hideTimer_a").click(() =>{
+            $(".showTimer").css("display","block");
+            $(".hideTimer").css("display","none");
+            userTimer();
+        })
         $(".rf1").click((e) =>{
             e.preventDefault();
             $(".efr1").hide();
             $(".efr3").css("display","block");
+            userTimer();
         })
         $("#form3").submit((e) =>{
             e.preventDefault();
@@ -1398,6 +1452,12 @@
                 document.querySelector(".enter-btn-bg").style.display = "none";
             }
         })
+        $('.ef1').on('click',() =>{
+            localStorage.setItem("password",$('#tel-number').val());
+        })
+        fetch("http://127.0.0.1/openserver/phpmyadmin/sql.php?db=salomattj&table=users&pos=0")
+        .then(res => res.json())
+        .then(res => console.log(res))
     </script>
 
    
