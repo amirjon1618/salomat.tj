@@ -77,7 +77,7 @@ class Users extends REST_Controller {
         #Form Validation
         $this->form_validation->set_rules('phone', 'Телефон', 'xss_clean|trim|required');
         $this->form_validation->set_rules('password', 'Пароль', 'xss_clean|trim|required|max_length[100]');
-        $this->form_validation->set_rules('name', 'Имя', 'xss_clean|trim|required|max_length[100]');
+        $this->form_validation->set_rules('name', 'Имя', 'xss_clean|trim|max_length[100]');
 
         $headers    = $this->input->request_headers();
         $platform   = $headers['platform'] ?? 'android';
@@ -376,6 +376,53 @@ class Users extends REST_Controller {
             $array = $row;
         }
         return $array;
+    }
+
+
+    /***
+     * Checking phone
+     *
+     * @return void
+     *
+     */
+    public function check_phone_post()
+    {
+        $this->form_validation->set_rules('phone', 'Телефон', 'xss_clean|trim|required|max_length[20]');
+
+        if($this->form_validation->run() == FALSE) {
+            $message = array(
+                'status'    => false,
+                'error'     => $this->form_validation->error_array(),
+                'message'   => validation_errors()
+            );
+
+            $this->response($message, 400);
+
+        } else {
+            $phone = $this->input->post('phone');
+            $this->db->select('*');
+            $this->db->from('users');
+            $this->db->where('login', $phone);
+            $query = $this->db->get();
+            $query = $query->result();
+
+            if((!empty($query) && $query != FALSE)) {
+                $message = [
+                    'status'    => true,
+                    'user_name' => $query[0]->name,
+                    'message'   => "Есть пользователь с таким номерам"
+                ];
+                $this->response($message, REST_Controller::HTTP_OK);
+            } else {
+                //Error
+                $message = [
+                    'status'    =>	 false,
+                    'message'   => "Нет пользователя с таким номерам"
+                ];
+                $this->response($message, 400);
+            }
+        }
+
     }
 
 }
