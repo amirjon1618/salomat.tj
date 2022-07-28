@@ -44,7 +44,7 @@
                     <aside class="widget widget_footer">
                         <ul class="ps-list--link">
                             <li><a href="{base_url}index.php/main/page/1">О проекте</a></li>
-                            <a class="footer-logo_img pb-5" href="/"><img src="{base_url}img/logo.png" alt="Logo"></a>
+                            <a class="footer-logo_img pb-5 pt-4" href="/"><img src="{base_url}img/logo.png" alt="Logo"></a>
                         </ul>
                     </aside>
                     </div>
