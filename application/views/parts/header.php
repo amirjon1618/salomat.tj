@@ -271,19 +271,20 @@
                                     <div class="form-row">
                                         <span class="text-label">Повторный пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="second-password" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
-                                            <div class="hide-btn-pass" onclick="showPass2()">
-                                                <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass2">
+                                            <input type="password" name="password" id="second-password" minlength="4" maxlength="32" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
+                                            <div class="hide-btn-pass" onclick="showPass3()">
+                                                <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass3">
                                             </div>
                                         </label>
                                     </div>
+                                    <p class="validate-text"></p>
                                     <div class="timer-agree">
                                         <svg class="mx-auto mb-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 19.5C7.24795 19.5 3.59625 15.8063 3.59625 11.25C3.59625 6.69365 7.24795 3 11.7526 3C16.2572 3 19.9089 6.69365 19.9089 11.25C19.9089 15.8063 16.2572 19.5 11.7526 19.5ZM2.11328 11.25C2.11328 16.6348 6.42893 21 11.7526 21C17.0762 21 21.3918 16.6348 21.3918 11.25C21.3918 5.86522 17.0762 1.5 11.7526 1.5C6.42893 1.5 2.11328 5.86522 2.11328 11.25Z" fill="#7A769D" />
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 15C12.1621 15 12.494 14.6642 12.494 14.25V11.25C12.494 10.8358 12.1621 10.5 11.7526 10.5C11.3431 10.5 11.0111 10.8358 11.0111 11.25V14.25C11.0111 14.6642 11.3431 15 11.7526 15Z" fill="#7A769D" />
                                             <path d="M12.7412 8.25C12.7412 7.69771 12.2986 7.25 11.7526 7.25C11.2065 7.25 10.7639 7.69771 10.7639 8.25C10.7639 8.80229 11.2065 9.25 11.7526 9.25C12.2986 9.25 12.7412 8.80229 12.7412 8.25Z" fill="#7A769D" />
                                         </svg>
-                                        <p>Нажав на кнопку “Регистрация”, я принимаю <a href="#" class="text-primary">условия пользования</a></p>
+                                        <p class="mb-0">Нажав на кнопку “Регистрация”, я принимаю <a href="#" class="text-primary">условия пользования</a></p>
                                     </div>
                                     <div class="form-row-last d-flex">
                                         <a href="{base_url}index.php/main/user_info"><input type="submit" name="register" class="enter ef4" value="Регистрация"></a>
@@ -1408,7 +1409,7 @@
                 __sec--;
             }
             $('.sec-time').text(`${__sec}`);
-        },10);
+        },1000);
         }
         
         $("#form1").submit((e) =>{
@@ -1477,11 +1478,11 @@
                 password:$("#enter-password").val()
             },
             success:function(result){
-             
+                $(".validate-text").text("");
+
             },
             error:function(error){
                 $(".validate-text").text("Неправильный логин или пароль");
-
             }
         })
         })
@@ -1518,6 +1519,7 @@
             success:function(result){
                 $(".efr3").hide();
                 $(".efr4").css("display","block");
+                $(".validate-text").text("");
             },
             error:function(error){
                 $(".validate-text").text("Введен неправильный код.");
@@ -1563,6 +1565,13 @@
             }
         })
     }
+    $("#second-password").on('input',() =>{
+       if($("#second-password").val() !==  $("#first-password").val()){
+        $(".validate-text").text("Пароли не совпадают");
+       }else{
+        $(".validate-text").text("");
+       }
+    })
     </script>
 
    
