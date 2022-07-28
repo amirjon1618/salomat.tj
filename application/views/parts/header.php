@@ -220,10 +220,11 @@
                                     <div class="form-row user-phone">
                                         <span class="text-label">Введите код из смс</span>
                                         <label class="form-row-inner">
-                                            <input type="tel" name="tel-number" minlength="6" maxlength="6" id="ver-number" class="input-text" required placeholder="__ __ __ __ __ __">
+                                            <input type="tel" name="tel-number" minlength="4" maxlength="4" id="ver-sms" class="input-text" required placeholder=" __ __ __ __ ">
                                             <span class="border"></span>
                                         </label>
                                     </div>
+                                    <p class="validate-text"></p>
                                     <div class="timer-agree">
                                         <div class="showTimer">
                                             <p>Повторная отправка сообщения будет доступна через:</p>
@@ -261,7 +262,7 @@
                                     <div class="form-row">
                                         <span class="text-label">Пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="password" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
+                                            <input type="password" name="password" id="first-password" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
                                             <div class="hide-btn-pass" onclick="showPass2()">
                                                 <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass2">
                                             </div>
@@ -270,7 +271,7 @@
                                     <div class="form-row">
                                         <span class="text-label">Повторный пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="password1" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
+                                            <input type="password" name="password" id="second-password" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
                                             <div class="hide-btn-pass" onclick="showPass2()">
                                                 <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass2">
                                             </div>
@@ -1407,7 +1408,7 @@
                 __sec--;
             }
             $('.sec-time').text(`${__sec}`);
-        },1000);
+        },10);
         }
         
         $("#form1").submit((e) =>{
@@ -1415,6 +1416,7 @@
             onPost();
         })
         $(".hideTimer_a").click(() =>{
+            sendSms();
             $(".showTimer").css("display","block");
             $(".hideTimer").css("display","none");
             userTimer();
@@ -1427,8 +1429,11 @@
         })
         $("#form3").submit((e) =>{
             e.preventDefault();
-            $(".efr3").hide();
-            $(".efr4").css("display","block");
+            verSms();
+        })
+        $("#form4").submit((e) =>{
+            e.preventDefault();
+            onRegister();
         })
         $(".rf2").click((e) =>{
             e.preventDefault();
@@ -1455,7 +1460,7 @@
             }
         })
         $('.ef1').on('click',() =>{
-            localStorage.setItem("password",$('#tel-number').val());
+            localStorage.setItem("ver-number",$('#tel-number').val());
         })
 
         $("#form2").on("submit",(e) => {
@@ -1468,7 +1473,7 @@
                 "Accept":"application/json",
             },
             data:{
-                phone:Number(localStorage.getItem("password")),
+                phone:Number(localStorage.getItem("ver-number")),
                 password:$("#enter-password").val()
             },
             success:function(result){
@@ -1476,10 +1481,49 @@
             },
             error:function(error){
                 $(".validate-text").text("Неправильный логин или пароль");
+
             }
         })
-
         })
+        
+        function sendSms(){
+        $.ajax({
+            type:"POST",
+            url:"{base_url}/users/resend_sms",
+            headers:{
+                "Accept":"application/json",
+            },
+            data:{
+                phone:Number(localStorage.getItem("ver-number")),
+            },
+            success:function(result){
+                
+            },
+            error:function(error){
+            }
+        })
+     }
+
+        function verSms(){
+        $.ajax({
+            type:"POST",
+            url:"{base_url}/users/check_register_code",
+            headers:{
+                "Accept":"application/json",
+            },
+            data:{
+                phone:Number(localStorage.getItem("ver-number")),
+                confirm_code:$("#ver-sms").val()
+            },
+            success:function(result){
+                $(".efr3").hide();
+                $(".efr4").css("display","block");
+            },
+            error:function(error){
+                $(".validate-text").text("Введен неправильный код.");
+            }
+        })
+     }
         function onPost(){
         $.ajax({
             type:"POST",
@@ -1495,7 +1539,27 @@
             error:function(error){
                     $('.efr3').css("display","block");
                     $('.efr1').css("display","none");
-                    userTimer()
+                    sendSms();
+                    userTimer();
+            }
+        })
+    }
+    function onRegister(){
+        $.ajax({
+            type:"POST",
+            url:"{base_url}/users/register",
+            headers:{
+                "Accept":"application/json",
+            },
+            data:{
+                phone:Number(localStorage.getItem("ver-number")),
+                password:$("#first-password").val()
+            },
+            success:function(result){
+                   
+            },
+            error:function(error){
+                
             }
         })
     }
