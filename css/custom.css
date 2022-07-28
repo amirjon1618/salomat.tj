@@ -178,7 +178,8 @@ body {
     font-weight: bold;
 }
 .header_phone_number:hover {
-    color: #4a4ac3;
+    color: #fff;
+    text-decoration: none !important;
 }
 
 .header_top {

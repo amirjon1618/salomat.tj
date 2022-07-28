@@ -157,7 +157,7 @@
                                     <h3 class="tablinks text-center">Вход или регистрация</h3>
                                 </div>
                             </div>
-                            <form id="form1" class="form-detail">
+                            <form id="form1" class="form-detail" method="post">
                                 <div class="tabcontent" id="sign-phone">
                                     <div class="form-row">
                                         <span class="text-label">Телефон</span>
@@ -166,9 +166,9 @@
                                             <span class="border"></span>
                                         </label>
                                     </div>
-                                    <div class="form-row-last d-flex">
-                                        <a href="#"><input type="submit" name="enter" class="enter ef1" value="Далее" ></a>
-                                        <a href="#"><input type="submit" name="register" class="register rf1" value="Регистрация"></a>
+                                    <div class="form-row-last d-grid">
+                                        <a href="#"><input type="submit" name="enter" class="enter ef1 enter-reg_btn" value="Вход или  регистрация" ></a>
+                                        <!--<a href="#"><input type="submit" name="register" class="register rf1" value="Регистрация"></a>-->
                                     </div>
                                 </div>
                             </form>
@@ -179,16 +179,17 @@
                                     <h3 class="tablinks text-center">Вход</h3>
                                 </div>
                             </div>
-                            <form  id="form2" class="form-detail" action="{base_url}users/web_login" method="post">
+                            <form  id="form2" class="form-detail" action="#" method="post">
                                 <div class="tabcontent" id="sign-pass">
                                     <div class="form-row">
                                         <span class="text-label">Пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="password" class="input-text hide-pass" required placeholder="* * * * * * * * * *">
+                                            <input type="password" name="password" id="enter-password" class="input-text hide-pass" required placeholder="* * * * * * * * * *">
                                             <div class="hide-btn-pass" onclick="showPass()">
                                                 <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass1">
                                             </div>
                                         </label>
+                                        <p class="validate-text"></p>
                                     </div>
                                     <div class="forgot-pass d-flex justify-content-between align-items-center pt-2">
                                         <div class="form-check p-0">
@@ -202,7 +203,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row-last d-flex">
-                                        <a href="{base_url}index.php/main/user_info"><input type="submit" name="register" class="enter ef2" value="Вход"></a>
+                                        <a href="#"><input type="submit" name="register" class="enter ef2" value="Вход"></a>
                                         <a href="#"><input type="submit" name="register" class="register rf2" value="Отмена"></a>
                                     </div>
                                 </div>
@@ -437,9 +438,9 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <?php endif; ?>
                         </div>
-                        <?php endif; ?>
+                       
                     </div>
                 </div>
             </div>
@@ -510,7 +511,7 @@
                 <!-- <div class="ps-cart--mini header_phone_number"> -->
                 <a class="header__extra header_phone_number call" href="javascript:void(0)" onclick="window.location='tel:9990'" target="_blank">
                     <strong>
-                        <img src="http://new.salomat.tj/img/tel.svg " alt="" style="width: 20px; margin-right: 10px;">99-90
+                        <img src="/img/tel.svg " alt="" style="width: 20px; margin-right: 10px;">99-90
                     </strong>
                     <p class="text-muted">09:00-18:00</p>
                 </a>
@@ -842,11 +843,11 @@
         .form-v8-content .form-row {
             width: 100%;
             position: relative;
+            display: block;
         }
 
         .form-v8-content .form-row .form-row-inner {
             position: relative;
-            width: 100%;
         }
 
         .form-v8-content .form-row .form-row-inner .label {
@@ -920,6 +921,7 @@
             border: 1px solid #E0E0E0;
             border-radius: 3px;
             height: 45px;
+            width: 350px;
             padding: 5px 0 0 20px;
         }
 
@@ -930,8 +932,11 @@
             color: #333;
         }
 
-
-
+        .enter-reg_btn {
+            margin-right: 0 !important;
+            width: 350px !important;
+        }
+        
         .form-v8-content .form-detail .enter {
             background: #1EBEBE;
             border-radius: 5px;
@@ -1302,7 +1307,7 @@
             // $('.srch_pr_inp_mobile').val('');
             // }
         }
-
+        
         function change_z_index_on_scroll() {
             $(window).scroll(function() {
                 var currentPosition = $(this).scrollTop();
@@ -1409,8 +1414,7 @@
         
         $("#form1").submit((e) =>{
             e.preventDefault();
-            $(".efr1").hide();
-            $(".efr2").css("display","block");
+            onPost();
         })
         $(".hideTimer_a").click(() =>{
             $(".showTimer").css("display","block");
@@ -1455,9 +1459,45 @@
         $('.ef1').on('click',() =>{
             localStorage.setItem("password",$('#tel-number').val());
         })
-        fetch("http://127.0.0.1/openserver/phpmyadmin/sql.php?db=salomattj&table=users&pos=0")
-        .then(res => res.json())
-        .then(res => console.log(res))
+
+        $("#form2").on("submit",(e) => {
+            e.preventDefault();
+            $.ajax({
+            type:"POST",
+            url:"{base_url}/users/login",
+            headers:{
+                "Accept":"application/json",
+            },
+            data:{password:Number($("#enter-password").val())},
+            success:function(result){
+                console.log(result)
+                alert("");
+            },
+            error:function(error){
+                $(".validate-text").text("Неправильный логин или пароль");
+            }
+        })
+
+        })
+        function onPost(){
+        $.ajax({
+            type:"POST",
+            url:"{base_url}/users/check_phone",
+            headers:{
+                "Accept":"application/json",
+            },
+            data:{phone:Number($("#tel-number").val())},
+            success:function(result){
+                    $('.efr2').css("display","block");
+                    $('.efr1').css("display","none");
+            },
+            error:function(error){
+                    $('.efr3').css("display","block");
+                    $('.efr1').css("display","none");
+                    userTimer()
+            }
+        })
+    }
     </script>
 
    
