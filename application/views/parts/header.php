@@ -162,7 +162,7 @@
                                     <div class="form-row">
                                         <span class="text-label">Телефон</span>
                                         <label class="form-row-inner">
-                                            <input type="tel" name="tel-number" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер">
+                                            <input type="tel" name="tel-number" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер">
                                             <span class="border"></span>
                                         </label>
                                     </div>
@@ -184,7 +184,7 @@
                                     <div class="form-row">
                                         <span class="text-label">Пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="enter-password" class="input-text hide-pass" required placeholder="* * * * * * * * * *">
+                                            <input type="password" name="password" id="enter-password" minlength="4" maxlength="32" class="input-text hide-pass" required placeholder="* * * * * * * * * *">
                                             <div class="hide-btn-pass" onclick="showPass()">
                                                 <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass1">
                                             </div>
@@ -203,7 +203,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row-last d-flex">
-                                        <a href="#"><input type="submit" name="register" class="enter ef2" value="Вход"></a>
+                                        <a href="{base_url}index.php/main/user_info"><input type="submit" name="register" class="enter ef2" value="Вход"></a>
                                         <a href="#"><input type="submit" name="register" class="register rf2" value="Отмена"></a>
                                     </div>
                                 </div>
@@ -220,7 +220,7 @@
                                     <div class="form-row user-phone">
                                         <span class="text-label">Введите код из смс</span>
                                         <label class="form-row-inner">
-                                            <input type="tel" name="tel-number" id="ver-number" class="input-text" required placeholder="__ __ __ __ __ __">
+                                            <input type="tel" name="tel-number" minlength="6" maxlength="6" id="ver-number" class="input-text" required placeholder="__ __ __ __ __ __">
                                             <span class="border"></span>
                                         </label>
                                     </div>
@@ -261,7 +261,7 @@
                                     <div class="form-row">
                                         <span class="text-label">Пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="password" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
+                                            <input type="password" name="password" id="password" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
                                             <div class="hide-btn-pass" onclick="showPass2()">
                                                 <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass2">
                                             </div>
@@ -270,7 +270,7 @@
                                     <div class="form-row">
                                         <span class="text-label">Повторный пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="password1" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
+                                            <input type="password" name="password" id="password1" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
                                             <div class="hide-btn-pass" onclick="showPass2()">
                                                 <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass2">
                                             </div>
@@ -1096,8 +1096,6 @@
             }
         }
 
-
-
         function set_prods_header() {
 
             if (localStorage.getItem("product_list")) {
@@ -1461,6 +1459,7 @@
         })
 
         $("#form2").on("submit",(e) => {
+            console.log()
             e.preventDefault();
             $.ajax({
             type:"POST",
@@ -1468,10 +1467,12 @@
             headers:{
                 "Accept":"application/json",
             },
-            data:{password:Number($("#enter-password").val())},
+            data:{
+                phone:Number(localStorage.getItem("password")),
+                password:$("#enter-password").val()
+            },
             success:function(result){
-                console.log(result)
-                alert("");
+             
             },
             error:function(error){
                 $(".validate-text").text("Неправильный логин или пароль");
