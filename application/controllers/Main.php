@@ -1044,7 +1044,8 @@ class Main extends CI_Controller
         }
     }
 
-    public function marketPlaceWebHook(){
+    public function marketPlaceWebHook()
+    {
         $this->load->model("order");
         $returnedArray = json_decode(file_get_contents('php://input'), false);
         print_r($returnedArray);
