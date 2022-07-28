@@ -29,6 +29,26 @@ class Users extends REST_Controller {
 
         header("Access-Control-Allow-Origin: *");
 
+        $headers = $this->input->request_headers();
+        $platform = $headers['platform'] ?? 'android';
+
+        if ($platform == 'IOS') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $_POST = $data;
+        }
+        // $this->load->model('driver_model');
+        $this->response($this->user->get_users(), REST_Controller::HTTP_OK);
+    }
+
+    /**
+     * Show the User.
+     *
+     * @param int  $id
+     */
+    public function show_get($id){
+
+        header("Access-Control-Allow-Origin: *");
+
         // Load Authorization token
         $this->load->library('Authorization_Token');
 
@@ -36,27 +56,33 @@ class Users extends REST_Controller {
 
         $is_valid_token = $this->authorization_token->validateToken();
 
-         if(!empty($is_valid_token) && $is_valid_token['status'] === TRUE) {
-             if (!empty($is_valid_token)) {
-                 $headers = $this->input->request_headers();
-                 $platform = $headers['platform'] ?? 'android';
+        if(!empty($is_valid_token) && $is_valid_token['status'] === TRUE) {
+            if (!empty($is_valid_token)) {
+                $headers = $this->input->request_headers();
+                $platform = $headers['platform'] ?? 'android';
 
-                 if ($platform == 'IOS') {
-                     $data = json_decode(file_get_contents('php://input'), true);
-                     $_POST = $data;
-                 }
-                 // $this->load->model('driver_model');
-                 $this->response($this->user->get_users(), REST_Controller::HTTP_OK);
-             } else {
-                 $message = [
-                     'status' => FALSE,
-                     'message' => $is_valid_token['message']
-                 ];
-                 $this->response($message, REST_Controller::HTTP_OK);
-             }
-         }
+                if ($platform == 'IOS') {
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    $_POST = $data;
+                }
+                // $this->load->model('driver_model');
+                $this->response($this->user->show_user($id), REST_Controller::HTTP_OK);
+            } else {
+                $message = [
+                    'status' => FALSE,
+                    'message' => $is_valid_token['message']
+                ];
+                $this->response($message, REST_Controller::HTTP_OK);
+            }
+        }
     }
 
+    /**
+     *
+     * Hashing passwords.
+     *
+     * @param string  $str
+     */
 
     public function hash_pass($str)
     {
