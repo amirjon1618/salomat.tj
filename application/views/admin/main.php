@@ -270,7 +270,7 @@
                     <?php if ($this->user->myData['access'] == 100) { ?>
                         <li class="treeview">
                             <a href="{base_url}index.php/Admin/banners">
-                                <i class="fa fa-map"></i> <span>Баннер</span>
+                                <i class="fa fa-map"></i> <span>Слайдер</span>
                             </a>
                         </li>
                     <?php } ?>

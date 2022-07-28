@@ -260,7 +260,8 @@ class Users extends REST_Controller {
 
 
     public function login_post()
-    {
+    { 
+        // var_dump($phone      = $this->input->post('phone'));
         header("Access-Control-Allow-Origin: *");
 
         #Getting key from DB for hash
