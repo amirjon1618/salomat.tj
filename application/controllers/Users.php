@@ -16,6 +16,7 @@ class Users extends REST_Controller {
         $this->load->library('session');
         $this->load->helper('security');
         $this->load->model('user');
+        $this->load->model('sms');
         $this->load->library('form_validation');
         $this->load->database();
     }
@@ -423,7 +424,151 @@ class Users extends REST_Controller {
                 $this->response($message, 400);
             }
         }
-
     }
+
+    /**
+     * Send Sms for confirm
+     *
+    */
+    public function resend_sms_post()
+    {
+        if ($this->input->post("phone")) {
+            $rand_num = rand(1000, 9999);
+            $array['code'] = $rand_num;
+            $now = date('Y-m-d H:i:s');
+            $sms_id = $this->sms->add_phone(array('phone' => $this->input->post("phone"), 'confirm_code' => $rand_num, 'qty' => 1, 'created_at' => $now, 'updated_at' => $now));
+            $this->create_url_f55($this->input->post("phone"), $rand_num, $sms_id);
+            $this->response($rand_num);
+        } else {
+            echo json_encode(-1);
+        }
+    }
+
+
+    private function create_url_f55($to, $sms, $id)
+    {
+        $login = 'salomat';
+        $salt = '83076e76adad3f1a19d91f7558c6e724';
+        $source = "Salomat.tj";
+        // $hh = hash("sha256", $id . ';' . $login . ';' . $source . ';' . $to . ';' . $salt);
+        $server = 'http://api.osonsms.com/sendsms_v1.php';
+
+        $dlm = ";";
+        $phone_number = $to; //номер телефона
+        $txn_id = $id; //ID сообщения в вашей базе данных, оно должно быть уникальным для каждого сообщения
+        $str_hash = hash('sha256',$txn_id.$dlm.$login.$dlm.$source.$dlm.$phone_number.$dlm.$salt);
+        $message = "Salomat.tj: " . $sms . " - Ваш код для подтверждения телефона";
+        if (strlen($sms) > 4) {
+            $message = $sms;
+        }
+        $params = array(
+            "from" => $source,
+            "phone_number" => $phone_number,
+            "msg" => $message,
+            "str_hash" => $str_hash,
+            "txn_id" => $txn_id,
+            "login"=>$login,
+        );
+        $result = $this->call_api($server, "GET", $params);
+
+        // $url = 'http://api.osonsms.com/sendsms_v1.php?login=' . $login . '&phone_number=' . $to . '&msg=' . urlencode($sms) . '&str_hash=' . $hh . '&from=' . $source . '&txn_id=' . $id;
+        // $data = file_get_contents($url);
+        return $result;
+    }
+
+
+    private function call_api($url, $method, $params){
+        $curl = curl_init();
+        $data = http_build_query ($params);
+        if ($method == "GET") {
+            curl_setopt ($curl, CURLOPT_URL, "$url?$data");
+        }else if($method == "POST"){
+            curl_setopt ($curl, CURLOPT_URL, $url);
+            curl_setopt ($curl, CURLOPT_POSTFIELDS, $data);
+        }else if($method == "PUT"){
+            curl_setopt ($curl, CURLOPT_URL, $url);
+            curl_setopt ($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded','Content-Length:'.strlen($data)));
+            curl_setopt ($curl, CURLOPT_POSTFIELDS, $data);
+        }else if ($method == "DELETE"){
+            curl_setopt ($curl, CURLOPT_URL, "$url?$data");
+            curl_setopt ($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+        }else{
+            //dd("unkonwn method");
+        }
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => $method
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+        $arr = array();
+        if ($err) {
+            $arr['error'] = 1;
+            $arr['msg'] = $err;
+        } else {
+            $res = json_decode($response);
+            if (isset($res->error)){
+                $arr['error'] = 1;
+                $arr['msg'] = "Error Code: ". $res->error->code . " Message: " . $res->error->msg;
+            }else{
+                $arr['error'] = 0;
+                $arr['msg'] = json_decode($response, true);
+            }
+        }
+        return $arr;
+    }
+
+    /***
+     * Check register code.
+     *
+     * @return mixed
+     */
+    public function check_register_code_post()
+    {
+        $this->form_validation->set_rules('phone', 'Телефон', 'xss_clean|trim|required|max_length[20]');
+        $this->form_validation->set_rules('confirm_code', 'Код', 'xss_clean|trim|required|max_length[20]');
+
+        if($this->form_validation->run() == FALSE) {
+            $message = array(
+                'status'    => false,
+                'error'     => $this->form_validation->error_array(),
+                'message'   => validation_errors()
+            );
+
+            $this->response($message, 400);
+
+        } else {
+            $phone = $this->input->post('phone');
+            $confirm_code = $this->input->post('confirm_code');
+            $this->db->select('*');
+            $this->db->from('confirm_passwords');
+            $this->db->where('phone', $phone);
+            $this->db->where('confirm_code', $confirm_code);
+            $query = $this->db->get();
+            $query = $query->result();
+
+            if((!empty($query) && $query != FALSE)) {
+                $message = [
+                    'status'    => true,
+                    'message'   => "код подтвержден"
+                ];
+                $this->response($message, REST_Controller::HTTP_OK);
+            } else {
+                //Error
+                $message = [
+                    'status'    =>	 false,
+                    'message'   => "Введен неправильный код."
+                ];
+                $this->response($message, 400);
+            }
+        }
+    }
+
 
 }
