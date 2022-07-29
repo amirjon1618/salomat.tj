@@ -168,7 +168,6 @@
                                     </div>
                                     <div class="form-row-last d-grid">
                                         <a href="#"><input type="submit" name="enter" class="enter ef1 enter-reg_btn" value="Вход или  регистрация" ></a>
-                                        <!--<a href="#"><input type="submit" name="register" class="register rf1" value="Регистрация"></a>-->
                                     </div>
                                 </div>
                             </form>
@@ -203,7 +202,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row-last d-flex">
-                                        <a href="{base_url}index.php/main/user_info"><input type="submit" name="register" class="enter ef2" value="Вход"></a>
+                                        <a href="#"><input type="submit" name="register" class="enter ef2" value="Вход"></a>
                                         <a href="#"><input type="submit" name="register" class="register rf2" value="Отмена"></a>
                                     </div>
                                 </div>
@@ -1478,7 +1477,7 @@
             },
             success:function(result){
                 $(".validate-text").text("");
-
+                userInfo();
             },
             error:function(error){
                 $(".validate-text").text("Неправильный логин или пароль");
@@ -1503,7 +1502,27 @@
             }
         })
      }
-
+  
+        function userInfo(){
+        fetch("{base_url}/users")
+        .then(resp => resp.json())
+        .then(resp =>{
+            resp.filter(elem =>{
+                if(elem.login === String(localStorage.getItem("ver-number"))){
+                    return userId(44)
+                }
+            })
+        })
+         }
+         
+         function userId(id){
+            console.log(id)
+         fetch("{base_url}/users/show/44")
+         .then(res => res.json())
+         .then(resp => console.log(resp))
+         }
+        
+         
         function verSms(){
         $.ajax({
             type:"POST",
@@ -1572,7 +1591,7 @@
         onRegister();
        }
     })
-
+    
 
     </script>
 
