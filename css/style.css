@@ -6447,7 +6447,7 @@
     
     .ps-block--products-of-category .ps-block__categories {
         position: relative;
-        padding: 30px 20px 30px 10px;
+        padding: 30px 20px 0 10px;
         background-color: #ffffff;
         max-width: 20%;
     }
@@ -6548,6 +6548,7 @@
         }
         .ps-block--products-of-category .ps-block__product-box {
             width: 100%;
+            background-color: #fff !important;
         }
     }
     
@@ -14723,6 +14724,16 @@
     }
 
     @media (min-width: 320px) and (max-width: 576px) {
+        .collapse {
+
+            display: block !important;
+          
+          }
+          .collapse.show {
+
+            display: none !important;
+          
+          }
         .ps-block--products-of-category .ps-block__categories ul li {
             display: flex;
         }

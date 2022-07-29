@@ -1434,7 +1434,6 @@
         })
         $("#form4").submit((e) =>{
             e.preventDefault();
-            onRegister();
         })
         $(".rf2").click((e) =>{
             e.preventDefault();
@@ -1570,8 +1569,11 @@
         $(".validate-text").text("Пароли не совпадают");
        }else{
         $(".validate-text").text("");
+        onRegister();
        }
     })
+
+
     </script>
 
    
