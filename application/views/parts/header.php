@@ -1234,9 +1234,10 @@
                     }
                 });
             });
-            // if ()
         }
-
+        /*$("#tel-number").on('input',function(){
+        this.value = this.value.replaceAll("/[^a-z]/","");
+        })*/
         function input_type_mobile(cl, type) {
             $('.srch-results_mobile').html('');
             $('.srch-results_mobile').css('display', 'none');
