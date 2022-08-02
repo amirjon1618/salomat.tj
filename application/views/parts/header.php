@@ -203,7 +203,7 @@
                                     </div>
                                     <div class="form-row-last d-flex">
                                         <a href="#"><input type="submit" name="register" class="enter ef2" value="Вход"></a>
-                                        <a href="#"><input type="submit" name="register" class="register rf2" value="Отмена"></a>
+                                        <a href="#"><input type="submit" name="cancel" class="register rf2" value="Отмена"></a>
                                     </div>
                                 </div>
                             </form>
@@ -391,27 +391,28 @@
                             </div>
                         </div>
                         
-                        <?php if (!isset($auth)) : ?>
+                        <div class="account-btn">
                             <div class="ps-block--user-header">
                             <div class="ps-block__right" onclick="onPsBlockRight()"><a class="ps-btn" href="#" id="enter-profile">Войти</a></div>
-                        <?php else : ?>
-                            <div class="account-wrap">
+                        </div>
+                        </div>
+                        <div class="account-wrap" id="account-wrap" style="display: none;"> 
                                 <div class="account-item clearfix js-item-menu">
                                     <div class="image">
-                                    <img class="rounded-circle" src="{base_url}img/users/<?php echo $image ?? null ?>" alt="User Icon" />
+                                    <img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" />
                                     </div>
                                     <div class="account-dropdown js-dropdown">
                                         <div class="info clearfix">
                                             <div class="image">
                                                 <a href="#">
-                                                <img class="rounded-circle" src="{base_url}img/users/<?php echo $image ?? null ?>" alt="User Icon" />
+                                                <img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" />
                                                 </a>
                                             </div>
                                             <div class="content">
                                                 <h5 class="name">
-                                                <a href="#"><?php echo($name  ?? null); ?></a>
+                                                <a href="#">Testov Testov<?php echo($name  ?? null); ?></a>
                                                 </h5>
-                                                <span class="email"><?php echo($email ?? null); ?></span>
+                                                <span class="email">test@mail.tj<?php echo($email ?? null); ?></span>
                                             </div>
                                         </div>
                                         <div class="account-dropdown__body">
@@ -433,15 +434,12 @@
                                             </div>
                                         </div>
                                         <div class="account-dropdown__footer">
-                                        <a href="{base_url}users/web_log_out">
+                                        <a href="/" onclick="onRemoveLS()">
                                                 <i class="zmdi zmdi-power"></i>Выход</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <?php endif; ?>
-                        </div>
-                       
                     </div>
                 </div>
             </div>
@@ -1022,6 +1020,13 @@
         }
     </style>
     <script>
+
+    if(localStorage.getItem("userId") !== null){
+        $(".account-btn").css("display","none")
+        $(".account-wrap").css("display","block")
+
+    }
+
         function remove_from_header_cart(id) {
 
             var mydata = $.parseJSON(localStorage.getItem("product_list"));
@@ -1096,7 +1101,7 @@
                 hidePass3.src = "{base_url}img/show-pass.svg";
             }
         }
-
+        
         function set_prods_header() {
 
             if (localStorage.getItem("product_list")) {
@@ -1235,6 +1240,7 @@
                 });
             });
         }
+        console.log("<?php  echo $name   ?>")
         /*$("#tel-number").on('input',function(){
         this.value = this.value.replaceAll("/[^a-z]/","");
         })*/
@@ -1376,6 +1382,9 @@
             document.querySelector(".pass-form").style.display = "block";
 
         }
+        function onRemoveLS(){
+            localStorage.removeItem("userId");
+        }
 
         // Get the element with id="defaultOpen" and click on it
         /*document.getElementById("defaultOpen").click();*/
@@ -1434,6 +1443,7 @@
         })
         $("#form4").submit((e) =>{
             e.preventDefault();
+            onRegister();
         })
         $(".rf2").click((e) =>{
             e.preventDefault();
@@ -1464,11 +1474,11 @@
         })
 
         $("#form2").on("submit",(e) => {
-            console.log()
+            alert("");
             e.preventDefault();
             $.ajax({
             type:"POST",
-            url:"{base_url}/users/login",
+            url:"{base_url}users/login",
             headers:{
                 "Accept":"application/json",
             },
@@ -1489,7 +1499,7 @@
         function sendSms(){
         $.ajax({
             type:"POST",
-            url:"{base_url}/users/resend_sms",
+            url:"{base_url}users/resend_sms",
             headers:{
                 "Accept":"application/json",
             },
@@ -1505,29 +1515,38 @@
      }
   
         function userInfo(){
-        fetch("{base_url}/users")
+        fetch("{base_url}users")
         .then(resp => resp.json())
         .then(resp =>{
             resp.filter(elem =>{
                 if(elem.login === String(localStorage.getItem("ver-number"))){
-                    return userId(44)
+                    return userId(elem.user_id)
                 }
             })
         })
          }
          
          function userId(id){
-            console.log(id)
-         fetch("{base_url}/users/show/44")
-         .then(res => res.json())
-         .then(resp => console.log(resp))
-         }
-        
-         
+         fetch(`{base_url}users/show/${id}`,{
+            method:"get",
+            headers:({
+                'Authorization':"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjM0IiwibG9naW4iOiI1NTAyNjQ0MDAiLCJ0aW1lIjoxNjU3ODY5MjU2fQ.nEO1YvaQFgwJpiGbx22DnuNoB3o7QOte9mGl2hu8z-E",
+                'Content-Type':"application/json"
+            })
+         }).then(resp => resp.json()).then(resp =>{
+            localStorage.setItem("userId",JSON.stringify(resp[0]))
+            if(JSON.parse(localStorage.getItem("userId")).user_id){
+                $(".enter-btn-bg").css("display","none");
+                $(".account-btn").css("display","none");
+                document.getElementById("account-wrap").style.display = "block";
+            }
+         })
+        }
+        console.log(JSON.parse(localStorage.getItem("userId")).login)
         function verSms(){
         $.ajax({
             type:"POST",
-            url:"{base_url}/users/check_register_code",
+            url:"{base_url}users/check_register_code",
             headers:{
                 "Accept":"application/json",
             },
@@ -1548,7 +1567,7 @@
         function onPost(){
         $.ajax({
             type:"POST",
-            url:"{base_url}/users/check_phone",
+            url:"{base_url}users/check_phone",
             headers:{
                 "Accept":"application/json",
             },
@@ -1568,7 +1587,7 @@
     function onRegister(){
         $.ajax({
             type:"POST",
-            url:"{base_url}/users/register",
+            url:"{base_url}users/register",
             headers:{
                 "Accept":"application/json",
             },
@@ -1577,7 +1596,9 @@
                 password:$("#first-password").val()
             },
             success:function(result){
-                   
+                $(".enter-btn-bg").css("display","none");
+                $(".account-btn").css("display","none");
+                document.getElementById("account-wrap").style.display = "block";
             },
             error:function(error){
                 
@@ -1589,10 +1610,8 @@
         $(".validate-text").text("Пароли не совпадают");
        }else{
         $(".validate-text").text("");
-        onRegister();
        }
     })
-    
 
     </script>
 
