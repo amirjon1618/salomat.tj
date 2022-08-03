@@ -36,7 +36,7 @@
                 <th style="text-align: center;">Удалить</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="dragAndDrop" draggable="true">
               <?php foreach ($list as $item) : ?>
                 <tr>
                   <td><?= $item['id'] ?></td>
@@ -133,7 +133,17 @@
 </section><!-- /.content -->
 <script src="{base_url}plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="{base_url}plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
 <script>
+   /*===== DRAG and DROP =====*/
+   const dropItems = document.getElementById('dragAndDrop')
+
+new Sortable(dropItems, {
+    animation: 350,
+    chosenClass: "sortable-chosen",
+    dragClass: "sortable-drag"
+});
   function cancel_file_input() {
     $('.file_inp').val('');
   }
