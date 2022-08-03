@@ -9,13 +9,14 @@ class Users extends REST_Controller {
     /**
      * Construction
      */
-    public function __construct(){
-
+    public function __construct()
+    {
         parent::__construct();
 
         $this->load->library('session');
         $this->load->helper('security');
         $this->load->model('user');
+        $this->load->model('favorite');
         $this->load->model('sms');
         $this->load->library('form_validation');
         $this->load->database();
@@ -170,6 +171,10 @@ class Users extends REST_Controller {
         }
     }
 
+    /**
+     * Users web logout.
+     *
+     */
     public function web_log_out_get()
     {
         // $this->sess->destroy();
@@ -252,8 +257,8 @@ class Users extends REST_Controller {
         }
     }
 
-    public function web_login_post(){
-
+    public function web_login_post()
+    {
         $data = array('base_url' => base_url(), 'alert' => '');
 
         if($this->input->post("login") && $this->input->post("password"))
@@ -285,9 +290,8 @@ class Users extends REST_Controller {
         $this->parser->parse('login', $data);
     }
 
-
     public function login_post()
-    { 
+    {
         // var_dump($phone      = $this->input->post('phone'));
         header("Access-Control-Allow-Origin: *");
 
@@ -359,37 +363,35 @@ class Users extends REST_Controller {
         }
     }
 
-    public function update_user_post()
+    public function update_user_post($id)
     {
-        $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        $name       = $this->input->post('name');
+        $email      = $this->input->post('email');
+        $login      = $this->input->post('phone');
+        $birth_date = $this->input->post('birth_date');
+        $address    = $this->input->post('address');
+        $gender     = $this->input->post('gender');
+        $password    = $this->input->post('password');
+        if(isset($id)){
+            if (!empty($name))
+                $userData['name'] = $name;
+            if (!empty($password))
+                $userData['password'] = $this->hash_pass($password);
+            if (!empty($email))
+                $userData['email'] =$email;
+            if (!empty($login))
+                $userData['login'] = $login;
+            if (!empty($birth_date))
+                $userData['birth_date'] = $birth_date;
+            if (!empty($address))
+                $userData['address'] = $address;
+            if (!empty($gender))
+                $userData['gender'] = $gender;
+            $this->db->where("user_id", $id);
+            $this->db->update("users", $userData);
+        }
 
-        if(isset($user))
-            $userData['name'] = $this->input->post('name');
-            $userData['email'] = $this->input->post('email');
-            $userData['login'] = $this->input->post('login');
-            $userData['birth_date'] = $this->input->post('birth_date');
-            $userData['address'] = $this->input->post('address');
-            $userData['gender'] = $this->input->post('gender');
-
-        $this->db->where("user_id", $user['user_id']);
-        $this->db->update("users", $userData);
-
-        redirect(base_url('/index.php/main/user_info'), 'refresh');
-    }
-
-    public function update_user_password_post()
-    {
-        $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
-
-        if(isset($user))
-            $userData['password'] = $this->hash_pass($this->input->post('password_confirm'));
-
-        $this->db->where("user_id", $user['user_id']);
-        $this->db->update("users", $userData);
-
-        redirect(base_url('/index.php/main/user_info'), 'refresh');
+        $this->response($userData, REST_Controller::HTTP_OK);
     }
 
     public function getUser($user_id)
@@ -405,7 +407,6 @@ class Users extends REST_Controller {
         }
         return $array;
     }
-
 
     /***
      * Checking phone
@@ -455,13 +456,13 @@ class Users extends REST_Controller {
     /**
      * Send Sms for confirm
      *
-    */
+     */
     public function resend_sms_post()
     {
         if ($this->input->post("phone")) {
             $rand_num = rand(1000, 9999);
             $array['code'] = $rand_num;
-            $now = date('Y-m-d H:i:s');
+            $now = date('Y-m-d H:i');
             $sms_id = $this->sms->add_phone(array('phone' => $this->input->post("phone"), 'confirm_code' => $rand_num, 'qty' => 1, 'created_at' => $now, 'updated_at' => $now));
             $this->create_url_f55($this->input->post("phone"), $rand_num, $sms_id);
             $this->response($rand_num);
@@ -469,7 +470,6 @@ class Users extends REST_Controller {
             echo json_encode(-1);
         }
     }
-
 
     private function create_url_f55($to, $sms, $id)
     {
@@ -501,7 +501,6 @@ class Users extends REST_Controller {
         // $data = file_get_contents($url);
         return $result;
     }
-
 
     private function call_api($url, $method, $params){
         $curl = curl_init();
@@ -550,7 +549,7 @@ class Users extends REST_Controller {
         return $arr;
     }
 
-    /***
+    /**
      * Check register code.
      *
      * @return mixed
@@ -570,12 +569,15 @@ class Users extends REST_Controller {
             $this->response($message, 400);
 
         } else {
+//            $now = date('Y-m-d H:i:');
+//            var_dump($now);
             $phone = $this->input->post('phone');
             $confirm_code = $this->input->post('confirm_code');
             $this->db->select('*');
             $this->db->from('confirm_passwords');
             $this->db->where('phone', $phone);
             $this->db->where('confirm_code', $confirm_code);
+//            $this->db->where('created_at', $now);
             $query = $this->db->get();
             $query = $query->result();
 
@@ -596,5 +598,33 @@ class Users extends REST_Controller {
         }
     }
 
+    /**
+     * Favorite code.
+     *
+     * @return mixed
+     */
+    public function favorite_post()
+    {
+//            $now = date('Y-m-d H:i:');
+//            var_dump($now);
 
+        $user_id = $this->input->post('user_id');
+        $favoriteable_id = $this->input->post('product_id');
+
+        if ($user_id) {
+            $now = date('Y-m-d H:i');
+            $this->favorite->add(array('user_id' => $user_id, 'favoriteable_id' => $favoriteable_id, 'created_at' => $now, 'updated_at' => $now));
+
+            $message = [
+                'status'    => true,
+                'message'   => "Добавлено в избрание"
+            ];
+            $this->response($message, REST_Controller::HTTP_OK);
+        } else {
+            $message = [
+                'status'    =>	 false,
+            ];
+            $this->response($message, 400);
+        }
+    }
 }

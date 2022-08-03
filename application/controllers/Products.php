@@ -257,4 +257,45 @@ class Products extends REST_Controller {
         $data['isOnlySecondCategory'] = $res['isOnlySecondCategory'];
         $this->response($data, REST_Controller::HTTP_OK);
     }
+
+    public function all_get()
+    {
+        $page = $this->input->get('page');
+        $user_id = $this->input->get('user_id');
+        $this->db->select('product.*');
+        $this->db->from('product');
+//        $this->db->join('favorites', 'product.id = favorites.favoriteable_id');
+//        $this->db->join('users',     'favorites.user_id = users.user_id');
+//        $this->db->join('favorites', 'favorites.favoriteable_id', '=', 'product.id');
+        $this->db->limit(10,$page);
+        $query = $this->db->get();
+        $array = $query->result_array();
+
+        $page = $this->input->get('page');
+        $this->db->select('product.*');
+        $this->db->from('product');
+        $this->db->join('favorites', 'product.id = favorites.favoriteable_id');
+        $this->db->where('favorites.user_id', $user_id);
+//        $this->db->limit(10,$page);
+        $query2 = $this->db->get();
+        $array2 = $query2->result_array();
+
+        $product_id = [];
+        $rde = [];
+        foreach ($array as $item){
+
+            $product_id[] = $item['id'];
+
+
+            foreach ($array2 as $it){
+
+                if ( $it['id'] == $product_id){
+
+                    $rde[] = $product_id;
+                }
+            }
+        }
+
+        $this->response($rde, REST_Controller::HTTP_OK);
+    }
 }
