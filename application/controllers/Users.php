@@ -307,6 +307,7 @@ class Users extends REST_Controller {
         $this->form_validation->set_rules('password', 'Пароль', 'xss_clean|trim|required|max_length[100]');
 
         if($this->form_validation->run() == FALSE) {
+        
             $message = array(
                 'status'    => false,
                 'error'     => $this->form_validation->error_array(),
@@ -320,6 +321,10 @@ class Users extends REST_Controller {
             $phone      = $this->input->post('phone');
             $password   = $this->input->post('password');
             $output     = $this->user->user_login($phone, $password, $key);
+
+           
+
+
             $this->response($output, REST_Controller::HTTP_OK);
 
             if((!empty($output) && $output != FALSE))
@@ -330,6 +335,17 @@ class Users extends REST_Controller {
                 $token_data['id'] = $output->user_id;
                 $token_data['login'] = $output->login;
                 $token_data['time'] = time();
+                $this->load->library('session');
+
+                $this->session->set_userdata( array("name" =>  $token_data['login'],"user_id" => $token_data['id'], 'auth_soft' => $this->input->user_agent(),'auth_date' => time()));
+    
+                $session = array("user_id" => $token_data['id'], 'auth_soft' => $this->input->user_agent(),'auth_date' => time());
+                $auth_id = $this->user->CreateSession($session);
+                $this->isAuth = true;
+
+    
+                setcookie("auth_id", $auth_id, time()+3600*24*15, '/');
+    
 
                 $user_token = $this->authorization_token->generateToken($token_data);
 

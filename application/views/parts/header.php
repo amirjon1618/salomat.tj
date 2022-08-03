@@ -410,9 +410,9 @@
                                             </div>
                                             <div class="content">
                                                 <h5 class="name">
-                                                <a href="#">Testov Testov<?php echo($name  ?? null); ?></a>
+                                                <a href="#"><?php echo($name  ?? null); ?></a>
                                                 </h5>
-                                                <span class="email">test@mail.tj<?php echo($email ?? null); ?></span>
+                                                <span class="email"><?php echo($email ?? null); ?></span>
                                             </div>
                                         </div>
                                         <div class="account-dropdown__body">
@@ -1474,7 +1474,6 @@
         })
 
         $("#form2").on("submit",(e) => {
-            alert("");
             e.preventDefault();
             $.ajax({
             type:"POST",
