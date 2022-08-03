@@ -35,7 +35,7 @@
                 <th style="text-align: center;">Удалить</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="dragAndDrop" draggable="true">
               <?php foreach ($list as $item) : ?>
                 <tr>
                   <td><?= $item['slider_id'] ?></td>
@@ -90,6 +90,8 @@
     </div>
 <script src="{base_url}plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="{base_url}plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
 <script>
   $(function() {
     $('#TableUser').DataTable({
@@ -131,6 +133,14 @@
                 document.querySelector(".enter-btn-bg").style.display = "none";
             }
         })
+        /*===== DRAG and DROP =====*/
+  const dropItems = document.getElementById('dragAndDrop')
+
+new Sortable(dropItems, {
+    animation: 350,
+    chosenClass: "sortable-chosen",
+    dragClass: "sortable-drag"
+});
 </script>
 <style>
   .enter-btn-bg {

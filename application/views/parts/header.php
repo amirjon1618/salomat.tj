@@ -168,7 +168,6 @@
                                     </div>
                                     <div class="form-row-last d-grid">
                                         <a href="#"><input type="submit" name="enter" class="enter ef1 enter-reg_btn" value="Вход или  регистрация" ></a>
-                                        <!--<a href="#"><input type="submit" name="register" class="register rf1" value="Регистрация"></a>-->
                                     </div>
                                 </div>
                             </form>
@@ -203,8 +202,8 @@
                                         </div>
                                     </div>
                                     <div class="form-row-last d-flex">
-                                        <a href="{base_url}index.php/main/user_info"><input type="submit" name="register" class="enter ef2" value="Вход"></a>
-                                        <a href="#"><input type="submit" name="register" class="register rf2" value="Отмена"></a>
+                                        <a href="#"><input type="submit" name="register" class="enter ef2" value="Вход"></a>
+                                        <a href="#"><input type="submit" name="cancel" class="register rf2" value="Отмена"></a>
                                     </div>
                                 </div>
                             </form>
@@ -220,10 +219,11 @@
                                     <div class="form-row user-phone">
                                         <span class="text-label">Введите код из смс</span>
                                         <label class="form-row-inner">
-                                            <input type="tel" name="tel-number" minlength="6" maxlength="6" id="ver-number" class="input-text" required placeholder="__ __ __ __ __ __">
+                                            <input type="tel" name="tel-number" minlength="4" maxlength="4" id="ver-sms" class="input-text" required placeholder=" __ __ __ __ ">
                                             <span class="border"></span>
                                         </label>
                                     </div>
+                                    <p class="validate-text"></p>
                                     <div class="timer-agree">
                                         <div class="showTimer">
                                             <p>Повторная отправка сообщения будет доступна через:</p>
@@ -241,7 +241,7 @@
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 15C12.1621 15 12.494 14.6642 12.494 14.25V11.25C12.494 10.8358 12.1621 10.5 11.7526 10.5C11.3431 10.5 11.0111 10.8358 11.0111 11.25V14.25C11.0111 14.6642 11.3431 15 11.7526 15Z" fill="#7A769D" />
                                             <path d="M12.7412 8.25C12.7412 7.69771 12.2986 7.25 11.7526 7.25C11.2065 7.25 10.7639 7.69771 10.7639 8.25C10.7639 8.80229 11.2065 9.25 11.7526 9.25C12.2986 9.25 12.7412 8.80229 12.7412 8.25Z" fill="#7A769D" />
                                         </svg>
-                                        <p>Нажав на кнопку “Продолжить”, я принимаю <a href="#" class="text-primary">условия пользования</a></p>
+                                        <p class="mb-0">Нажав на кнопку “Продолжить”, я принимаю <a href="#" class="text-primary">условия пользования</a></p>
                                     </div>
                                     <div class="form-row-last d-flex">
                                         <a href="#"><input type="submit" name="register" class="enter ef3" value="Продолжить"></a>
@@ -261,7 +261,7 @@
                                     <div class="form-row">
                                         <span class="text-label">Пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="password" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
+                                            <input type="password" name="password" id="first-password" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
                                             <div class="hide-btn-pass" onclick="showPass2()">
                                                 <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass2">
                                             </div>
@@ -270,19 +270,20 @@
                                     <div class="form-row">
                                         <span class="text-label">Повторный пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="password1" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
-                                            <div class="hide-btn-pass" onclick="showPass2()">
-                                                <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass2">
+                                            <input type="password" name="password" id="second-password" minlength="4" maxlength="32" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
+                                            <div class="hide-btn-pass" onclick="showPass3()">
+                                                <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass3">
                                             </div>
                                         </label>
                                     </div>
+                                    <p class="validate-text"></p>
                                     <div class="timer-agree">
                                         <svg class="mx-auto mb-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 19.5C7.24795 19.5 3.59625 15.8063 3.59625 11.25C3.59625 6.69365 7.24795 3 11.7526 3C16.2572 3 19.9089 6.69365 19.9089 11.25C19.9089 15.8063 16.2572 19.5 11.7526 19.5ZM2.11328 11.25C2.11328 16.6348 6.42893 21 11.7526 21C17.0762 21 21.3918 16.6348 21.3918 11.25C21.3918 5.86522 17.0762 1.5 11.7526 1.5C6.42893 1.5 2.11328 5.86522 2.11328 11.25Z" fill="#7A769D" />
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 15C12.1621 15 12.494 14.6642 12.494 14.25V11.25C12.494 10.8358 12.1621 10.5 11.7526 10.5C11.3431 10.5 11.0111 10.8358 11.0111 11.25V14.25C11.0111 14.6642 11.3431 15 11.7526 15Z" fill="#7A769D" />
                                             <path d="M12.7412 8.25C12.7412 7.69771 12.2986 7.25 11.7526 7.25C11.2065 7.25 10.7639 7.69771 10.7639 8.25C10.7639 8.80229 11.2065 9.25 11.7526 9.25C12.2986 9.25 12.7412 8.80229 12.7412 8.25Z" fill="#7A769D" />
                                         </svg>
-                                        <p>Нажав на кнопку “Регистрация”, я принимаю <a href="#" class="text-primary">условия пользования</a></p>
+                                        <p class="mb-0">Нажав на кнопку “Регистрация”, я принимаю <a href="#" class="text-primary">условия пользования</a></p>
                                     </div>
                                     <div class="form-row-last d-flex">
                                         <a href="{base_url}index.php/main/user_info"><input type="submit" name="register" class="enter ef4" value="Регистрация"></a>
@@ -390,20 +391,21 @@
                             </div>
                         </div>
                         
-                        <?php if (!isset($auth)) : ?>
+                        <div class="account-btn">
                             <div class="ps-block--user-header">
                             <div class="ps-block__right" onclick="onPsBlockRight()"><a class="ps-btn" href="#" id="enter-profile">Войти</a></div>
-                        <?php else : ?>
-                            <div class="account-wrap">
+                        </div>
+                        </div>
+                        <div class="account-wrap" id="account-wrap" style="display: none;"> 
                                 <div class="account-item clearfix js-item-menu">
                                     <div class="image">
-                                    <img class="rounded-circle" src="{base_url}img/users/<?php echo $image ?? null ?>" alt="User Icon" />
+                                    <img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" />
                                     </div>
                                     <div class="account-dropdown js-dropdown">
                                         <div class="info clearfix">
                                             <div class="image">
                                                 <a href="#">
-                                                <img class="rounded-circle" src="{base_url}img/users/<?php echo $image ?? null ?>" alt="User Icon" />
+                                                <img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" />
                                                 </a>
                                             </div>
                                             <div class="content">
@@ -432,15 +434,12 @@
                                             </div>
                                         </div>
                                         <div class="account-dropdown__footer">
-                                        <a href="{base_url}users/web_log_out">
+                                        <a href="/" onclick="onRemoveLS()">
                                                 <i class="zmdi zmdi-power"></i>Выход</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <?php endif; ?>
-                        </div>
-                       
                     </div>
                 </div>
             </div>
@@ -1021,6 +1020,13 @@
         }
     </style>
     <script>
+
+    if(localStorage.getItem("userId") !== null){
+        $(".account-btn").css("display","none")
+        $(".account-wrap").css("display","block")
+
+    }
+
         function remove_from_header_cart(id) {
 
             var mydata = $.parseJSON(localStorage.getItem("product_list"));
@@ -1095,7 +1101,7 @@
                 hidePass3.src = "{base_url}img/show-pass.svg";
             }
         }
-
+        
         function set_prods_header() {
 
             if (localStorage.getItem("product_list")) {
@@ -1233,9 +1239,11 @@
                     }
                 });
             });
-            // if ()
         }
-
+        console.log("<?php  echo $name   ?>")
+        /*$("#tel-number").on('input',function(){
+        this.value = this.value.replaceAll("/[^a-z]/","");
+        })*/
         function input_type_mobile(cl, type) {
             $('.srch-results_mobile').html('');
             $('.srch-results_mobile').css('display', 'none');
@@ -1374,6 +1382,9 @@
             document.querySelector(".pass-form").style.display = "block";
 
         }
+        function onRemoveLS(){
+            localStorage.removeItem("userId");
+        }
 
         // Get the element with id="defaultOpen" and click on it
         /*document.getElementById("defaultOpen").click();*/
@@ -1415,6 +1426,7 @@
             onPost();
         })
         $(".hideTimer_a").click(() =>{
+            sendSms();
             $(".showTimer").css("display","block");
             $(".hideTimer").css("display","none");
             userTimer();
@@ -1427,8 +1439,11 @@
         })
         $("#form3").submit((e) =>{
             e.preventDefault();
-            $(".efr3").hide();
-            $(".efr4").css("display","block");
+            verSms();
+        })
+        $("#form4").submit((e) =>{
+            e.preventDefault();
+            onRegister();
         })
         $(".rf2").click((e) =>{
             e.preventDefault();
@@ -1455,35 +1470,103 @@
             }
         })
         $('.ef1').on('click',() =>{
-            localStorage.setItem("password",$('#tel-number').val());
+            localStorage.setItem("ver-number",$('#tel-number').val());
         })
 
         $("#form2").on("submit",(e) => {
-            console.log()
             e.preventDefault();
             $.ajax({
             type:"POST",
-            url:"{base_url}/users/login",
+            url:"{base_url}users/login",
             headers:{
                 "Accept":"application/json",
             },
             data:{
-                phone:Number(localStorage.getItem("password")),
+                phone:Number(localStorage.getItem("ver-number")),
                 password:$("#enter-password").val()
             },
             success:function(result){
-             
+                $(".validate-text").text("");
+                userInfo();
             },
             error:function(error){
                 $(".validate-text").text("Неправильный логин или пароль");
             }
         })
-
         })
+        
+        function sendSms(){
+        $.ajax({
+            type:"POST",
+            url:"{base_url}users/resend_sms",
+            headers:{
+                "Accept":"application/json",
+            },
+            data:{
+                phone:Number(localStorage.getItem("ver-number")),
+            },
+            success:function(result){
+                
+            },
+            error:function(error){
+            }
+        })
+     }
+  
+        function userInfo(){
+        fetch("{base_url}users")
+        .then(resp => resp.json())
+        .then(resp =>{
+            resp.filter(elem =>{
+                if(elem.login === String(localStorage.getItem("ver-number"))){
+                    return userId(elem.user_id)
+                }
+            })
+        })
+         }
+         
+         function userId(id){
+         fetch(`{base_url}users/show/${id}`,{
+            method:"get",
+            headers:({
+                'Authorization':"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjM0IiwibG9naW4iOiI1NTAyNjQ0MDAiLCJ0aW1lIjoxNjU3ODY5MjU2fQ.nEO1YvaQFgwJpiGbx22DnuNoB3o7QOte9mGl2hu8z-E",
+                'Content-Type':"application/json"
+            })
+         }).then(resp => resp.json()).then(resp =>{
+            localStorage.setItem("userId",JSON.stringify(resp[0]))
+            if(JSON.parse(localStorage.getItem("userId")).user_id){
+                $(".enter-btn-bg").css("display","none");
+                $(".account-btn").css("display","none");
+                document.getElementById("account-wrap").style.display = "block";
+            }
+         })
+        }
+        console.log(JSON.parse(localStorage.getItem("userId")).login)
+        function verSms(){
+        $.ajax({
+            type:"POST",
+            url:"{base_url}users/check_register_code",
+            headers:{
+                "Accept":"application/json",
+            },
+            data:{
+                phone:Number(localStorage.getItem("ver-number")),
+                confirm_code:$("#ver-sms").val()
+            },
+            success:function(result){
+                $(".efr3").hide();
+                $(".efr4").css("display","block");
+                $(".validate-text").text("");
+            },
+            error:function(error){
+                $(".validate-text").text("Введен неправильный код.");
+            }
+        })
+     }
         function onPost(){
         $.ajax({
             type:"POST",
-            url:"{base_url}/users/check_phone",
+            url:"{base_url}users/check_phone",
             headers:{
                 "Accept":"application/json",
             },
@@ -1495,10 +1578,40 @@
             error:function(error){
                     $('.efr3').css("display","block");
                     $('.efr1').css("display","none");
-                    userTimer()
+                    sendSms();
+                    userTimer();
             }
         })
     }
+    function onRegister(){
+        $.ajax({
+            type:"POST",
+            url:"{base_url}users/register",
+            headers:{
+                "Accept":"application/json",
+            },
+            data:{
+                phone:Number(localStorage.getItem("ver-number")),
+                password:$("#first-password").val()
+            },
+            success:function(result){
+                $(".enter-btn-bg").css("display","none");
+                $(".account-btn").css("display","none");
+                document.getElementById("account-wrap").style.display = "block";
+            },
+            error:function(error){
+                
+            }
+        })
+    }
+    $("#second-password").on('input',() =>{
+       if($("#second-password").val() !==  $("#first-password").val()){
+        $(".validate-text").text("Пароли не совпадают");
+       }else{
+        $(".validate-text").text("");
+       }
+    })
+
     </script>
 
    

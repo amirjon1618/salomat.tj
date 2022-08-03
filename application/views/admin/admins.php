@@ -70,7 +70,7 @@
 
             </thead>
 
-            <tbody>
+            <tbody id="dragAndDrop" draggable="true">
 
               {clientList}
 
@@ -103,6 +103,8 @@
 
 <script src="{base_url}plugins/datatables/dataTables.bootstrap.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
 <script>
   $(function() {
 
@@ -123,7 +125,15 @@
       "autoWidth": false
 
     });
+  });
 
+  /*===== DRAG and DROP =====*/
+  const dropItems = document.getElementById('dragAndDrop')
+
+  new Sortable(dropItems, {
+      animation: 350,
+      chosenClass: "sortable-chosen",
+      dragClass: "sortable-drag"
   });
 </script>
 
