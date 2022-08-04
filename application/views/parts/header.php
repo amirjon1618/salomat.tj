@@ -162,7 +162,7 @@
                                     <div class="form-row">
                                         <span class="text-label">Телефон</span>
                                         <label class="form-row-inner">
-                                            <input type="tel" name="tel-number" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер">
+                                            <input type="number" name="tel-number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер">
                                             <span class="border"></span>
                                         </label>
                                     </div>
@@ -219,7 +219,7 @@
                                     <div class="form-row user-phone">
                                         <span class="text-label">Введите код из смс</span>
                                         <label class="form-row-inner">
-                                            <input type="tel" name="tel-number" minlength="4" maxlength="4" id="ver-sms" class="input-text" required placeholder=" __ __ __ __ ">
+                                            <input type="number" name="tel-number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" id="ver-sms" class="input-text" required placeholder=" __ __ __ __ ">
                                             <span class="border"></span>
                                         </label>
                                     </div>
@@ -744,7 +744,9 @@
         body {
             margin: 0;
         }
-
+        input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        }
         .page-content {
             width: 100%;
             margin: 0 auto;
@@ -1241,9 +1243,7 @@
             });
         }
         console.log("<?php  echo $name   ?>")
-        /*$("#tel-number").on('input',function(){
-        this.value = this.value.replaceAll("/[^a-z]/","");
-        })*/
+
         function input_type_mobile(cl, type) {
             $('.srch-results_mobile').html('');
             $('.srch-results_mobile').css('display', 'none');
@@ -1494,7 +1494,28 @@
             }
         })
         })
-        
+        $("#form2").on('keyup',(e) =>{
+            if(e.keyCode === 13){
+                $.ajax({
+            type:"POST",
+            url:"{base_url}users/login",
+            headers:{
+                "Accept":"application/json",
+            },
+            data:{
+                phone:Number(localStorage.getItem("ver-number")),
+                password:$("#enter-password").val()
+            },
+            success:function(result){
+                $(".validate-text").text("");
+                userInfo();
+            },
+            error:function(error){
+                $(".validate-text").text("Неправильный логин или пароль");
+            }
+        })
+            }
+        })
         function sendSms(){
         $.ajax({
             type:"POST",
