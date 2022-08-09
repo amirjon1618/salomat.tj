@@ -4322,7 +4322,7 @@
         -webkit-box-align: center;
         align-items: center;
         color: #000;
-        font-size: 16px;
+        font-size: 22px;
         line-height: 1em;
     }
     
@@ -13665,6 +13665,7 @@
     
     .ps-table--shopping-cart tbody tr td .form-group--number input {
         border-radius: 0;
+        border-radius: 5px;
     }
     
     .ps-table--shopping-cart tbody tr td .ps-product--cart {
@@ -14896,9 +14897,11 @@
         .ps-product__thumbnail {
             display: flex !important;
         }
+        .form-v8-content .form-detail .input-text {
+            width: 280px !important;
+        }
 
     }
-    
     .fw-bold {
         display: flex;
         justify-content: center;

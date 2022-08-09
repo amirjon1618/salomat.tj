@@ -84,7 +84,7 @@
                             </div>
                             <div class="up-right-sidebar col-lg-2 col-md-2 col-sm-12 col-xs-12 p-4">
                                 <div class="text-center">
-                                    <img src="{base_url}img/users/<?php echo $image ?>" alt="Icon" class="rounded-circle">
+                                    <img src="{base_url}img/user.png" alt="Icon" class="rounded-circle" style="width: 100px;">
                                     <form class="form-del">
                                         <div class="input__wrapper">
                                             <input name="file" type="file" name="file" id="input__file" class="input input__file" multiple>

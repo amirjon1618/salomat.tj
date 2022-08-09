@@ -789,7 +789,7 @@ textarea.error {
     .recipe_phone_div_inp span {
         padding: 6.5px 10px !important;
         font-size: 13px;
-        left: 26px !important;
+        left: 0 !important;
         bottom: 0 !important;
     }
 
@@ -813,7 +813,7 @@ textarea.error {
 
     .recipe_phone_div_inp span {
         position: absolute;
-        left: 28px;
+        left: 0;
         bottom: 0px;
         background: #e3e3e3;
         padding: 8px 12px 9px;
@@ -1129,12 +1129,13 @@ button {
 }
 
 .recipe_phone_div_button_send_sms {
-    width: 80%;
+    width: 100%;
+    height: 46px;
     margin-top: 10px;
     padding: 8px;
     border-radius: 7px;
     color: white;
-    background: #28d7b5;
+    background: #1EBEBE;
     font-weight: bold;
     border-color: transparent;
 }
@@ -1143,8 +1144,8 @@ button {
     border: 1px solid #e3dede;
     border-radius: 7px;
     height: 38px;
-    width: 80%;
-    padding-left: 63px;
+    width: 100%;
+    padding-left: 80px;
 }
 
 .recipe_phone_div_inp input:focus {
@@ -1174,7 +1175,7 @@ button {
     left: 0px;
     bottom: 1px;
     background: #e3e3e3;
-    padding: 8px 12px;
+    padding: 12px;
     border-radius: 7px;
 }
 
