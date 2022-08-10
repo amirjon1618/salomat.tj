@@ -193,7 +193,7 @@
                                     <div class="col">
                                         <div class="d-flex col-lg-3 col-md-3 col-sm-6 col-xs-12 pb-5">
                                             <div class="owl-item-bg">
-                                                <div class="owl-item cloned" margin-right: 30px;">
+                                                <div class="owl-item cloned">
                                                     <div class="ps-product ps-product--inner ps-product_of_the_day">
                                                         <label>
                                                             <input type="checkbox" id="red">
