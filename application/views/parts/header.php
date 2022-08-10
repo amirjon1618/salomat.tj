@@ -162,12 +162,12 @@
                                     <div class="form-row">
                                         <span class="text-label">Телефон</span>
                                         <label class="form-row-inner">
-                                            <input type="tel" name="tel-number" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер">
+                                            <input type="number" name="restore-sms" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер">
                                             <span class="border"></span>
                                         </label>
                                     </div>
                                     <div class="form-row-last d-grid">
-                                        <a href="#"><input type="submit" name="enter" class="enter ef1 enter-reg_btn" value="Вход или  регистрация" ></a>
+                                        <a href="#"><input type="submit" name="enter" class="enter ef1 enter-reg_btn" value="Вход или  регистрация"></a>
                                     </div>
                                 </div>
                             </form>
@@ -178,7 +178,7 @@
                                     <h3 class="tablinks text-center">Вход</h3>
                                 </div>
                             </div>
-                            <form  id="form2" class="form-detail" action="#" method="post">
+                            <form id="form2" class="form-detail" action="#" method="post">
                                 <div class="tabcontent" id="sign-pass">
                                     <div class="form-row">
                                         <span class="text-label">Пароль</span>
@@ -201,7 +201,7 @@
                                             <a href="#">Забыли пароль?</a>
                                         </div>
                                     </div>
-                                    <div class="form-row-last d-flex">
+                                    <div class="form-row-last d-flex justify-content-between">
                                         <a href="#"><input type="submit" name="register" class="enter ef2" value="Вход"></a>
                                         <a href="#"><input type="submit" name="cancel" class="register rf2" value="Отмена"></a>
                                     </div>
@@ -214,12 +214,12 @@
                                     <h3 class="tablinks text-center">Регистрация</h3>
                                 </div>
                             </div>
-                            <form id="form3"  class="form-detail " action="#" method="post">
+                            <form id="form3" class="form-detail " action="#" method="post">
                                 <div class="tabcontent2" id="ver-in">
                                     <div class="form-row user-phone">
                                         <span class="text-label">Введите код из смс</span>
                                         <label class="form-row-inner">
-                                            <input type="tel" name="tel-number" minlength="4" maxlength="4" id="ver-sms" class="input-text" required placeholder=" __ __ __ __ ">
+                                            <input type="number" name="tel-number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" minlength="4" id="ver-sms" class="input-text" required placeholder=" __ __ __ __ ">
                                             <span class="border"></span>
                                         </label>
                                     </div>
@@ -243,7 +243,7 @@
                                         </svg>
                                         <p class="mb-0">Нажав на кнопку “Продолжить”, я принимаю <a href="#" class="text-primary">условия пользования</a></p>
                                     </div>
-                                    <div class="form-row-last d-flex">
+                                    <div class="form-row-last d-flex justify-content-between">
                                         <a href="#"><input type="submit" name="register" class="enter ef3" value="Продолжить"></a>
                                         <a href="#"><input type="submit" name="register" class="register rf3" value="Отмена"></a>
                                     </div>
@@ -285,9 +285,101 @@
                                         </svg>
                                         <p class="mb-0">Нажав на кнопку “Регистрация”, я принимаю <a href="#" class="text-primary">условия пользования</a></p>
                                     </div>
-                                    <div class="form-row-last d-flex">
+                                    <div class="form-row-last d-flex justify-content-between">
                                         <a href="{base_url}index.php/main/user_info"><input type="submit" name="register" class="enter ef4" value="Регистрация"></a>
                                         <a href="#"><input type="submit" name="register" class="register rf4" value="Отмена"></a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="enter-form_reg efr5" style="display: none;">
+                            <div class="tab">
+                                <div class="tab-inner">
+                                    <h3 class="tablinks text-center">Восстановление пароля</h3>
+                                </div>
+                            </div>
+                            <form id="form5" class="form-detail" method="post">
+                                <div class="tabcontent" id="sign-phone">
+                                    <div class="form-row">
+                                        <span class="text-label">Телефон</span>
+                                        <label class="form-row-inner">
+                                            <input type="number" name="tel-number" id="errorPhone" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" class="input-text recipe_phone_number" required placeholder="Введите свой номер">
+                                            <span class="border"></span>
+                                        </label>
+                                    </div>
+                                    <p class="validate-text"></p>
+                                    <div class="form-row-last d-grid">
+                                        <a href="#"><input type="submit" name="enter" class="enter ef5 enter-reg_btn" value="Отправить код"></a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="enter-form_reg efr6" style="display: none;">
+                            <div class="tab">
+                                <div class="tab-inner">
+                                    <h3 class="tablinks text-center">Восстановление пароля</h3>
+                                </div>
+                            </div>
+                            <form id="form6" class="form-detail " action="#" method="post">
+                                <div class="tabcontent2" id="ver-in">
+                                    <div class="form-row user-phone">
+                                        <span class="text-label">Введите код из смс</span>
+                                        <label class="form-row-inner">
+                                            <input type="number" name="tel-number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" minlength="4" id="ver-sms2" class="input-text" required placeholder=" __ __ __ __ ">
+                                            <span class="border"></span>
+                                        </label>
+                                    </div>
+                                    <p class="validate-text"></p>
+                                    <div class="timer-agree">
+                                        <div class="showTimer">
+                                            <p>Повторная отправка сообщения будет доступна через:</p>
+                                            <div class="text-center pb-4">
+                                                <span class="min-time"></span>
+                                                <span>:</span>
+                                                <span class="sec-time"></span>
+                                            </div>
+                                        </div>
+                                        <div class="hideTimer  justify-content-center" style="display: none;">
+                                            <a href="#" class="hideTimer_a">Повторная отправка</a>
+                                        </div>
+                                    </div>
+                                    <div class="form-row-last d-flex justify-content-between">
+                                        <a href="#"><input type="submit" name="register" class="enter ef3" value="Продолжить"></a>
+                                        <a href="#"><input type="submit" name="register" class="register cancel-btn" value="Отмена"></a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="enter-form_reg efr7" style="display: none;">
+                            <div class="tab">
+                                <div class="tab-inner">
+                                    <h3 class="tablinks text-center">Восстановление пароля</h3>
+                                </div>
+                            </div>
+                            <form id="form7" class="form-detail " action="#" method="post">
+                                <div class="tabcontent2" id="ver-in2">
+                                    <div class="form-row">
+                                        <span class="text-label">Пароль</span>
+                                        <label class="form-row-inner position-relative">
+                                            <input type="password" name="password" id="first-password2" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
+                                            <div class="hide-btn-pass" onclick="showPass2()">
+                                                <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass2">
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="form-row">
+                                        <span class="text-label">Повторный пароль</span>
+                                        <label class="form-row-inner position-relative">
+                                            <input type="password" name="password" id="second-password2" minlength="4" maxlength="32" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
+                                            <div class="hide-btn-pass" onclick="showPass3()">
+                                                <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass3">
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <p class="validate-text"></p>
+                                    <div class="form-row-last d-flex justify-content-between">
+                                        <a href="{base_url}index.php/main/user_info"><input type="submit" name="register" class="enter ef4" value="Продолжить"></a>
+                                        <a href="#"><input type="submit" name="register" class="register cancel-btn2" value="Отмена"></a>
                                     </div>
                                 </div>
                             </form>
@@ -390,56 +482,56 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="account-btn">
                             <div class="ps-block--user-header">
-                            <div class="ps-block__right" onclick="onPsBlockRight()"><a class="ps-btn" href="#" id="enter-profile">Войти</a></div>
+                                <div class="ps-block__right" onclick="onPsBlockRight()"><a class="ps-btn" href="#" id="enter-profile">Войти</a></div>
+                            </div>
                         </div>
-                        </div>
-                        <div class="account-wrap" id="account-wrap" style="display: none;"> 
-                                <div class="account-item clearfix js-item-menu">
-                                    <div class="image">
+                        <div class="account-wrap" id="account-wrap" style="display: none;">
+                            <div class="account-item clearfix js-item-menu">
+                                <div class="image">
                                     <img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" />
-                                    </div>
-                                    <div class="account-dropdown js-dropdown">
-                                        <div class="info clearfix">
-                                            <div class="image">
-                                                <a href="#">
+                                </div>
+                                <div class="account-dropdown js-dropdown">
+                                    <div class="info clearfix">
+                                        <div class="image">
+                                            <a href="#">
                                                 <img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" />
-                                                </a>
-                                            </div>
-                                            <div class="content">
-                                                <h5 class="name">
-                                                <a href="#"><?php echo($name  ?? null); ?></a>
-                                                </h5>
-                                                <span class="email"><?php echo($email ?? null); ?></span>
-                                            </div>
+                                            </a>
                                         </div>
-                                        <div class="account-dropdown__body">
-                                            <div class="account-dropdown__item">
-                                                <a href="{base_url}index.php/main/user_info">
-                                                    <i class="zmdi zmdi-account"><img src="{base_url}img/up-user.svg" alt="icon"></i>Личная информация</a>
-                                            </div>
-                                            <div class="account-dropdown__item">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-settings"><img src="{base_url}img/up-cart.svg" alt="icon"></i>Мои заказы</a>
-                                            </div>
-                                            <div class="account-dropdown__item">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-money-box"><img src="{base_url}img/up-like.svg" alt="icon"></i>Избранное</a>
-                                            </div>
-                                            <div class="account-dropdown__item">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-money-box"><img src="{base_url}img/up-save.svg" alt="icon"></i>Безопастность</a>
-                                            </div>
+                                        <div class="content">
+                                            <h5 class="name">
+                                                <a href="#"><?php echo ($name  ?? null); ?></a>
+                                            </h5>
+                                            <span class="email"><?php echo ($email ?? null); ?></span>
                                         </div>
-                                        <div class="account-dropdown__footer">
+                                    </div>
+                                    <div class="account-dropdown__body">
+                                        <div class="account-dropdown__item">
+                                            <a href="{base_url}index.php/main/user_info">
+                                                <i class="zmdi zmdi-account"><img src="{base_url}img/up-user.svg" alt="icon"></i>Личная информация</a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-settings"><img src="{base_url}img/up-cart.svg" alt="icon"></i>Мои заказы</a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-money-box"><img src="{base_url}img/up-like.svg" alt="icon"></i>Избранное</a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-money-box"><img src="{base_url}img/up-save.svg" alt="icon"></i>Безопастность</a>
+                                        </div>
+                                    </div>
+                                    <div class="account-dropdown__footer">
                                         <a href="/" onclick="onRemoveLS()">
-                                                <i class="zmdi zmdi-power"></i>Выход</a>
-                                        </div>
+                                            <i class="zmdi zmdi-power"></i>Выход</a>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -639,7 +731,7 @@
                     <i id="total_count_in_cart_footer">0</i>
                 </span>
             </a>
-            <a class="navigation__item" onclick="onPsBlockRight()"  href="#" id="enter-profile">
+            <a class="navigation__item" onclick="onPsBlockRight()" href="#" id="enter-profile">
                 <svg style="margin: 0 auto;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12.0001 11.3412C10.894 11.3412 9.83316 10.9018 9.05102 10.1196C8.26888 9.33751 7.82948 8.2767 7.82948 7.17059C7.82948 6.06448 8.26888 5.00368 9.05102 4.22154C9.83316 3.4394 10.894 3 12.0001 3C13.1062 3 14.167 3.4394 14.9491 4.22154C15.7313 5.00368 16.1707 6.06448 16.1707 7.17059C16.1707 8.2767 15.7313 9.33751 14.9491 10.1196C14.167 10.9018 13.1062 11.3412 12.0001 11.3412Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" />
                     <path d="M4.54742 21V19.7579C4.54742 18.4402 5.07087 17.1765 6.00262 16.2447C6.93437 15.313 8.19809 14.7896 9.51578 14.7896H14.4841C15.8018 14.7896 17.0655 15.313 17.9973 16.2447C18.929 17.1765 19.4525 18.4402 19.4525 19.7579V21" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" />
@@ -683,589 +775,511 @@
     </div> -->
     <!--nav class="navigation--mobile-product"><a class="ps-btn ps-btn--black" href="shopping-cart.html">Add to cart</a><a class="ps-btn" href="checkout.html">Buy Now</a></nav-->
 </body>
-  <style>
-        .enter-btn-bg {
-            justify-content: center;
-            align-items: center;
-            position: fixed;
-            left: 0;
-            top: 0;
-            z-index: 10000;
-            background: red;
-            width: 100vw;
-            height: 100vh;
-            background: #a8a8a8a8;
-            transition: 1000ms;
-            display: none;
+<style>
+    .enter-btn-bg {
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 10000;
+        background: red;
+        width: 100vw;
+        height: 100vh;
+        background: #a8a8a8a8;
+        transition: 1000ms;
+        display: none;
+    }
+
+    .ver-form {
+        display: none;
+    }
+
+    .pass-form {
+        display: none;
+    }
+
+    .user-phone {}
+
+    .verification-form {
+        position: absolute;
+    }
+
+    .active-animation {
+        animation: showOpacity 0.3s forwards alternate linear;
+    }
+
+    .disactive-animation {
+        animation: hideOpacity 0.3s forwards alternate linear;
+    }
+
+    @keyframes showOpacity {
+        from {
+            opacity: 0.3;
         }
 
-        .ver-form {
-            display: none;
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes hideOpacity {
+        from {
+            opacity: 1;
         }
 
-        .pass-form {
-            display: none;
+        to {
+            opacity: 0;
         }
+    }
 
-        .user-phone {}
+    body {
+        margin: 0;
+    }
 
-        .verification-form {
-            position: absolute;
-        }
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
 
-        .active-animation {
-            animation: showOpacity 0.3s forwards alternate linear;
-        }
+    .page-content {
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        display: -webkit-flex;
+        justify-content: center;
+        -o-justify-content: center;
+        -ms-justify-content: center;
+        -moz-justify-content: center;
+        -webkit-justify-content: center;
+        align-items: center;
+        -o-align-items: center;
+        -ms-align-items: center;
+        -moz-align-items: center;
+        -webkit-align-items: center;
+    }
 
-        .disactive-animation {
-            animation: hideOpacity 0.3s forwards alternate linear;
-        }
+    .form-v8-content {
+        background: #fff;
+        border-radius: 8px;
+        -o-border-radius: 8px;
+        -ms-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;
+        margin: 177px 0;
+        font-family: 'Source Sans Pro', sans-serif;
+        color: #444444;
+        position: relative;
+        display: flex;
+        display: -webkit-flex;
+    }
 
-        @keyframes showOpacity {
-            from {
-                opacity: 0.3;
-            }
+    .form-v8-content .form-left {
+        margin-bottom: -4px;
+    }
 
-            to {
-                opacity: 1;
-            }
-        }
+    .form-v8-content .form-left img {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
 
-        @keyframes hideOpacity {
-            from {
-                opacity: 1;
-            }
+    .form-v8-content .enter-form {
+        position: relative;
+        width: 100%;
+        padding: 35px 40px;
+        background: #fff;
+        border-radius: 5px;
+    }
 
-            to {
-                opacity: 0;
-            }
-        }
+    .form-v8-content .tab {
+        margin: 5px 0 26px;
+        width: 100%;
+        display: flex;
+        display: -webkit-flex;
+        justify-content: space-between;
+        -o-justify-content: space-between;
+        -ms-justify-content: space-between;
+        -moz-justify-content: space-between;
+        -webkit-justify-content: space-between;
+    }
 
-        body {
-            margin: 0;
-        }
+    .form-check {
+        padding: 10px 0 20px 0;
+    }
 
-        .page-content {
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            display: -webkit-flex;
-            justify-content: center;
-            -o-justify-content: center;
-            -ms-justify-content: center;
-            -moz-justify-content: center;
-            -webkit-justify-content: center;
-            align-items: center;
-            -o-align-items: center;
-            -ms-align-items: center;
-            -moz-align-items: center;
-            -webkit-align-items: center;
-        }
+    .form-v8-content .tab .tab-inner {
+        width: 100%;
+    }
 
+    .form-v8-content .tab .tablinks {
+        background: transparent;
+        border: none;
+        outline: none;
+        -o-outline: none;
+        -ms-outline: none;
+        -moz-outline: none;
+        -webkit-outline: none;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 26px;
+        font-weight: 400;
+        color: #444;
+        border-bottom: 3px solid;
+        border-bottom-color: rgba(255, 255, 255, 0.2);
+        width: 100%;
+    }
+
+    .form-v8-content .tab .tablinks.active {
+        font-weight: 500;
+        color: #444444;
+        border-bottom-color: #4839C3;
+    }
+
+    .form-v8-content .form-detail {}
+
+    .form-v8-content .form-row {
+        width: 100%;
+        position: relative;
+        display: block;
+    }
+
+    .form-v8-content .form-row .form-row-inner {
+        position: relative;
+    }
+
+    .form-v8-content .form-row .form-row-inner .label {
+        position: absolute;
+        top: -2px;
+        left: 10px;
+        font-size: 18px;
+        color: #a8a8a8;
+        padding: 10px;
+        font-weight: 400;
+        transform-origin: 0 0;
+        transition: all .2s ease;
+        -moz-transition: all .2s ease;
+        -webkit-transition: all .2s ease;
+        -o-transition: all .2s ease;
+        -ms-transition: all .2s ease;
+    }
+
+    .forgot-pass_a a {
+        color: #1EBEBE;
+    }
+
+    .text-label {
+        padding: 10px 0;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        color: #A8A8A8;
+    }
+
+    .form-check {
+        display: inline-block;
+    }
+
+    .form-check-input {
+        display: flex;
+        width: 20px !important;
+        margin: 0 5px 5px 0;
+    }
+
+    .form-check-input:focus {
+        box-shadow: none;
+    }
+
+    .form-check-label {
+        padding: 0 30px;
+        color: #A8A8A8;
+    }
+
+    .form-v8-content .form-row .form-row-inner .border {
+        position: absolute;
+        bottom: 31px;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background: #53c83c;
+        transform: scaleX(0);
+        -moz-transform: scaleX(0);
+        -webkit-transform: scaleX(0);
+        -o-transform: scaleX(0);
+        -ms-transform: scaleX(0);
+        transform-origin: 0 0;
+        transition: all .15s ease;
+        -moz-transition: all .15s ease;
+        -webkit-transition: all .15s ease;
+        -o-transition: all .15s ease;
+        -ms-transition: all .15s ease;
+    }
+
+    .form-v8-content .form-detail .input-text {
+        border: 1px solid #E0E0E0;
+        border-radius: 3px;
+        height: 45px;
+        width: 350px;
+        padding: 5px 0 0 20px;
+    }
+
+    .form-v8-content .form-detail input {
+        width: 100%;
+        border-bottom-color: rgba(255, 255, 255, 0.2);
+        background: transparent;
+        color: #333;
+    }
+
+    .enter-reg_btn {
+        margin-right: 0 !important;
+        width: 350px !important;
+    }
+
+    .form-v8-content .form-detail .enter {
+        background: #1EBEBE;
+        border-radius: 5px;
+        color: #fff;
+        width: 160px;
+        height: 44px;
+        border: none;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 18px;
+    }
+
+    .form-v8-content .form-detail .register {
+        border-radius: 5px;
+        border: 1px solid #1EBEBE !important;
+        color: #1EBEBE;
+        width: 160px;
+        height: 44px;
+        border: none;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 18px;
+    }
+
+    .form-v8-content .form-detail .enter:hover {
+        background: #18A1A1;
+        border-radius: 5px;
+        color: #fff;
+    }
+
+    .form-v8-content .form-detail .register:hover {
+        background: #1EBEBE;
+        color: #fff;
+    }
+
+
+    /* Responsive */
+    @media screen and (max-width: 991px) {
         .form-v8-content {
-            background: #fff;
-            border-radius: 8px;
-            -o-border-radius: 8px;
-            -ms-border-radius: 8px;
-            -moz-border-radius: 8px;
-            -webkit-border-radius: 8px;
-            margin: 177px 0;
-            font-family: 'Source Sans Pro', sans-serif;
-            color: #444444;
-            position: relative;
-            display: flex;
-            display: -webkit-flex;
+            margin: 180px 20px;
+            flex-direction: column;
+            -o-flex-direction: column;
+            -ms-flex-direction: column;
+            -moz-flex-direction: column;
+            -webkit-flex-direction: column;
         }
 
         .form-v8-content .form-left {
-            margin-bottom: -4px;
+            width: 100%;
         }
 
         .form-v8-content .form-left img {
-            border-top-left-radius: 8px;
-            border-bottom-left-radius: 8px;
+            width: 100%;
+            border-bottom-left-radius: 5px;
+            border-top-right-radius: 5px;
         }
 
         .form-v8-content .enter-form {
-            position: relative;
-            width: 100%;
-            padding: 35px 40px;
-            background: #fff;
-            border-radius: 5px;
+            width: auto;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 5px;
         }
 
         .form-v8-content .tab {
-            margin: 5px 0 26px;
-            width: 100%;
-            display: flex;
-            display: -webkit-flex;
-            justify-content: space-between;
-            -o-justify-content: space-between;
-            -ms-justify-content: space-between;
-            -moz-justify-content: space-between;
-            -webkit-justify-content: space-between;
-        }
-
-        .form-check {
-            padding: 10px 0 20px 0;
-        }
-
-        .form-v8-content .tab .tab-inner {
-            width: 100%;
-        }
-
-        .form-v8-content .tab .tablinks {
-            background: transparent;
-            border: none;
-            outline: none;
-            -o-outline: none;
-            -ms-outline: none;
-            -moz-outline: none;
-            -webkit-outline: none;
-            font-family: 'Source Sans Pro', sans-serif;
-            font-size: 26px;
-            font-weight: 400;
-            color: #444;
-            border-bottom: 3px solid;
-            border-bottom-color: rgba(255, 255, 255, 0.2);
-            width: 100%;
-        }
-
-        .form-v8-content .tab .tablinks.active {
-            font-weight: 500;
-            color: #444444;
-            border-bottom-color: #4839C3;
-        }
-
-        .form-v8-content .form-detail {}
-
-        .form-v8-content .form-row {
-            width: 100%;
-            position: relative;
-            display: block;
-        }
-
-        .form-v8-content .form-row .form-row-inner {
-            position: relative;
-        }
-
-        .form-v8-content .form-row .form-row-inner .label {
-            position: absolute;
-            top: -2px;
-            left: 10px;
-            font-size: 18px;
-            color: #a8a8a8;
-            padding: 10px;
-            font-weight: 400;
-            transform-origin: 0 0;
-            transition: all .2s ease;
-            -moz-transition: all .2s ease;
-            -webkit-transition: all .2s ease;
-            -o-transition: all .2s ease;
-            -ms-transition: all .2s ease;
-        }
-        .forgot-pass_a a{
-            color: #1EBEBE;
-        }
-
-        .text-label {
-            padding: 10px 0;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 16px;
-            color: #A8A8A8;
-        }
-
-        .form-check {
-            display: inline-block;
-        }
-
-        .form-check-input {
-            display: flex;
-            width: 20px !important;
-            margin: 0 5px 5px 0;
-        }
-
-        .form-check-input:focus {
-            box-shadow: none;
-        }
-
-        .form-check-label {
-            padding: 0 30px;
-            color: #A8A8A8;
-        }
-
-        .form-v8-content .form-row .form-row-inner .border {
-            position: absolute;
-            bottom: 31px;
-            left: 0;
-            height: 1px;
-            width: 100%;
-            background: #53c83c;
-            transform: scaleX(0);
-            -moz-transform: scaleX(0);
-            -webkit-transform: scaleX(0);
-            -o-transform: scaleX(0);
-            -ms-transform: scaleX(0);
-            transform-origin: 0 0;
-            transition: all .15s ease;
-            -moz-transition: all .15s ease;
-            -webkit-transition: all .15s ease;
-            -o-transition: all .15s ease;
-            -ms-transition: all .15s ease;
-        }
-
-        .form-v8-content .form-detail .input-text {
-            border: 1px solid #E0E0E0;
-            border-radius: 3px;
-            height: 45px;
-            width: 350px;
-            padding: 5px 0 0 20px;
-        }
-
-        .form-v8-content .form-detail input {
-            width: 100%;
-            border-bottom-color: rgba(255, 255, 255, 0.2);
-            background: transparent;
-            color: #333;
-        }
-
-        .enter-reg_btn {
-            margin-right: 0 !important;
-            width: 350px !important;
-        }
-        
-        .form-v8-content .form-detail .enter {
-            background: #1EBEBE;
-            border-radius: 5px;
-            color: #fff;
-            width: 160px;
-            height: 44px;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 18px;
-            margin-right: 15px;
+            margin-top: 45px;
         }
 
         .form-v8-content .form-detail .register {
-            border-radius: 5px;
-            border: 1px solid #1EBEBE !important;
-            color: #1EBEBE;
-            width: 160px;
-            height: 44px;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 18px;
+            margin-bottom: 80px;
         }
+    }
 
-        .form-v8-content .form-detail .enter:hover {
-            background: #18A1A1;
-            border-radius: 5px;
-            color: #fff;
+    @media screen and (max-width: 325px) {
+        .form-v8-content .tab {
+            flex-direction: column;
+            -o-flex-direction: column;
+            -ms-flex-direction: column;
+            -moz-flex-direction: column;
+            -webkit-flex-direction: column;
         }
-
-        .form-v8-content .form-detail .register:hover {
-            background: #1EBEBE;
-            color: #fff;
-        }
-
-
-        /* Responsive */
-        @media screen and (max-width: 991px) {
-            .form-v8-content {
-                margin: 180px 20px;
-                flex-direction: column;
-                -o-flex-direction: column;
-                -ms-flex-direction: column;
-                -moz-flex-direction: column;
-                -webkit-flex-direction: column;
-            }
-
-            .form-v8-content .form-left {
-                width: 100%;
-            }
-
-            .form-v8-content .form-left img {
-                width: 100%;
-                border-bottom-left-radius: 5px;
-                border-top-right-radius: 5px;
-            }
-
-            .form-v8-content .enter-form {
-                width: auto;
-                border-top-right-radius: 5px;
-                border-bottom-left-radius: 5px;
-            }
-
-            .form-v8-content .tab {
-                margin-top: 45px;
-            }
-
-            .form-v8-content .form-detail .register {
-                margin-bottom: 80px;
-            }
-        }
-
-        @media screen and (max-width: 325px) {
-            .form-v8-content .tab {
-                flex-direction: column;
-                -o-flex-direction: column;
-                -ms-flex-direction: column;
-                -moz-flex-direction: column;
-                -webkit-flex-direction: column;
-            }
-        }
-    </style>
-    <script>
-
-    if(localStorage.getItem("userId") !== null){
-        $(".account-btn").css("display","none")
-        $(".account-wrap").css("display","block")
+    }
+</style>
+<script>
+    if (localStorage.getItem("userId") !== null) {
+        $(".account-btn").css("display", "none")
+        $(".account-wrap").css("display", "block")
 
     }
 
-        function remove_from_header_cart(id) {
+    function remove_from_header_cart(id) {
+
+        var mydata = $.parseJSON(localStorage.getItem("product_list"));
+
+        if (mydata.length == 1) {
+            // $.removeCookie('product_list', {
+            //     path: '/'
+            // });
+            localStorage.removeItem("product_list")
+            $('.pr-list').html('');
+            if (typeof goHome == 'function') {
+                goHome();
+            }
+            // $.cookie('product_list', '', {expires: -1});
+        } else {
+            mydata.forEach(function(elem, index) {
+                if (elem.product_id == id) {
+                    mydata.splice(index, 1);
+                    $('#prod_list' + id).remove();
+                }
+            });
+            // $.cookie("product_list", JSON.stringify(mydata), {
+            //     path: '/'
+            // });
+            localStorage.setItem("product_list", JSON.stringify(mydata))
+        }
+        set_prods_header();
+        if (typeof product_list == "function") {
+            product_list();
+        };
+        if (typeof set_pr_checkout == "function") {
+            set_pr_checkout();
+        };
+        if (typeof set_pr_checkout == "function") {
+            total_sum();
+        };
+
+    }
+
+    let isShowPass = false;
+    let isShowPass2 = false;
+    let isShowPass3 = false;
+
+    function showPass() {
+        isShowPass = !isShowPass;
+        if (isShowPass) {
+            document.querySelector(".hide-pass").type = "text";
+            hidePass1.src = "{base_url}img/hide-pass.svg";
+        } else {
+            document.querySelector(".hide-pass").type = "password";
+            hidePass1.src = "{base_url}img/show-pass.svg";
+        }
+    }
+
+    function showPass2() {
+        isShowPass2 = !isShowPass2;
+        if (isShowPass2) {
+            document.querySelector(".hide-pass2").type = "text";
+            hidePass2.src = "{base_url}img/hide-pass.svg";
+        } else {
+            document.querySelector(".hide-pass2").type = "password";
+            hidePass2.src = "{base_url}img/show-pass.svg";
+        }
+    }
+
+    function showPass3() {
+        isShowPass3 = !isShowPass3;
+        if (isShowPass3) {
+            document.querySelector(".hide-pass3").type = "text";
+            hidePass3.src = "{base_url}img/hide-pass.svg";
+        } else {
+            document.querySelector(".hide-pass3").type = "password";
+            hidePass3.src = "{base_url}img/show-pass.svg";
+        }
+    }
+
+    function set_prods_header() {
+
+        if (localStorage.getItem("product_list")) {
+            $('.checkout').show();
+            $('.ps-cart__footer').find('h3').show();
+            $('.ps-cart__footer').find('.cart_empty_text').remove();
+            $('.ps-cart__footer').css('text-align', '');
+            $('.ps-cart__footer').find('figure').css('justify-content', '');
 
             var mydata = $.parseJSON(localStorage.getItem("product_list"));
-
-            if (mydata.length == 1) {
-                // $.removeCookie('product_list', {
-                //     path: '/'
-                // });
-                localStorage.removeItem("product_list")
-                $('.pr-list').html('');
-                if (typeof goHome == 'function') {
-                    goHome();
-                }
-                // $.cookie('product_list', '', {expires: -1});
-            } else {
-                mydata.forEach(function(elem, index) {
-                    if (elem.product_id == id) {
-                        mydata.splice(index, 1);
-                        $('#prod_list' + id).remove();
-                    }
-                });
-                // $.cookie("product_list", JSON.stringify(mydata), {
-                //     path: '/'
-                // });
-                localStorage.setItem("product_list", JSON.stringify(mydata))
-            }
-            set_prods_header();
-            if (typeof product_list == "function") {
-                product_list();
-            };
-            if (typeof set_pr_checkout == "function") {
-                set_pr_checkout();
-            };
-            if (typeof set_pr_checkout == "function") {
-                total_sum();
-            };
-
-        }
-        
-        let isShowPass = false;
-        let isShowPass2 = false;
-        let isShowPass3 = false;
-
-        function showPass() {
-            isShowPass = !isShowPass;
-            if (isShowPass) {
-                document.querySelector(".hide-pass").type = "text";
-                hidePass1.src = "{base_url}img/hide-pass.svg";
-            } else {
-                document.querySelector(".hide-pass").type = "password";
-                hidePass1.src = "{base_url}img/show-pass.svg";
-            }
-        }
-        function showPass2() {
-            isShowPass2 = !isShowPass2;
-            if (isShowPass2) {
-                document.querySelector(".hide-pass2").type = "text";
-                hidePass2.src = "{base_url}img/hide-pass.svg";
-            } else {
-                document.querySelector(".hide-pass2").type = "password";
-                hidePass2.src = "{base_url}img/show-pass.svg";
-            }
-        }
-
-        function showPass3() {
-            isShowPass3 = !isShowPass3;
-            if (isShowPass3) {
-                document.querySelector(".hide-pass3").type = "text";
-                hidePass3.src = "{base_url}img/hide-pass.svg";
-            } else {
-                document.querySelector(".hide-pass3").type = "password";
-                hidePass3.src = "{base_url}img/show-pass.svg";
-            }
-        }
-        
-        function set_prods_header() {
-
-            if (localStorage.getItem("product_list")) {
-                $('.checkout').show();
-                $('.ps-cart__footer').find('h3').show();
-                $('.ps-cart__footer').find('.cart_empty_text').remove();
-                $('.ps-cart__footer').css('text-align', '');
-                $('.ps-cart__footer').find('figure').css('justify-content', '');
-
-                var mydata = $.parseJSON(localStorage.getItem("product_list"));
-                var total_sum = 0;
-                var arr = [];
-                mydata.forEach(function(item, index) {
-                    total_sum += (item.product_count * item.product_price);
-                });
-                $('.total_cart_sum').text(total_sum + ' сом');
-
-                $('#total_count_in_cart_header').text(mydata.length);
-                $('#total_count_in_cart_footer').text(mydata.length);
-                if (mydata.length > 2) {
-                    mydata.splice(2);
-                }
-                $('.ps-cart__items').html('');
-                mydata.forEach(function(item) {
-                    html = "<div class=\"ps-product--cart-mobile\" id=\"prod_list" + item.product_id + "\">\n" +
-                        "        <div class=\"ps-product__thumbnail hover01\">\n" +
-                        "            <a href=\"<?= $base_url ?>upload_product/" + item.product_pic + "\">\n" +
-                        "                <img src=\"<?= $base_url ?>upload_product/" + item.product_pic + "\" alt=\"\"></a>\n" +
-                        "        </div>\n" +
-                        "        <div class=\"ps-product__content\">\n" +
-                        "            <i style=\"cursor:pointer\" class=\"ps-product__remove icon-cross\" id=\"ps-product__remove\" onclick=\"remove_from_header_cart(" + item.product_id + ")\"></i>\n" +
-                        "            <a href=\"<?= $base_url ?>index.php/product/" + item.product_id + "\">" + item.product_name + "</a>\n" +
-                        "            <p>" + item.product_brand + "</p><small>" + item.product_count + " x " + item.product_price + " c.</small>\n" +
-                        "        </div>\n" +
-                        "    </div>";
-
-
-                    $('.ps-cart__items').append(html);
-                });
-
-                if (($.parseJSON(localStorage.getItem("product_list"))).length > 2) {
-                    var more = "<div><a style=\"float:right;font-size:16px;color:#33c6a5\" href=\"<?= $base_url ?>index.php/main/cart_shopping\">Все продукты <i class=\"fa fa-angle-right\" aria-hidden=\"true\"></i>\n</a></div>";
-                    $('.ps-cart__items').append(more);
-                }
-            } else {
-                $('.ps-cart__items').html('');
-                $('.total_cart_sum').html('');
-                $('.checkout').hide();
-                $('.ps-cart__footer').find('h3').hide();
-                $('.ps-cart__footer').prepend("<h3 class=\"cart_empty_text\">Корзина пуста <i class=\"fa fa-shopping-cart\"></i></h3>");
-                $('.ps-cart__footer').find('h3.cart_empty_text').css('color', 'gray');
-                $('.ps-cart__footer').css('text-align', 'center');
-                $('.ps-cart__footer').find('figure').css('justify-content', 'center');
-                $('#total_count_in_cart_header').html('0');
-                $('#total_count_in_cart_footer').html('0');
-            }
-        }
-
-        function input_type() {
-            $('.srch_pr_inp').keyup(function() {
-                if ($('.srch_pr_inp').val() == '') {
-                    $('.srch-results_mobile').hide();
-                }
-                $('.srch-results').html('');
-                $('.srch-results').css('display', 'none');
-
-                $.getJSON("{base_url}index.php/main/search_product?q=" + $('.srch_pr_inp').val(), function(data, status) {
-                    var res = data;
-                    if (res.length == 0) {
-                        var html_empty = "<div class=\"srch-results-empty\">" +
-                            "<div>" +
-                            "<strong id=\"res-prod-empty\">Ничего не найдено ...</strong>" +
-                            "</div>" +
-                            "</div>";
-                        $('.srch-results').html('');
-
-                        $('.srch-results').append(html_empty);
-                    } else {
-                        $('.srch-results').html('');
-                        if (res.length > 5) {
-                            res.splice(5);
-                        }
-                        res.forEach(function(prod, index, arr) {
-
-                            var html_list;
-                            if (prod.product_old_price != 0) {
-                                html_list =
-                                    "<a href=\"{base_url}index.php/main/product/" + prod.id + "\">" +
-                                    "<div class=\"ps-product--cart-mobile srch_prod_list\">\n" +
-                                    "        <div class=\"ps-product__content srch_ps-product__content\">\n" +
-                                    "            <div class=\"prod_pic\"><img src=\"<?= $base_url ?>upload_product/" + prod.product_pic + "\"></div>" +
-                                    "            <div class=\"srch_prod_price \">" + prod.product_name + "\n" +
-                                    "                <p class=\"ps-product__price sale\">" + prod.product_price + " сом <del>" + prod.product_old_price + "</del></p>" +
-                                    "            </div>\n" +
-                                    "        </div>\n" +
-                                    "    </div>" +
-                                    "</a>";
-                            } else {
-                                html_list =
-                                    "<a href=\"{base_url}index.php/main/product/" + prod.id + "\">" +
-                                    "<div class=\"ps-product--cart-mobile srch_prod_list\">\n" +
-                                    "        <div class=\"ps-product__content srch_ps-product__content\">\n" +
-                                    "            <div class=\"prod_pic\"><img src=\"<?= $base_url ?>upload_product/" + prod.product_pic + "\"></div>" +
-                                    "            <div class=\"srch_prod_price \">" + prod.product_name + "\n" +
-                                    "                <p class=\"ps-product__price  sale\">" + prod.product_price + " сом</p>" +
-                                    "            </div>\n" +
-                                    "        </div>\n" +
-                                    "    </div>" +
-                                    "</a>";
-                            }
-                            // "<a href=\"{base_url}index.php/main/product/" + prod.id + "\">" +
-                            //     "<div class=\"each_prod d-flex align-items-center justify-content-between\">" +
-                            //     "<div class=\"prod_pic\"><img src=\"{base_url}upload_product/" + prod.product_pic + "\" alt=\"pic\"></div>" +
-                            //     "<strong class=\"align-self-center\" id=\"res-prod-name\">" + prod.product_name + "</strong>" +
-                            //     "<strong class=\"align-self-center\" id=\"res-prod-price\">" + prod.product_price + " cом.</strong>" +
-                            //     "</div>" +
-                            //     "</a>";
-                            // "<div class=\"d-flex align-items-center justify-content-end\"><i onclick=\"add_to_cart(" + prod.id + ")\" style=\"cursor:pointer\" class=\"fa fa-plus add_icon\"></i>";
-
-                            $('.srch-results').append(html_list);
-                            if (index != arr.length - 1) {
-                                $('.srch_prod_list').css({
-                                    'cssText': 'border-bottom: 1px solid #e1e1e1 !important'
-                                });
-                            }
-                        });
-                    }
-                    $('.srch-results').css('display', 'block');
-
-                });
-                $(document).click(function(event) {
-                    if (!$(event.target).is(".srch_pr_inp, .srch-results, .res-prod-empty, .add_pr_to_cart, add_icon")) {
-                        $(".srch-results").css('display', 'none');
-                        $(".srch-results").html('');
-                    }
-                });
+            var total_sum = 0;
+            var arr = [];
+            mydata.forEach(function(item, index) {
+                total_sum += (item.product_count * item.product_price);
             });
-        }
-        console.log("<?php  echo $name   ?>")
-        /*$("#tel-number").on('input',function(){
-        this.value = this.value.replaceAll("/[^a-z]/","");
-        })*/
-        function input_type_mobile(cl, type) {
-            $('.srch-results_mobile').html('');
-            $('.srch-results_mobile').css('display', 'none');
+            $('.total_cart_sum').text(total_sum + ' сом');
 
-            $.getJSON("{base_url}index.php/main/search_product?q=" + $('.' + cl).val(), function(data, status) {
+            $('#total_count_in_cart_header').text(mydata.length);
+            $('#total_count_in_cart_footer').text(mydata.length);
+            if (mydata.length > 2) {
+                mydata.splice(2);
+            }
+            $('.ps-cart__items').html('');
+            mydata.forEach(function(item) {
+                html = "<div class=\"ps-product--cart-mobile\" id=\"prod_list" + item.product_id + "\">\n" +
+                    "        <div class=\"ps-product__thumbnail hover01\">\n" +
+                    "            <a href=\"<?= $base_url ?>upload_product/" + item.product_pic + "\">\n" +
+                    "                <img src=\"<?= $base_url ?>upload_product/" + item.product_pic + "\" alt=\"\"></a>\n" +
+                    "        </div>\n" +
+                    "        <div class=\"ps-product__content\">\n" +
+                    "            <i style=\"cursor:pointer\" class=\"ps-product__remove icon-cross\" id=\"ps-product__remove\" onclick=\"remove_from_header_cart(" + item.product_id + ")\"></i>\n" +
+                    "            <a href=\"<?= $base_url ?>index.php/product/" + item.product_id + "\">" + item.product_name + "</a>\n" +
+                    "            <p>" + item.product_brand + "</p><small>" + item.product_count + " x " + item.product_price + " c.</small>\n" +
+                    "        </div>\n" +
+                    "    </div>";
+
+
+                $('.ps-cart__items').append(html);
+            });
+
+            if (($.parseJSON(localStorage.getItem("product_list"))).length > 2) {
+                var more = "<div><a style=\"float:right;font-size:16px;color:#33c6a5\" href=\"<?= $base_url ?>index.php/main/cart_shopping\">Все продукты <i class=\"fa fa-angle-right\" aria-hidden=\"true\"></i>\n</a></div>";
+                $('.ps-cart__items').append(more);
+            }
+        } else {
+            $('.ps-cart__items').html('');
+            $('.total_cart_sum').html('');
+            $('.checkout').hide();
+            $('.ps-cart__footer').find('h3').hide();
+            $('.ps-cart__footer').prepend("<h3 class=\"cart_empty_text\">Корзина пуста <i class=\"fa fa-shopping-cart\"></i></h3>");
+            $('.ps-cart__footer').find('h3.cart_empty_text').css('color', 'gray');
+            $('.ps-cart__footer').css('text-align', 'center');
+            $('.ps-cart__footer').find('figure').css('justify-content', 'center');
+            $('#total_count_in_cart_header').html('0');
+            $('#total_count_in_cart_footer').html('0');
+        }
+    }
+
+    function input_type() {
+        $('.srch_pr_inp').keyup(function() {
+            if ($('.srch_pr_inp').val() == '') {
+                $('.srch-results_mobile').hide();
+            }
+            $('.srch-results').html('');
+            $('.srch-results').css('display', 'none');
+
+            $.getJSON("{base_url}index.php/main/search_product?q=" + $('.srch_pr_inp').val(), function(data, status) {
                 var res = data;
                 if (res.length == 0) {
-                    var html_empty = "<div class=\"srch-results-empty_mobile\">" +
+                    var html_empty = "<div class=\"srch-results-empty\">" +
                         "<div>" +
-                        "<strong id=\"res-prod-empty_mobile\">Ничего не найдено ...</strong>" +
+                        "<strong id=\"res-prod-empty\">Ничего не найдено ...</strong>" +
                         "</div>" +
                         "</div>";
+                    $('.srch-results').html('');
 
-                    $('.srch-results_mobile').html('');
-
-                    $('.srch-results_mobile').append(html_empty);
+                    $('.srch-results').append(html_empty);
                 } else {
-                    if (res.length > 10) {
-                        res.splice(10);
+                    $('.srch-results').html('');
+                    if (res.length > 5) {
+                        res.splice(5);
                     }
-                    $('.srch-results_mobile').html('');
-
                     res.forEach(function(prod, index, arr) {
 
                         var html_list;
@@ -1274,8 +1288,8 @@
                                 "<a href=\"{base_url}index.php/main/product/" + prod.id + "\">" +
                                 "<div class=\"ps-product--cart-mobile srch_prod_list\">\n" +
                                 "        <div class=\"ps-product__content srch_ps-product__content\">\n" +
-                                "            <div class=\"prod_pic_mobile\"><img src=\"<?= $base_url ?>upload_product/" + prod.product_pic + "\"></div>" +
-                                "            <div class=\"srch_prod_price\">" + prod.product_name + "\n" +
+                                "            <div class=\"prod_pic\"><img src=\"<?= $base_url ?>upload_product/" + prod.product_pic + "\"></div>" +
+                                "            <div class=\"srch_prod_price \">" + prod.product_name + "\n" +
                                 "                <p class=\"ps-product__price sale\">" + prod.product_price + " сом <del>" + prod.product_old_price + "</del></p>" +
                                 "            </div>\n" +
                                 "        </div>\n" +
@@ -1286,332 +1300,528 @@
                                 "<a href=\"{base_url}index.php/main/product/" + prod.id + "\">" +
                                 "<div class=\"ps-product--cart-mobile srch_prod_list\">\n" +
                                 "        <div class=\"ps-product__content srch_ps-product__content\">\n" +
-                                "            <div class=\"prod_pic_mobile\"><img src=\"<?= $base_url ?>upload_product/" + prod.product_pic + "\"></div>" +
-                                "            <div class=\"srch_prod_price cust\">" + prod.product_name + "\n" +
-                                "                <p class=\"ps-product__price sale\">" + prod.product_price + " сом</p>" +
+                                "            <div class=\"prod_pic\"><img src=\"<?= $base_url ?>upload_product/" + prod.product_pic + "\"></div>" +
+                                "            <div class=\"srch_prod_price \">" + prod.product_name + "\n" +
+                                "                <p class=\"ps-product__price  sale\">" + prod.product_price + " сом</p>" +
                                 "            </div>\n" +
                                 "        </div>\n" +
                                 "    </div>" +
                                 "</a>";
                         }
+                        // "<a href=\"{base_url}index.php/main/product/" + prod.id + "\">" +
+                        //     "<div class=\"each_prod d-flex align-items-center justify-content-between\">" +
+                        //     "<div class=\"prod_pic\"><img src=\"{base_url}upload_product/" + prod.product_pic + "\" alt=\"pic\"></div>" +
+                        //     "<strong class=\"align-self-center\" id=\"res-prod-name\">" + prod.product_name + "</strong>" +
+                        //     "<strong class=\"align-self-center\" id=\"res-prod-price\">" + prod.product_price + " cом.</strong>" +
+                        //     "</div>" +
+                        //     "</a>";
+                        // "<div class=\"d-flex align-items-center justify-content-end\"><i onclick=\"add_to_cart(" + prod.id + ")\" style=\"cursor:pointer\" class=\"fa fa-plus add_icon\"></i>";
 
-                        $('.srch-results_mobile').append(html_list);
+                        $('.srch-results').append(html_list);
                         if (index != arr.length - 1) {
-                            $('.each_prod_mobile').css('border-bottom', '1px solid #e1e1e1');
+                            $('.srch_prod_list').css({
+                                'cssText': 'border-bottom: 1px solid #e1e1e1 !important'
+                            });
                         }
                     });
                 }
-                if (type == 'mobile') {
-                    $('.srch-results-mobile__header').css('display', 'block');
-                } else {
-                    $('.srch-res_mob_sidebar').css('display', 'block');
-                }
+                $('.srch-results').css('display', 'block');
+
             });
-            // WRITTEN IN MAIN JS 
-            // if (! $('.ps-toggle--sidebar').hasClass('active')) {
-            // $('.srch-results_mobile').html('');
-            // $('.srch_pr_inp_mobile').val('');
-            // }
-        }
-        
-        function change_z_index_on_scroll() {
-            $(window).scroll(function() {
-                var currentPosition = $(this).scrollTop();
-                if ($('.header--mobile').hasClass('header--sticky')) {
-                    $('.srch_inp_div').css('z-index', '0');
-                    $('.srch_inp_header_div').css({
-                        'cssText': 'padding: 10px 30px !important'
-                    });
-                }
-                if ($(window).width() < 480) {
-                    if ($(this).scrollTop() > 50) {
-                        $('.srch_inp_div').css({
-                            'cssText': 'z-index:0 !important'
-                        });
-                        $('.srch_inp_header_div').css({
-                            'cssText': 'padding: 10px 30px !important'
-                        });
-                    } else {
-                        $('.srch_inp_header_div').css({
-                            'cssText': 'padding-bottom: 70px !important'
-                        });
-                        $('.srch_inp_div').css('z-index', '1000');
-                    }
-                }
-            });
-        }
-        $(document).ready(function() {
-            input_type();
-            change_z_index_on_scroll();
-            set_prods_header();
-            $('.srch-results_mobile').html('');
-            $('.srch-results_mobile').css('display', 'none');
-            $('a.checkout').click(function(e) {
-                if (!localStorage.getItem("product_list")) {
-                    e.preventDefault();
-                    $('.toast_empty').toast({
-                        delay: 1500
-                    });
-                    $('.toast_empty').toast('show');
+            $(document).click(function(event) {
+                if (!$(event.target).is(".srch_pr_inp, .srch-results, .res-prod-empty, .add_pr_to_cart, add_icon")) {
+                    $(".srch-results").css('display', 'none');
+                    $(".srch-results").html('');
                 }
             });
         });
+    }
 
-        function openCity(evt, cityName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
+    function input_type_mobile(cl, type) {
+        $('.srch-results_mobile').html('');
+        $('.srch-results_mobile').css('display', 'none');
+
+        $.getJSON("{base_url}index.php/main/search_product?q=" + $('.' + cl).val(), function(data, status) {
+            var res = data;
+            if (res.length == 0) {
+                var html_empty = "<div class=\"srch-results-empty_mobile\">" +
+                    "<div>" +
+                    "<strong id=\"res-prod-empty_mobile\">Ничего не найдено ...</strong>" +
+                    "</div>" +
+                    "</div>";
+
+                $('.srch-results_mobile').html('');
+
+                $('.srch-results_mobile').append(html_empty);
+            } else {
+                if (res.length > 10) {
+                    res.splice(10);
+                }
+                $('.srch-results_mobile').html('');
+
+                res.forEach(function(prod, index, arr) {
+
+                    var html_list;
+                    if (prod.product_old_price != 0) {
+                        html_list =
+                            "<a href=\"{base_url}index.php/main/product/" + prod.id + "\">" +
+                            "<div class=\"ps-product--cart-mobile srch_prod_list\">\n" +
+                            "        <div class=\"ps-product__content srch_ps-product__content\">\n" +
+                            "            <div class=\"prod_pic_mobile\"><img src=\"<?= $base_url ?>upload_product/" + prod.product_pic + "\"></div>" +
+                            "            <div class=\"srch_prod_price\">" + prod.product_name + "\n" +
+                            "                <p class=\"ps-product__price sale\">" + prod.product_price + " сом <del>" + prod.product_old_price + "</del></p>" +
+                            "            </div>\n" +
+                            "        </div>\n" +
+                            "    </div>" +
+                            "</a>";
+                    } else {
+                        html_list =
+                            "<a href=\"{base_url}index.php/main/product/" + prod.id + "\">" +
+                            "<div class=\"ps-product--cart-mobile srch_prod_list\">\n" +
+                            "        <div class=\"ps-product__content srch_ps-product__content\">\n" +
+                            "            <div class=\"prod_pic_mobile\"><img src=\"<?= $base_url ?>upload_product/" + prod.product_pic + "\"></div>" +
+                            "            <div class=\"srch_prod_price cust\">" + prod.product_name + "\n" +
+                            "                <p class=\"ps-product__price sale\">" + prod.product_price + " сом</p>" +
+                            "            </div>\n" +
+                            "        </div>\n" +
+                            "    </div>" +
+                            "</a>";
+                    }
+
+                    $('.srch-results_mobile').append(html_list);
+                    if (index != arr.length - 1) {
+                        $('.each_prod_mobile').css('border-bottom', '1px solid #e1e1e1');
+                    }
+                });
             }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            if (type == 'mobile') {
+                $('.srch-results-mobile__header').css('display', 'block');
+            } else {
+                $('.srch-res_mob_sidebar').css('display', 'block');
             }
-            document.getElementById(cityName).style.display = "block";
-            evt.currentTarget.className += " active";
+        });
+        // WRITTEN IN MAIN JS 
+        // if (! $('.ps-toggle--sidebar').hasClass('active')) {
+        // $('.srch-results_mobile').html('');
+        // $('.srch_pr_inp_mobile').val('');
+        // }
+    }
+
+    function change_z_index_on_scroll() {
+        $(window).scroll(function() {
+            var currentPosition = $(this).scrollTop();
+            if ($('.header--mobile').hasClass('header--sticky')) {
+                $('.srch_inp_div').css('z-index', '0');
+                $('.srch_inp_header_div').css({
+                    'cssText': 'padding: 10px 30px !important'
+                });
+            }
+            if ($(window).width() < 480) {
+                if ($(this).scrollTop() > 50) {
+                    $('.srch_inp_div').css({
+                        'cssText': 'z-index:0 !important'
+                    });
+                    $('.srch_inp_header_div').css({
+                        'cssText': 'padding: 10px 30px !important'
+                    });
+                } else {
+                    $('.srch_inp_header_div').css({
+                        'cssText': 'padding-bottom: 70px !important'
+                    });
+                    $('.srch_inp_div').css('z-index', '1000');
+                }
+            }
+        });
+    }
+    $(document).ready(function() {
+        input_type();
+        change_z_index_on_scroll();
+        set_prods_header();
+        $('.srch-results_mobile').html('');
+        $('.srch-results_mobile').css('display', 'none');
+        $('a.checkout').click(function(e) {
+            if (!localStorage.getItem("product_list")) {
+                e.preventDefault();
+                $('.toast_empty').toast({
+                    delay: 1500
+                });
+                $('.toast_empty').toast('show');
+            }
+        });
+    });
+
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
         }
-
-        function verForm() {
-            document.querySelector(".user-phone").style.display = "none";
-            document.querySelector(".ver-form").style.display = "block";
-
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
         }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
 
-        function passForm() {
-            document.querySelector(".ver-form").style.display = "none";
-            document.querySelector(".pass-form").style.display = "block";
+    function verForm() {
+        document.querySelector(".user-phone").style.display = "none";
+        document.querySelector(".ver-form").style.display = "block";
 
-        }
-        function onRemoveLS(){
-            localStorage.removeItem("userId");
-        }
+    }
 
-        // Get the element with id="defaultOpen" and click on it
-        /*document.getElementById("defaultOpen").click();*/
+    function passForm() {
+        document.querySelector(".ver-form").style.display = "none";
+        document.querySelector(".pass-form").style.display = "block";
 
-        function onPsBlockRight() {
-    
-            $(".enter-form").css("display","block");
-            document.querySelector(".enter-btn-bg").style.display = "flex";
-            document.querySelector(".enter-btn-bg").classList.add("active-animation");
-            document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
-        }
-        let __min = 1;
-        let __sec = 59;
-        $('.min-time').text(`${__min}`);
-        $('.sec-time').text(`${__sec}`);
-        const userTimer = () =>{
-           const countDown = setInterval(function(){
+    }
+
+    function onRemoveLS() {
+        localStorage.removeItem("userId");
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    /*document.getElementById("defaultOpen").click();*/
+
+    function onPsBlockRight() {
+
+        $(".enter-form").css("display", "block");
+        document.querySelector(".enter-btn-bg").style.display = "flex";
+        document.querySelector(".enter-btn-bg").classList.add("active-animation");
+        document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
+    }
+    let __min = 1;
+    let __sec = 59;
+    $('.min-time').text(`${__min}`);
+    $('.sec-time').text(`${__sec}`);
+    const userTimer = () => {
+        const countDown = setInterval(function() {
             __sec--;
-            if(__min === 0 && __sec === 0) {
-                $('.showTimer').css("display","none");
-                $('.hideTimer').css("display","flex");
+            if (__min === 0 && __sec === 0) {
+                $('.showTimer').css("display", "none");
+                $('.hideTimer').css("display", "flex");
                 __min = 1;
                 $('.min-time').text(`${__min}`);
                 __sec = 59;
                 clearInterval(countDown);
             }
-            if(__sec === 0){
+            if (__sec === 0) {
                 __min = 0;
                 $('.min-time').text(`${__min}`);
                 __sec = 59;
                 __sec--;
             }
             $('.sec-time').text(`${__sec}`);
-        },1000);
-        }
-        
-        $("#form1").submit((e) =>{
-            e.preventDefault();
-            onPost();
-        })
-        $(".hideTimer_a").click(() =>{
-            sendSms();
-            $(".showTimer").css("display","block");
-            $(".hideTimer").css("display","none");
-            userTimer();
-        })
-        $(".rf1").click((e) =>{
-            e.preventDefault();
-            $(".efr1").hide();
-            $(".efr3").css("display","block");
-            userTimer();
-        })
-        $("#form3").submit((e) =>{
-            e.preventDefault();
-            verSms();
-        })
-        $("#form4").submit((e) =>{
-            e.preventDefault();
-            onRegister();
-        })
-        $(".rf2").click((e) =>{
-            e.preventDefault();
-            $(".efr2").hide();
-            $(".efr1").css("display","block");
-        })
-        $(".rf3").click((e) =>{
-            e.preventDefault();
-            $(".efr3").hide();
-            $(".efr1").css("display","block");
-        })
-        $(".rf4").click((e) =>{
-            e.preventDefault();
-            $(".efr4").hide();
-            $(".efr1").css("display","block");
-        })
-        document.querySelector(".enter-btn-bg").addEventListener('click', ({
-            target
-        }) => {
-            if (target.classList.contains("enter-btn-bg")) {
-                document.querySelector(".enter-btn-bg").classList.remove("active-animation");
-                document.querySelector(".enter-btn-bg").classList.add("disactive-animation");
-                document.querySelector(".enter-btn-bg").style.display = "none";
+        }, 1000);
+    }
+    $(".forgot-pass_a").click(() => {
+        $(".efr2").css("display", "none")
+        $(".efr5").css("display", "block")
+
+    })
+    $("#form5").on("submit", (e) => {
+        e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: "{base_url}users",
+            headers: {
+                "Accept": "application/json",
+            },
+            success: function(result) {
+                if (result.filter(elem => elem.login === String(errorPhone.value)).length > 0) {
+                    $(".efr5").css("display", "none");
+                    $(".efr6").css("display", "block");
+                    $(".validate-text").text("");
+                    localStorage.setItem("restore-phone", errorPhone.value);
+
+                } else {
+                    $(".validate-text").text("Нет такого пользователья");
+                }
+            },
+            error: function(error) {
+                console.log(error);
             }
         })
-        $('.ef1').on('click',() =>{
-            localStorage.setItem("ver-number",$('#tel-number').val());
+
+        $.ajax({
+            type: "POST",
+            url: "{base_url}/users/resend_sms",
+            headers: {
+                "Accept": "application/json",
+            },
+            data: {
+                phone: localStorage.getItem("restore-phone")
+            },
+            success(result) {
+                localStorage.setItem("res-sms", result);
+            }
         })
 
-        $("#form2").on("submit",(e) => {
-            e.preventDefault();
-            $.ajax({
-            type:"POST",
-            url:"{base_url}users/login",
-            headers:{
-                "Accept":"application/json",
+    })
+    $(".cancel-btn").click((e) => {
+        e.preventDefault();
+        $(".efr6").hide();
+        $(".efr5").css("display", "block");
+    })
+    $(".cancel-btn2").click((e) => {
+        e.preventDefault();
+        $(".efr7").hide();
+        $(".efr5").css("display", "block");
+    })
+    $("#form6").submit((e) => {
+        e.preventDefault();
+        if ($("#ver-sms2").val() === String(localStorage.getItem("res-sms"))) {
+            $(".efr6").css("display", "none")
+            $(".efr7").css("display", "block")
+        } else {
+            $(".validate-text").text("Введен неправильный код.");
+        }
+    })
+
+    $("#form1").submit((e) => {
+        e.preventDefault();
+        onPost();
+    })
+    $(".hideTimer_a").click(() => {
+        sendSms();
+        $(".showTimer").css("display", "block");
+        $(".hideTimer").css("display", "none");
+        userTimer();
+    })
+    $(".rf1").click((e) => {
+        e.preventDefault();
+        $(".efr1").hide();
+        $(".efr3").css("display", "block");
+        userTimer();
+    })
+    $("#form3").submit((e) => {
+        e.preventDefault();
+        verSms();
+    })
+    $("#form4").submit((e) => {
+        e.preventDefault();
+        onRegister();
+    })
+    $(".rf2").click((e) => {
+        e.preventDefault();
+        $(".efr2").hide();
+        $(".efr1").css("display", "block");
+    })
+    $(".rf3").click((e) => {
+        e.preventDefault();
+        $(".efr3").hide();
+        $(".efr1").css("display", "block");
+    })
+    $(".rf4").click((e) => {
+        e.preventDefault();
+        $(".efr4").hide();
+        $(".efr1").css("display", "block");
+    })
+    document.querySelector(".enter-btn-bg").addEventListener('click', ({
+        target
+    }) => {
+        if (target.classList.contains("enter-btn-bg")) {
+            document.querySelector(".enter-btn-bg").classList.remove("active-animation");
+            document.querySelector(".enter-btn-bg").classList.add("disactive-animation");
+            document.querySelector(".enter-btn-bg").style.display = "none";
+        }
+    })
+    $('.ef1').on('click', () => {
+        localStorage.setItem("ver-number", $('#tel-number').val());
+    })
+
+    $("#form2").on("submit", (e) => {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "{base_url}users/login",
+            headers: {
+                "Accept": "application/json",
             },
-            data:{
-                phone:Number(localStorage.getItem("ver-number")),
-                password:$("#enter-password").val()
+            data: {
+                phone: Number(localStorage.getItem("ver-number")),
+                password: $("#enter-password").val()
             },
-            success:function(result){
+            success: function(result) {
                 $(".validate-text").text("");
                 userInfo();
             },
-            error:function(error){
+            error: function(error) {
                 $(".validate-text").text("Неправильный логин или пароль");
             }
         })
-        })
-        
-        function sendSms(){
-        $.ajax({
-            type:"POST",
-            url:"{base_url}users/resend_sms",
-            headers:{
-                "Accept":"application/json",
-            },
-            data:{
-                phone:Number(localStorage.getItem("ver-number")),
-            },
-            success:function(result){
-                
-            },
-            error:function(error){
-            }
-        })
-     }
-  
-        function userInfo(){
-        fetch("{base_url}users")
-        .then(resp => resp.json())
-        .then(resp =>{
-            resp.filter(elem =>{
-                if(elem.login === String(localStorage.getItem("ver-number"))){
-                    return userId(elem.user_id)
+    })
+    $("#form2").on('keyup', (e) => {
+        if (e.keyCode === 13) {
+            $.ajax({
+                type: "POST",
+                url: "{base_url}users/login",
+                headers: {
+                    "Accept": "application/json",
+                },
+                data: {
+                    phone: Number(localStorage.getItem("ver-number")),
+                    password: $("#enter-password").val()
+                },
+                success: function(result) {
+                    $(".validate-text").text("");
+                    userInfo();
+                },
+                error: function(error) {
+                    $(".validate-text").text("Неправильный логин или пароль");
                 }
             })
+        }
+    })
+
+    function sendSms() {
+        $.ajax({
+            type: "POST",
+            url: "{base_url}users/resend_sms",
+            headers: {
+                "Accept": "application/json",
+            },
+            data: {
+                phone: Number(localStorage.getItem("ver-number")),
+            },
+            success: function(result) {
+
+            },
+            error: function(error) {}
         })
-         }
-         
-         function userId(id){
-         fetch(`{base_url}users/show/${id}`,{
-            method:"get",
-            headers:({
-                'Authorization':"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjM0IiwibG9naW4iOiI1NTAyNjQ0MDAiLCJ0aW1lIjoxNjU3ODY5MjU2fQ.nEO1YvaQFgwJpiGbx22DnuNoB3o7QOte9mGl2hu8z-E",
-                'Content-Type':"application/json"
+    }
+
+    function userInfo() {
+        fetch("{base_url}users")
+            .then(resp => resp.json())
+            .then(resp => {
+                resp.filter(elem => {
+                    if (elem.login === String(localStorage.getItem("ver-number"))) {
+                        return userId(elem.user_id)
+                    }
+                })
             })
-         }).then(resp => resp.json()).then(resp =>{
-            localStorage.setItem("userId",JSON.stringify(resp[0]))
-            if(JSON.parse(localStorage.getItem("userId")).user_id){
-                $(".enter-btn-bg").css("display","none");
-                $(".account-btn").css("display","none");
+    }
+
+    function userId(id) {
+        fetch(`{base_url}users/show/${id}`, {
+            method: "get",
+            headers: ({
+                'Authorization': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjM0IiwibG9naW4iOiI1NTAyNjQ0MDAiLCJ0aW1lIjoxNjU3ODY5MjU2fQ.nEO1YvaQFgwJpiGbx22DnuNoB3o7QOte9mGl2hu8z-E",
+                'Content-Type': "application/json"
+            })
+        }).then(resp => resp.json()).then(resp => {
+            localStorage.setItem("userId", JSON.stringify(resp[0]))
+            if (JSON.parse(localStorage.getItem("userId")).user_id) {
+                $(".enter-btn-bg").css("display", "none");
+                $(".account-btn").css("display", "none");
                 document.getElementById("account-wrap").style.display = "block";
             }
-         })
-        }
-        console.log(JSON.parse(localStorage.getItem("userId")).login)
-        function verSms(){
+        })
+    }
+console.log($("#first-password"))
+    function verSms() {
         $.ajax({
-            type:"POST",
-            url:"{base_url}users/check_register_code",
-            headers:{
-                "Accept":"application/json",
+            type: "POST",
+            url: "{base_url}users/check_register_code",
+            headers: {
+                "Accept": "application/json",
             },
-            data:{
-                phone:Number(localStorage.getItem("ver-number")),
-                confirm_code:$("#ver-sms").val()
+            data: {
+                phone: Number(localStorage.getItem("ver-number")),
+                confirm_code: $("#ver-sms").val()
             },
-            success:function(result){
+            success: function(result) {
                 $(".efr3").hide();
-                $(".efr4").css("display","block");
+                $(".efr4").css("display", "block");
                 $(".validate-text").text("");
             },
-            error:function(error){
+            error: function(error) {
                 $(".validate-text").text("Введен неправильный код.");
             }
         })
-     }
-        function onPost(){
+    }
+
+    function onPost() {
         $.ajax({
-            type:"POST",
-            url:"{base_url}users/check_phone",
-            headers:{
-                "Accept":"application/json",
+            type: "POST",
+            url: "{base_url}users/check_phone",
+            headers: {
+                "Accept": "application/json",
             },
-            data:{phone:Number($("#tel-number").val())},
-            success:function(result){
-                    $('.efr2').css("display","block");
-                    $('.efr1').css("display","none");
+            data: {
+                phone: Number($("#tel-number").val())
             },
-            error:function(error){
-                    $('.efr3').css("display","block");
-                    $('.efr1').css("display","none");
-                    sendSms();
-                    userTimer();
+            success: function(result) {
+                $('.efr2').css("display", "block");
+                $('.efr1').css("display", "none");
+            },
+            error: function(error) {
+                $('.efr3').css("display", "block");
+                $('.efr1').css("display", "none");
+                sendSms();
+                userTimer();
             }
         })
     }
-    function onRegister(){
+
+    function onRegister() {
         $.ajax({
-            type:"POST",
-            url:"{base_url}users/register",
-            headers:{
-                "Accept":"application/json",
+            type: "POST",
+            url: "{base_url}users/register",
+            headers: {
+                "Accept": "application/json",
             },
-            data:{
-                phone:Number(localStorage.getItem("ver-number")),
-                password:$("#first-password").val()
+            data: {
+                phone: Number(localStorage.getItem("ver-number")),
+                password: $("#first-password").val()
             },
-            success:function(result){
-                $(".enter-btn-bg").css("display","none");
-                $(".account-btn").css("display","none");
+            success: function(result) {
+                $(".enter-btn-bg").css("display", "none");
+                $(".account-btn").css("display", "none");
                 document.getElementById("account-wrap").style.display = "block";
             },
-            error:function(error){
+            error: function(error) {
+   
+            }
+        })
+    }
+    $("#second-password").on('input', () => {
+        if ($("#second-password").val() !== $("#first-password").val()) {
+            $(".validate-text").text("Пароли не совпадают");
+        } else {
+            $(".validate-text").text("");
+        }
+    })
+    $("#second-password2").on('input', () => {
+        if ($("#second-password2").val() !== $("#first-password2").val()) {
+            $(".validate-text").text("Пароли не совпадают");
+        } else {
+            $(".validate-text").text("");
+        }
+    })
+
+    $("#form7").on('submit',(e) =>{
+      e.preventDefault();
+      $.ajax({
+            type: "POST",
+            url: "{base_url}users/register",
+            headers: {
+                "Accept": "application/json",
+            },
+            data: {
+                phone: Number(localStorage.getItem("restore-phone")),
+                password: $("#first-password2").val()
+            },
+            success: function(result) {
+                $(".enter-btn-bg").css("display", "none");
+                $(".account-btn").css("display", "none");
+                document.getElementById("account-wrap").style.display = "block";
+            },
+            error: function(error) {
                 
             }
         })
-    }
-    $("#second-password").on('input',() =>{
-       if($("#second-password").val() !==  $("#first-password").val()){
-        $(".validate-text").text("Пароли не совпадают");
-       }else{
-        $(".validate-text").text("");
-       }
     })
 
-    </script>
-
-   
+</script>

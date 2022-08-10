@@ -24,7 +24,7 @@
                                         <div class="form-input col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0">
                                             <div class="form-group pr-3">
                                                 <label>Имя Фамилия <span class="red-star">*</span></label>
-                                                <input class="form-control" maxlength="80" required name="name" id="order_name" type="text" placeholder="Имя Фамилия">
+                                                <input class="form-control" maxlength="80" required pattern="\d*" name="name" id="order_name" type="text" placeholder="Имя Фамилия">
                                             </div>
                                             <div class="form-group pr-3">
                                                 <label>Дом <span></span></label>
