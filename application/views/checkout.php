@@ -24,21 +24,21 @@
                                         <div class="form-input col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0">
                                             <div class="form-group pr-3">
                                                 <label>Имя Фамилия <span class="red-star">*</span></label>
-                                                <input class="form-control" maxlength="80" required name="name" id="order_name" type="text" placeholder="Имя Фамилия">
+                                                <input class="form-control" maxlength="80" required name="name" id="order_name" value="<?php echo $name?>" type="text" placeholder="Имя Фамилия">
                                             </div>
                                             <div class="form-group pr-3">
                                                 <label>Дом <span></span></label>
-                                                <input class="form-control" maxlength="250"   type="text" placeholder="Дом">
+                                                <input class="form-control" maxlength="250"  type="text" placeholder="Дом">
                                             </div>
                                             <div class="form-group pr-3">
                                                 <label>Номер телефона <span class="red-star">*</span></label>
-                                                <input class="form-control" required type="text" pattern="\d*" maxlength="9" id="order_phone" name="cell_phone" placeholder="Введите свой номер">
+                                                <input class="form-control" required type="text" pattern="\d*" maxlength="9" id="order_phone"   value="<?php echo $phone?>" name="cell_phone" placeholder="Введите свой номер">
                                             </div>
                                         </div>
                                         <div class="form-input col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0">
                                             <div class="form-group">
                                                 <label>Улица <span class="red-star">*</span></label>
-                                                <input class="form-control" maxlength="250" required name="address" id="order_address" type="text" placeholder="Улица">
+                                                <input class="form-control" maxlength="250" required  name="address" id="order_address"  value="<?php echo $address?>" type="text" placeholder="Улица">
                                             </div>
                                             
                                             <div class="form-group">
@@ -47,7 +47,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Телефон, если не дозвонимся</label>
-                                                <input class="form-control" required type="text" pattern="\d*" maxlength="9" id="order_phone2" name="cell_phone" placeholder="Введите свой номер">
+                                                <input class="form-control" required type="text" pattern="\d*" maxlength="9" id="order_phone2"   name="cell_phone" placeholder="Введите свой номер">
                                             </div>
                                         </div>
                                     </div>

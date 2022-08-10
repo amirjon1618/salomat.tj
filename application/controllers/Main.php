@@ -413,8 +413,12 @@ class Main extends CI_Controller
         $this->load->library('session');
         $user = $this->getUser( $this->session->userdata('user_id'));
         $data['name'] =  $user['name'] ?? null;
-        $data['image'] =  $user['image'] ?? null;
+        $data['phone'] =  $user['login'] ?? null;
+        $data['birth_date'] =  $user['birth_date'] ?? null;
+        $data['gender'] =  $user['gender'] ?? null;
+        $data['address'] =  $user['address'] ?? null;
         $data['email'] =  $user['email'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
 
 
         $data['content'] = $this->parser->parse('checkout', $data, TRUE);
@@ -588,6 +592,7 @@ class Main extends CI_Controller
 
         $data['orders'] = $order_product ?? null;
 
+        $data['favorites'] = $this->user_favorite($this->session->userdata('user_id'));
         $data['content'] = $this->parser->parse('user_info', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
@@ -1184,4 +1189,109 @@ class Main extends CI_Controller
     //     $data = file_get_contents($url);
     //     return $data;
     // }
+
+    public function user_favorite($user_id){
+
+        $this->db->select('product.*');
+        $this->db->from('product');
+        $this->db->join('favorites', 'product.id = favorites.favoriteable_id');
+        $this->db->where('favorites.user_id', $user_id);
+        $query = $this->db->get();
+        $array = $query->result_array();
+
+        foreach ($query->result_array() as $row) {
+            $rating = $this->get_rating($row['id']);
+            if (sizeof($rating) != 0) {
+                $row['prod_rating_average'] = $rating['prod_rating_average'];
+                $row['review_count'] = $rating['review_count'];
+            } else {
+                $row['prod_rating_average'] = '';
+                $row['review_count'] = 0;
+            }
+
+            $favorite = $this->get_favorite($row['id']);
+            if (sizeof($favorite) != 0) {
+                $row['is_favorite'] = true;
+            } else {
+                $row['is_favorite'] = false;
+            }
+            $row['base_url'] = base_url();
+
+            $array[] = $row;
+        };
+
+        return $array;
+    }
+
+    public function get_rating($id)
+    {
+        $array = array();
+        $q_count = $this->db->query("SELECT COUNT(*) as count FROM `product_rating` WHERE `prod_id` = " . $id . " AND `status` = 1");
+        $arr_count = $q_count->result_array();
+        if ($arr_count[0]['count'] != 0) {
+            $this->db->select('*');
+            $this->db->from('product_rating');
+            $this->db->where('prod_id', $id);
+            $this->db->where('status', '1');
+            $query = $this->db->get();
+            $count = 0;
+            $ones = 0;
+            $twos = 0;
+            $threes = 0;
+            $fours = 0;
+            $fives = 0;
+            foreach ($query->result_array() as $pr) {
+                $count += $pr['star_rating'];
+                if ($pr['star_rating'] == 1) {
+                    $ones += 1;
+                } else if ($pr['star_rating'] == 2) {
+                    $twos += 1;
+                } else if ($pr['star_rating'] == 3) {
+                    $threes += 1;
+                } else if ($pr['star_rating'] == 4) {
+                    $fours += 1;
+                } else if ($pr['star_rating'] == 5) {
+                    $fives += 1;
+                }
+            }
+            $rating = round($count / $arr_count[0]['count']);
+            $array['prod_rating_average'] = $rating;
+
+            $array['prod_rating_each']['ones']['count'] = $ones;
+            $array['prod_rating_each']['ones']['percentage'] = round(($ones / $arr_count[0]['count']) * 100);
+
+            $array['prod_rating_each']['twos']['count'] = $twos;
+            $array['prod_rating_each']['twos']['percentage'] = round(($twos / $arr_count[0]['count']) * 100);
+
+            $array['prod_rating_each']['threes']['count'] = $threes;
+            $array['prod_rating_each']['threes']['percentage'] = round(($threes / $arr_count[0]['count']) * 100);
+
+            $array['prod_rating_each']['fours']['count'] = $fours;
+            $array['prod_rating_each']['fours']['percentage'] = round(($fours / $arr_count[0]['count']) * 100);
+
+            $array['prod_rating_each']['fives']['count'] = $fives;
+            $array['prod_rating_each']['fives']['percentage'] = round(($fives / $arr_count[0]['count']) * 100);
+
+            $array['review_count'] = $arr_count[0]['count'];
+        }
+
+        return $array;
+    }
+
+    public function get_favorite($id)
+    {
+        $array = array();
+        $q_count = $this->db->query("SELECT COUNT(*) as count FROM `favorites` WHERE `favoriteable_id` = " . $id . " AND `user_id` = 61");
+        $arr_count = $q_count->result_array();
+        if ($arr_count[0]['count'] != 0) {
+            $this->db->select('*');
+            $this->db->from('favorites');
+            $this->db->where('favoriteable_id', $id);
+            $this->db->where('user_id', '61');
+            $query = $this->db->get();
+            $array['is_favorite'] = $query->result_array();
+
+        }
+        return $array;
+    }
 }

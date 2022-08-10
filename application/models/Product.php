@@ -856,7 +856,7 @@ class Product extends CI_Model
         return $arr;
     }
 
-    public function get_prods_by_slider_type($str)
+    public function get_prods_by_slider_type($str,$user_id = 0)
     {
         $array = array();
         $this->db->select("*");
@@ -876,6 +876,12 @@ class Product extends CI_Model
             } else {
                 $row['prod_rating_average'] = '';
                 $row['review_count'] = 0;
+            }
+            $favorite = $this->get_favorite($row['id'],$user_id);
+            if (sizeof($favorite) != 0) {
+                $row['is_favorite'] = true;
+            } else {
+                $row['is_favorite'] = false;
             }
             $row['base_url'] = base_url();
             $array[] = $row;
@@ -990,6 +996,22 @@ class Product extends CI_Model
         return $array;
     }
 
+    public function get_favorite($id, $user_id)
+    {
+        $array = array();
+        $q_count = $this->db->query("SELECT COUNT(*) as count FROM `favorites` WHERE `favoriteable_id` = " . $id . " AND `user_id` = ".$user_id);
+        $arr_count = $q_count->result_array();
+        if ($arr_count[0]['count'] != 0) {
+            $this->db->select('*');
+            $this->db->from('favorites');
+            $this->db->where('favoriteable_id', $id);
+            $this->db->where('user_id', '61');
+            $query = $this->db->get();
+            $array['is_favorite'] = $query->result_array();
+
+        }
+        return $array;
+    }
     public function search_for_prod($str, $min_price = '', $max_price = '')
     {
         if ($str == '')

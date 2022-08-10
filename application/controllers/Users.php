@@ -379,7 +379,26 @@ class Users extends REST_Controller {
         }
     }
 
-    public function update_user_post($id)
+    public function update_user_post()
+    {
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+
+        if(isset($user))
+            $userData['name'] = $this->input->post('name');
+            $userData['email'] = $this->input->post('email');
+            $userData['login'] = $this->input->post('login');
+            $userData['birth_date'] = $this->input->post('birth_date');
+            $userData['address'] = $this->input->post('address');
+            $userData['gender'] = $this->input->post('gender');
+
+        $this->db->where("user_id", $user['user_id']);
+        $this->db->update("users", $userData);
+
+        redirect(base_url('/index.php/main/user_info'), 'refresh');
+    }
+
+    public function edit_user_post($id)
     {
         $name       = $this->input->post('name');
         $email      = $this->input->post('email');
@@ -614,33 +633,56 @@ class Users extends REST_Controller {
         }
     }
 
-    /**
-     * Favorite code.
-     *
-     * @return mixed
-     */
-    public function favorite_post()
-    {
-//            $now = date('Y-m-d H:i:');
-//            var_dump($now);
-
-        $user_id = $this->input->post('user_id');
-        $favoriteable_id = $this->input->post('product_id');
-
-        if ($user_id) {
-            $now = date('Y-m-d H:i');
-            $this->favorite->add(array('user_id' => $user_id, 'favoriteable_id' => $favoriteable_id, 'created_at' => $now, 'updated_at' => $now));
-
-            $message = [
-                'status'    => true,
-                'message'   => "Добавлено в избрание"
-            ];
-            $this->response($message, REST_Controller::HTTP_OK);
-        } else {
-            $message = [
-                'status'    =>	 false,
-            ];
-            $this->response($message, 400);
-        }
-    }
+//    /**
+//     * Favorite.
+//     *
+//     * @return mixed
+//     */
+//    public function favorite_post()
+//    {
+////            $now = date('Y-m-d H:i:');
+////            var_dump($now);
+//
+//        $user_id = $this->input->post('user_id');
+//        $favoriteable_id = $this->input->post('product_id');
+//
+//        if ($user_id) {
+//            $now = date('Y-m-d H:i');
+//            $this->favorite->add(array('user_id' => $user_id, 'favoriteable_id' => $favoriteable_id, 'created_at' => $now, 'updated_at' => $now));
+//
+//            $message = [
+//                'status'    => true,
+//                'message'   => "Добавлено в избранное"
+//            ];
+//            $this->response($message, REST_Controller::HTTP_OK);
+//        } else {
+//            $message = [
+//                'status'    =>	 false,
+//            ];
+//            $this->response($message, 400);
+//        }
+//    }
+//
+//    /**
+//     * Favorite destroy.
+//     *
+//     * @return mixed
+//     */
+//    public function favorite_delete_post()
+//    {
+//        $user_id = $this->input->post('user_id');
+//        $favoriteable_id = $this->input->post('product_id');
+//        if ($user_id) {
+//            $this->db->delete('favorites', array('user_id' => $user_id,'favoriteable_id' => $favoriteable_id));
+//            $message = [
+//                'status'    => true,
+//            ];
+//            $this->response($message, REST_Controller::HTTP_OK);
+//        } else {
+//            $message = [
+//                'status'    =>	 false,
+//            ];
+//            $this->response($message, 400);
+//        }
+//    }
 }
