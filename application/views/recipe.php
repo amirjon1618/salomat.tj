@@ -4,11 +4,17 @@
         <h5>Укажите номер для отправки Вам ответа.</h5>
         <div class="recipe_phone_div" id="recipe_phone_div_phone_number" style="text-align: center;">
             <div class="recipe_phone_div_inp">
-                <h5>Введите номер телефона</h5>
+                <h5 class="mb-3">Введите номер телефона</h5>
                 <span>+992</span>
-                <input type="tel" max="9" class="recipe_phone_number" placeholder="Введите номер">
+                <input class="recipe_phone_number form-control" required type="text" pattern="\d*" maxlength="9" id="order_phone" name="cell_phone" placeholder="Введите свой номер">
             </div>
             <h5 class="recipe_error_msg">Введите в формате 99999999(9 чисел)</h5>
+            <div class="recipe_name_div_inp py-3">
+                <input class="recipe_name form-control" maxlength="24" required pattern="\d*" name="name" id="order_name" type="text" placeholder="Имя Фамилия">
+            </div>
+            <div class="recipe_comment_div_inp pb-3">
+                <textarea class="recipe_comment form-control" maxlength="250" name="comment" id="order_comment" type="text" placeholder="Комментарий"></textarea>
+            </div>
             <button class="recipe_phone_div_button_send_sms" onclick="sendSms()">
                 Отправить смс
             </button>
