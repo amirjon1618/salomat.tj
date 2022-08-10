@@ -179,9 +179,12 @@ class Users extends REST_Controller {
     {
         // $this->sess->destroy();
         delete_cookie("auth_id");
-        redirect(base_url("index.php/main"), "refresh");
-        $this->load->library('session');
+//        $this->load->library('session');
+//        unset($_SESSION["user_id"]);
+
+        $this->session->unset_userdata(array('user_id'));
         $this->session->sess_destroy();
+//        redirect("users");
         die();
     }
 
@@ -325,9 +328,6 @@ class Users extends REST_Controller {
             $phone      = $this->input->post('phone');
             $password   = $this->input->post('password');
             $output     = $this->user->user_login($phone, $password, $key);
-
-           
-
 
             $this->response($output, REST_Controller::HTTP_OK);
 
@@ -633,56 +633,26 @@ class Users extends REST_Controller {
         }
     }
 
-//    /**
-//     * Favorite.
-//     *
-//     * @return mixed
-//     */
-//    public function favorite_post()
-//    {
-////            $now = date('Y-m-d H:i:');
-////            var_dump($now);
-//
-//        $user_id = $this->input->post('user_id');
-//        $favoriteable_id = $this->input->post('product_id');
-//
-//        if ($user_id) {
-//            $now = date('Y-m-d H:i');
-//            $this->favorite->add(array('user_id' => $user_id, 'favoriteable_id' => $favoriteable_id, 'created_at' => $now, 'updated_at' => $now));
-//
-//            $message = [
-//                'status'    => true,
-//                'message'   => "Добавлено в избранное"
-//            ];
-//            $this->response($message, REST_Controller::HTTP_OK);
-//        } else {
-//            $message = [
-//                'status'    =>	 false,
-//            ];
-//            $this->response($message, 400);
-//        }
-//    }
-//
-//    /**
-//     * Favorite destroy.
-//     *
-//     * @return mixed
-//     */
-//    public function favorite_delete_post()
-//    {
-//        $user_id = $this->input->post('user_id');
-//        $favoriteable_id = $this->input->post('product_id');
-//        if ($user_id) {
-//            $this->db->delete('favorites', array('user_id' => $user_id,'favoriteable_id' => $favoriteable_id));
-//            $message = [
-//                'status'    => true,
-//            ];
-//            $this->response($message, REST_Controller::HTTP_OK);
-//        } else {
-//            $message = [
-//                'status'    =>	 false,
-//            ];
-//            $this->response($message, 400);
-//        }
-//    }
+    public function forgot_password_post()
+    {
+        $this->form_validation->set_rules('phone', 'Телефон', 'xss_clean|trim|required|max_length[20]');
+        $this->form_validation->set_rules('password', 'Пароль', 'xss_clean|trim|required|max_length[100]');
+
+        if($this->form_validation->run() == FALSE) {
+            $message = array(
+                'status'    => false,
+                'error'     => $this->form_validation->error_array(),
+                'message'   => validation_errors()
+            );
+            $this->response($message, 400);
+
+        } else {
+            $phone = $this->input->post('phone');
+            $password = $this->input->post('password');
+
+            $updated =$this->user->forgot_password($phone,$password);
+
+            $this->response($updated, REST_Controller::HTTP_OK);
+        }
+    }
 }
