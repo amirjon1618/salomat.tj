@@ -361,18 +361,18 @@
                                     <div class="form-row">
                                         <span class="text-label">Пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="first-password2" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
-                                            <div class="hide-btn-pass" onclick="showPass2()">
-                                                <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass2">
+                                            <input type="password" name="password" id="first-password2" minlength="4" maxlength="32" class="input-text hide-pass4" required placeholder="* * * * * * * * * *">
+                                            <div class="hide-btn-pass" onclick="showPass4()">
+                                                <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass4">
                                             </div>
                                         </label>
                                     </div>
                                     <div class="form-row">
                                         <span class="text-label">Повторный пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="second-password2" minlength="4" maxlength="32" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
-                                            <div class="hide-btn-pass" onclick="showPass3()">
-                                                <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass3">
+                                            <input type="password" name="password" id="second-password2" minlength="4" maxlength="32" class="input-text hide-pass5" required placeholder="* * * * * * * * * *">
+                                            <div class="hide-btn-pass" onclick="showPass5()">
+                                                <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass5">
                                             </div>
                                         </label>
                                     </div>
@@ -463,7 +463,7 @@
                         </a>
                         <div class="ps-cart--mini">
                             <a class="header__extra header_cart_a" href="#">
-                                <img src="{base_url}img/cart.svg" style="margin-top: 10px;">
+                                <img src="{base_url}img/cart.svg" style="margin-bottom: -30px;">
                                 <span class="header_cart_tot_span">
                                     <i id="total_count_in_cart_header">0</i>
                                 </span>
@@ -1198,6 +1198,28 @@
         }
     }
 
+    function showPass4() {
+        isShowPass4 = !isShowPass4;
+        if (isShowPass4) {
+            document.querySelector(".hide-pass4").type = "text";
+            hidePass4.src = "{base_url}img/hide-pass.svg";
+        } else {
+            document.querySelector(".hide-pass4").type = "password";
+            hidePass4.src = "{base_url}img/show-pass.svg";
+        }
+    }
+
+    function showPass5() {
+        isShowPass5 = !isShowPass5;
+        if (isShowPass5) {
+            document.querySelector(".hide-pass5").type = "text";
+            hidePass5.src = "{base_url}img/hide-pass.svg";
+        } else {
+            document.querySelector(".hide-pass5").type = "password";
+            hidePass5.src = "{base_url}img/show-pass.svg";
+        }
+    }
+
     function set_prods_header() {
 
         if (localStorage.getItem("product_list")) {
@@ -1478,6 +1500,14 @@
 
     function onRemoveLS() {
         localStorage.removeItem("userId");
+        $.ajax({
+            type: "GET",
+            url: "{base_url}/users/web_log_out",
+            headers: {
+                "Accept": "application/json",
+            }
+        })
+
     }
 
     // Get the element with id="defaultOpen" and click on it

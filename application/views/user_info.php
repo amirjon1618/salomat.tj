@@ -25,7 +25,7 @@
                     <?php if (isset($auth)) : ?>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="user-info" role="tabpanel" aria-labelledby="webdisign-tab">
-                            <div class="up-content col-lg-6 col-md-6 col-sm-12 col-xs-12 p-4">
+                            <div class="up-content col-lg-7 col-md-7 col-sm-12 col-xs-12 p-4">
                                 <div class="up-content-info">
                                     <h2>Личная информация</h2>
                                     <form action="{base_url}users/update_user" method="post" class="up-content-info_form">
@@ -60,11 +60,11 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                             <div class="form-col">
                                                 <label for="validationCustom01">Дата рождения</label>
                                                 <input type="date" class="form-control" id="validationCustom01" name="birth_date" value="<?php echo $birth_date ?>">
-<!--                                                <input type="date" class="form-control" id="validationCustom01" value="12.11.2222" placeholder="03/11/1999"  required>-->
+
                                                 <div class="valid-feedback">
                                                     Правильно!
                                                 </div>
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade show" id="user-order" role="tabpanel" aria-labelledby="webdisign-tab">
-                            <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-4">
+                            <div class="up-content col-lg-9 col-md-9 col-sm-12 col-xs-12 p-4">
                                 <div class="table-title">
                                     <h2 class="pb-5">Мои заказы</h2>
                                 </div>
@@ -180,61 +180,63 @@
                     </div>
 
                     <?php endif; ?>
-                </div>
-                <div class="tab-pane fade show" id="user-favorite" role="tabpanel" aria-labelledby="webdisign-tab">
-                    <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-4">
-                        <div class="favorite-title pb-5">
-                            <h2 class="border-bottom pb-4">Избранное</h2>
-                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="user-favorite" role="tabpanel">
+                        <div class="up-content col-lg-9 col-md-9 col-sm-12 col-xs-12 p-4">
+                            <div class="favorite-title pb-5">
+                                <h2 class="border-bottom pb-4">Избранное</h2>
+                            </div>
 
-                        <?php if (isset($auth) && !empty($favorites)) : ?>
-                        <?php foreach ($favorites as $favorite): ?>
-                        <div class="favorite-content">
-                            <div class="container">
-                                <div class="d-flex row">
-                                    <div class="d-flex mr-5 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                                        <div class="owl-item-bg">
-                                            <div class="owl-item cloned" style="width: 210px; margin-right: 30px;">
-                                                <div class="ps-product ps-product--inner ps-product_of_the_day">
-                                                    <label>
-                                                        <input type="checkbox" id="red">
-                                                        <svg width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path id="shape" class="seat" fill="none" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                        </svg>
-                                                    </label>
-                                                    <div class="ps-product__thumbnail ps-product__thumbnail_img_div  hover01">
-                                                        <a href="{base_url}index.php/main/product/2997?from=main">
-                                                            <img class="imgs" src="{base_url}upload_product/<?php echo $favorite['product_pic']?>" alt="">
-                                                        </a>
-                                                    </div>
+                            <?php if (isset($auth) && !empty($favorites)) : ?>
+                            <?php foreach ($favorites as $favorite): ?>
+                            <div class="favorite-content">
+                                <div class="container">
+                                    <div class="col">
+                                        <div class="d-flex col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                            <div class="owl-item-bg">
+                                                <div class="owl-item cloned" style="width: 210px; margin-right: 30px;">
+                                                    <div class="ps-product ps-product--inner ps-product_of_the_day">
+                                                        <label>
+                                                            <input type="checkbox" id="red">
+                                                            <svg width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path id="shape" class="seat" fill="none" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                            </svg>
+                                                        </label>
+                                                        
+                                                        <div class="ps-product__thumbnail ps-product__thumbnail_img_div  hover01">
+                                                            <a href="{base_url}index.php/main/product/2997?from=main">
+                                                                <img class="imgs" src="{base_url}upload_product/<?php echo $favorite['product_pic']?>" alt="">
+                                                            </a>
+                                                        </div>
 
-                                                    <div class="ps-product__container">
-                                                        <div class="ps-product__content"><a class="ps-product__title product_title_new" href="{base_url}index.php/main/product/2997">
-                                                                <?php echo $favorite['product_name']?></a>
-                                                            <div class="ps-product__rating">
-                                                                <select class="ps-rating" data-read-only="true">
+                                                        <div class="ps-product__container">
+                                                            <div class="ps-product__content"><a class="ps-product__title product_title_new" href="{base_url}index.php/main/product/2997">
+                                                                    <?php echo $favorite['product_name']?></a>
+                                                                <div class="ps-product__rating">
+                                                                    <select class="ps-rating" data-read-only="true">
 
-                                                                    <?php if (!isset($favorite['review_count'])) : ?>
-                                                                        <?php for ($i = 1; $i <= $favorite['prod_rating_average']; $i++) : ?>
-                                                                            <option value="1"></option>
-                                                                        <?php endfor; ?>
-                                                                        <?php for ($i = ($favorite['prod_rating_average'] + 1); $i <= 5; $i++) : ?>
-                                                                            <option value="<?= $i ?>"><?= $i ?></option>
-                                                                        <?php endfor; ?>
-                                                                    <?php else : ?>
-                                                                        <!-- <option value="" selected disabled hidden></option> -->
-                                                                        <option value="0">0</option>
-                                                                        <option value="1">1</option>
-                                                                        <option value="2">2</option>
-                                                                        <option value="3">3</option>
-                                                                        <option value="4">4</option>
-                                                                        <option value="5">5</option>
-                                                                    <?php endif; ?>
-                                                                </select><span>(1)</span>
+                                                                        <?php if (!isset($favorite['review_count'])) : ?>
+                                                                            <?php for ($i = 1; $i <= $favorite['prod_rating_average']; $i++) : ?>
+                                                                                <option value="1"></option>
+                                                                            <?php endfor; ?>
+                                                                            <?php for ($i = ($favorite['prod_rating_average'] + 1); $i <= 5; $i++) : ?>
+                                                                                <option value="<?= $i ?>"><?= $i ?></option>
+                                                                            <?php endfor; ?>
+                                                                        <?php else : ?>
+                                                                            <!-- <option value="" selected disabled hidden></option> -->
+                                                                            <option value="0">0</option>
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="4">4</option>
+                                                                            <option value="5">5</option>
+                                                                        <?php endif; ?>
+                                                                    </select><span>(1)</span>
+                                                                </div>
+                                                                <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
+                                                                            <?php echo $favorite['product_price']?> </span><a class="ps-product__price-link" href="<?= $base_url ?>index.php/main/product/<?= $favorite['id'] ?>?from=main">В корзину</a></p>
+
                                                             </div>
-                                                            <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
-                                                                           <?php echo $favorite['product_price']?> </span><a class="ps-product__price-link" href="<?= $base_url ?>index.php/main/product/<?= $favorite['id'] ?>?from=main">В корзину</a></p>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -243,40 +245,39 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <?php endforeach;?>
-                    <?php endif; ?>
-                    </div>
-                </div>
-                <div class="tab-pane fade show" id="user-save" role="tabpanel" aria-labelledby="webdisign-tab">
-                    <div class="up-content col-lg-6 col-md-6 col-sm-12 col-xs-12 p-4">
-                        <div class="user-save-title mb-5">
-                            <h2>Безопасность</h2>
-                        </div>
-                        <?php if (isset($auth)) : ?>
-                        <div class="user-save-content">
-                            <form class="user-save-form" action="{base_url}users/update_user_password" method="post">
-                                <div class="user-save-div">
-                                    <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <label for="exampleInputPassword1">Пароль*</label>
-                                        <input type="password" class="form-control form-control-save" name="password" id="validationCustom01" placeholder="Введите новый пароль" required>
-                                    </div>
-                                    <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <label for="exampleInputPassword2">Повторите пароль*</label>
-                                        <input type="password" class="form-control form-control-save"  name="password_confirm" id="validationCustom02" placeholder="Введите повторно пароль" required>
-                                    </div>
-                                </div>
-                                <button class="form-btn mr-3">Сохранить</button>
-                            </form>
-                        </div>
+                            <?php endforeach;?>
                         <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="user-save" role="tabpanel">
+                        <div class="up-content col-lg-9 col-md-9 col-sm-12 col-xs-12 p-4">
+                            <div class="user-save-title mb-5">
+                                <h2>Безопасность</h2>
+                            </div>
+                            <?php if (isset($auth)) : ?>
+                            <div class="user-save-content">
+                                <form class="user-save-form" action="{base_url}users/update_user_password" method="post">
+                                    <div class="user-save-div">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                            <label for="exampleInputPassword1">Пароль*</label>
+                                            <input type="password" class="form-control form-control-save" name="password" id="validationCustom01" placeholder="Введите новый пароль" required>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                            <label for="exampleInputPassword2">Повторите пароль*</label>
+                                            <input type="password" class="form-control form-control-save"  name="password_confirm" id="validationCustom02" placeholder="Введите повторно пароль" required>
+                                        </div>
+                                    </div>
+                                    <button class="form-btn mr-3">Сохранить</button>
+                                </form>
+                            </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
+        </section>
     </div>
-</div>
-</section>
-</div>
 </div>
 <style>
     label {
