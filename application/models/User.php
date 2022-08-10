@@ -299,7 +299,10 @@ class User extends CI_Model
 
         if(!empty($data[0]['login']))
         {
-            return 'Пароль изменён';
+            return [
+                "status"  => true,
+                "message" => "Пароль изменён"
+            ];
         }
         else
         {
