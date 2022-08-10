@@ -286,6 +286,30 @@ class User extends CI_Model
         return FALSE;
     }
 
+    public function forgot_password($phone,$password)
+    {
+        $this->db->set('password',$this->hash_pass($password));
+        $this->db->where('login', $phone);
+        $this->db->update('users');
+
+        $this->db->select('*');
+        $this->db->where('login', $phone);
+        $q = $this->db->get('users');
+        $data = $q->result_array();
+
+        if(!empty($data[0]['login']))
+        {
+            return [
+                "status"  => true,
+                "message" => "Пароль изменён"
+            ];
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     public function CreateSession($array)
     {
         $this->db->delete('session', array('user_id' => $array['user_id']));

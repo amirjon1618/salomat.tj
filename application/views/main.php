@@ -45,8 +45,8 @@
                 <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="1" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
                     <?php foreach ($prods_of_the_day as $prod_of_the_day) : ?>
                         <div class="ps-product ps-product--inner ps-product_of_the_day">
-                            <label>  
-                                <input type="checkbox" id="red">
+                            <label>
+                                <input value="<?php $prod_of_the_day['id']?>" <?php echo $prod_of_the_day['is_favorite'] == 1?  'checked' : null  ?> type="checkbox" id="red">
                                 <svg width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path id="shape" class="seat" fill="none" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -80,9 +80,9 @@
                                         </select><span>(<?= $prod_of_the_day['review_count'] ?>)</span>
                                     </div>
                                     <p class="ps-product__price sale prods_slider" > <span class="ps-product__price-span">
-                                    <?php if ($prod_of_the_day['product_old_price'] != 0) : ?><del><?= $prod_of_the_day['product_old_price'] ?> </del><?php endif; ?>    
+                                    <?php if ($prod_of_the_day['product_old_price'] != 0) : ?><del><?= $prod_of_the_day['product_old_price'] ?> </del><?php endif; ?>
                                     <?= $prod_of_the_day['product_price'] ?> c. </span><a class="ps-product__price-link" href="<?= $base_url ?>index.php/main/product/<?= $prod_of_the_day['id'] ?>?from=main">В корзину</a></p>
-                                        
+
                                 </div>
                             </div>
                         </div>
