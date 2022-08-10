@@ -1801,4 +1801,27 @@ console.log($("#first-password"))
         }
     })
 
+    $("#form7").on('submit',(e) =>{
+      e.preventDefault();
+      $.ajax({
+            type: "POST",
+            url: "{base_url}users/register",
+            headers: {
+                "Accept": "application/json",
+            },
+            data: {
+                phone: Number(localStorage.getItem("restore-phone")),
+                password: $("#first-password2").val()
+            },
+            success: function(result) {
+                $(".enter-btn-bg").css("display", "none");
+                $(".account-btn").css("display", "none");
+                document.getElementById("account-wrap").style.display = "block";
+            },
+            error: function(error) {
+                
+            }
+        })
+    })
+
 </script>
