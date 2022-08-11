@@ -2635,6 +2635,8 @@
         border-radius: 5px;
         padding: 5px 20px;
         color: #fff;
+        display: inherit;
+        text-align: center;
     }
     .status-canceled {
         background: #EF5D70;
@@ -5292,6 +5294,7 @@
       }
        
       .input__file-button-text {
+        margin: 0 auto;
         line-height: 1;
         margin-top: 1px;
       }
@@ -14895,9 +14898,20 @@
             display: flex !important;
         }
         .form-v8-content .form-detail .input-text {
-            width: 280px !important;
+            width: 100% !important;
+        }
+        .input__file-button-text {
+            margin: 0 auto;
+        }
+        .pb-jcs {
+            display: flex;
+            justify-content: flex-start;
         }
 
+    }
+    .pb-jcs {
+        display: flex;
+        justify-content: center;
     }
     .fw-bold {
         display: flex;
@@ -17971,6 +17985,26 @@
         .form-group {
             padding: 0;
         }
+        .input__file-button-text {
+            font-size: 10px;
+        }
+        .form-v8-content .enter-form {
+            padding-top: 0 !important;
+        }
+    }
+    @media (min-width: 768px) and (max-width: 992px) {
+        .input__file-button-text {
+            font-size: 10px;
+        }
+    }
+    @media (min-width: 320px) and (max-width: 768px) {
+        .input__file-button-text {
+            font-size: 18px;
+        }
+        .up-right-sidebar {
+            margin-left: 0 !important;
+        }
+
     }
     
     .ps-page--product {
@@ -33915,4 +33949,13 @@ section {
 
 .vue-lists ul, .vue-lists ol {
     padding-left: 30px;
+}
+.up-left-sidebar {
+    margin-right: 1rem;
+}
+.up-right-sidebar {
+    margin-left: 1rem;
+}
+.user-image__link {
+    width: 3rem;
 }

@@ -25,7 +25,7 @@
                     <?php if (isset($auth)) : ?>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="user-info" role="tabpanel" aria-labelledby="webdisign-tab">
-                            <div class="up-content col-lg-7 col-md-7 col-sm-12 col-xs-12 p-4 mb-3">
+                            <div class="up-content col-lg-6 col-md-6 col-sm-12 col-xs-12 p-4 mb-3">
                                 <div class="up-content-info">
                                     <h2>Личная информация</h2>
                                     <form action="{base_url}users/update_user" method="post" class="up-content-info_form">
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade show" id="user-order" role="tabpanel" aria-labelledby="webdisign-tab">
-                            <div class="up-content col-lg-9 col-md-9 col-sm-12 col-xs-12 p-4">
+                            <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-4">
                                 <div class="table-title">
                                     <h2 class="pb-5">Мои заказы</h2>
                                 </div>
@@ -182,7 +182,7 @@
                     <?php endif; ?>
                     </div>
                     <div class="tab-pane fade show" id="user-favorite" role="tabpanel">
-                        <div class="up-content col-lg-9 col-md-9 col-sm-12 col-xs-12 p-4">
+                        <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-4">
                             <div class="favorite-title pb-5">
                                 <h2 class="border-bottom pb-4">Избранное</h2>
                             </div>
@@ -191,7 +191,7 @@
                             <?php foreach ($favorites as $favorite): ?>
                             <div class="favorite-content">
                                     <div class="col">
-                                        <div class="d-flex col-lg-3 col-md-3 col-sm-6 col-xs-12 pb-5">
+                                        <div class="d-flex col-lg-3 col-md-6 col-sm-6 col-xs-12 pb-5">
                                             <div class="owl-item-bg">
                                                 <div class="owl-item cloned">
                                                     <div class="ps-product ps-product--inner ps-product_of_the_day">
@@ -248,7 +248,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade show" id="user-save" role="tabpanel">
-                        <div class="up-content col-lg-9 col-md-9 col-sm-12 col-xs-12 p-4">
+                        <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-4">
                             <div class="user-save-title mb-5">
                                 <h2>Безопасность</h2>
                             </div>
