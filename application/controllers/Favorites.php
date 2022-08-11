@@ -23,9 +23,7 @@ class Favorites extends REST_Controller {
 
 
     /**
-     * Favorite.
-     *
-     * @return mixed
+     * Get user Favorites.
      */
     public function index_get()
     {
@@ -43,9 +41,8 @@ class Favorites extends REST_Controller {
         }
     }
 
-
     /**
-     * Favorite.
+     * Add Favorite.
      *
      * @return mixed
      */
@@ -70,7 +67,6 @@ class Favorites extends REST_Controller {
             $this->response($message, 400);
         }
     }
-
 
     /**
      * Favorite destroy.
