@@ -48,7 +48,7 @@
                         </ul>
                     </aside>
                     </div>
-                    <div class="ps-block__item border-0 ps-block__jcs justify-content-center">
+                    <div class="ps-block__item border-0 ps-block__jcs pb-jcs">
                     <aside class="widget widget_footer widget_footer2">
                         <ul class="ps-list--link pb-2">
                             <li><a href="{base_url}index.php/main/recipe">Отправить рецепт</a></li>

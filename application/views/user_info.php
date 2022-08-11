@@ -14,7 +14,7 @@
         <section class="section-forms section-tabs">
             <div class="container my-5">
                 <div class="user-info">
-                    <div class="up-left-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12 p-0">
+                    <div class="up-left-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12 p-0 mb-3">
                         <ul class="user-info_ul nav nav-pills d-block" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation"><a id="webdisign-tab" data-toggle="tab" href="#user-info" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-user.svg" alt="Icon">Личная информация</a></li>
                             <li class="nav-item" role="presentation"><a id="webdisign-tab" data-toggle="tab" href="#user-order" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-cart.svg" alt="Icon">Мои заказы</a></li>
@@ -25,7 +25,7 @@
                     <?php if (isset($auth)) : ?>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="user-info" role="tabpanel" aria-labelledby="webdisign-tab">
-                            <div class="up-content col-lg-7 col-md-7 col-sm-12 col-xs-12 p-4">
+                            <div class="up-content col-lg-6 col-md-6 col-sm-12 col-xs-12 p-4 mb-3">
                                 <div class="up-content-info">
                                     <h2>Личная информация</h2>
                                     <form action="{base_url}users/update_user" method="post" class="up-content-info_form">
@@ -60,7 +60,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                             <div class="form-col">
                                                 <label for="validationCustom01">Дата рождения</label>
                                                 <input type="date" class="form-control" id="validationCustom01" name="birth_date" value="<?php echo $birth_date ?>">
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade show" id="user-order" role="tabpanel" aria-labelledby="webdisign-tab">
-                            <div class="up-content col-lg-9 col-md-9 col-sm-12 col-xs-12 p-4">
+                            <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-4">
                                 <div class="table-title">
                                     <h2 class="pb-5">Мои заказы</h2>
                                 </div>
@@ -182,7 +182,7 @@
                     <?php endif; ?>
                     </div>
                     <div class="tab-pane fade show" id="user-favorite" role="tabpanel">
-                        <div class="up-content col-lg-9 col-md-9 col-sm-12 col-xs-12 p-4">
+                        <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-4">
                             <div class="favorite-title pb-5">
                                 <h2 class="border-bottom pb-4">Избранное</h2>
                             </div>
@@ -190,11 +190,10 @@
                             <?php if (isset($auth) && !empty($favorites)) : ?>
                             <?php foreach ($favorites as $favorite): ?>
                             <div class="favorite-content">
-                                <div class="container">
                                     <div class="col">
-                                        <div class="d-flex col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                        <div class="d-flex col-lg-3 col-md-6 col-sm-6 col-xs-12 pb-5">
                                             <div class="owl-item-bg">
-                                                <div class="owl-item cloned" style="width: 210px; margin-right: 30px;">
+                                                <div class="owl-item cloned">
                                                     <div class="ps-product ps-product--inner ps-product_of_the_day">
                                                         <label>
                                                             <input type="checkbox" id="red">
@@ -243,14 +242,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                             <?php endforeach;?>
                         <?php endif; ?>
                         </div>
                     </div>
                     <div class="tab-pane fade show" id="user-save" role="tabpanel">
-                        <div class="up-content col-lg-9 col-md-9 col-sm-12 col-xs-12 p-4">
+                        <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-4">
                             <div class="user-save-title mb-5">
                                 <h2>Безопасность</h2>
                             </div>
