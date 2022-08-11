@@ -129,7 +129,8 @@ class Main extends CI_Controller
         $data['main_slider'] = $this->slider->get_all('normal');
         $data['ad_mini'] = $this->advertisement->get_all('mini_pic');
         $user_id = $this->session->userdata('user_id');
-        $data['prods_of_the_day'] = $this->product->get_prods_by_slider_type('product_of_the_day',$user_id ?? 0);
+
+        $data['prods_of_the_day'] = $this->product->get_prods_by_slider_type('product_of_the_day',isset($user_id)?$user_id:0);
 
         $isFromMyBabilon = $this->input->get('from');
         if ($isFromMyBabilon == 'babilon') {

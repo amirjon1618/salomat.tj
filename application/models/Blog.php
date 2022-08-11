@@ -94,6 +94,8 @@ class Blog extends CI_Model
         }
         return $array;
     }
+
+
     private $per_page_main = 6;
     public function get_all_main($page = 1, $tag_id = 0)
     {

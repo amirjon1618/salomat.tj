@@ -177,14 +177,10 @@ class Users extends REST_Controller {
      */
     public function web_log_out_get()
     {
-        // $this->sess->destroy();
         delete_cookie("auth_id");
-//        $this->load->library('session');
-//        unset($_SESSION["user_id"]);
-
         $this->session->unset_userdata(array('user_id'));
         $this->session->sess_destroy();
-//        redirect("users");
+        redirect(base_url("index.php/main"), "refresh");
         die();
     }
 
