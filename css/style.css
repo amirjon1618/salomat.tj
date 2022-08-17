@@ -17981,7 +17981,10 @@
         .ps-page--shop .container {
             max-width: 100%;
         }
-        
+        .widget:last-child {
+            border-bottom: none;
+            padding: 10px 30px;
+        }
         .delivery-form {
             display: inline-block;
         }
@@ -33962,4 +33965,19 @@ section {
 }
 .user-image__link {
     width: 3rem;
+}
+.footer-hr {
+    color: #E5E5E5;
+    background-color: #E5E5E5;
+    height: 1px;
+}
+.footer-copyright {
+    color: #A8A8A8;
+    font-size: 15px;
+}
+.footer-title {
+    list-style-type: none;
+    color: #6D6D6D;
+    font-size: 15px;
+    font-weight: bold;
 }
