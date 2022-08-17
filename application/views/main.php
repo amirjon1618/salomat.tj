@@ -1,14 +1,14 @@
 <div id="homepage-3">
     <div class="ps-home-banner">
-        
-            <div class="container recipe_container_div">
-                <div class="recipe_div_main" col="12">
-                    <div class="recipe_sheet_div">
-                        <a href="{base_url}index.php/main/recipe"><img src="/img/photo.svg" alt="Recept" style="padding-right: 15px;"> Фото рецепта</a>
-                    </div>
+
+        <div class="container recipe_container_div">
+            <div class="recipe_div_main" col="12">
+                <div class="recipe_sheet_div">
+                    <a href="{base_url}index.php/main/recipe"><img src="/img/photo.svg" alt="Recept" style="padding-right: 15px;"> Фото рецепта</a>
                 </div>
             </div>
-        
+        </div>
+
         <div class="container main-banner_container">
             <div class="ps-section__left">
                 <div class="ps-carousel--nav-inside owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
@@ -46,14 +46,14 @@
                     <?php foreach ($prods_of_the_day as $prod_of_the_day) : ?>
                         <div class="ps-product ps-product--inner ps-product_of_the_day">
                             <label>
-                                <input value="<?php $prod_of_the_day['id']?>" <?php echo $prod_of_the_day['is_favorite'] == 1?  'checked' : null  ?> type="checkbox" id="red">
-                                <svg width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path id="shape" class="seat" fill="none" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <input value="<?php $prod_of_the_day['id'] ?>" <?php echo $prod_of_the_day['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
+                                <svg id="shape" fill="none" data-id="<?= $prod_of_the_day['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
+                                    <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </label>
                             <div class="ps-product__thumbnail ps-product__thumbnail_img_div  hover01">
                                 <a href="<?= $base_url ?>index.php/main/product/<?= $prod_of_the_day['id'] ?>?from=main">
-                                    <img class="imgs" src="<?= $base_url ?>upload_product/<?= $prod_of_the_day['product_pic'] ?>" alt="">
+                                    <img class="imgs" src="<?= $base_url ?>upload_product/<?= $prod_of_the_day['product_pic'] ?>" alt="Product IMG">
                                 </a>
                             </div>
                             <div class="ps-product__container">
@@ -79,9 +79,9 @@
                                             <?php endif; ?>
                                         </select><span>(<?= $prod_of_the_day['review_count'] ?>)</span>
                                     </div>
-                                    <p class="ps-product__price sale prods_slider" > <span class="ps-product__price-span">
-                                    <?php if ($prod_of_the_day['product_old_price'] != 0) : ?><del><?= $prod_of_the_day['product_old_price'] ?> </del><?php endif; ?>
-                                    <?= $prod_of_the_day['product_price'] ?> c. </span><a class="ps-product__price-link" href="<?= $base_url ?>index.php/main/product/<?= $prod_of_the_day['id'] ?>?from=main">В корзину</a></p>
+                                    <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
+                                            <?php if ($prod_of_the_day['product_old_price'] != 0) : ?><del><?= $prod_of_the_day['product_old_price'] ?> </del><?php endif; ?>
+                                            <?= $prod_of_the_day['product_price'] ?> c. </span><a class="ps-product__price-link" href="<?= $base_url ?>index.php/main/product/<?= $prod_of_the_day['id'] ?>?from=main">В корзину</a></p>
 
                                 </div>
                             </div>
@@ -96,38 +96,38 @@
             <?php foreach ($categories_for_main_page as $cat) : ?>
                 <div class="ps-block--products-of-category">
                     <div class="ps-block__categories">
-                    <div class="accordion" id="accordionExample">
-                    <div style="border: none;" class="card">
-                        <div style="background-color: #fff; border: none; padding: 0;" class="card-header" id="headingOne">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <h3 style="display: flex; justify-content: space-between; align-items: center;" class="burger-mobail_icon"><?php echo $cat['categ']['category_name'] ?><i class="fa fa-bars" aria-hidden="true"></i></h3>
-                            </button>
-                        </h2>
+                        <div class="accordion" id="accordionExample">
+                            <div style="border: none;" class="card">
+                                <div style="background-color: #fff; border: none; padding: 0;" class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <h3 style="display: flex; justify-content: space-between; align-items: center;" class="burger-mobail_icon"><?php echo $cat['categ']['category_name'] ?><i class="fa fa-bars" aria-hidden="true"></i></h3>
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <ul>
+                                            <?php if (sizeof($cat['categ']['sub_cat']) > 12) : ?>
+                                                <?php for ($i = 0; $i <= 12; $i++) : ?>
+                                                    <li><a href="<?= $cat['categ']['base_url'] ?>index.php/main/categoryProducts/<?= $cat['categ']['sub_cat'][$i]['id'] ?>">
+                                                            <?= $cat['categ']['sub_cat'][$i]['category_name'] ?>
+                                                        </a></li>
+                                                <?php endfor; ?>
+                                            <?php else : ?>
+                                                <?php for ($i = 0; $i < sizeof($cat['categ']['sub_cat']); $i++) : ?>
+                                                    <li><a href="<?= $cat['categ']['base_url'] ?>index.php/main/categoryProducts/<?= $cat['categ']['sub_cat'][$i]['id'] ?>">
+                                                            <?= $cat['categ']['sub_cat'][$i]['category_name'] ?></a></li>
+                                                <?php endfor; ?>
+                                            <?php endif; ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                        <div class="card-body">
-                        <ul>
-                            <?php if (sizeof($cat['categ']['sub_cat']) > 12) : ?>
-                                <?php for ($i = 0; $i <= 12; $i++) : ?>
-                                    <li><a href="<?= $cat['categ']['base_url'] ?>index.php/main/categoryProducts/<?= $cat['categ']['sub_cat'][$i]['id'] ?>">
-                                            <?= $cat['categ']['sub_cat'][$i]['category_name'] ?>
-                                        </a></li>
-                                <?php endfor; ?>
-                            <?php else : ?>
-                                <?php for ($i = 0; $i < sizeof($cat['categ']['sub_cat']); $i++) : ?>
-                                    <li><a href="<?= $cat['categ']['base_url'] ?>index.php/main/categoryProducts/<?= $cat['categ']['sub_cat'][$i]['id'] ?>">
-                                            <?= $cat['categ']['sub_cat'][$i]['category_name'] ?></a></li>
-                                <?php endfor; ?>
-                            <?php endif; ?>
-                        </ul>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                        
-                       
+
                     </div>
                     <div class="ps-block__slider">
                         <div style="height: 100%;" class="ps-carousel--product-box owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="7000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="500" data-owl-mousedrag="off">
@@ -138,7 +138,7 @@
                             <?php endforeach; ?>
                         </div>
                     </div>
-                    
+
                     <div class="ps-block__product-box">
                         <?php foreach ($cat['categ_prods'] as $cat_p) : ?>
                             <div class="ps-product ps-product--simple hover01">
@@ -178,76 +178,78 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <?php if($cat['categ']['id'] == 4) : ?>
-                <div class="ps-block--products-of-category blog-articles">
-                    <div class="content-bg">
-                        <div class="blog-articles__nav">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb bg-content bg-white">
-                                    <li class="breadcrumb-item ba-first"><a href="#">Блог </a></li>
-                                    <a href="{base_url}main/blogpopular"><li class="active ba-last" aria-current="page" style="padding: 0 10px;">все статьи ></li></a>
-                                </ol>
-                            </nav>
-                        </div>
-                        <div class="blog-articles-blog">
-                            <div class="blog-articles_left col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                                <img src="{base_url}img/vacsina.jpg" class="img-fluid pb-5" alt="...">
-                                <h3>Семь основных причин, почему вакцинироваться должен каждый </h3>
-                                <span>25.09.2021</span>
-                                <p class="text-justify">Ежегодно иммунизация спасает жизни более 3 миллионов человек во всем мире, а также спасает еще больше миллионов людей от болезней и пожизненной инвалидизации (Расчетные данные ВОЗ, 2009 г.).<br>Благодаря эффективным программам вакцинации большинство населения промышленно развитых стран никогда не .... <a href="{base_url}main/blogInfo"> читать дальше</a></p>
-                                <div class="blog-articles-btn">
-                                <a href="{base_url}main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все  статьи</button></a>
-                                    <a href="https://www.t.me/Salomat9990" target="_blank">
-                                        <img src="{base_url}img/telegram.svg" alt=""></a>   
-                                    <a href="salomat.tj" target="_blank">
-                                        <img src="{base_url}img/facebook.svg" alt=""></a>
-                                    <a href="https://www.instagram.com/salomat.tj" target="_blank">
-                                        <img src="{base_url}img/instagram.svg" alt=""></a>
-                                        
-                                    <a href="https://salomat.tj" target="_blank">
-                                        <img src="{base_url}img/link.svg" alt=""></a>
-                                </div>
+                <?php if ($cat['categ']['id'] == 4) : ?>
+                    <div class="ps-block--products-of-category blog-articles">
+                        <div class="content-bg">
+                            <div class="blog-articles__nav">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb bg-content bg-white">
+                                        <li class="breadcrumb-item ba-first"><a href="#">Блог </a></li>
+                                        <a href="{base_url}main/blogpopular">
+                                            <li class="active ba-last" aria-current="page" style="padding: 0 10px;">все статьи ></li>
+                                        </a>
+                                    </ol>
+                                </nav>
                             </div>
-                            <div class="blog-articles_right col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                                <div class="blog-articles-mini">
-                                    <h3>Витамин С - мощный союзник человека </h3>
+                            <div class="blog-articles-blog">
+                                <div class="blog-articles_left col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                    <img src="{base_url}img/vacsina.jpg" class="img-fluid pb-5" alt="...">
+                                    <h3>Семь основных причин, почему вакцинироваться должен каждый </h3>
                                     <span>25.09.2021</span>
-                                    <p>Благодаря эффективным программам вакцинации большинство населения никогда не .... </p>
-                                    <a href="#"> читать дальше</a>
+                                    <p class="text-justify">Ежегодно иммунизация спасает жизни более 3 миллионов человек во всем мире, а также спасает еще больше миллионов людей от болезней и пожизненной инвалидизации (Расчетные данные ВОЗ, 2009 г.).<br>Благодаря эффективным программам вакцинации большинство населения промышленно развитых стран никогда не .... <a href="{base_url}main/blogInfo"> читать дальше</a></p>
+                                    <div class="blog-articles-btn">
+                                        <a href="{base_url}main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все статьи</button></a>
+                                        <a href="https://www.t.me/Salomat9990" target="_blank">
+                                            <img src="{base_url}img/telegram.svg" alt=""></a>
+                                        <a href="salomat.tj" target="_blank">
+                                            <img src="{base_url}img/facebook.svg" alt=""></a>
+                                        <a href="https://www.instagram.com/salomat.tj" target="_blank">
+                                            <img src="{base_url}img/instagram.svg" alt=""></a>
+
+                                        <a href="https://salomat.tj" target="_blank">
+                                            <img src="{base_url}img/link.svg" alt=""></a>
+                                    </div>
                                 </div>
-                                <div class="blog-articles-mini">
-                                    <h3>Витамин С - мощный союзник человека </h3>
-                                    <span>25.09.2021</span>
-                                    <p>Благодаря эффективным программам вакцинации большинство населения никогда не .... </p>
-                                    <a href="#"> читать дальше</a>
+                                <div class="blog-articles_right col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                    <div class="blog-articles-mini">
+                                        <h3>Витамин С - мощный союзник человека </h3>
+                                        <span>25.09.2021</span>
+                                        <p>Благодаря эффективным программам вакцинации большинство населения никогда не .... </p>
+                                        <a href="#"> читать дальше</a>
+                                    </div>
+                                    <div class="blog-articles-mini">
+                                        <h3>Витамин С - мощный союзник человека </h3>
+                                        <span>25.09.2021</span>
+                                        <p>Благодаря эффективным программам вакцинации большинство населения никогда не .... </p>
+                                        <a href="#"> читать дальше</a>
+                                    </div>
+                                    <div class="blog-articles-mini">
+                                        <h3>Витамин С - мощный союзник человека </h3>
+                                        <span>25.09.2021</span>
+                                        <p>Благодаря эффективным программам вакцинации большинство населения никогда не .... </p>
+                                        <a href="#"> читать дальше</a>
+                                    </div>
+                                    <div class="blog-articles-btn bab_mobile">
+                                        <a href="{base_url}main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все статьи</button></a>
+                                        <a href="https://www.t.me/Salomat9990" target="_blank">
+                                            <img src="{base_url}img/telegram.svg" alt=""></a>
+                                        <a href="salomat.tj" target="_blank">
+                                            <img src="{base_url}img/facebook.svg" alt=""></a>
+                                        <a href="https://www.instagram.com/salomat.tj" target="_blank">
+                                            <img src="{base_url}img/instagram.svg" alt=""></a>
+
+                                        <a href="https://salomat.tj" target="_blank">
+                                            <img src="{base_url}img/link.svg" alt=""></a>
+                                    </div>
                                 </div>
-                                <div class="blog-articles-mini">
-                                    <h3>Витамин С - мощный союзник человека </h3>
-                                    <span>25.09.2021</span>
-                                    <p>Благодаря эффективным программам вакцинации большинство населения никогда не .... </p>
-                                    <a href="#"> читать дальше</a>
-                                </div>
-                                <div class="blog-articles-btn bab_mobile">
-                                <a href="{base_url}main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все  статьи</button></a>
-                                    <a href="https://www.t.me/Salomat9990" target="_blank">
-                                        <img src="{base_url}img/telegram.svg" alt=""></a>   
-                                    <a href="salomat.tj" target="_blank">
-                                        <img src="{base_url}img/facebook.svg" alt=""></a>
-                                    <a href="https://www.instagram.com/salomat.tj" target="_blank">
-                                        <img src="{base_url}img/instagram.svg" alt=""></a>
-                                        
-                                    <a href="https://salomat.tj" target="_blank">
-                                        <img src="{base_url}img/link.svg" alt=""></a>
-                                </div>
+
                             </div>
-                            
                         </div>
                     </div>
-                </div>
                 <?php endif; ?>
 
             <?php endforeach; ?>
-            
+
         </div>
     </div>
 </div>
@@ -287,31 +289,60 @@
             $('.toast_success').toast('show');
         }
     });
-
+    const __likeClicks = document.getElementsByClassName("likeClick")
+    for (let i = 0; i < __likeClicks.length; i++) {
+        __likeClicks[i].addEventListener('click', function() {
+            this.dataset.like === "0" ? (this.dataset.like = "1") : (this.dataset.like = "0");
+            let isLike = Boolean(Number(this.dataset.like));
+            let _like = window.getComputedStyle(this);
+            console.log(_like.fill);
+            if (_like.fill === "none") {
+                $.ajax({
+                    type: "POST",
+                    url: "{base_url}favorites",
+                    headers: {
+                        "Accept": "application/json",
+                    },
+                    data: {
+                        user_id: JSON.parse(localStorage.getItem("userId")).user_id,
+                        product_id: Number(this.getAttribute("data-id")),
+                    },
+                })
+                console.log("Disike");
+                
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "{base_url}favorites/delete",
+                    headers: {
+                        "Accept": "application/json",
+                    },
+                    data: {
+                        user_id: JSON.parse(localStorage.getItem("userId")).user_id,
+                        product_id: Number(this.getAttribute("data-id")),
+                    },
+                })
+                console.log("Like");
+            }
+        })
+    }
 </script>
 
 <style>
-label {
-  display: block;
-}
+    label {
+        display: block;
+    }
 
-#red {
-  display: none;
-}
+    #red {
+        display: none;
+    }
 
-svg {
-  width: 24px;
-  display: block;
-}
-
-#shape {
-  fill: "green";
-  stroke: "black";
-  stroke-width: 2;
-}
-
-#red:checked + svg #shape {
-  fill: #DD2E44;
-  stroke: #DD2E44;
-}
+    #red:checked + #shape {
+        fill: #DD2E44;
+        stroke: #DD2E44 !important;
+    }
+    #red:checked + #shape path {
+        fill: #DD2E44;
+        stroke: #DD2E44 !important;
+    }
 </style>

@@ -1,10 +1,11 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 use Restserver\Libraries\REST_Controller;
 
-require APPPATH. 'libraries/REST_Controller.php';
+require APPPATH . 'libraries/REST_Controller.php';
 
-class Favorites extends REST_Controller {
+class Favorites extends REST_Controller
+{
 
     /**
      * Construction
@@ -32,10 +33,10 @@ class Favorites extends REST_Controller {
         if ($user_id) {
             $favorites = $this->favorite->get($user_id);
 
-            $this->response($favorites,REST_Controller::HTTP_OK);
+            $this->response($favorites, REST_Controller::HTTP_OK);
         } else {
             $message = [
-                'status'    =>	 false,
+                'status'    =>     false,
             ];
             $this->response($message, 400);
         }
@@ -62,7 +63,7 @@ class Favorites extends REST_Controller {
             $this->response($message, REST_Controller::HTTP_OK);
         } else {
             $message = [
-                'status'    =>	 false,
+                'status'    =>     false,
             ];
             $this->response($message, 400);
         }
@@ -85,7 +86,7 @@ class Favorites extends REST_Controller {
             $this->response($message, REST_Controller::HTTP_OK);
         } else {
             $message = [
-                'status'    =>	 false,
+                'status'    =>     false,
             ];
             $this->response($message, 400);
         }
