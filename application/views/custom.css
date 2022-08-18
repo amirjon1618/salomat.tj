@@ -1405,7 +1405,8 @@ button {
 
 /* FOOTER */
 .footer_social_logos_div a {
-    margin: 0 5px;
+    font-size: 15px;
+    color: rgba(72, 57, 195, 1);
 }
 
 .footer_cart_tot_span {

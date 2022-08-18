@@ -15,7 +15,7 @@
     <div class="ps-section--gray">
         <div class="container">
             <div class="ps-block--products-of-category blog-articles">
-                <div class="bi-left-sidebar col-lg-2 col-md-10 col-sm-12 col-xs-12">
+                <div class="bi-left-sidebar col-lg-2 col-md-10 col-sm-12 col-xs-12 pt-3">
                     <h2>Похожие статьи</h2>
                     <div class="blog-articles-mini">
                         <a href="#">
@@ -48,11 +48,11 @@
                         </a>
                     </div>
                 </div>
-                <div class="bi-right-sidebar col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <div class="bi-right-sidebar col-lg-10 col-md-10 col-sm-12 col-xs-12 pt-3">
                     <img src="{base_url}img/vacsina.jpg" class="w-100" alt="...">
-                    <h3>Семь основных причин, почему вакцинироваться должен каждый </h3>
-                    <span>25.09.2021</span>
-                    <p class="text-justify">Ежегодно иммунизация спасает жизни более 3 миллионов человек во всем мире, а также спасает еще больше миллионов людей от болезней и пожизненной инвалидизации.
+                    <h3 class="blog_title">Семь основных причин, почему вакцинироваться должен каждый </h3>
+                    <span class="blog_created_at">25.09.2021</span>
+                    <p class="text-justify blog_about">Ежегодно иммунизация спасает жизни более 3 миллионов человек во всем мире, а также спасает еще больше миллионов людей от болезней и пожизненной инвалидизации.
 
                         Условия работы дома, как это ни странно, накладывают определенные ограничения на ваш рацион. Если на работе вы можете пойти в кафе или столовую, дома вам нужно что-то готовить заранее. А это значит, что соблюдение здорового питания может быть особенно трудным.
 
@@ -315,6 +315,26 @@
 </div>
 </div>
 
+<script>
+    function getBlog() {
+        $.ajax({
+            type: "GET",
+            url: "{base_url}blogs/blog?blog_id=1",
+            headers: {
+                "Accept": "application/json",
+            },
+            success: function(blogShow) {
+                console.log(blogShow.blog.blog_pics[0].blog_pic)
+                $(".blog_created_at").text(blogShow.blog.blog_created_at);
+                $(".blog_title").text(blogShow.blog.blog_title);
+                $(".blog_about").html(blogShow.blog.blog_about);
+                document.querySelector(".blog_pics").src = "http://new.salomat.tj/" + blogShow.blog.blog_pics[0].blog_pic;
+
+            }
+        })
+    }
+    getBlog();
+</script>
 <style>
     label {
         display: block;

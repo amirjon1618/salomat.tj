@@ -5160,6 +5160,7 @@
         z-index: 30;
         color: #999;
         line-height: 32px;
+        border-radius: 5px;
         border: none;
         background-color: #f5f5f5;
         color: #000;
@@ -5174,8 +5175,9 @@
     }
     
     .pagination li>a:hover {
-        color: #000;
-        background-color: #33c6a5;
+        background-color: #18A1A1;
+        color: #fff;
+        border-radius: 5px;
     }
     
     .pagination li.active {
@@ -5183,8 +5185,9 @@
     }
     
     .pagination li.active a {
-        background-color: #33c6a5;
-        color: #000;
+        background-color: #1EBEBE;
+        color: #fff;
+        border-radius: 5px;
     }
     
     .pagination li:last-child {
@@ -6083,7 +6086,7 @@
     .content-bg {
         background-color: #fff;
         border-radius: 5px;
-        padding: 15px 20px 0 20px;
+        padding: 0 20px 20px 20px;
     }
     .bi-left-sidebar {
         background-color: #fff;
@@ -6142,7 +6145,9 @@
         color: #6D6D6D;
         font-size: 14px;
         font-weight: 400;
-        padding: 10px 0 20px 0;
+    }
+    .blog-read-more {
+        padding-bottom: 26px;
     }
     .blog-articles_left span{
         padding-bottom: 15px;
@@ -10938,6 +10943,7 @@
         border: 1px solid transparent;
         border-bottom: 1px solid #f0f0f0;
         padding: 0;
+        justify-content: center;
     }
     
     .ps-product--wide>* {
@@ -10997,7 +11003,7 @@
         width: 100%;
         text-align: center;
         font-weight: 600;
-        padding: 11px 20px;
+        padding: 10px 0;
     }
     
     .ps-product--wide .ps-product__shopping .ps-product__actions {
@@ -14849,6 +14855,7 @@
         .ps-product--wide .ps-product__shopping .ps-btn {
             padding: 10px 40px;
             white-space: nowrap;
+            height: 50px;
         }
         .like-button label {
             margin-bottom: 0 !important;
@@ -17974,7 +17981,10 @@
         .ps-page--shop .container {
             max-width: 100%;
         }
-        
+        .widget:last-child {
+            border-bottom: none;
+            padding: 10px 30px;
+        }
         .delivery-form {
             display: inline-block;
         }
@@ -20761,9 +20771,6 @@
         margin-top: 20px;
     }
     
-    .paddingTopBot {
-        padding: 40px 0;
-    }
 	
 	.__jivoMobileButton {
 		padding: 20px;
@@ -33958,4 +33965,19 @@ section {
 }
 .user-image__link {
     width: 3rem;
+}
+.footer-hr {
+    color: #E5E5E5;
+    background-color: #E5E5E5;
+    height: 1px;
+}
+.footer-copyright {
+    color: #A8A8A8;
+    font-size: 15px;
+}
+.footer-title {
+    list-style-type: none;
+    color: #6D6D6D;
+    font-size: 15px;
+    font-weight: bold;
 }
