@@ -14,7 +14,7 @@
         <section class="section-forms section-tabs">
             <div class="container my-5">
                 <div class="user-info">
-                    <div class="up-left-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12 p-0">
+                    <div class="up-left-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12 p-0 mb-3">
                         <ul class="user-info_ul nav nav-pills d-block" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation"><a id="webdisign-tab" data-toggle="tab" href="#user-info" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-user.svg" alt="Icon">Личная информация</a></li>
                             <li class="nav-item" role="presentation"><a id="webdisign-tab" data-toggle="tab" href="#user-order" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-cart.svg" alt="Icon">Мои заказы</a></li>
@@ -25,7 +25,7 @@
                     <?php if (isset($auth)) : ?>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="user-info" role="tabpanel" aria-labelledby="webdisign-tab">
-                            <div class="up-content col-lg-7 col-md-7 col-sm-12 col-xs-12 p-4">
+                            <div class="up-content col-lg-6 col-md-6 col-sm-12 col-xs-12 p-4 mb-3">
                                 <div class="up-content-info">
                                     <h2>Личная информация</h2>
                                     <form action="{base_url}users/update_user" method="post" class="up-content-info_form">
@@ -60,7 +60,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                             <div class="form-col">
                                                 <label for="validationCustom01">Дата рождения</label>
                                                 <input type="date" class="form-control" id="validationCustom01" name="birth_date" value="<?php echo $birth_date ?>">
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade show" id="user-order" role="tabpanel" aria-labelledby="webdisign-tab">
-                            <div class="up-content col-lg-9 col-md-9 col-sm-12 col-xs-12 p-4">
+                            <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-4">
                                 <div class="table-title">
                                     <h2 class="pb-5">Мои заказы</h2>
                                 </div>
@@ -181,27 +181,22 @@
 
                     <?php endif; ?>
                     </div>
+
                     <div class="tab-pane fade show" id="user-favorite" role="tabpanel">
-                        <div class="up-content col-lg-9 col-md-9 col-sm-12 col-xs-12 p-4">
+
+                        <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-4">
+                            
                             <div class="favorite-title pb-5">
                                 <h2 class="border-bottom pb-4">Избранное</h2>
                             </div>
 
                             <?php if (isset($auth) && !empty($favorites)) : ?>
                             <?php foreach ($favorites as $favorite): ?>
+
                             <div class="favorite-content">
-                                <div class="container">
-                                    <div class="col">
-                                        <div class="d-flex col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                            <div class="owl-item-bg">
-                                                <div class="owl-item cloned" style="width: 210px; margin-right: 30px;">
+                                <div class="col">
+                                        <div class="d-flex col-lg-3 col-md-6 col-sm-6 col-xs-12 pb-5">
                                                     <div class="ps-product ps-product--inner ps-product_of_the_day">
-                                                        <label>
-                                                            <input type="checkbox" id="red">
-                                                            <svg width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path id="shape" class="seat" fill="none" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                            </svg>
-                                                        </label>
                                                         
                                                         <div class="ps-product__thumbnail ps-product__thumbnail_img_div  hover01">
                                                             <a href="{base_url}index.php/main/product/2997?from=main">
@@ -239,18 +234,15 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                             <?php endforeach;?>
                         <?php endif; ?>
                         </div>
                     </div>
                     <div class="tab-pane fade show" id="user-save" role="tabpanel">
-                        <div class="up-content col-lg-9 col-md-9 col-sm-12 col-xs-12 p-4">
+                        <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-4">
                             <div class="user-save-title mb-5">
                                 <h2>Безопасность</h2>
                             </div>
@@ -279,6 +271,61 @@
         </section>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        var os = '<?php if (isset($os)) echo $os; ?>';
+        if (os == 1) {
+            $('.toast_success').toast({
+                delay: 2500
+            });
+            $('.toast_success').toast('show');
+        }
+    });
+    const __likeClicks = document.getElementsByClassName("likeClick")
+    for (let i = 0; i < __likeClicks.length; i++) {
+        __likeClicks[i].addEventListener('click', function() {
+            this.dataset.like === "0" ? (this.dataset.like = "1") : (this.dataset.like = "0");
+            let isLike = Boolean(Number(this.dataset.like));
+            let _like = window.getComputedStyle(this);
+            console.log(_like.fill);
+            if (_like.fill === "none") {
+                alert("Like")
+                $.ajax({
+                    type: "POST",
+                    url: "{base_url}favorites",
+                    headers: {
+                        "Accept": "application/json",
+                    },
+                    data: {
+                        user_id: JSON.parse(localStorage.getItem("userId")).user_id,
+                        product_id: Number(this.getAttribute("data-id")),
+                    },
+                })
+                
+            } else {
+                alert("Dislike")
+                $.ajax({
+                    type: "POST",
+                    url: "{base_url}favorites/delete",
+                    headers: {
+                        "Accept": "application/json",
+                    },
+                    data: {
+                        user_id: JSON.parse(localStorage.getItem("userId")).user_id,
+                        product_id: Number(this.getAttribute("data-id")),
+                    },
+                })
+            }
+        })
+    }
+    const __toggles = document.getElementsByClassName("accordion-toggle");
+    for(let i = 0;i<__toggles.length;i++){
+        __toggles[i].addEventListener('click',function(){
+            this.classList.toggle("user-active");
+        })
+    }
+</script>
+
 <style>
     label {
         display: block;
@@ -288,30 +335,12 @@
         display: none;
     }
 
-    svg {
-        width: 24px;
-        display: block;
-    }
-
-    #shape {
-        fill: "green";
-        stroke: "black";
-        stroke-width: 2;
-    }
-
-    #red:checked+svg #shape {
+    #red:checked + #shape {
         fill: #DD2E44;
-        stroke: #DD2E44;
-    } 
-    .user-active + tr div{
-        display: block !important;
+        stroke: #DD2E44 !important;
+    }
+    #red:checked + #shape path {
+        fill: #DD2E44;
+        stroke: #DD2E44 !important;
     }
 </style>
-<script>
-    const __toggles = document.getElementsByClassName("accordion-toggle");
-    for(let i = 0;i<__toggles.length;i++){
-        __toggles[i].addEventListener('click',function(){
-            this.classList.toggle("user-active");
-        })
-    }
-</script>

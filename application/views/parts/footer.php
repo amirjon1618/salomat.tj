@@ -38,56 +38,76 @@
 <footer class="ps-footer">
 <div class="container">
         <div class="ps-site-features paddingTopBot">
-            <div class="container">
                 <div class="ps-block--site-features ps-block--site-features-2">
-                    <div class="ps-block__item border-0">
-                    <aside class="widget widget_footer">
-                        <ul class="ps-list--link">
-                            <li><a href="{base_url}index.php/main/page/1">О проекте</a></li>
-                            <a class="footer-logo_img pb-5 pt-4" href="/"><img src="{base_url}img/logo.png" alt="Logo"></a>
-                        </ul>
-                    </aside>
-                    </div>
-                    <div class="ps-block__item border-0 ps-block__jcs justify-content-center">
+                    <div class="ps-block__item border-0 ps-block__jcs">
                     <aside class="widget widget_footer widget_footer2">
                         <ul class="ps-list--link pb-2">
+                            <li class="footer-title">О компании</li>
+                            <li><a href="{base_url}index.php/main/recipe">О проекте</a></li>
                             <li><a href="{base_url}index.php/main/recipe">Отправить рецепт</a></li>
                             <li><a href="{base_url}index.php/main/page/2">Как сделать заказ</a></li>
                             <li><a href="{base_url}index.php/main/page/3">Доставка и оплата</a></li>
                         </ul>
-                        <a href="/"><img src="{base_url}img/google-play.png" alt="Google"></a>
+                    </aside>
+                    </div>
+                    <div class="ps-block__item border-0 ps-block__jcs">
+                    <aside class="widget widget_footer widget_footer2">
+                        <ul class="ps-list--link pb-2">
+                            <li class="footer-title">Ассортимент</li>
+                            <li><a href="{base_url}index.php/main/recipe">Витамины и Бады</a></li>
+                            <li><a href="{base_url}index.php/main/page/2">Для похудения</a></li>
+                            <li><a href="{base_url}index.php/main/page/3">Против аллергии</a></li>
+                            <li><a href="{base_url}index.php/main/page/3">Медицинские товары</a></li>
+                        </ul>
                     </aside>
                     </div>
                     <div class="ps-block__item border-0">
                     <aside class="widget widget_footer widget_footer2">
-                        <ul class="ps-list--link" style="padding-bottom: 16px;">
-                            <li>Лицензия:</li>
-                            <li>№ ЛО-02-010433 от 22 марта 2020 г.</li>
-                        </ul>
+                        <li class="footer-title">Мы на связи</li>
                     <div class="cp-footer-social footer_social_logos_div pb-5">
-                        <a href="https://www.facebook.com/salomat.tj" target="_blank">
-                        <img src="{base_url}img/facebook.svg" alt=""></a>
-                        <a href="https://www.instagram.com/salomat.tj" target="_blank">
-                            <img src="{base_url}img/instagram.svg" alt=""></a>
-                        <a href="https://www.t.me/Salomat9990" target="_blank">
-                            <img src="{base_url}img/telegram.svg" alt=""></a>
+                    <h3><a href="tel:+992 88-888-6006">+992 88-888-6006</a></h3>
+                            <p class="mb-3" style="line-height: 10px;">(Для мессенджеров)</p>
+                            <div class="d-flex align-items-baseline">
+                                <h3 class="pr-1"><a href="tel:99-90">99-90 </a></h3>
+                                <p class="footer-first-p"> (Для колл центра)</p>
+                            </div>
+                            
                     </div>
                     </aside>
                     </div>
                     <div class="ps-block__item border-0">
                     <aside class="widget widget_footer widget_contact-us">
+                        <li class="footer-title">Скидки и акции в</li>
                         <div class="widget_content">
-                            <h3><a href="tel:+992 88-888-6006">+992 88-888-6006</a></h3>
-                            <p>Для мессенджеров</p>
-                            <h3><a href="tel:99-90">99-90</a></h3>
-                            <p class="footer-first-p">Для колл центра</p>
+                            <div class="d-flex py-3">
+                                <a class="pr-2" href="/"><img src="{base_url}img/app-store.png" alt="Google"></a>
+                                <a href="/"><img src="{base_url}img/google-play.png" alt="Google"></a>
+                            </div>
+                            <li class="footer-title pb-3">Мы в соцсетях</li>    
+                            <div class="">
+                                <a class="pr-3" href="https://www.facebook.com/salomat.tj" target="_blank">
+                                <img src="{base_url}img/facebook.svg" alt=""></a>
+                                <a class="pr-3" href="https://www.instagram.com/salomat.tj" target="_blank">
+                                    <img src="{base_url}img/instagram.svg" alt=""></a>
+                                <a class="pr-3" href="https://www.t.me/Salomat9990" target="_blank">
+                                    <img src="{base_url}img/telegram.svg" alt=""></a>
+                            </div>
                         </div>
                     </aside>
                     </div>
+                    <div class="ps-block__item border-0">
+                    <aside class="widget widget_footer">
+                        <ul class="ps-list--link">
+                            <a class="footer-logo_img" href="/" ><img class="pb-3" src="{base_url}img/logo.png" alt="Logo"></a>
+                            <p style="font-size: 14px; color: #6D6D6D;">Лицензия:  № ЛО-02-010433 от 22 марта 2020 г.</p>
+                        </ul>
+                    </aside>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
+    <hr class="footer-hr">
+    <p class="footer-copyright container">@ Copyright @ 2021 Salomat</p>
 </footer>
 
 <div id="back2top"><i class="pe-7s-angle-up"></i></div>

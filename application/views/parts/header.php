@@ -731,13 +731,24 @@
                     <i id="total_count_in_cart_footer">0</i>
                 </span>
             </a>
-            <a class="navigation__item" onclick="onPsBlockRight()" href="#" id="enter-profile">
-                <svg style="margin: 0 auto;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.0001 11.3412C10.894 11.3412 9.83316 10.9018 9.05102 10.1196C8.26888 9.33751 7.82948 8.2767 7.82948 7.17059C7.82948 6.06448 8.26888 5.00368 9.05102 4.22154C9.83316 3.4394 10.894 3 12.0001 3C13.1062 3 14.167 3.4394 14.9491 4.22154C15.7313 5.00368 16.1707 6.06448 16.1707 7.17059C16.1707 8.2767 15.7313 9.33751 14.9491 10.1196C14.167 10.9018 13.1062 11.3412 12.0001 11.3412Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" />
-                    <path d="M4.54742 21V19.7579C4.54742 18.4402 5.07087 17.1765 6.00262 16.2447C6.93437 15.313 8.19809 14.7896 9.51578 14.7896H14.4841C15.8018 14.7896 17.0655 15.313 17.9973 16.2447C18.929 17.1765 19.4525 18.4402 19.4525 19.7579V21" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" />
-                </svg>
-                <span> Профиль</span>
-            </a>
+            <div class="account-btn">
+                <div class="ps-block--user-header">
+                    <div class="ps-block__right" onclick="onPsBlockRight()">
+                        <a class="navigation__item" onclick="onPsBlockRight()" href="#" id="enter-profile">
+                            <svg style="margin: 0 auto;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.0001 11.3412C10.894 11.3412 9.83316 10.9018 9.05102 10.1196C8.26888 9.33751 7.82948 8.2767 7.82948 7.17059C7.82948 6.06448 8.26888 5.00368 9.05102 4.22154C9.83316 3.4394 10.894 3 12.0001 3C13.1062 3 14.167 3.4394 14.9491 4.22154C15.7313 5.00368 16.1707 6.06448 16.1707 7.17059C16.1707 8.2767 15.7313 9.33751 14.9491 10.1196C14.167 10.9018 13.1062 11.3412 12.0001 11.3412Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M4.54742 21V19.7579C4.54742 18.4402 5.07087 17.1765 6.00262 16.2447C6.93437 15.313 8.19809 14.7896 9.51578 14.7896H14.4841C15.8018 14.7896 17.0655 15.313 17.9973 16.2447C18.929 17.1765 19.4525 18.4402 19.4525 19.7579V21" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                            <span>Профиль</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="account-wrap" id="account-wrap2" style="display: none;">
+                <div class="user-image__link">
+                    <a href="{base_url}index.php/main/user_info"><img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" /></a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="ps-panel--sidebar" id="search-sidebar">
@@ -1746,10 +1757,12 @@
                 $(".enter-btn-bg").css("display", "none");
                 $(".account-btn").css("display", "none");
                 document.getElementById("account-wrap").style.display = "block";
+                document.getElementById("account-wrap2").style.display = "block";
             }
         })
     }
-console.log($("#first-password"))
+    console.log($("#first-password"))
+
     function verSms() {
         $.ajax({
             type: "POST",
@@ -1810,9 +1823,10 @@ console.log($("#first-password"))
                 $(".enter-btn-bg").css("display", "none");
                 $(".account-btn").css("display", "none");
                 document.getElementById("account-wrap").style.display = "block";
+                document.getElementById("account-wrap2").style.display = "block";
             },
             error: function(error) {
-   
+
             }
         })
     }
@@ -1831,11 +1845,11 @@ console.log($("#first-password"))
         }
     })
 
-    $("#form7").on('submit',(e) =>{
-      e.preventDefault();
-      $.ajax({
+    $("#form7").on('submit', (e) => {
+        e.preventDefault();
+        $.ajax({
             type: "POST",
-            url: "{base_url}users/register",
+            url: "{base_url}users/forgot_password",
             headers: {
                 "Accept": "application/json",
             },
@@ -1847,11 +1861,11 @@ console.log($("#first-password"))
                 $(".enter-btn-bg").css("display", "none");
                 $(".account-btn").css("display", "none");
                 document.getElementById("account-wrap").style.display = "block";
+                document.getElementById("account-wrap2").style.display = "block";
             },
             error: function(error) {
-                
+
             }
         })
     })
-
 </script>

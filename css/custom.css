@@ -939,7 +939,7 @@ textarea.error {
 
     .recipe_phone_div_button_send_sms {
         width: 60% !important;
-        font-size: 13px !important;
+        font-size: 18px !important;
         margin-top: 20px !important;
         padding: 8px !important;
     }
@@ -1603,7 +1603,8 @@ button {
 
 /* FOOTER */
 .footer_social_logos_div a {
-    margin: 0 10px;
+    font-size: 15px;
+    color: rgba(72, 57, 195, 1);
 }
 
 .footer_cart_tot_span {
@@ -1748,7 +1749,7 @@ button {
 .ps-list--link li a {
     color: #4a4a4d;
     font-size: 15px;
-    
+    text-decoration: none;
 }
 
 .cp-footer-p {
@@ -1756,9 +1757,6 @@ button {
     font-size: 15px;
     font-weight: 500;
     font-size: 14px;
-}
-.footer-hr {
-    border-top: 1px solid #E5E5E5;
 }
 
 .cp-footer-right {
