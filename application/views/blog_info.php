@@ -1,66 +1,60 @@
 <div id="homepage-3">
-<div class="ps-breadcrumb">
-            <div class="container">
+    <div class="ps-breadcrumb">
+        <div class="container">
             <div class="ps-container category-products_breadcrumb padding">
                 <ul class="breadcrumb ">
-                <li><a href="{base_url}index.php/main">Главная  </a></li>
-                                    <li>
-                                    Блог                        </li>
+                    <li><a href="{base_url}index.php/main">Главная </a></li>
                     <li>
-                    Семь основных причин, почему вакцинироваться должен каждый                    </li>
-                            </ul>
-                </div>
+                        Блог </li>
+                    <li>
+                        Семь основных причин, почему вакцинироваться должен каждый </li>
+                </ul>
             </div>
         </div>
+    </div>
     <div class="ps-section--gray">
         <div class="container">
             <div class="ps-block--products-of-category blog-articles">
                 <div class="bi-left-sidebar col-lg-2 col-md-10 col-sm-12 col-xs-12 pt-3">
                     <h2>Похожие статьи</h2>
                     <div class="blog-articles-mini">
-                        <a href="#">
+                        <a href="{base_url}main/blogInfo">
                             <h3>Собираем аптечку вместе...</h3>
                             <span>25.09.2021</span>
                         </a>
                     </div>
                     <div class="blog-articles-mini">
-                        <a href="#">
+                        <a href="{base_url}main/blogInfo">
                             <h3>Чем нельзя запивать и заедать таблетки...</h3>
                             <span>25.09.2021</span>
                         </a>
                     </div>
                     <div class="blog-articles-mini">
-                        <a href="#">
+                        <a href="{base_url}main/blogInfo">
                             <h3>Что следует знать о холестерине...</h3>
                             <span>25.09.2021</span>
                         </a>
                     </div>
                     <div class="blog-articles-mini">
-                        <a href="#">
+                        <a href="{base_url}main/blogInfo">
                             <h3>Можно ли ломать таблетки...</h3>
                             <span>25.09.2021</span>
                         </a>
                     </div>
                     <div class="blog-articles-mini">
-                        <a href="#">
+                        <a href="{base_url}main/blogInfo">
                             <h3>Можно ли ломать таблетки...</h3>
                             <span>25.09.2021</span>
                         </a>
                     </div>
                 </div>
                 <div class="bi-right-sidebar col-lg-10 col-md-10 col-sm-12 col-xs-12 pt-3">
-                    <img src="{base_url}img/vacsina.jpg" class="w-100" alt="...">
-                    <h3 class="blog_title">Семь основных причин, почему вакцинироваться должен каждый </h3>
-                    <span class="blog_created_at">25.09.2021</span>
-                    <p class="text-justify blog_about">Ежегодно иммунизация спасает жизни более 3 миллионов человек во всем мире, а также спасает еще больше миллионов людей от болезней и пожизненной инвалидизации.
+                    <div class="bloginfo-imgs">
 
-                        Условия работы дома, как это ни странно, накладывают определенные ограничения на ваш рацион. Если на работе вы можете пойти в кафе или столовую, дома вам нужно что-то готовить заранее. А это значит, что соблюдение здорового питания может быть особенно трудным.
-
-                        Если на работе вы можете пойти в кафе или столовую, дома вам нужно что-то готовить заранее. А это значит, что соблюдение здорового питания может быть особенно трудным.
-
-                        Эта информация обобщается и интерпретируется рядом блогов и подкастов, которые могут обучать и информировать удаленных сотрудников в непринужденной обстановке. Эти источники также дополняются множеством веб-сайтов, на которых размещены рецепты и советы по приготовлению пищи.
-
-                        Если вас серьезно беспокоит как на вашу диету повлияет работа из дома, вы можете даже подумать о том, чтобы обратиться за помощью к диетологу. Он может помочь разработать план питания, подходящий именно вам. </p>
+                    </div>
+                    <h3 class="blog_title"> </h3>
+                    <span class="blog_created_at"></span>
+                    <p class="text-justify blog_about-full"> </p>
                     <p>Литтература: </p>
                     <a href="#">1. Restrepo, B.J., Zeballos, E. The effect of working from home on major time allocations with a focus on food-related activities. Rev Econ Household 18, 1165–1187 (2020).</a>
                     <div class="blog-articles-btn">
@@ -79,8 +73,8 @@
         </div>
         <div class="container bi_recomend-product">
             <h3 class="pb-5">Рекомендуемые товары</h3>
-            <div class="d-flex row justify-content-center">
-                <div class="d-flex mr-5 mt-5">
+            <div class="d-flex row justify-content-around">
+                <div class="d-flex">
                     <div class="owl-item-bg">
                         <div class="owl-item cloned" style="width: 210px; margin-right: 30px;">
                             <div class="ps-product ps-product--inner ps-product_of_the_day">
@@ -108,7 +102,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex mr-5 mt-5">
+                <div class="d-flex">
                     <div class="owl-item-bg">
                         <div class="owl-item cloned" style="width: 210px; margin-right: 30px;">
                             <div class="ps-product ps-product--inner ps-product_of_the_day">
@@ -127,7 +121,7 @@
                                     <div class="ps-product__content"><a class="ps-product__title product_title_new" href="{base_url}index.php/main/product/2997">
                                             Стопгрипп пор саше №10</a>
                                         <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
-                                                  
+
                                                 55.00 c. </span><a class="ps-product__price-link" href="{base_url}index.php/main/product/2997?from=main">В корзину</a></p>
 
                                     </div>
@@ -136,7 +130,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex mr-5 mt-5">
+                <div class="d-flex">
                     <div class="owl-item-bg">
                         <div class="owl-item cloned" style="width: 210px; margin-right: 30px;">
                             <div class="ps-product ps-product--inner ps-product_of_the_day">
@@ -155,7 +149,7 @@
                                     <div class="ps-product__content"><a class="ps-product__title product_title_new" href="{base_url}index.php/main/product/2997">
                                             Стопгрипп пор саше №10</a>
                                         <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
-                                                  
+
                                                 55.00 c. </span><a class="ps-product__price-link" href="{base_url}index.php/main/product/2997?from=main">В корзину</a></p>
 
                                     </div>
@@ -164,7 +158,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex mt-5">
+                <div class="d-flex">
                     <div class="owl-item-bg">
                         <div class="owl-item cloned" style="width: 210px; margin-right: 30px;">
                             <div class="ps-product ps-product--inner ps-product_of_the_day">
@@ -183,7 +177,7 @@
                                     <div class="ps-product__content"><a class="ps-product__title product_title_new" href="{base_url}index.php/main/product/2997">
                                             Стопгрипп пор саше №10</a>
                                         <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
-                                                  
+
                                                 55.00 c. </span><a class="ps-product__price-link" href="{base_url}index.php/main/product/2997?from=main">В корзину</a></p>
 
                                     </div>
@@ -193,8 +187,8 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex mt-5 row justify-content-center">
-                <div class="d-flex mr-5 mt-5">
+            <div class="d-flex mt-3 row justify-content-around">
+                <div class="d-flex">
                     <div class="owl-item-bg">
                         <div class="owl-item cloned" style="width: 210px; margin-right: 30px;">
                             <div class="ps-product ps-product--inner ps-product_of_the_day">
@@ -213,7 +207,7 @@
                                     <div class="ps-product__content"><a class="ps-product__title product_title_new" href="{base_url}index.php/main/product/2997">
                                             Стопгрипп пор саше №10</a>
                                         <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
-                                                  
+
                                                 55.00 c. </span><a class="ps-product__price-link" href="{base_url}index.php/main/product/2997?from=main">В корзину</a></p>
 
                                     </div>
@@ -222,7 +216,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex mr-5 mt-5">
+                <div class="d-flex">
                     <div class="owl-item-bg">
                         <div class="owl-item cloned" style="width: 210px; margin-right: 30px;">
                             <div class="ps-product ps-product--inner ps-product_of_the_day">
@@ -241,7 +235,7 @@
                                     <div class="ps-product__content"><a class="ps-product__title product_title_new" href="{base_url}index.php/main/product/2997">
                                             Стопгрипп пор саше №10</a>
                                         <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
-                                                  
+
                                                 55.00 c. </span><a class="ps-product__price-link" href="{base_url}index.php/main/product/2997?from=main">В корзину</a></p>
 
                                     </div>
@@ -250,7 +244,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex mr-5 mt-5">
+                <div class="d-flex">
                     <div class="owl-item-bg">
                         <div class="owl-item cloned" style="width: 210px; margin-right: 30px;">
                             <div class="ps-product ps-product--inner ps-product_of_the_day">
@@ -269,7 +263,7 @@
                                     <div class="ps-product__content"><a class="ps-product__title product_title_new" href="{base_url}index.php/main/product/2997">
                                             Стопгрипп пор саше №10</a>
                                         <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
-                                                  
+
                                                 55.00 c. </span><a class="ps-product__price-link" href="{base_url}index.php/main/product/2997?from=main">В корзину</a></p>
 
                                     </div>
@@ -278,7 +272,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex mt-5">
+                <div class="d-flex">
                     <div class="owl-item-bg">
                         <div class="owl-item cloned" style="width: 210px; margin-right: 30px;">
                             <div class="ps-product ps-product--inner ps-product_of_the_day">
@@ -297,7 +291,7 @@
                                     <div class="ps-product__content"><a class="ps-product__title product_title_new" href="{base_url}index.php/main/product/2997">
                                             Стопгрипп пор саше №10</a>
                                         <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
-                                                  
+
                                                 55.00 c. </span><a class="ps-product__price-link" href="{base_url}index.php/main/product/2997?from=main">В корзину</a></p>
 
                                     </div>
@@ -324,14 +318,20 @@
                 "Accept": "application/json",
             },
             success: function(blogShow) {
-                console.log(blogShow.blog.blog_pics[0].blog_pic)
+                console.log(blogShow.blog)
                 $(".blog_created_at").text(blogShow.blog.blog_created_at);
                 $(".blog_title").text(blogShow.blog.blog_title);
-                $(".blog_about").html(blogShow.blog.blog_about);
-                document.querySelector(".blog_pics").src = "http://new.salomat.tj/" + blogShow.blog.blog_pics[0].blog_pic;
-
+                $(".blog_about-full").html(blogShow.blog.blog_about);
+                blogShow.blog.blog_pics.forEach((elem) => {
+                    const img = document.createElement("img");
+                    img.className += "blog_pic"
+                    img.src = "{base_url}upload_blog/" + elem.blog_pic;
+                    $(".bloginfo-imgs").append(img);
+                    console.log(elem.blog_pic)
+                })
             }
         })
+
     }
     getBlog();
 </script>

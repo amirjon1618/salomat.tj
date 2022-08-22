@@ -522,6 +522,7 @@ class Main extends CI_Controller
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
         $this->parser->parse('template', $data);
     }
+    
     public function blogPopular()
     {
         $data = array('base_url' => base_url());

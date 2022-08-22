@@ -49,4 +49,18 @@ class Blogs extends REST_Controller {
 
         $this->response($data,REST_Controller::HTTP_OK);
     }
+    
+    /**
+     * Popular blogList.
+     *
+     */
+    public function main_blog_get()
+    {
+        $data = array('base_url' => base_url());
+        $data['tags'] = $this->tag->get_all();
+        $data['title'] = 'Полулярное';
+        $data['content'] = $this->blog->get_all();
+
+        $this->response($data,REST_Controller::HTTP_OK);
+    }
 }

@@ -162,7 +162,7 @@
                                     <div class="form-row">
                                         <span class="text-label">Телефон</span>
                                         <label class="form-row-inner">
-                                            <input type="number" name="restore-sms" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер">
+                                            <input type="number" name="restore-sms" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
                                             <span class="border"></span>
                                         </label>
                                     </div>
@@ -303,7 +303,7 @@
                                     <div class="form-row">
                                         <span class="text-label">Телефон</span>
                                         <label class="form-row-inner">
-                                            <input type="number" name="tel-number" id="errorPhone" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" class="input-text recipe_phone_number" required placeholder="Введите свой номер">
+                                            <input type="number" name="tel-number" id="errorPhone" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
                                             <span class="border"></span>
                                         </label>
                                     </div>
@@ -361,7 +361,7 @@
                                     <div class="form-row">
                                         <span class="text-label">Пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="first-password2" minlength="4" maxlength="32" class="input-text hide-pass4" required placeholder="* * * * * * * * * *">
+                                            <input type="password" name="password" id="first-password" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
                                             <div class="hide-btn-pass" onclick="showPass4()">
                                                 <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass4">
                                             </div>
@@ -370,7 +370,7 @@
                                     <div class="form-row">
                                         <span class="text-label">Повторный пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="second-password2" minlength="4" maxlength="32" class="input-text hide-pass5" required placeholder="* * * * * * * * * *">
+                                            <input type="password" name="password" id="second-password" minlength="4" maxlength="32" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
                                             <div class="hide-btn-pass" onclick="showPass5()">
                                                 <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass5">
                                             </div>
@@ -691,41 +691,21 @@
         </div>
     </div>
     <div class="navigation--list">
-        <div class="navigation__content">
-            <a class="navigation__item" href="{base_url}">
-                <svg style="margin: 0 auto;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10.9085 22.8605C10.0618 22.6511 9.30668 22.1681 8.75909 21.4854C8.2115 20.8027 7.90167 19.9581 7.87716 19.0812C7.84927 18.2195 7.85326 17.3579 7.87716 16.4962C7.87716 16.1515 7.76562 16.0594 7.43898 16.0674C6.64229 16.0874 5.84561 16.0674 5.04892 16.0674C2.71862 16.0433 0.854375 14.1477 0.961928 11.9234C0.979672 11.3704 1.10859 10.8268 1.34089 10.3253C1.5732 9.8238 1.90408 9.37487 2.31357 9.00558C2.72306 8.63629 3.20267 8.3543 3.72345 8.17662C4.24424 7.99893 4.79541 7.92925 5.3437 7.97177C5.62254 7.97177 5.78187 8.07597 5.81374 8.37254C6.07267 10.8173 8.11616 12.4083 10.327 12.8852C11.2193 13.0776 12.1354 12.9774 13.0237 13.1578C13.8438 13.3005 14.6004 13.6937 15.1907 14.2839C15.4306 14.5182 15.6212 14.7985 15.7512 15.1083C15.8812 15.4182 15.948 15.7511 15.9476 16.0874C15.9476 17.0292 15.9476 17.971 15.9476 18.8928C15.9237 20.9608 14.5574 22.7122 12.4979 22.9005C11.9704 22.9882 11.4311 22.9746 10.9085 22.8605Z" fill="url(#paint0_linear_2575_7330)" />
-                    <path d="M7.901 6.30454C7.95279 5.7114 7.83329 4.96195 8.00856 4.22052C8.19509 3.22812 8.74718 2.34317 9.55437 1.7427C10.3616 1.14224 11.3643 0.870539 12.3621 0.981963C13.3598 1.09339 14.279 1.57972 14.9356 2.34366C15.5923 3.1076 15.938 4.09282 15.9037 5.10222C15.9037 5.92781 15.9037 6.75741 15.9037 7.58701C15.9037 7.91565 15.9914 8.03588 16.3339 8.02786C17.1904 8.02786 18.0508 8.02786 18.9072 8.02786C19.9637 8.02786 20.9769 8.4501 21.7239 9.2017C22.471 9.95329 22.8907 10.9727 22.8907 12.0356C22.8907 13.0985 22.471 14.1179 21.7239 14.8695C20.9769 15.6211 19.9637 16.0433 18.9072 16.0433C18.7638 16.0433 18.6204 16.0433 18.477 16.0433C18.2141 16.0433 18.0787 15.9712 18.0349 15.6746C17.7321 12.9814 15.4058 11.4024 13.0516 11.0457C12.1912 10.9174 11.3068 11.0457 10.4544 10.7772C9.73347 10.58 9.07942 10.1894 8.56225 9.64698C8.32912 9.38526 8.15078 9.07897 8.03785 8.7464C7.92493 8.41383 7.87974 8.06178 7.90499 7.71125C7.91694 7.27441 7.901 6.87364 7.901 6.30454Z" fill="url(#paint1_linear_2575_7330)" />
-                    <defs>
-                        <linearGradient id="paint0_linear_2575_7330" x1="23.0249" y1="-0.924134" x2="2.52488" y2="21.0759" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#4839C3" />
-                            <stop offset="1" stop-color="#3CE682" />
-                        </linearGradient>
-                        <linearGradient id="paint1_linear_2575_7330" x1="15.3944" y1="0.957489" x2="3.02489" y2="15.5759" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#4839C3" />
-                            <stop offset="1" stop-color="#3CE682" />
-                        </linearGradient>
-                    </defs>
-                </svg>
+        <div class="navigation__content navigation-main">
+            <a class="navigation__item navigation-main" href="{base_url}" data-id="1" data-src="{base_url}img/1inactive.icon.svg">
+                <img src="{base_url}img/1inactive.icon.svg" alt="icon">
                 <span> Главная</span>
             </a>
-            <a class="navigation__item ps-toggle--sidebar" onclick="onPsBlockRight()" href="enter-profile">
-                <svg style="margin: 0 auto;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7.22582 3.34825C4.53799 3.34825 2.35834 5.50552 2.35834 8.16706C2.35834 10.3156 3.21015 15.4147 11.5949 20.5694C11.7451 20.6608 11.9175 20.7091 12.0933 20.7091C12.2691 20.7091 12.4415 20.6608 12.5917 20.5694C20.9765 15.4147 21.8283 10.3156 21.8283 8.16706C21.8283 5.50552 19.6486 3.34825 16.9608 3.34825C14.273 3.34825 12.0933 6.26874 12.0933 6.26874C12.0933 6.26874 9.91364 3.34825 7.22582 3.34825Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+            <a class="navigation__item ps-toggle--sidebar navigation-favorite" onclick="onPsBlockRight()" href="enter-profile" data-id="2" data-src="{base_url}img/2inactive.icon.svg">
+                <img src="{base_url}img/2inactive.icon.svg" alt="icon">
                 <span> Избранное</span>
             </a>
-            <a class="navigation__item" href="{base_url}index.php/main/recipe">
-                <svg style="margin: 0 auto; color: A8A8A8;" width="24px" height="24px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-camera">
-                    <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z" />
-                    <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
-                </svg>
+            <a class="navigation__item navigation-recept" href="{base_url}index.php/main/recipe" data-id="3" data-src="{base_url}img/3inactive.icon.png">
+                <img src="{base_url}img/3inactive.icon.png" alt="icon">
                 <span> э-Рецепт</span>
             </a>
-            <a class="navigation__item ps-toggle--sidebar" href="#cart-mobile">
-                <svg style="margin: 0 auto;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4.7636 9.07788H2.28568C1.79794 9.07788 1.40256 9.52268 1.40256 10.0714V10.7337C1.40256 11.2824 1.79794 11.7272 2.28568 11.7272H2.58005L3.54089 19.294C3.66522 20.2729 4.41043 21 5.28939 21H18.7106C19.5896 21 20.3348 20.2729 20.4591 19.294L21.4199 11.7272H21.7143C22.2021 11.7272 22.5974 11.2824 22.5974 10.7337V10.0714C22.5974 9.52268 22.2021 9.07788 21.7143 9.07788H19.2364L15.3073 3M4.7636 9.07788L8.69275 3.00004M4.7636 9.07788H19.0213M8.55866 13.0674V17.5727M12.0491 13.0674V17.5727M15.5395 13.0674V17.5727" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" />
-                </svg>
+            <a class="navigation__item ps-toggle--sidebar navigation-cart" href="#cart-mobile" data-id="4" data-src="{base_url}img/4inactive.icon.svg">
+                <img src="{base_url}img/4inactive.icon.svg" alt="icon">
                 <span> Корзина</span>
                 <span class="footer_cart_tot_span">
                     <i id="total_count_in_cart_footer">0</i>
@@ -734,11 +714,8 @@
             <div class="account-btn">
                 <div class="ps-block--user-header">
                     <div class="ps-block__right" onclick="onPsBlockRight()">
-                        <a class="navigation__item" onclick="onPsBlockRight()" href="#" id="enter-profile">
-                            <svg style="margin: 0 auto;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12.0001 11.3412C10.894 11.3412 9.83316 10.9018 9.05102 10.1196C8.26888 9.33751 7.82948 8.2767 7.82948 7.17059C7.82948 6.06448 8.26888 5.00368 9.05102 4.22154C9.83316 3.4394 10.894 3 12.0001 3C13.1062 3 14.167 3.4394 14.9491 4.22154C15.7313 5.00368 16.1707 6.06448 16.1707 7.17059C16.1707 8.2767 15.7313 9.33751 14.9491 10.1196C14.167 10.9018 13.1062 11.3412 12.0001 11.3412Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" />
-                                <path d="M4.54742 21V19.7579C4.54742 18.4402 5.07087 17.1765 6.00262 16.2447C6.93437 15.313 8.19809 14.7896 9.51578 14.7896H14.4841C15.8018 14.7896 17.0655 15.313 17.9973 16.2447C18.929 17.1765 19.4525 18.4402 19.4525 19.7579V21" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" />
-                            </svg>
+                        <a class="navigation__item navigation-profile" onclick="onPsBlockRight()" href="#" id="enter-profile" data-id="5" data-src="{base_url}img/5inactive.icon.svg">
+                            <img src="{base_url}img/5inactive.icon.svg" alt="icon">
                             <span>Профиль</span>
                         </a>
                     </div>
@@ -1208,7 +1185,6 @@
             hidePass3.src = "{base_url}img/show-pass.svg";
         }
     }
-
     function showPass4() {
         isShowPass4 = !isShowPass4;
         if (isShowPass4) {
@@ -1230,6 +1206,7 @@
             hidePass5.src = "{base_url}img/show-pass.svg";
         }
     }
+    
 
     function set_prods_header() {
 
@@ -1868,4 +1845,35 @@
             }
         })
     })
+    const __navItems = Array.from(document.querySelectorAll(" .navigation__content .navigation__item"));
+    __navItems.forEach((link, ind) => {
+        const elem = link.childNodes[1].src;
+        console.log(elem)
+        link.addEventListener("click", function() {
+            localStorage.setItem("iconItem", this.dataset.id)
+            __navItems.forEach((link) => {
+                console.log(link.childNodes[1].src);
+                console.log(elem)
+                link.childNodes[1].src = link.dataset.src;
+            });
+            link.childNodes[1].src = `http://new.salomat.tj/img/inactive.icon${link.dataset.id}.svg`
+        });
+        if (link.dataset.id === localStorage.getItem("iconItem")) {
+            link.childNodes[1].src = `http://new.salomat.tj/img/inactive.icon${link.dataset.id}.svg`
+        }
+    })
+    // for (let i = 0; i < __navItems.length; i++) {
+    //     console.log((__navItems[i].dataset.id === localStorage.getItem("changeIcon")));
+    //     if (__navItems[i].dataset.id === localStorage.getItem("changeIcon")) {
+    //         __navItems[i].style.color = "red";
+    //         __navItems[i].childNodes[1].src = `http://new.salomat.tj/img/inactive.icon${__navItems[i].dataset.id}.svg`
+    //     }
+    // }
+    // for (let i = 0; i < __navItems.length; i++) {
+    //     __navItems[i].addEventListener('click', function() {
+    //         localStorage.setItem("changeIcon", this.dataset.id);
+    //         console.log(localStorage.getItem("changeIcon"))
+    //         __navItems[i].childNodes[1].src = `http://new.salomat.tj/img/inactive.icon${localStorage.getItem("changeIcon")}.svg`
+    //     })
+    // }
 </script>

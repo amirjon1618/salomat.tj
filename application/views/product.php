@@ -112,29 +112,29 @@
                                     <p class="text-muted">Арт. <span><?= $category_products['product_articule'] ?></span></p>
                                 </div>
                             </div>
-                            
+
                             <div style="display: flex; justify-content: flex-end;">
-                            <?php if ($category_products['product_old_price'] != 0) : ?>
-                                <del><?= $category_products['product_old_price'] ?> сом.</del><?php endif; ?>
-                                    <div class="like-icon">
-                                      <label>  
-                                      <input type="checkbox" id="red">
-                                        <svg width="24" height="24" style="cursor: pointer;" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path id="shape" class="seat" fill="none" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#DD2E44" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <?php if ($category_products['product_old_price'] != 0) : ?>
+                                    <del><?= $category_products['product_old_price'] ?> сом.</del><?php endif; ?>
+                                <div class="like-icon">
+                                    <label>
+                                        <input value="<?php $prod_of_the_day['id'] ?>" <?php echo $prod_of_the_day['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
+                                        <svg id="shape" fill="none" data-id="<?= $prod_of_the_day['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
+                                            <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
-                                       </label>
-                                     </div>
+                                    </label>
+                                </div>
                             </div>
-                            
+
                             <h4 class="ps-product__price ps-pp_db"><?= $category_products['product_price'] ?> сом.</h4>
                             <h4 class="ps-product__price ps-pp_dn">_ _._ _ сом.</h4>
                             <div class="ps-product__desc">
                                 <?php if ($category_products['total_count_in_store'] > 0) : ?>
                                     <p class="global-product-exist"><strong>В наличии</strong></p>
-                                <?php else: ?>
+                                <?php else : ?>
                                     <p class="global-product-not-exist"><strong>Нет в наличии</strong></p>
                                 <?php endif; ?>
-                                <?php if ($category_products['product_type']): ?>
+                                <?php if ($category_products['product_type']) : ?>
                                     <p><strong><?= $category_products['product_type'] ?> ПРЕПАРАТ</strong></p>
                                 <?php endif; ?>
                                 <ul class="ps-list--dot nobull">
@@ -185,7 +185,7 @@
                                     <?= $category_products['product_about'] ?>
                                 </div>
                                 <a class="product_more">Ещё
-                                <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                             </div>
                             <div class="ps-tab" id="tab-3">
                                 <?php if (sizeof($similar_products) > 1) : ?>
@@ -403,8 +403,8 @@
                                                     </div>
                                                 </div>
                                                 <p class="product-comment_p"><?= $comment['user_comment'] ?></p>
-                                                <p class="product-comment_p"><span class="text-muted">Автор отзыва:</span> <?= $comment['user_name']?></p>
-                                                <p class="product-comment_p"><span class="text-muted">Дата отзыва:</span> <?= $comment['created_at']?></p>
+                                                <p class="product-comment_p"><span class="text-muted">Автор отзыва:</span> <?= $comment['user_name'] ?></p>
+                                                <p class="product-comment_p"><span class="text-muted">Дата отзыва:</span> <?= $comment['created_at'] ?></p>
                                             </div>
                                         <?php endforeach; ?>
                                     </div>
@@ -417,23 +417,23 @@
             <div class="ps-page__right widget_page_right">
                 <aside class="widget widget_product widget_features">
                     <div class="widget_pr_div">
-                        <img class="pr_side_icons" src="/img/icons/delivery.svg"> 
+                        <img class="pr_side_icons" src="/img/icons/delivery.svg">
                         <span>ДОСТАВКА</span>
                     </div>
-                        <p class="widget_pr_p">
-                            Доставка до Вашего дома по г. Душанбе
-                        </p>
-                            <p class="widget_pr_p">
+                    <p class="widget_pr_p">
+                        Доставка до Вашего дома по г. Душанбе
+                    </p>
+                    <p class="widget_pr_p">
                         Стоимость доставки от 5 сомони
                     </p>
                     <div class="widget_pr_div widget_pr_div2">
-                        <img class="pr_side_icons" src="/img/icons/coins.svg"> 
+                        <img class="pr_side_icons" src="/img/icons/coins.svg">
                         <span>ОПЛАТА</span>
                     </div>
-                        <p class="widget_pr_p">
-                            Минимальная сумма заказа 35 сомони
-                        </p>
-                            <p class="widget_pr_p">
+                    <p class="widget_pr_p">
+                        Минимальная сумма заказа 35 сомони
+                    </p>
+                    <p class="widget_pr_p">
                         Оплата наличними или онлайн
                     </p>
                 </aside>
@@ -548,12 +548,12 @@
     function increase_count() {
         $('#increase_count').on('click', function() {
             // if (count < total_count_global) {
-                count++;
+            count++;
             // }
             $('#count_input').val(count);
         })
     }
-    
+
     function change_count() {
         $('#count_input').change(function() {
             // console.log('total_count_global:'+$('#count_input').val());
@@ -571,11 +571,11 @@
             // else if ($('#count_input').val() < 1 || Number($('#count_input').val()) == 0)
         })
     }
-    if(document.querySelector(".global-product-not-exist") === null){
+    if (document.querySelector(".global-product-not-exist") === null) {
         $('.ps-pp_dn').css("display", "none");
         $('.ps-pp_db').css("display", "block");
-    }else{
-        $('.ps-pp_db').css("display", "none");       
+    } else {
+        $('.ps-pp_db').css("display", "none");
     }
     // if ($('.global-product-not-exist')){
     //     $('.ps-product__price').hide();
@@ -610,7 +610,7 @@
             var found = false;
             if (total_count <= 0) {
                 $('.product_add_notification_div_error').css({
-                'cssText': 'display: flex !important'
+                    'cssText': 'display: flex !important'
                 });
                 setTimeout(function() {
                     $('.product_add_notification_div_error').hide();
@@ -621,16 +621,16 @@
                     mydata.forEach(function(elem, index) {
                         if (elem.product_id == id) {
                             elem.product_count += count;
-                        
+
                             // if (elem.product_count > total_count) {
                             //     elem.product_count = total_count;
-                                // $('.product_add_notification_div_error').css({
-                                //     'cssText': 'display: flex !important'
-                                // });
-                                // setTimeout(function() {
-                                //     $('.product_add_notification_div_error').hide();
-                                // }, 2500)
-                                // max_count_reached = true;
+                            // $('.product_add_notification_div_error').css({
+                            //     'cssText': 'display: flex !important'
+                            // });
+                            // setTimeout(function() {
+                            //     $('.product_add_notification_div_error').hide();
+                            // }, 2500)
+                            // max_count_reached = true;
                             // }
                             mydata[index] = elem;
                             found = true;
@@ -789,10 +789,11 @@
             );
         });
     }
+
     function showFullText() {
         $('.product_more').on('click', function() {
             $('.product_more').hide();
-                $('.product_about').addClass('without_before_element');
+            $('.product_about').addClass('without_before_element');
             $('.product_about').css({
                 'cssText': 'overflow: normal; max-height:max-content;'
             });
@@ -844,26 +845,26 @@
     })
 </script>
 <style>
-label {
-  display: block;
-}
+    label {
+        display: block;
+    }
 
-#red {
-  display: none;
-}
+    #red {
+        display: none;
+    }
 
-svg {
-  width: 24px;
-  display: block;
-}
+    svg {
+        width: 24px;
+        display: block;
+    }
 
-#shape {
-  fill: "green";
-  stroke: "black";
-  stroke-width: 2;
-}
+    #shape {
+        fill: "green";
+        stroke: "black";
+        stroke-width: 2;
+    }
 
-#red:checked + svg #shape {
-  fill: #DD2E44;
-}
+    #red:checked+svg #shape {
+        fill: #DD2E44;
+    }
 </style>
