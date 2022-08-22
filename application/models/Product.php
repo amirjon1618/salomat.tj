@@ -954,7 +954,7 @@ class Product extends CI_Model
         return $array;
     }
 
-    public function get_prods_in_categ($cat_id)
+    public function get_prods_in_categ($cat_id, $user_id)
     {
         $array = array();
         $this->load->model('category');
@@ -990,6 +990,12 @@ class Product extends CI_Model
             } else {
                 $row['prod_rating_average'] = '';
                 $row['review_count'] = 0;
+            }
+            $favorite = $this->get_favorite($row['id'],$user_id);
+            if (sizeof($favorite) != 0) {
+                $row['is_favorite'] = true;
+            } else {
+                $row['is_favorite'] = false;
             }
             $array[] = $row;
         }
@@ -1064,6 +1070,7 @@ class Product extends CI_Model
             }
             $array['srch_prod_max_pr'] = $newArray[0]['product_price'];
         }
+
         return $array;
     }
 

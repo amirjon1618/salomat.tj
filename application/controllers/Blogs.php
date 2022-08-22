@@ -45,7 +45,7 @@ class Blogs extends REST_Controller {
         $data = array('base_url' => base_url());
         $data['tags'] = $this->tag->get_all();
         $data['title'] = 'Полулярное';
-        $data['content'] = $this->blog->get_all();
+        $data['content'] = $this->blog->get_all_mb($this->input->get('page'));
 
         $this->response($data,REST_Controller::HTTP_OK);
     }
