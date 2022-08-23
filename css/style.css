@@ -6490,6 +6490,7 @@
     
     .ps-block--products-of-category .ps-block__slider a {
         display: block;
+        height: 100%;
     }
     
     .ps-block--products-of-category .ps-block__slider a img {
