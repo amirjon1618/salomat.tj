@@ -10081,6 +10081,7 @@
     
     .owl-carousel .owl-item img {
         width: auto;
+        height: 100%;
     }
     
     .owl-carousel .ps-product {

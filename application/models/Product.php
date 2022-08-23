@@ -117,7 +117,19 @@ class Product extends CI_Model
             // $row['product_country'] = $this->get_other_fields($row['product_country'], 'country');
             $row['active_substance'] = $q->result_array();
             $row['categories'] = $q3->result_array();
+            $user_id = $this->session->userdata('user_id');
+            $favorite = $this->get_favorite($row['id'],$user_id?:0);
+            if (sizeof($favorite) != 0) {
+                $row['is_favorite'] = true;
+            } else {
+                $row['is_favorite'] = false;
+            }
+            $array['total_prods'][] = $row;
+
+
+
             $array = $row;
+            
         }
         $array['product_pics'] = $this->get_img_by_id($id);
 

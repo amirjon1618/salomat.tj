@@ -255,4 +255,68 @@
             'cssText': 'background: #89e486 !important;outline:none !important'
         })
     });
+
+    const __likeClicks = document.getElementsByClassName("likeClick")
+    for (let i = 0; i < __likeClicks.length; i++) {
+        __likeClicks[i].addEventListener('click', function() {
+            this.dataset.like === "0" ? (this.dataset.like = "1") : (this.dataset.like = "0");
+            let isLike = Boolean(Number(this.dataset.like));
+            let _like = window.getComputedStyle(this);
+            if (localStorage.getItem("userId")) {
+                if (_like.fill === "none") {
+                    $.ajax({
+                        type: "POST",
+                        url: "{base_url}favorites",
+                        headers: {
+                            "Accept": "application/json",
+                        },
+                        data: {
+                            user_id: JSON.parse(localStorage.getItem("userId")).user_id,
+                            product_id: Number(this.getAttribute("data-id")),
+                        },
+                    })
+                    console.log("Disike");
+
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "{base_url}favorites/delete",
+                        headers: {
+                            "Accept": "application/json",
+                        },
+                        data: {
+                            user_id: JSON.parse(localStorage.getItem("userId")).user_id,
+                            product_id: Number(this.getAttribute("data-id")),
+                        },
+                    })
+                }
+                console.log("Like");
+            } else {
+                $(".enter-form").css("display", "block");
+                document.querySelector(".enter-btn-bg").style.display = "flex";
+                document.querySelector(".enter-btn-bg").classList.add("active-animation");
+                document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
+            }
+        })
+    }
+
 </script>
+<style>
+    label {
+        display: block;
+    }
+
+    #red {
+        display: none;
+    }
+
+    #red:checked+#shape {
+        fill: #DD2E44;
+        stroke: #DD2E44 !important;
+    }
+
+    #red:checked+#shape path {
+        fill: #DD2E44;
+        stroke: #DD2E44 !important;
+    }
+</style>
