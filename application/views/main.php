@@ -308,6 +308,7 @@
                 if (_like.fill === "none") {
                     $.ajax({
                         type: "POST",
+                     
                         url: "{base_url}favorites",
                         headers: {
                             "Accept": "application/json",
