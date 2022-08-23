@@ -8,7 +8,7 @@
             </div>
             <div class="ps-product__container">
                 <div class="ps-product__content"><a class="ps-product__title product_info_long" href="{base_url}main/product/<?= $cat_p['id'] ?>"><?= $cat_p['product_name'] ?></a>
-                
+
                     <ul class="ps-product__desc">
                         <div class="ps-product__rating">
                             <select class="ps-rating" data-read-only="true">
@@ -62,20 +62,20 @@
                             <del><?= $cat_p['product_old_price'] ?> c.</del>
                         <?php endif; ?>
                     </p>
-                    <?php 
-                        $char = "\"";
-                        $charHtml = "&quot;";
+                    <?php
+                    $char = "\"";
+                    $charHtml = "&quot;";
                     ?>
-                    <button class="like-button">
-                        <label class="mb-0">  
-                            <input type="checkbox" id="red">
-                            <svg width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path id="shape" class="seat" fill="none" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </label><span class="like-span">в избранное</span></button>
-                    <button class="ps-btn" onclick="add_to_cart(
+                    <div class="favorite-cart_btn">
+                        <label class="like-button">
+                            <input value="<?php $cat_p['id'] ?>" <?php echo $cat_p['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
+                            <svg id="shape" fill="none" data-id="<?= $cat_p['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
+                                <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg><span class="like-span">в избранное</span>
+                        </label>
+                        <button class="ps-btn" onclick="add_to_cart(
                                                 '<?= $cat_p['id'] ?>',
-                                                `<?= str_replace($char, $charHtml,$cat_p['product_name']) ?>`,
+                                                `<?= str_replace($char, $charHtml, $cat_p['product_name']) ?>`,
                                                 '<?= $cat_p['product_old_price'] ?>',
                                                 '<?= $cat_p['product_price'] ?>',
                                                 '<?= $cat_p['product_brand']['id'] ?>',
@@ -83,6 +83,8 @@
                                                 '<?= $cat_p['total_count_in_store'] ?>',
                                                 '<?= $cat_p['product_articule'] ?>'
                                             )" style="background: #4839C3;">В корзину</button>
+                    </div>
+
                     <ul class="ps-product__actions">
                     </ul>
                 </div>
@@ -94,59 +96,62 @@
 <?php endif; ?>
 <script>
 
-  
+
 
 </script>
 <style>
-.like-button {
-    border: 2px solid #A8A8A8;
-    border-radius: 4px;
-    background-color: #fff;
-    display: flex;
-    width: 100%;
-    text-align: center;
-    font-weight: 600;
-    padding: 5px 0;
-    height: 50px;
-    align-items: center;
-    margin-bottom: 10px;
-    cursor: pointer;
-    justify-content: center;
-}
-.like-button svg{
-   margin: 5px;
-}
-.like-span {
-    font-size: 18px;
-    font-weight: 500;
-    color: #A8A8A8;
-    padding: 0 5px;
-}
-label {
-  display: block;
-  background-color: none;
-}
+    .like-button {
+        border: 2px solid #A8A8A8;
+        border-radius: 4px;
+        background-color: #fff;
+        display: flex;
+        width: 100%;
+        text-align: center;
+        font-weight: 600;
+        padding: 5px 0;
+        height: 50px;
+        align-items: center;
+        margin-bottom: 10px;
+        cursor: pointer;
+        justify-content: center;
+    }
 
-#red {
-  display: none;
-}
+    .like-button svg {
+        margin: 5px;
+    }
 
-svg {
-  width: 24px;
-  display: block;
-  
-}
+    .like-span {
+        font-size: 18px;
+        font-weight: 500;
+        color: #A8A8A8;
+        padding: 0 5px;
+    }
 
-#shape {
-  fill: "green";
-  stroke: "black";
-  stroke-width: 2;
-}
+    label {
+        display: block;
+        background-color: none;
+    }
 
-#red:checked + svg #shape {
-  fill: #DD2E44;
-  stroke: #DD2E44;
-}
+    #red {
+        display: none;
+    }
+
+    svg {
+        width: 24px;
+        display: block;
+
+    }
+
+    #shape {
+        fill: "green";
+        stroke: "black";
+        stroke-width: 2;
+    }
+
+    #red:checked+svg #shape {
+        fill: #DD2E44;
+        stroke: #DD2E44;
+    }
 </style>
 <style>
     label {
