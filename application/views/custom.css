@@ -781,7 +781,7 @@ textarea.error {
 
     .recipe_phone_div_button_send_sms {
         width: 60% !important;
-        font-size: 18px !important;
+        font-size: 14px !important;
         margin-top: 20px !important;
         padding: 8px !important;
     }
@@ -793,9 +793,6 @@ textarea.error {
         bottom: 0 !important;
     }
 
-    .recipe_phone_div_inp input {
-        height: 32px !important;
-    }
 
     .recipe_successful_div>p {
         font-size: 18px;
@@ -823,12 +820,9 @@ textarea.error {
 
 @media (max-width: 418px) {
     .recipe_phone_div_inp input {
-        width: 90% !important;
+        width: 100% !important;
     }
 
-    .recipe_phone_div_inp span {
-        left: 10px !important;
-    }
 }
 
 @media (max-width: 410px) {
@@ -1177,6 +1171,9 @@ button {
     background: #e3e3e3;
     padding: 12px;
     border-radius: 7px;
+    display: flex;
+    height: 50px;
+    align-items: center;
 }
 
 .recipe_phone_back_btn_div {
@@ -1188,8 +1185,8 @@ button {
     padding: 8px 15px;
     line-height: 1.5;
     border-radius: 7px;
-    background: #a6ecec;
-    color: #3f7273;
+    background: #1ebebe;
+    color: #ffffff;
     border-color: transparent;
 }
 
