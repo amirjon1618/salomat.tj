@@ -14,7 +14,7 @@
             <div class="ps-section--shopping ps-shopping-cart">
                 <div class="container">
                     <div class="ps-section__header">
-                        <h3>Моя корзина</h1>
+                        <h3>Моя корзина</h3>
                     </div>
                     <div class="ps-section__content">
                         <div class="table-responsive">

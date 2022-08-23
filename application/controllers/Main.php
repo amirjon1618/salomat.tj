@@ -1203,7 +1203,7 @@ class Main extends CI_Controller
         $this->db->where('favorites.user_id', $user_id);
         $query = $this->db->get();
         $array = $query->result_array();
-
+        $array = [];
         foreach ($query->result_array() as $row) {
             $rating = $this->get_rating($row['id']);
             if (sizeof($rating) != 0) {
@@ -1213,18 +1213,18 @@ class Main extends CI_Controller
                 $row['prod_rating_average'] = '';
                 $row['review_count'] = 0;
             }
-
-            $favorite = $this->get_favorite($row['id']);
-            if (sizeof($favorite) != 0) {
-                $row['is_favorite'] = true;
-            } else {
-                $row['is_favorite'] = false;
-            }
+//
+//            $favorite = $this->get_favorite($row['id'],$user_id?:0);
+//            if (sizeof($favorite) != 0) {
+//                $row['is_favorite'] = true;
+//            } else {
+//                $row['is_favorite'] = false;
+//            }
             $row['base_url'] = base_url();
 
             $array[] = $row;
         };
-
+//var_dump($array);
         return $array;
     }
 
