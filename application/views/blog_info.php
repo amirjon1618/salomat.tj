@@ -77,24 +77,23 @@
                 <h3>Вам может пригодиться</h3>
             </div>
             <div class="ps-section__content">
-                <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
+                <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="1" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
                     <?php foreach ($prods_suggestions as $prod_sugg) : ?>
-
-                        <div class="ps-product">
+                        <div class="ps-product ps-product--inner ps-product_of_the_day">
                             <label>
                                 <input value="<?php $prod_sugg['id'] ?>" <?php echo $prod_sugg['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
                                 <svg id="shape" fill="none" data-id="<?= $prod_sugg['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
                                     <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </label>
-                            <div class="ps-product__thumbnail hover01">
-                                <a href="{base_url}main/product/<?= $prod_sugg['id'] ?>">
-                                    <img class="prods_sugg_imgs" src="<?= $prod_sugg['base_url'] ?>upload_product/<?= $prod_sugg['product_pic'] ?>" alt=""></a>
-
+                            <div class="ps-product__thumbnail ps-product__thumbnail_img_div  hover01">
+                                <a href="<?= $base_url ?>index.php/main/product/<?= $prod_sugg['id'] ?>?from=main">
+                                    <img class="imgs" src="<?= $base_url ?>upload_product/<?= $prod_sugg['product_pic'] ?>" alt="Product IMG">
+                                </a>
                             </div>
                             <div class="ps-product__container">
-                                <div class="ps-product__content">
-                                    <a class="ps-product__title product_title_new" href="{base_url}main/product/<?= $prod_sugg['id'] ?>"><?= $prod_sugg['product_name'] ?></a>
+                                <div class="ps-product__content"><a class="ps-product__title product_title_new" href="<?= $base_url ?>index.php/main/product/<?= $prod_sugg['id'] ?>">
+                                        <?= $prod_sugg['product_name'] ?></a>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <?php if ($prod_sugg['review_count'] != 0) : ?>
@@ -115,11 +114,10 @@
                                             <?php endif; ?>
                                         </select><span>(<?= $prod_sugg['review_count'] ?>)</span>
                                     </div>
-                                    <p class="ps-product__price sale prods_slider"><span><?= $prod_sugg['product_price'] ?> c.</span> <?php if ($prod_sugg['product_old_price'] != 0) : ?> <del><?= $prod_sugg['product_old_price'] ?> </del><?php endif; ?></p>
-                                </div>
-                                <div class="ps-product__content hover"><a class="ps-product__title product_title_new" href="{base_url}main/product/<?= $prod_sugg['id'] ?>"><?= $prod_sugg['product_name'] ?></a>
-                                    <!-- <p class="ps-product__price sale"><?= $prod_sugg['product_price'] ?> <?php if ($prod_sugg['product_old_price'] != 0) : ?> <del><?= $prod_sugg['product_old_price'] ?> </del><?php endif; ?></p> -->
-                                    <p class="ps-product__price sale prods_slider"><span><?= $prod_sugg['product_price'] ?> c.</span> <?php if ($prod_sugg['product_old_price'] != 0) : ?> <del><?= $prod_sugg['product_old_price'] ?> </del><?php endif; ?></p>
+                                    <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
+                                            <?php if ($prod_sugg['product_old_price'] != 0) : ?><del><?= $prod_sugg['product_old_price'] ?> </del><?php endif; ?>
+                                            <?= $prod_sugg['product_price'] ?> c. </span><a class="ps-product__price-link" href="<?= $base_url ?>index.php/main/product/<?= $prod_sugg['id'] ?>?from=main">В корзину</a></p>
+
                                 </div>
                             </div>
                         </div>
@@ -132,6 +130,50 @@
 </div>
 
 <script>
+    const __likeClicks = document.getElementsByClassName("likeClick")
+    for (let i = 0; i < __likeClicks.length; i++) {
+        __likeClicks[i].addEventListener('click', function() {
+            this.setAttribute('id', 'shape');
+            this.dataset.like === "0" ? (this.dataset.like = "1") : (this.dataset.like = "0");
+            let isLike = Boolean(Number(this.dataset.like));
+            let _like = window.getComputedStyle(this);
+            if (localStorage.getItem("userId")) {
+                if (_like.fill === "none") {
+                    $.ajax({
+                        type: "POST",
+                        url: "{base_url}favorites",
+                        headers: {
+                            "Accept": "application/json",
+                        },
+                        data: {
+                            user_id: JSON.parse(localStorage.getItem("userId")).user_id,
+                            product_id: Number(this.getAttribute("data-id")),
+                        },
+                    })
+
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "{base_url}favorites/delete",
+                        headers: {
+                            "Accept": "application/json",
+                        },
+                        data: {
+                            user_id: JSON.parse(localStorage.getItem("userId")).user_id,
+                            product_id: Number(this.getAttribute("data-id")),
+                        },
+                    })
+                }
+            } else {
+                this.removeAttribute('id');
+                $(".enter-form").css("display", "block");
+                document.querySelector(".enter-btn-bg").style.display = "flex";
+                document.querySelector(".enter-btn-bg").classList.add("active-animation");
+                document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
+            }
+        })
+    }
+
     function getBlog() {
         $.ajax({
             type: "GET",
@@ -166,19 +208,13 @@
         display: none;
     }
 
-    svg {
-        width: 24px;
-        display: block;
-    }
-
-    #shape {
-        fill: "green";
-        stroke: "black";
-        stroke-width: 2;
-    }
-
-    #red:checked+svg #shape {
+    #red:checked+#shape {
         fill: #DD2E44;
-        stroke: #DD2E44;
+        stroke: #DD2E44 !important;
+    }
+
+    #red:checked+#shape path {
+        fill: #DD2E44;
+        stroke: #DD2E44 !important;
     }
 </style>

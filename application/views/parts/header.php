@@ -183,8 +183,8 @@
                                     <div class="form-row">
                                         <span class="text-label">Пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="enter-password" minlength="4" maxlength="32" class="input-text hide-pass" required placeholder="* * * * * * * * * *">
-                                            <div class="hide-btn-pass" onclick="showPass()">
+                                            <input type="password" data-active="0" name="password" id="enter-password" minlength="4" maxlength="32" class="input-text hide-pass" required placeholder="* * * * * * * * * *">
+                                            <div class="hide-btn-pass">
                                                 <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass1">
                                             </div>
                                         </label>
@@ -262,7 +262,7 @@
                                         <span class="text-label">Пароль</span>
                                         <label class="form-row-inner position-relative">
                                             <input type="password" name="password" id="first-password" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
-                                            <div class="hide-btn-pass" onclick="showPass2()">
+                                            <div class="hide-btn-pass" data-active="0">
                                                 <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass2">
                                             </div>
                                         </label>
@@ -271,7 +271,7 @@
                                         <span class="text-label">Повторный пароль</span>
                                         <label class="form-row-inner position-relative">
                                             <input type="password" name="password" id="second-password" minlength="4" maxlength="32" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
-                                            <div class="hide-btn-pass" onclick="showPass3()">
+                                            <div class="hide-btn-pass" data-active="0">
                                                 <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass3">
                                             </div>
                                         </label>
@@ -361,8 +361,8 @@
                                     <div class="form-row">
                                         <span class="text-label">Пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="first-password" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
-                                            <div class="hide-btn-pass" onclick="showPass4()">
+                                            <input type="password" name="password" id="first-password2" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
+                                            <div class="hide-btn-pass" data-active="0">
                                                 <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass4">
                                             </div>
                                         </label>
@@ -370,9 +370,9 @@
                                     <div class="form-row">
                                         <span class="text-label">Повторный пароль</span>
                                         <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="second-password" minlength="4" maxlength="32" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
-                                            <div class="hide-btn-pass" onclick="showPass5()">
-                                                <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass5">
+                                            <input type="password" name="password" id="second-password2" minlength="4" maxlength="32" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
+                                            <div class="hide-btn-pass" data-active="0">
+                                                <img src=" {base_url}img/show-pass.svg" alt="Icon" id="hidePass5">
                                             </div>
                                         </label>
                                     </div>
@@ -1149,64 +1149,23 @@
 
     }
 
-    let isShowPass = false;
-    let isShowPass2 = false;
-    let isShowPass3 = false;
+    const __hide = Array.from(document.querySelectorAll(".hide-btn-pass"));
+    __hide.forEach(elem => elem.addEventListener("click", showPass))
 
     function showPass() {
-        isShowPass = !isShowPass;
-        if (isShowPass) {
-            document.querySelector(".hide-pass").type = "text";
-            hidePass1.src = "{base_url}img/hide-pass.svg";
+        this.dataset.active === "0" ? (this.dataset.active = "1") : (this.dataset.active = "0");
+
+        let res = !!Number(this.dataset.active);
+        if (res) {
+            this.childNodes[1].src = "{base_url}img/hide-pass.svg";
+            this.parentNode.childNodes[1].type = "text"
         } else {
-            document.querySelector(".hide-pass").type = "password";
-            hidePass1.src = "{base_url}img/show-pass.svg";
+            this.childNodes[1].src = "{base_url}img/show-pass.svg";
+            this.parentNode.childNodes[1].type = "password"
         }
+
     }
 
-    function showPass2() {
-        isShowPass2 = !isShowPass2;
-        if (isShowPass2) {
-            document.querySelector(".hide-pass2").type = "text";
-            hidePass2.src = "{base_url}img/hide-pass.svg";
-        } else {
-            document.querySelector(".hide-pass2").type = "password";
-            hidePass2.src = "{base_url}img/show-pass.svg";
-        }
-    }
-
-    function showPass3() {
-        isShowPass3 = !isShowPass3;
-        if (isShowPass3) {
-            document.querySelector(".hide-pass3").type = "text";
-            hidePass3.src = "{base_url}img/hide-pass.svg";
-        } else {
-            document.querySelector(".hide-pass3").type = "password";
-            hidePass3.src = "{base_url}img/show-pass.svg";
-        }
-    }
-    function showPass4() {
-        isShowPass4 = !isShowPass4;
-        if (isShowPass4) {
-            document.querySelector(".hide-pass4").type = "text";
-            hidePass4.src = "{base_url}img/hide-pass.svg";
-        } else {
-            document.querySelector(".hide-pass4").type = "password";
-            hidePass4.src = "{base_url}img/show-pass.svg";
-        }
-    }
-
-    function showPass5() {
-        isShowPass5 = !isShowPass5;
-        if (isShowPass5) {
-            document.querySelector(".hide-pass5").type = "text";
-            hidePass5.src = "{base_url}img/hide-pass.svg";
-        } else {
-            document.querySelector(".hide-pass5").type = "password";
-            hidePass5.src = "{base_url}img/show-pass.svg";
-        }
-    }
-    
 
     function set_prods_header() {
 

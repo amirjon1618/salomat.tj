@@ -5,7 +5,7 @@
                 <?php foreach ($category_products['products'] as $cat_p) : ?>
                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 pb-5">
                         <div class="ps-products">
-                        <label>
+                            <label>
                                 <input value="<?php $cat_p['id'] ?>" <?php echo $cat_p['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
                                 <svg id="shape" fill="none" data-id="<?= $cat_p['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
                                     <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -259,6 +259,7 @@
     const __likeClicks = document.getElementsByClassName("likeClick")
     for (let i = 0; i < __likeClicks.length; i++) {
         __likeClicks[i].addEventListener('click', function() {
+            this.setAttribute('id', 'shape');
             this.dataset.like === "0" ? (this.dataset.like = "1") : (this.dataset.like = "0");
             let isLike = Boolean(Number(this.dataset.like));
             let _like = window.getComputedStyle(this);
@@ -292,6 +293,7 @@
                 }
                 console.log("Like");
             } else {
+                this.removeAttribute('id');
                 $(".enter-form").css("display", "block");
                 document.querySelector(".enter-btn-bg").style.display = "flex";
                 document.querySelector(".enter-btn-bg").classList.add("active-animation");
@@ -299,7 +301,6 @@
             }
         })
     }
-
 </script>
 <style>
     label {

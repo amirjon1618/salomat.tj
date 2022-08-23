@@ -300,6 +300,7 @@
     const __likeClicks = document.getElementsByClassName("likeClick")
     for (let i = 0; i < __likeClicks.length; i++) {
         __likeClicks[i].addEventListener('click', function() {
+            this.setAttribute('id', 'shape');
             this.dataset.like === "0" ? (this.dataset.like = "1") : (this.dataset.like = "0");
             let isLike = Boolean(Number(this.dataset.like));
             let _like = window.getComputedStyle(this);
@@ -307,6 +308,7 @@
                 if (_like.fill === "none") {
                     $.ajax({
                         type: "POST",
+                     
                         url: "{base_url}favorites",
                         headers: {
                             "Accept": "application/json",
@@ -331,6 +333,7 @@
                     })
                 }
             } else {
+                this.removeAttribute('id');
                 $(".enter-form").css("display", "block");
                 document.querySelector(".enter-btn-bg").style.display = "flex";
                 document.querySelector(".enter-btn-bg").classList.add("active-animation");
@@ -347,7 +350,6 @@
                 "Accept": "application/json",
             },
             success: function(blogShow) {
-                console.log(blogShow.content)
                 document.querySelector(".blog_pic").src += `${blogShow.content[0].blog_pic}`;
                 $(".blog_created_at").text(blogShow.content[0].blog_created_at);
                 $(".blog_title").text(blogShow.content[0].blog_title);

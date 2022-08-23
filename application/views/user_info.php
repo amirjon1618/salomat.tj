@@ -198,7 +198,12 @@
                                                 <div class="col">
                                                     <div class="d-flex col-lg-3 col-md-6 col-sm-6 col-xs-12 pb-5">
                                                         <div class="ps-product ps-product--inner ps-product_of_the_day">
-
+                                                            <label>
+                                                                <input value="<?php $favorites['id'] ?>" <?php echo $favorites['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
+                                                                <svg id="shape" fill="none" data-id="<?= $favorites['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                                </svg>
+                                                            </label>
                                                             <div class="ps-product__thumbnail ps-product__thumbnail_img_div  hover01">
                                                                 <a href="{base_url}index.php/main/product/2997?from=main">
                                                                     <img class="imgs" src="{base_url}upload_product/<?php echo $favorite['product_pic'] ?>" alt="">
@@ -285,37 +290,43 @@
     const __likeClicks = document.getElementsByClassName("likeClick")
     for (let i = 0; i < __likeClicks.length; i++) {
         __likeClicks[i].addEventListener('click', function() {
+            this.setAttribute('id', 'shape');
             this.dataset.like === "0" ? (this.dataset.like = "1") : (this.dataset.like = "0");
             let isLike = Boolean(Number(this.dataset.like));
             let _like = window.getComputedStyle(this);
-            console.log(_like.fill);
-            if (_like.fill === "none") {
-                alert("Like")
-                $.ajax({
-                    type: "POST",
-                    url: "{base_url}favorites",
-                    headers: {
-                        "Accept": "application/json",
-                    },
-                    data: {
-                        user_id: JSON.parse(localStorage.getItem("userId")).user_id,
-                        product_id: Number(this.getAttribute("data-id")),
-                    },
-                })
+            if (localStorage.getItem("userId")) {
+                if (_like.fill === "none") {
+                    $.ajax({
+                        type: "POST",
+                        url: "{base_url}favorites",
+                        headers: {
+                            "Accept": "application/json",
+                        },
+                        data: {
+                            user_id: JSON.parse(localStorage.getItem("userId")).user_id,
+                            product_id: Number(this.getAttribute("data-id")),
+                        },
+                    })
 
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "{base_url}favorites/delete",
+                        headers: {
+                            "Accept": "application/json",
+                        },
+                        data: {
+                            user_id: JSON.parse(localStorage.getItem("userId")).user_id,
+                            product_id: Number(this.getAttribute("data-id")),
+                        },
+                    })
+                }
             } else {
-                alert("Dislike")
-                $.ajax({
-                    type: "POST",
-                    url: "{base_url}favorites/delete",
-                    headers: {
-                        "Accept": "application/json",
-                    },
-                    data: {
-                        user_id: JSON.parse(localStorage.getItem("userId")).user_id,
-                        product_id: Number(this.getAttribute("data-id")),
-                    },
-                })
+                this.removeAttribute('id');
+                $(".enter-form").css("display", "block");
+                document.querySelector(".enter-btn-bg").style.display = "flex";
+                document.querySelector(".enter-btn-bg").classList.add("active-animation");
+                document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
             }
         })
     }
@@ -349,11 +360,5 @@
     #red:checked+#shape path {
         fill: #DD2E44;
         stroke: #DD2E44 !important;
-    }
-
-    .nav-item {
-        background: rgba(188, 189, 255, 0.2);
-        border-radius: 4px 4px 0px 0px;
-        border-right: 3px solid #4839C3;
     }
 </style>
