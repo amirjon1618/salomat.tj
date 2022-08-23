@@ -23,9 +23,9 @@ class Main extends CI_Controller
         $this->load->model('sms');
         $this->load->model('delivery');
         // if (true) {
-            // $this->techIssue();
+        // $this->techIssue();
         // } else {
-            $this->checkAuth();
+        $this->checkAuth();
         // }
     }
 
@@ -522,7 +522,7 @@ class Main extends CI_Controller
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
         $this->parser->parse('template', $data);
     }
-    
+
     public function blogPopular()
     {
         $data = array('base_url' => base_url());
@@ -942,45 +942,45 @@ class Main extends CI_Controller
     }
 
     public function checkOrderCode()
-	{
-		$this->load->model('order');
-		$this->load->model('sms');
-		$obj = $this->input->get();
-		$answer = $this->order->check_order($obj['order_id'], $obj['order_phone'], $obj['order_code']);
-		if ($answer == 0) {
-			echo json_encode(0);
-		} else {
-			$this->order->change_status($obj['order_id'], 1);
-			$order = $this->order->get($obj['order_id']);
+    {
+        $this->load->model('order');
+        $this->load->model('sms');
+        $obj = $this->input->get();
+        $answer = $this->order->check_order($obj['order_id'], $obj['order_phone'], $obj['order_code']);
+        if ($answer == 0) {
+            echo json_encode(0);
+        } else {
+            $this->order->change_status($obj['order_id'], 1);
+            $order = $this->order->get($obj['order_id']);
 
             //sendTelegram
             $text = "Пришел заказ #".$obj['order_id'].' номер: '.$obj['order_phone'].' https://salomat.tj/index.php/Admin/orderProducts/'.$obj['order_id'];
             $this->sendTelegramText($text);
 
-			$sms_id = $this->sms->add(array('sms_mobile' => $obj['order_phone'], 'sms_text' => 'По данной ссылке вы можете проверить ваш заказ: ' . base_url() . 'index.php/main/userOrderReceipt/' . $order['hash']));
+            $sms_id = $this->sms->add(array('sms_mobile' => $obj['order_phone'], 'sms_text' => 'По данной ссылке вы можете проверить ваш заказ: ' . base_url() . 'index.php/main/userOrderReceipt/' . $order['hash']));
             $sms_resp = $this->create_url_f55($obj['order_phone'], 'По данной ссылке вы можете проверить ваш заказ: ' . base_url() . 'index.php/main/userOrderReceipt/' . $order['hash'], $sms_id);
 
-			$this->update_sms($sms_id, $sms_resp, $obj['order_id'], 'order');
+            $this->update_sms($sms_id, $sms_resp, $obj['order_id'], 'order');
 
-			$order_prods = $this->order->get_order_prods($obj['order_id']);
-			$array = array('stat' => 1, 'order' => $order, 'products' => $order_prods);
-			echo json_encode($array);
-		}
-	}
+            $order_prods = $this->order->get_order_prods($obj['order_id']);
+            $array = array('stat' => 1, 'order' => $order, 'products' => $order_prods);
+            echo json_encode($array);
+        }
+    }
 
     private function sendTelegramText($text)
-	{
-		$text = urlencode($text);
+    {
+        $text = urlencode($text);
 
-		$arrContextOptions=array(
-    			"ssl"=>array(
-       		 	"verify_peer"=>false,
-        		"verify_peer_name"=>false,
-		    ),
-		);
+        $arrContextOptions=array(
+            "ssl"=>array(
+                "verify_peer"=>false,
+                "verify_peer_name"=>false,
+            ),
+        );
 
-		file_get_contents("https://salomat.tj/bot/tsend.php?text=".$text, false, stream_context_create($arrContextOptions));
-	}
+        file_get_contents("https://salomat.tj/bot/tsend.php?text=".$text, false, stream_context_create($arrContextOptions));
+    }
 
     public function startTransMyBabilon()
     {
@@ -1049,7 +1049,7 @@ class Main extends CI_Controller
                 unset($_COOKIE[$this->bUserInfoName]);
                 setcookie($this->bUserInfoName, null, -1, '/');
             }
-			echo json_encode($returnArr);
+            echo json_encode($returnArr);
         }
     }
 
