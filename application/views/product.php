@@ -843,6 +843,48 @@
         set_prods_header();
         // remove_from_cart();
     })
+
+    const __likeClicks = document.getElementsByClassName("likeClick")
+    for (let i = 0; i < __likeClicks.length; i++) {
+        __likeClicks[i].addEventListener('click', function() {
+            this.dataset.like === "0" ? (this.dataset.like = "1") : (this.dataset.like = "0");
+            let isLike = Boolean(Number(this.dataset.like));
+            let _like = window.getComputedStyle(this);
+            if (localStorage.getItem("userId")) {
+                if (_like.fill === "none") {
+                    $.ajax({
+                        type: "POST",
+                        url: "{base_url}favorites",
+                        headers: {
+                            "Accept": "application/json",
+                        },
+                        data: {
+                            user_id: JSON.parse(localStorage.getItem("userId")).user_id,
+                            product_id: Number(this.getAttribute("data-id")),
+                        },
+                    })
+
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "{base_url}favorites/delete",
+                        headers: {
+                            "Accept": "application/json",
+                        },
+                        data: {
+                            user_id: JSON.parse(localStorage.getItem("userId")).user_id,
+                            product_id: Number(this.getAttribute("data-id")),
+                        },
+                    })
+                }
+            } else {
+                $(".enter-form").css("display", "block");
+                document.querySelector(".enter-btn-bg").style.display = "flex";
+                document.querySelector(".enter-btn-bg").classList.add("active-animation");
+                document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
+            }
+        })
+    }
 </script>
 <style>
     label {
