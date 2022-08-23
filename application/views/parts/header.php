@@ -918,7 +918,7 @@
     .form-v8-content .tab .tablinks.active {
         font-weight: 500;
         color: #444444;
-        border-bottom-color: #4839C3;
+        border-bottom-color: #4a4ac3;
     }
 
     .form-v8-content .form-detail {}
