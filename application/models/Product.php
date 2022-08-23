@@ -1080,6 +1080,13 @@ class Product extends CI_Model
                 $row['prod_rating_average'] = '';
                 $row['review_count'] = 0;
             }
+            $user_id = $this->session->userdata('user_id');
+            $favorite = $this->get_favorite($row['id'],$user_id?:0);
+            if (sizeof($favorite) != 0) {
+                $row['is_favorite'] = true;
+            } else {
+                $row['is_favorite'] = false;
+            }
 
             $array[] = $row;
         }
