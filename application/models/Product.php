@@ -587,7 +587,7 @@ class Product extends CI_Model
     public function get_products_by_category($id, $sort_by, $current, $min_price = '', $max_price = '')
     {
         if(isset($current)){
-             $current = 1;
+            $current = 1;
         }
         $this->load->model('category');
         $array = array();
@@ -711,6 +711,14 @@ class Product extends CI_Model
                 } else {
                     $row['prod_rating_average'] = '';
                     $row['review_count'] = 0;
+                }
+
+                $user_id = $this->session->userdata('user_id');
+                $favorite = $this->get_favorite($row['id'],$user_id?:0);
+                if (sizeof($favorite) != 0) {
+                    $row['is_favorite'] = true;
+                } else {
+                    $row['is_favorite'] = false;
                 }
 
                 $q = $this->db->query("SELECT active_substance_product.id as asp_id, active_substance.id, active_substance.tag_name FROM product 

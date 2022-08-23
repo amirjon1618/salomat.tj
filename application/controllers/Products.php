@@ -153,7 +153,7 @@ class Products extends REST_Controller {
             if ($categories[$i]['category_in_main'] == 1 && $j < 3) {
                 $array[$j]['categ'] = $categories[$i];
                 $array[$j]['categ_slider'] = $this->slider->get_by_slider_category($categories[$i]['id']);
-                $array[$j]['categ_prods'] = $this->product->get_prods_in_categ($categories[$i]['id'],$user_id??0);
+                $array[$j]['categ_prods'] = $this->product->get_prods_in_categ($categories[$i]['id'],$user_id?:0);
                 $j++;
             }
         }
