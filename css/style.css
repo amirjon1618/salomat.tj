@@ -14844,6 +14844,9 @@
             margin-right: 10px;
             margin-bottom: 0 !important;
         }
+        .like-button:active {
+            background-color: red;
+        }
         .product_long_format_price span {
             display: flex;
         }
@@ -14914,6 +14917,9 @@
         .pb-jcs {
             display: flex;
             justify-content: flex-start;
+        }
+        .favorite-cart_btn {
+            display: flex;
         }
 
     }
