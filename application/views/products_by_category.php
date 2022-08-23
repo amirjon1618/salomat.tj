@@ -66,7 +66,8 @@
                         <div class="nonlinear"></div>
                         <p class="ps-slider__meta">
                             <span class="ps-slider__value slider__value_min"><span class="ps-slider__min"></span> смн.</span>
-                            <span class="ps-slider__value slider__value_max"><span class="ps-slider__max"></span> смн.</span></p>
+                            <span class="ps-slider__value slider__value_max"><span class="ps-slider__max"></span> смн.</span>
+                        </p>
                         <div style="text-align: center">
                             <button class="btn btn-info btn-lg sort_by_price" type="button">Показать</button>
                         </div>
@@ -336,6 +337,7 @@
                         sort_by_price();
                         sort_by_price_mobile();
                     });
+                    
                 </script>
             </div>
         </div>
@@ -347,3 +349,22 @@
         <span class="sr-only">Loading...</span>
     </div>
 </div>
+<style>
+    label {
+        display: block;
+    }
+
+    #red {
+        display: none;
+    }
+
+    #red:checked+#shape {
+        fill: #DD2E44;
+        stroke: #DD2E44 !important;
+    }
+
+    #red:checked+#shape path {
+        fill: #DD2E44;
+        stroke: #DD2E44 !important;
+    }
+</style>

@@ -224,3 +224,22 @@
         sales_sort_by_price_mobile();
     });
 </script>
+<style>
+    label {
+        display: block;
+    }
+
+    #red {
+        display: none;
+    }
+
+    #red:checked+#shape {
+        fill: #DD2E44;
+        stroke: #DD2E44 !important;
+    }
+
+    #red:checked+#shape path {
+        fill: #DD2E44;
+        stroke: #DD2E44 !important;
+    }
+</style>

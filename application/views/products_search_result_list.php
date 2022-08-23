@@ -148,3 +148,22 @@ svg {
   stroke: #DD2E44;
 }
 </style>
+<style>
+    label {
+        display: block;
+    }
+
+    #red {
+        display: none;
+    }
+
+    #red:checked+#shape {
+        fill: #DD2E44;
+        stroke: #DD2E44 !important;
+    }
+
+    #red:checked+#shape path {
+        fill: #DD2E44;
+        stroke: #DD2E44 !important;
+    }
+</style>
