@@ -72,9 +72,10 @@
             </div>
         </div>
 
-        <div class="container bi_recomend-product">
-            <div class="ps-section__header">
+        <div class="container bi_recomend-product" style="background-color: #fff; padding: 20px;">
+            <div class="ps-section__header pb-5">
                 <h3>Вам может пригодиться</h3>
+            <hr>
             </div>
             <div class="ps-section__content">
                 <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="1" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
@@ -141,6 +142,7 @@
                 if (_like.fill === "none") {
                     $.ajax({
                         type: "POST",
+                     
                         url: "{base_url}favorites",
                         headers: {
                             "Accept": "application/json",

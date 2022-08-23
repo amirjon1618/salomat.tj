@@ -144,7 +144,7 @@
                             '<?= $cat_p['product_pic'] ?>',
                             '<?= $cat_p['total_count_in_store'] ?>',
                             '<?= $cat_p['product_articule'] ?>'
-                        )" style="background: #4839C3;">В корзину</button>
+                        )" style="background: #4a4ac3;">В корзину</button>
                             <ul class="ps-product__actions">
                                 <!-- <li><a href="#"><i class="icon-heart"></i> Wishlist</a></li> -->
                                 <!-- <li><a href="#"><i class="icon-chart-bars"></i> Compare</a></li> -->

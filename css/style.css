@@ -5227,7 +5227,7 @@
     .user-info_ul li:hover{
         background: rgba(188, 189, 255, 0.2);
         border-radius: 4px 4px 0px 0px;
-        border-right: 3px solid #4839C3;
+        border-right: 3px solid #4a4ac3;
     }
     .user-info_ul a{
         font-style: normal;
@@ -5421,7 +5421,7 @@
         font-weight: 500;
         font-size: 14px;
         line-height: 19px;
-        color: #4839C3;
+        color: #4a4ac3;
     }
     
     .ps-breadcrumb .breadcrumb a:hover {
@@ -9063,7 +9063,7 @@
         color: #1E323C;
     }
     .total-form_text {
-        color: #4839C3 !important;
+        color: #4a4ac3 !important;
     }
     .total-form_figure {
         padding: 0 !important;
@@ -10965,6 +10965,7 @@
     .ps-product--wide .ps-product__title {
         display: block;
         margin-bottom: 6px;
+        font-size: 18px;
     }
     
     .ps-product--wide .ps-product__title:hover {
@@ -10980,6 +10981,7 @@
         position: relative;
         color: #999999;
         line-height: 1.8em;
+        font-size: 14px;
     }
     
     .ps-product--wide .ps-product__desc li:before {
@@ -11001,7 +11003,7 @@
         color: red !important;
     }
     .ps-product--wide .ps-product__shopping .ps-btn {
-        width: 100%;
+        width: 80%;
         text-align: center;
         font-weight: 600;
         padding: 10px 0;
@@ -13697,7 +13699,7 @@
         color: #000;
     }
     .text-currency {
-        color: #4839C3;
+        color: #4a4ac3;
         font-weight: 500;
         font-size: 12px;
     }
@@ -14686,11 +14688,11 @@
         }
         .fa-bars {
             font-size: 30px;
-            color: #4839C3;
+            color: #4a4ac3;
             padding-top: 5px;
         }
         .ps-panel--sidebar .ps-panel__header {
-            background-color: #4839C3;
+            background-color: #4a4ac3;
         }
         .ps-panel__header {
             display: flex;
@@ -18557,7 +18559,7 @@
     
     .menu--dropdown>li:hover {
         background-color: #fff;
-        border-right: 4px solid #4839C3;
+        border-right: 4px solid #4a4ac3;
     }
     
     .menu--dropdown>li:hover.has-mega-menu .mega-menu {
@@ -20797,7 +20799,7 @@
         font-style: normal;
         font-weight: 700;
         font-size: 64px;
-        color: #4839C3;
+        color: #4a4ac3;
         margin: 10px 0;
     }
     .ap-statistic p{
