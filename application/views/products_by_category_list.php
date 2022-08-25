@@ -39,7 +39,13 @@
                                             <?php endif; ?>
                                         </select><span>(<?= $cat_p['review_count'] ?>)</span>
                                     </div>
-                                    <p class="ps-product__price sale prods_slider"><span class="ps-product__price-span"><?= $cat_p['product_price'] ?> c.</span><a class="ps-product__price-links " href="#">В корзину</a> <?php if ($cat_p['product_old_price'] != 0) : ?> <del><?= $cat_p['product_old_price'] ?> </del><?php endif; ?></p>
+                                    <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
+                                            <?php if ($cat_p['product_old_price'] != 0) : ?><del><?= $cat_p['product_old_price'] ?> </del><?php endif; ?>
+                                            <?= $cat_p['product_price'] ?> c. </span><button onclick='addToCart(res = <?= json_encode($cat_p) ?>)' class="ps-btn btn-cart_cat btn-cart_products">В корзину</button></p>
+                                </div>
+                                <div class="product_add_notification_div" style="display: none;">
+                                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                    <span class="prod_add_notification_text">"<span class="span_added_prod_name"></span>" успешно добавлен в вашу корзину.</span>
                                 </div>
                             </div>
                         </div>
@@ -300,6 +306,85 @@
                 document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
             }
         })
+    }
+    function addToCart(res) {
+        max_count_reached = false;
+        var array = [];
+        var id = res.id;
+        var count = Number($('#count_input').val());
+        var price = res.product_price;
+        var old_price = res.product_old_price;
+        var brand = res.product_brand;
+        var pic = res.product_pic;
+        var name = res.product_name;
+        var total_count = res.product_total_count;
+        var product_articule = res.product_articule;
+        var obj = {
+            product_id: id,
+            product_name: name,
+            product_count: count,
+            product_old_price: old_price,
+            product_price: price,
+            product_brand: brand,
+            product_pic: pic,
+            product_total_count: total_count,
+            prod_articule: product_articule
+        };
+
+        var found = false;
+        if (total_count <= 0) {
+            $('.product_add_notification_div_error').css({
+                'cssText': 'display: flex !important'
+            });
+            setTimeout(function() {
+                $('.product_add_notification_div_error').hide();
+            }, 2500)
+        } else {
+            if (localStorage.getItem("product_list")) {
+                var mydata = $.parseJSON(localStorage.getItem("product_list"));
+                mydata.forEach(function(elem, index) {
+                    if (elem.product_id == id) {
+                        elem.product_count += count;
+
+                        // if (elem.product_count > total_count) {
+                        //     elem.product_count = total_count;
+                        // $('.product_add_notification_div_error').css({
+                        //     'cssText': 'display: flex !important'
+                        // });
+                        // setTimeout(function() {
+                        //     $('.product_add_notification_div_error').hide();
+                        // }, 2500)
+                        // max_count_reached = true;
+                        // }
+                        mydata[index] = elem;
+                        found = true;
+                    }
+                });
+                if (!found) {
+                    mydata.push(obj);
+                }
+                // $.cookie("product_list", JSON.stringify(mydata), {
+                //     path: '/'
+                // });
+                localStorage.setItem("product_list", JSON.stringify(mydata))
+            } else {
+                array.push(obj);
+                // $.cookie("product_list", JSON.stringify(array), {
+                //     path: '/'
+                // });
+                localStorage.setItem("product_list", JSON.stringify(array))
+            }
+            if (!max_count_reached) {
+                $('.span_added_prod_name').text('' + name);
+                $('.product_add_notification_div').css({
+                    'cssText': 'display: flex !important'
+                });
+                setTimeout(function() {
+                    $('.product_add_notification_div').hide();
+                }, 1000)
+            }
+            set_prods_header();
+        }
     }
 </script>
 <style>

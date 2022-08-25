@@ -210,7 +210,7 @@
                     "<a href=\"<?= $base_url ?>index.php/main/product/" + item.product_id + "\">" +
                     item.product_name +
                     "</a>" +
-                    "<p>" + item.product_brand + "</p>" +
+                    "<p>" + item.product_brand.brand_name + "</p>" +
                     "</div>" +
                     "</div>";
                 td1.innerHTML += div1;

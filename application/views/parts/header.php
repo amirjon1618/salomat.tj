@@ -1199,7 +1199,7 @@
                     "        <div class=\"ps-product__content\">\n" +
                     "            <i style=\"cursor:pointer\" class=\"ps-product__remove icon-cross\" id=\"ps-product__remove\" onclick=\"remove_from_header_cart(" + item.product_id + ")\"></i>\n" +
                     "            <a href=\"<?= $base_url ?>index.php/product/" + item.product_id + "\">" + item.product_name + "</a>\n" +
-                    "            <p>" + item.product_brand + "</p><small>" + item.product_count + " x " + item.product_price + " c.</small>\n" +
+                    "            <p>" + item.product_brand.brand_name + "</p><small>" + item.product_count + " x " + item.product_price + " c.</small>\n" +
                     "        </div>\n" +
                     "    </div>";
 
@@ -1507,6 +1507,7 @@
             success: function(result) {
                 if (result.filter(elem => elem.login === String(errorPhone.value)).length > 0) {
                     $(".efr5").css("display", "none");
+                    userTimer();
                     $(".efr6").css("display", "block");
                     $(".validate-text").text("");
                     localStorage.setItem("restore-phone", errorPhone.value);
@@ -1636,7 +1637,7 @@
                 headers: {
                     "Accept": "application/json",
                 },
-                data: {
+                data: { 
                     phone: Number(localStorage.getItem("ver-number")),
                     password: $("#enter-password").val()
                 },
@@ -1815,24 +1816,41 @@
                 console.log(elem)
                 link.childNodes[1].src = link.dataset.src;
             });
-            link.childNodes[1].src = `http://new.salomat.tj/img/inactive.icon${link.dataset.id}.svg`
+            link.childNodes[1].src = `{base_url}/img/inactive.icon${link.dataset.id}.svg`
         });
         if (link.dataset.id === localStorage.getItem("iconItem")) {
-            link.childNodes[1].src = `http://new.salomat.tj/img/inactive.icon${link.dataset.id}.svg`
+            link.childNodes[1].src = `{base_url}/img/inactive.icon${link.dataset.id}.svg`
         }
     })
+
+    function begin() {
+        $('#not_received_sms_order').hide();
+        $('#recend_timer_sms_order').show();
+
+        timing = 60;
+        $('#timer_order').html(timing);
+        myTimer = setInterval(function() {
+            --timing;
+            $('#timer_order').html(timing);
+            if (timing === 0) {
+                $('#recend_timer_sms_order').hide();
+                $('#not_received_sms_order').show();
+                clearInterval(myTimer);
+            }
+        }, 1000);
+    }
     // for (let i = 0; i < __navItems.length; i++) {
     //     console.log((__navItems[i].dataset.id === localStorage.getItem("changeIcon")));
     //     if (__navItems[i].dataset.id === localStorage.getItem("changeIcon")) {
     //         __navItems[i].style.color = "red";
-    //         __navItems[i].childNodes[1].src = `http://new.salomat.tj/img/inactive.icon${__navItems[i].dataset.id}.svg`
+    //         __navItems[i].childNodes[1].src = `{base_url}/img/inactive.icon${__navItems[i].dataset.id}.svg`
     //     }
     // }
     // for (let i = 0; i < __navItems.length; i++) {
     //     __navItems[i].addEventListener('click', function() {
     //         localStorage.setItem("changeIcon", this.dataset.id);
     //         console.log(localStorage.getItem("changeIcon"))
-    //         __navItems[i].childNodes[1].src = `http://new.salomat.tj/img/inactive.icon${localStorage.getItem("changeIcon")}.svg`
+    //         __navItems[i].childNodes[1].src = `{base_url}/img/inactive.icon${localStorage.getItem("changeIcon")}.svg`
     //     })
     // }
 </script>

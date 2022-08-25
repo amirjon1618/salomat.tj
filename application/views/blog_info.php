@@ -72,9 +72,9 @@
             </div>
         </div>
 
-        <div class="container bi_recomend-product" style="background-color: #fff; padding: 20px;">
+        <div class="container bi_recomend-product" style="background-color: #fff; padding: 20px; margin-bottom: 3rem; border-radius: 5px;">
             <div class="ps-section__header pb-5">
-                <h3>Вам может пригодиться</h3>
+                <h3>Рекоммендуемые товары</h3>
             <hr>
             </div>
             <div class="ps-section__content">
