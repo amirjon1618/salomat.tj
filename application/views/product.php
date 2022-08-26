@@ -15,7 +15,7 @@
                             <?php if ($category_products['product_old_price'] != 0) : ?>
                                 <del><?= $category_products['product_old_price'] ?> сом.</del><?php endif; ?>
                         </span>
-                        <button class="ps-btn buy_btn">В корзину</button>
+                        <button onclick='addToCart(prod = <?= json_encode($category_products) ?>)' class="ps-btn ">В корзину</button>
                     </div>
                 </div>
             </article>
@@ -168,7 +168,7 @@
                                             <input class="form-control height50" id="count_input" type="number" value="1">
                                         </div>
                                     </figure>
-                                    <button class="ps-btn buy_btn">Купить</button>
+                                    <button onclick='addToCart(prod = <?= json_encode($category_products) ?>)' class="ps-btn">Купить</button>
                                 </div>
                             </div>
                         </div>
@@ -220,10 +220,10 @@
                                                                 <?php endif; ?>
                                                             </select><span>(<?= $sm_prod['review_count'] ?>)</span>
                                                         </div>
-                                                        <p class="ps-product__price sale prods_slider"><?= $sm_prod['product_price'] ?> <?php if ($sm_prod['product_old_price'] != 0) : ?> с. <del><?= $sm_prod['product_old_price'] ?> </del><?php endif; ?></p>
+                                                        <p class="ps-product__price sale prods_slider"><?= $sm_prod['product_price'] ?> <?php if ($sm_prod['product_old_price'] != 0) : ?> сом. <del><?= $sm_prod['product_old_price'] ?> </del><?php endif; ?></p>
                                                     </div>
                                                     <div class="ps-product__content hover"><a class="ps-product__title product_title_new" href="{base_url}main/product/<?= $sm_prod['id'] ?>"><?= $sm_prod['product_name'] ?></a>
-                                                        <p class="ps-product__price sale"><span><?= $sm_prod['product_price'] ?></span> <?php if ($sm_prod['product_old_price'] != 0) : ?> с. <del><?= $sm_prod['product_old_price'] ?> </del><?php endif; ?></p>
+                                                        <p class="ps-product__price sale"><span><?= $sm_prod['product_price'] ?></span> <?php if ($sm_prod['product_old_price'] != 0) : ?> сом. <del><?= $sm_prod['product_old_price'] ?> </del><?php endif; ?></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -259,10 +259,10 @@
                                                         <?php endif; ?>
                                                     </select><span>(<?= $similar_products[0]['review_count'] ?>)</span>
                                                 </div>
-                                                <p class="ps-product__price sale prods_slider"><?= $similar_products[0]['product_price'] ?> <?php if ($similar_products[0]['product_old_price'] != 0) : ?> с. <del><?= $similar_products[0]['product_old_price'] ?> </del><?php endif; ?></p>
+                                                <p class="ps-product__price sale prods_slider"><?= $similar_products[0]['product_price'] ?> <?php if ($similar_products[0]['product_old_price'] != 0) : ?> сом. <del><?= $similar_products[0]['product_old_price'] ?> </del><?php endif; ?></p>
                                             </div>
                                             <!-- <div class="ps-product__content hover"><a class="ps-product__title" href="{base_url}main/product/<?= $similar_products[0]['id'] ?>"><?= $similar_products[0]['product_name'] ?></a>
-                                                <p class="ps-product__price sale"><span><?= $similar_products[0]['product_price'] ?></span> <?php if ($similar_products[0]['product_old_price'] != 0) : ?> с. <del><?= $similar_products[0]['product_old_price'] ?> </del><?php endif; ?></p>
+                                                <p class="ps-product__price sale"><span><?= $similar_products[0]['product_price'] ?></span> <?php if ($similar_products[0]['product_old_price'] != 0) : ?> сом. <del><?= $similar_products[0]['product_old_price'] ?> </del><?php endif; ?></p>
                                             </div> -->
                                         </div>
                                     </div>
@@ -462,22 +462,29 @@
         <!-- **************************************************** -->
         <!-- **************************************************** -->
         <!-- **************************************************** -->
-        <div class="ps-section--default">
-            <div class="ps-section__header">
+        <div class="container bi_recomend-product" style="background-color: #fff; padding: 20px; margin-bottom: 5rem; border-radius: 5px;">
+            <div class="ps-section__header pb-5">
                 <h3>Вам может пригодиться</h3>
+                <hr>
             </div>
             <div class="ps-section__content">
-                <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
+                <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="1" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
                     <?php foreach ($prods_suggestions as $prod_sugg) : ?>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail hover01">
-                                <a href="{base_url}main/product/<?= $prod_sugg['id'] ?>">
-                                    <img class="prods_sugg_imgs" src="<?= $prod_sugg['base_url'] ?>upload_product/<?= $prod_sugg['product_pic'] ?>" alt=""></a>
-
+                        <div class="ps-product ps-product--inner ps-product_of_the_day">
+                            <label>
+                                <input value="<?php $prod_sugg['id'] ?>" <?php echo $prod_sugg['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
+                                <svg id="shape" fill="none" data-id="<?= $prod_sugg['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
+                                    <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </label>
+                            <div class="ps-product__thumbnail ps-product__thumbnail_img_div  hover01">
+                                <a href="<?= $base_url ?>index.php/main/product/<?= $prod_sugg['id'] ?>?from=main">
+                                    <img class="imgs" src="<?= $base_url ?>upload_product/<?= $prod_sugg['product_pic'] ?>" alt="Product IMG">
+                                </a>
                             </div>
                             <div class="ps-product__container">
-                                <div class="ps-product__content">
-                                    <a class="ps-product__title product_title_new" href="{base_url}main/product/<?= $prod_sugg['id'] ?>"><?= $prod_sugg['product_name'] ?></a>
+                                <div class="ps-product__content"><a class="ps-product__title product_title_new" href="<?= $base_url ?>index.php/main/product/<?= $prod_sugg['id'] ?>">
+                                        <?= $prod_sugg['product_name'] ?></a>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <?php if ($prod_sugg['review_count'] != 0) : ?>
@@ -498,11 +505,10 @@
                                             <?php endif; ?>
                                         </select><span>(<?= $prod_sugg['review_count'] ?>)</span>
                                     </div>
-                                    <p class="ps-product__price sale prods_slider"><span><?= $prod_sugg['product_price'] ?> c.</span> <?php if ($prod_sugg['product_old_price'] != 0) : ?> <del><?= $prod_sugg['product_old_price'] ?> </del><?php endif; ?></p>
-                                </div>
-                                <div class="ps-product__content hover"><a class="ps-product__title product_title_new" href="{base_url}main/product/<?= $prod_sugg['id'] ?>"><?= $prod_sugg['product_name'] ?></a>
-                                    <!-- <p class="ps-product__price sale"><?= $prod_sugg['product_price'] ?> <?php if ($prod_sugg['product_old_price'] != 0) : ?> <del><?= $prod_sugg['product_old_price'] ?> </del><?php endif; ?></p> -->
-                                    <p class="ps-product__price sale prods_slider"><span><?= $prod_sugg['product_price'] ?> c.</span> <?php if ($prod_sugg['product_old_price'] != 0) : ?> <del><?= $prod_sugg['product_old_price'] ?> </del><?php endif; ?></p>
+                                    <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
+                                            <?php if ($prod_sugg['product_old_price'] != 0) : ?><del><?= $prod_sugg['product_old_price'] ?> </del><?php endif; ?>
+                                            <?= $prod_sugg['product_price'] ?> c. </span><button onclick='addToCart(res = <?= json_encode($prod_sugg) ?>)' class="ps-btn btn-cart_cat">В корзину</button></p>
+
                                 </div>
                             </div>
                         </div>
@@ -531,10 +537,6 @@
 <script src="{base_url}js/jquery.validate.min.js"></script>
 <script src="{base_url}js/form_validation_messages_ru.js"></script>
 <script>
-    var count = 1;
-    var max_count_reached = false;
-    var total_count_global = '<?= $category_products['total_count_in_store']; ?>';
-    // var count_inp =
     function decrease_count() {
         $('#decrease_count').on('click', function() {
             count--;
@@ -582,87 +584,7 @@
     //     $('.ps-pp_dn').css("display", "block");
     // }else if($('.global-product-exist')){
     // }
-    function add_to_cart() {
-        $('.buy_btn').on('click', function() {
-            max_count_reached = false;
-            var array = [];
-            var id = <?= $category_products['id']; ?>;
-            var count = Number($('#count_input').val());
-            var price = <?= $category_products['product_price']; ?>;
-            var old_price = <?= $category_products['product_old_price']; ?>;
-            var brand = '<?= $category_products['product_brand']['brand_name']; ?>';
-            var pic = '<?= $category_products['product_pic']; ?>';
-            var name = '<?= $category_products['product_name']; ?>';
-            var total_count = '<?= $category_products['total_count_in_store']; ?>';
-            var product_articule = '<?= $category_products['product_articule']; ?>';
-            var obj = {
-                product_id: id,
-                product_name: name,
-                product_count: count,
-                product_old_price: old_price,
-                product_price: price,
-                product_brand: brand,
-                product_pic: pic,
-                product_total_count: total_count,
-                prod_articule: product_articule
-            };
 
-            var found = false;
-            if (total_count <= 0) {
-                $('.product_add_notification_div_error').css({
-                    'cssText': 'display: flex !important'
-                });
-                setTimeout(function() {
-                    $('.product_add_notification_div_error').hide();
-                }, 2500)
-            } else {
-                if (localStorage.getItem("product_list")) {
-                    var mydata = $.parseJSON(localStorage.getItem("product_list"));
-                    mydata.forEach(function(elem, index) {
-                        if (elem.product_id == id) {
-                            elem.product_count += count;
-
-                            // if (elem.product_count > total_count) {
-                            //     elem.product_count = total_count;
-                            // $('.product_add_notification_div_error').css({
-                            //     'cssText': 'display: flex !important'
-                            // });
-                            // setTimeout(function() {
-                            //     $('.product_add_notification_div_error').hide();
-                            // }, 2500)
-                            // max_count_reached = true;
-                            // }
-                            mydata[index] = elem;
-                            found = true;
-                        }
-                    });
-                    if (!found) {
-                        mydata.push(obj);
-                    }
-                    // $.cookie("product_list", JSON.stringify(mydata), {
-                    //     path: '/'
-                    // });
-                    localStorage.setItem("product_list", JSON.stringify(mydata))
-                } else {
-                    array.push(obj);
-                    // $.cookie("product_list", JSON.stringify(array), {
-                    //     path: '/'
-                    // });
-                    localStorage.setItem("product_list", JSON.stringify(array))
-                }
-                if (!max_count_reached) {
-                    $('.span_added_prod_name').text('' + name);
-                    $('.product_add_notification_div').css({
-                        'cssText': 'display: flex !important'
-                    });
-                    setTimeout(function() {
-                        $('.product_add_notification_div').hide();
-                    }, 1000)
-                }
-                set_prods_header();
-            }
-        });
-    }
 
     function rating_form_validate() {
         jQuery.validator.setDefaults({
@@ -837,7 +759,6 @@
         decrease_count();
         increase_count();
         change_count();
-        add_to_cart();
         scrollToTabs();
         clear();
         set_prods_header();
@@ -886,6 +807,89 @@
                 document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
             }
         })
+    }
+    var count = 1;
+    var max_count_reached = false;
+    var total_count_global = '<?= $category_products['total_count_in_store']; ?>';
+
+    function addToCart(res) {
+        max_count_reached = false;
+        var array = [];
+        var id = res.id;
+        var count = Number($('#count_input').val());
+        var price = res.product_price;
+        var old_price = res.product_old_price;
+        var brand = res.product_brand;
+        var pic = res.product_pic;
+        var name = res.product_name;
+        var total_count = res.product_total_count;
+        var product_articule = res.product_articule;
+        var obj = {
+            product_id: id,
+            product_name: name,
+            product_count: count,
+            product_old_price: old_price,
+            product_price: price,
+            product_brand: brand,
+            product_pic: pic,
+            product_total_count: total_count,
+            prod_articule: product_articule
+        };
+
+        var found = false;
+        if (total_count <= 0) {
+            $('.product_add_notification_div_error').css({
+                'cssText': 'display: flex !important'
+            });
+            setTimeout(function() {
+                $('.product_add_notification_div_error').hide();
+            }, 2500)
+        } else {
+            if (localStorage.getItem("product_list")) {
+                var mydata = $.parseJSON(localStorage.getItem("product_list"));
+                mydata.forEach(function(elem, index) {
+                    if (elem.product_id == id) {
+                        elem.product_count += count;
+
+                        // if (elem.product_count > total_count) {
+                        //     elem.product_count = total_count;
+                        // $('.product_add_notification_div_error').css({
+                        //     'cssText': 'display: flex !important'
+                        // });
+                        // setTimeout(function() {
+                        //     $('.product_add_notification_div_error').hide();
+                        // }, 2500)
+                        // max_count_reached = true;
+                        // }
+                        mydata[index] = elem;
+                        found = true;
+                    }
+                });
+                if (!found) {
+                    mydata.push(obj);
+                }
+                // $.cookie("product_list", JSON.stringify(mydata), {
+                //     path: '/'
+                // });
+                localStorage.setItem("product_list", JSON.stringify(mydata))
+            } else {
+                array.push(obj);
+                // $.cookie("product_list", JSON.stringify(array), {
+                //     path: '/'
+                // });
+                localStorage.setItem("product_list", JSON.stringify(array))
+            }
+            if (!max_count_reached) {
+                $('.span_added_prod_name').text('' + name);
+                $('.product_add_notification_div').css({
+                    'cssText': 'display: flex !important'
+                });
+                setTimeout(function() {
+                    $('.product_add_notification_div').hide();
+                }, 1000)
+            }
+            set_prods_header();
+        }
     }
 </script>
 <style>

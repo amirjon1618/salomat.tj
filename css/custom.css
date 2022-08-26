@@ -574,7 +574,7 @@ body {
    font-weight: 700;
    font-size: 14px;
    color: #1e323c;
-   padding: 6px 15px 6px 15px;
+   padding: 6px 12px 6px 12px;
    line-height: 22px;
 }
 
@@ -928,7 +928,7 @@ textarea.error {
 
    .recipe_phone_div_button_send_sms {
       width: 60% !important;
-      font-size: 14px !important;
+      font-size: 18px !important;
       margin-top: 20px !important;
       padding: 8px !important;
    }
@@ -1187,7 +1187,7 @@ button {
 }
 
 .send_recipe_btn {
-   height: 46px;
+   height: 48px;
    color: #fff;
    background-color: #1ebebe;
    border-color: #1ebebe;
@@ -1202,7 +1202,7 @@ button {
    user-select: none;
    border: 1px solid transparent;
    /* padding: 0.6rem 1rem; */
-   font-size: 1.5rem;
+   font-size: 1.2rem;
    line-height: 1.5;
    border-radius: 7px;
    -webkit-transition: color 0.15s ease-in-out,
@@ -1281,8 +1281,10 @@ button {
 
 .recipe_phone_div_button_send_sms {
    width: 100%;
-   height: 46px;
+   height: 48px;
+   font-size: 18px;
    margin-top: 10px;
+   font-size: 18px;
    padding: 8px;
    border-radius: 7px;
    color: white;
@@ -1329,7 +1331,7 @@ button {
    padding: 12px;
    border-radius: 7px;
    display: flex;
-   height: 50px;
+   height: 48px;
    align-items: center;
 }
 
@@ -1342,6 +1344,7 @@ button {
    padding: 8px 15px;
    line-height: 1.5;
    border-radius: 7px;
+   font-size: 18px;
    background: #1ebebe;
    color: #ffffff;
    border-color: transparent;
@@ -1528,7 +1531,7 @@ button {
 }
 
 .product_add_notification_div {
-   background: rgb(17, 223, 126);
+   background: #18A1A1;
    border-radius: 7px;
    align-items: center;
    position: fixed;
