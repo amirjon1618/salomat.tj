@@ -80,6 +80,7 @@
                                         </select><span>(<?= $prod_of_the_day['review_count'] ?>)</span>
                                     </div>
                                     <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
+                                            <input class="form-control height50" id="count_input" type="number" value="1" style="display: none;">
                                             <?php if ($prod_of_the_day['product_old_price'] != 0) : ?><del><?= $prod_of_the_day['product_old_price'] ?> </del><?php endif; ?>
                                             <?= $prod_of_the_day['product_price'] ?> c. </span><button onclick='addToCart(res = <?= json_encode($prod_of_the_day) ?>)' class="ps-btn btn-cart_cat">В корзину</button></p>
 
@@ -362,6 +363,43 @@
         })
     }
     getBlog();
+
+    function decrease_count() {
+        $('#decrease_count').on('click', function() {
+            count--;
+            if (count < 1) {
+                count = 1;
+            }
+            $('#count_input').val(count);
+        })
+    }
+
+    function increase_count() {
+        $('#increase_count').on('click', function() {
+            // if (count < total_count_global) {
+            count++;
+            // }
+            $('#count_input').val(count);
+        })
+    }
+
+    function change_count() {
+        $('#count_input').change(function() {
+            // console.log('total_count_global:'+$('#count_input').val());
+            // if(Number($('#count_input').val()) > total_count_global){
+            //     // console.log('total_count_global:'+total_count_global);
+            //     count = total_count_global
+            //     $('#count_input').val(count);
+            // } else 
+            if ($('#count_input').val() > 0) {
+                count = $('#count_input').val();
+            } else {
+                count = 1;
+                $('#count_input').val(count);
+            }
+            // else if ($('#count_input').val() < 1 || Number($('#count_input').val()) == 0)
+        })
+    }
 
     function addToCart(res) {
         max_count_reached = false;

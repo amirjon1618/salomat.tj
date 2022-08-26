@@ -220,10 +220,10 @@
                                                                 <?php endif; ?>
                                                             </select><span>(<?= $sm_prod['review_count'] ?>)</span>
                                                         </div>
-                                                        <p class="ps-product__price sale prods_slider"><?= $sm_prod['product_price'] ?> <?php if ($sm_prod['product_old_price'] != 0) : ?> с. <del><?= $sm_prod['product_old_price'] ?> </del><?php endif; ?></p>
+                                                        <p class="ps-product__price sale prods_slider"><?= $sm_prod['product_price'] ?> <?php if ($sm_prod['product_old_price'] != 0) : ?> сом. <del><?= $sm_prod['product_old_price'] ?> </del><?php endif; ?></p>
                                                     </div>
                                                     <div class="ps-product__content hover"><a class="ps-product__title product_title_new" href="{base_url}main/product/<?= $sm_prod['id'] ?>"><?= $sm_prod['product_name'] ?></a>
-                                                        <p class="ps-product__price sale"><span><?= $sm_prod['product_price'] ?></span> <?php if ($sm_prod['product_old_price'] != 0) : ?> с. <del><?= $sm_prod['product_old_price'] ?> </del><?php endif; ?></p>
+                                                        <p class="ps-product__price sale"><span><?= $sm_prod['product_price'] ?></span> <?php if ($sm_prod['product_old_price'] != 0) : ?> сом. <del><?= $sm_prod['product_old_price'] ?> </del><?php endif; ?></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -259,10 +259,10 @@
                                                         <?php endif; ?>
                                                     </select><span>(<?= $similar_products[0]['review_count'] ?>)</span>
                                                 </div>
-                                                <p class="ps-product__price sale prods_slider"><?= $similar_products[0]['product_price'] ?> <?php if ($similar_products[0]['product_old_price'] != 0) : ?> с. <del><?= $similar_products[0]['product_old_price'] ?> </del><?php endif; ?></p>
+                                                <p class="ps-product__price sale prods_slider"><?= $similar_products[0]['product_price'] ?> <?php if ($similar_products[0]['product_old_price'] != 0) : ?> сом. <del><?= $similar_products[0]['product_old_price'] ?> </del><?php endif; ?></p>
                                             </div>
                                             <!-- <div class="ps-product__content hover"><a class="ps-product__title" href="{base_url}main/product/<?= $similar_products[0]['id'] ?>"><?= $similar_products[0]['product_name'] ?></a>
-                                                <p class="ps-product__price sale"><span><?= $similar_products[0]['product_price'] ?></span> <?php if ($similar_products[0]['product_old_price'] != 0) : ?> с. <del><?= $similar_products[0]['product_old_price'] ?> </del><?php endif; ?></p>
+                                                <p class="ps-product__price sale"><span><?= $similar_products[0]['product_price'] ?></span> <?php if ($similar_products[0]['product_old_price'] != 0) : ?> сом. <del><?= $similar_products[0]['product_old_price'] ?> </del><?php endif; ?></p>
                                             </div> -->
                                         </div>
                                     </div>
@@ -811,7 +811,6 @@
     var count = 1;
     var max_count_reached = false;
     var total_count_global = '<?= $category_products['total_count_in_store']; ?>';
-    // var count_inp =
 
     function addToCart(res) {
         max_count_reached = false;

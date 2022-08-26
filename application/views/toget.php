@@ -1,15 +1,16 @@
 <html>
 <style>
-label{
-	font-size: 18px;
-	
-}
-i{
-	font-size: 16px;
-}
+	label {
+		font-size: 18px;
+
+	}
+
+	i {
+		font-size: 16px;
+	}
 </style>
 <label>
-Ваш заказ ждет вас.
+	Ваш заказ ждет васом.
 </label>
 <br />
 Ячейка: {box_alias_id}<br />
@@ -19,4 +20,5 @@ i{
 <br />
 <br />
 <img src="{base_url}barcode.php?codetype=Code39&size=150&text={box_alias_id}{box_password}&sizefactor=3" style="width: 100%" />
+
 </html>

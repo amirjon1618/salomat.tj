@@ -18,7 +18,7 @@
                     </div>
                     <div class="ps-section__content">
                         <div class="table-responsive">
-                            <table class="table ps-table--shopping-cart col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <table class="table ps-table--shopping-cart col-lg-8 col-md-8 col-sm-12 col-xs-12 mb-5">
                                 <thead>
                                     <tr>
                                         <th>Товар</th>
@@ -60,10 +60,10 @@
                                 <tbody>
                                     <tr>
                                         <td class="border-0 fw-bolder table-text-bold" style="font-weight: 500;">Стоимост товаров: </td>
-                                        <td class="border-0 table-text-end table-text-bold"><span class="number-currency">150 </span><span class="text-currency">TJS</span></td>
+                                        <td class="border-0 table-text-end table-text-bold"><span class="number-currency">150 </span><span class="text-currency">сом</span></td>
                                     </tr>
                                         <td class="border-0">Стоимост доставки: </td>
-                                        <td class="border-0 table-text-end table-text-bold font-weight-bold">10 <span class="text-currency">TJS</span></td>
+                                        <td class="border-0 table-text-end table-text-bold font-weight-bold">10 <span class="text-currency">сом</span></td>
                                     </tr>
                                     
                                 </tbody>
@@ -74,7 +74,7 @@
                             <tbody>
                                 <tr>
                                     <td class="border-0 table-text-bold" style="font-weight: 500;">Итого: </td>
-                                    <td class="border-0 table-text-end table-text-bold"><span class="number-currency">150</span><span class="text-currency">TJS</span></td>
+                                    <td class="border-0 table-text-end table-text-bold"><span class="number-currency">150 </span><span class="text-currency">сом</span></td>
                                 </tr>
                                 
                             </tbody>
@@ -217,11 +217,11 @@
                 var td2 = document.createElement('td');
                 if (item.product_old_price != 0) {
                     var div2 = "<p class=\"margBot0\">" +
-                        "<del>" + item.product_old_price + " c.</del>\n" +
-                        "</p>" + item.product_price + " c.";
+                        "<del>" + item.product_old_price + " cом.</del>\n" +
+                        "</p>" + item.product_price + " cом.";
                 } else {
                     var div2 = "<p class=\"margBot0\">" +
-                        "</p>" + item.product_price + " c.";
+                        "</p>" + item.product_price + " cом.";
                 }
                 td2.innerHTML += div2;
                 var td3 = document.createElement('td');
@@ -232,7 +232,7 @@
                     "</div>";
                 td3.innerHTML += dv3;
                 var td4 = document.createElement('td');
-                var text = document.createTextNode(item.product_count * item.product_price + ' c');
+                var text = document.createTextNode(item.product_count * item.product_price + ' cом');
                 td4.appendChild(text);
 
                 var td5 = document.createElement('td');
