@@ -41,6 +41,7 @@ class Users extends REST_Controller {
         $this->response($this->user->get_users(), REST_Controller::HTTP_OK);
     }
 
+
     /**
      * Show the User.
      *
@@ -168,6 +169,29 @@ class Users extends REST_Controller {
                     $this->response($message, REST_Controller::HTTP_NOT_FOUND);
                 }
             }
+        }
+    }
+
+    /**
+     * Upload user image
+     *
+     */
+    public function user_img_post()
+    {
+
+        $config['upload_path']          = './user_img';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 40011;
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('img')) {
+            $error = array('error' => $this->upload->display_errors());
+
+            $this->response($error, REST_Controller::HTTP_OK);
+        }else {
+            $data = array('upload_data' => $this->upload->data());
+
+            $this->response($data, REST_Controller::HTTP_OK);
         }
     }
 

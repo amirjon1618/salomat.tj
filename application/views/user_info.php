@@ -87,9 +87,9 @@
                                         <img src="{base_url}img/user.png" alt="Icon" class="rounded-circle" style="width: 100px;">
                                         <form class="form-del">
                                             <div class="input__wrapper">
-                                                <input name="file" type="file" name="file" id="input__file" class="input input__file" multiple>
+                                                <input name="file" type="file" name="file" id="input__file" class="input input__file" onchange="uploadIMG(this)"  multiple>
                                                 <label for="input__file" class="input__file-button mt-5 ">
-                                                    <span class="input__file-button-text ">Сменить фото</span>
+                                                    <span  class="input__file-button-text ">Сменить фото</span>
                                                 </label>
                                             </div>
                                             <div class="del-photo">
@@ -279,6 +279,43 @@
     </div>
 </div>
 <script>
+
+    let imgVal;
+    async function postData(url = '', data = {}) {
+        // Default options are marked with *
+        // console.log(JSON.stringify(data));
+        const response = await fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+
+            body: data // body data type must match "Content-Type" header
+        });
+        return await response.json(); // parses JSON response into native JavaScript objects
+    }
+
+    function uploadIMG(e) {
+        var input = document.querySelector(e)
+
+        var data = new FormData()
+        data.append('file', e.files[0])
+        data.append('user', 'hubot')
+
+        fetch('<?= base_url() ?>users/user_img?type=save', {
+            method: 'POST',
+            body: data
+        })
+        //postData('<?//= base_url() ?>///users/user_img?type=save', [{name:'Komyob'}])
+        //    .then((data) => {
+        //        console.log(data); // JSON data parsed by `response.json()` call
+        //    })
+        //    .catch(res => {
+        //        console.log(res)
+        //    });
+    }
+
     $(document).ready(function() {
         var os = '<?php if (isset($os)) echo $os; ?>';
         if (os == 1) {
