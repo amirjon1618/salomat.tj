@@ -84,6 +84,7 @@ class Main extends CI_Controller
         echo '';
         exit;
     }
+
     public function sm()
     {
         $type = $this->input->get('type');
@@ -105,6 +106,7 @@ class Main extends CI_Controller
         echo '';
         exit;
     }
+
 
 
     // public function addRecipe()

@@ -56,6 +56,7 @@ class Advertisement extends CI_Model
     {
         $array = array();
         $this->db->select("*");
+        $this->db->order_by('rand()');
         $this->db->from('advertisement');
         if ($type != '') {
             $this->db->where('advertisement_type', $type);

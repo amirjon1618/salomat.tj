@@ -131,6 +131,8 @@
     var recipe_pics = [];
     var recipe_id = null;
     var recipe_phone_number = '';
+    var recipe_name = '';
+    var recipe_comment = '';
     var uploadFinished = false;
     // var recipe_sms_id = '';
 
@@ -206,7 +208,9 @@
 
     function sendSms() {
         $('#loading').show();
-        var validate = validatePhone($('.recipe_phone_number').val());
+        // console.log($('.recipe_phone_number')[2].value);
+        var validate = validatePhone($('.recipe_phone_number')[2].value);
+        console.log($('.recipe_phone_number').val())
         if (validate) {
             var upload = $("#user_files").data("kendoUpload"),
                 files2 = upload.getFiles();
@@ -215,7 +219,9 @@
                 type: "POST",
                 dataType: "json",
                 data: {
-                    "recipe_phone": $('.recipe_phone_number').val(),
+                    "recipe_phone": $('.recipe_phone_number')[2].value,
+                    "recipe_name": $('.recipe_name').val(),
+                    "recipe_comment": $('.recipe_comment').val(),
                     "recipe_pics": recipe_pics
                 },
                 success: function(data) {
@@ -223,7 +229,7 @@
                     console.log('data');
                     if (data.stat == 1) {
                         recipe_id = data.recipe_id;
-                        recipe_phone_number = $('.recipe_phone_number').val();
+                        recipe_phone_number = $('.recipe_phone_number')[2].value;
                         $('#recipe_phone_div_phone_number').hide();
                         $('#recipe_phone_div_phone_code').show();
                         begin();

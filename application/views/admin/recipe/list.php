@@ -38,8 +38,8 @@
                 <tr>
                   <td><?= $item['recipe_phone'] ?></td>
                   <td><?= $item['created_at'] ?></td>
-                  <td><?= $item['recipe_phone'] ?></td>
-                  <td><?= $item['recipe_phone'] ?></td>
+                  <td><?= $item['full_name'] ?></td>
+                  <td><?= $item['comment'] ?></td>
                   <td style="width: 100px;"><span class="label" style="background:<?=$item['status_color']?>;border-radius:.5em"><?= $item['status']?></span></td>
                   <td style="text-align: center;width: 100px;">
                     <a href="{base_url}index.php/admin/recipePics/<?= $item['id'] ?>">
