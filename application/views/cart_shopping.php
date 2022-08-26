@@ -8,36 +8,36 @@
             </button>
         </div>
     </div>
-    
+
     <div class="mycart col-lg-8 col-md-6 col-sm-12 col-xs-12 p-0">
 
-            <div class="ps-section--shopping ps-shopping-cart">
-                <div class="container">
-                    <div class="ps-section__header">
-                        <h3>Моя корзина</h3>
-                    </div>
-                    <div class="ps-section__content">
-                        <div class="table-responsive">
-                            <table class="table ps-table--shopping-cart col-lg-8 col-md-8 col-sm-12 col-xs-12 mb-5">
-                                <thead>
-                                    <tr>
-                                        <th>Товар</th>
-                                        <th>Цена</th>
-                                        <th>Кол-во</th>
-                                        <th>Итого</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="pr-list">
-                                    <!--PRODUCT LIST-->
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
+        <div class="ps-section--shopping ps-shopping-cart">
+            <div class="container">
+                <div class="ps-section__header">
+                    <h3>Моя корзина</h3>
                 </div>
+                <div class="ps-section__content">
+                    <div class="table-responsive">
+                        <table class="table ps-table--shopping-cart col-lg-8 col-md-8 col-sm-12 col-xs-12 mb-5">
+                            <thead>
+                                <tr>
+                                    <th>Товар</th>
+                                    <th>Цена</th>
+                                    <th>Кол-во</th>
+                                    <th>Итого</th>
+                                </tr>
+                            </thead>
+                            <tbody class="pr-list">
+                                <!--PRODUCT LIST-->
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
+    </div>
     <div class="mycart col-lg-4 col-md-6 col-sm-12 col-xs-12" style="display: flex; justify-content: center; align-items: center; padding-top: 8%;">
         <div class="toast toast_empty2 fade hide">
             <div class="toast-body">
@@ -55,40 +55,40 @@
                         <div class="ps-section__header">
                             <h3 class="fw-bold">Ваш заказ</h3>
                         </div>
-                        <div class="price-product px-4 justify-content-between">
+                        <div class="price-product px-3 justify-content-between">
                             <table class="table">
                                 <tbody>
                                     <tr>
                                         <td class="border-0 fw-bolder table-text-bold" style="font-weight: 500;">Стоимост товаров: </td>
-                                        <td class="border-0 table-text-end table-text-bold"><span class="number-currency">150 </span><span class="text-currency">сом</span></td>
+                                        <td class="border-0 table-text-end table-text-bold"><span class="number-currency"> </span><span class="text-currency"> сом</span></td>
                                     </tr>
-                                        <td class="border-0">Стоимост доставки: </td>
-                                        <td class="border-0 table-text-end table-text-bold font-weight-bold">10 <span class="text-currency">сом</span></td>
+                                    <td class="border-0">Стоимост доставки: </td>
+                                    <td class="border-0 table-text-end table-text-bold font-weight-bold">10 <span class="text-currency"> сом</span></td>
                                     </tr>
-                                    
+
                                 </tbody>
                             </table>
                         </div>
-                        <div class="px-4">
-                        <table class="table py-5 justify-content-between">
-                            <tbody>
-                                <tr>
-                                    <td class="border-0 table-text-bold" style="font-weight: 500;">Итого: </td>
-                                    <td class="border-0 table-text-end table-text-bold"><span class="number-currency">150 </span><span class="text-currency">сом</span></td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
+                        <div class="px-3">
+                            <table class="table py-5 justify-content-between">
+                                <tbody>
+                                    <tr>
+                                        <td class="border-0 table-text-bold" style="font-weight: 500;">Итого: </td>
+                                        <td class="border-0 table-text-end table-text-bold"><span class="number-currency_total"> </span><span class="text-currency"> сом</span></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
                         </div>
                         <div class="price-text px-4 pb-4">
                             <input type="text" class="border price-text__input" placeholder="Активировать промо код">
                             <button class="price-text__btn"><img src="{base_url}img/right-arrow.svg" alt=""></button>
                         </div>
-                        
+
                     </div>
                     <div class="ps-section__cart-actions">
                         <a class="ps-btn ps-btn--outline checkout" href="{base_url}index.php/main/checkout">
-                                Оформить заказ</a>
+                            Оформить заказ</a>
                     </div>
                 </div>
             </div>
@@ -192,7 +192,9 @@
         set_prods_header();
     }
 
+
     function product_list() {
+        let sum = 0;
         if (localStorage.getItem("product_list")) {
             var mydata = $.parseJSON(localStorage.getItem("product_list"));
             $('.pr-list').html('');
@@ -214,6 +216,7 @@
                     "</div>" +
                     "</div>";
                 td1.innerHTML += div1;
+                sum += (item.product_count * item.product_price);
                 var td2 = document.createElement('td');
                 if (item.product_old_price != 0) {
                     var div2 = "<p class=\"margBot0\">" +
@@ -255,6 +258,9 @@
 
             $('.pr-list').html('');
         }
+        console.log(sum)
+        $(".number-currency").text(`${sum}`);
+        $(".number-currency_total").text(`${sum + 10}`);
     }
 
 

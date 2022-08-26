@@ -13703,9 +13703,14 @@ button:focus {
     .text-currency {
         color: #4a4ac3;
         font-weight: 500;
-        font-size: 12px;
+        font-size: 16px;
     }
     .number-currency {
+        color: #000;
+        font-weight: 500;
+        font-size: 20px;
+    }
+    .number-currency_total {
         color: #000;
         font-weight: 500;
         font-size: 20px;
