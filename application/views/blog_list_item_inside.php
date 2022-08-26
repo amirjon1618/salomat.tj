@@ -3,7 +3,7 @@
         <div class="ps-post__header">
             <div class="container">
                 <h1><?= $blog['blog_title'] ?></h1>
-                <p><?= $blog['blog_date']?></p>
+                <p><?= $blog['blog_date'] ?></p>
             </div>
         </div>
         <div class="container">
@@ -46,7 +46,7 @@
                                 </ul> -->
                             </div>
                             <div class="ps-product__container">
-                                <a class="ps-product__vendor" href="#"><?= $prod_of_the_day['product_brand']['brand_name']?></a>
+                                <a class="ps-product__vendor" href="#"><?= $prod_of_the_day['product_brand']['brand_name'] ?></a>
                                 <div class="ps-product__content">
                                     <a class="ps-product__title product_title_new" href="<?= $prod_of_the_day['base_url'] ?>index.php/main/product/<?= $prod_of_the_day['id'] ?>">
                                         <?= $prod_of_the_day['product_name'] ?>
@@ -71,13 +71,13 @@
                                             <?php endif; ?>
                                         </select><span>(<?= $prod_of_the_day['review_count'] ?>)</span>
                                     </div>
-                                    <p class="ps-product__price sale"><?= $prod_of_the_day['product_price'] ?> с. <del><?= $prod_of_the_day['product_price'] ?> с.</del></p>
+                                    <p class="ps-product__price sale"><?= $prod_of_the_day['product_price'] ?> сом. <del><?= $prod_of_the_day['product_price'] ?> сом.</del></p>
                                 </div>
                                 <div class="ps-product__content hover">
                                     <a class="ps-product__title product_title_new" href="<?= $prod_of_the_day['base_url'] ?>index.php/main/product/<?= $prod_of_the_day['id'] ?>">
                                         <?= $prod_of_the_day['product_name'] ?>
                                     </a>
-                                    <p class="ps-product__price sale"><?= $prod_of_the_day['product_price'] ?> с. <del><?= $prod_of_the_day['product_price'] ?> с.</del></p>
+                                    <p class="ps-product__price sale"><?= $prod_of_the_day['product_price'] ?> сом. <del><?= $prod_of_the_day['product_price'] ?> сом.</del></p>
                                 </div>
                             </div>
                         </div>

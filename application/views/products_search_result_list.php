@@ -146,7 +146,7 @@
         border-radius: 4px;
         background-color: #fff;
         display: flex;
-        width: 80%;
+        width: 186px;
         text-align: center;
         font-weight: 600;
         padding: 5px 0;

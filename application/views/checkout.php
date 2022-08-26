@@ -18,49 +18,49 @@
                     <div class="ps-form__content">
                         <div class="row">
                             <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
-                            <?php if(!$bUser): ?>
-                                <div class="ps-form__billing-info">
-                                    <div class="delivery-form">
-                                        <div class="form-input col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0">
-                                            <div class="form-group pr-3">
-                                                <label>Имя Фамилия <span class="red-star">*</span></label>
-                                                <input class="form-control" maxlength="80" required pattern="\d*" name="name" value="<?php echo $name?>"  id="order_name" type="text" placeholder="Имя Фамилия">
+                                <?php if (!$bUser) : ?>
+                                    <div class="ps-form__billing-info">
+                                        <div class="delivery-form">
+                                            <div class="form-input col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0">
+                                                <div class="form-group pr-3">
+                                                    <label>Имя Фамилия <span class="red-star">*</span></label>
+                                                    <input class="form-control" maxlength="80" required pattern="\d*" name="name" value="<?php echo $name ?>" id="order_name" type="text" placeholder="Имя Фамилия">
+                                                </div>
+                                                <div class="form-group pr-3">
+                                                    <label>Дом <span></span></label>
+                                                    <input class="form-control" maxlength="250" type="text" placeholder="Дом">
+                                                </div>
+                                                <div class="form-group pr-3">
+                                                    <label>Номер телефона <span class="red-star">*</span></label>
+                                                    <input class="form-control" required type="text" pattern="\d*" maxlength="9" id="order_phone" name="cell_phone" placeholder="Введите свой номер">
+                                                </div>
                                             </div>
-                                            <div class="form-group pr-3">
-                                                <label>Дом <span></span></label>
-                                                <input class="form-control" maxlength="250"   type="text" placeholder="Дом">
-                                            </div>
-                                            <div class="form-group pr-3">
-                                                <label>Номер телефона <span class="red-star">*</span></label>
-                                                <input class="form-control" required type="text" pattern="\d*" maxlength="9" id="order_phone" name="cell_phone" placeholder="Введите свой номер">
+                                            <div class="form-input col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0">
+                                                <div class="form-group">
+                                                    <label>Улица <span class="red-star">*</span></label>
+                                                    <input class="form-control" maxlength="250" required name="address" id="order_address" type="text" placeholder="Улица">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Ориентир</label>
+                                                    <input class="form-control" maxlength="250" type="text" placeholder="Ориентир">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Телефон, если не дозвонимся</label>
+                                                    <input class="form-control" required type="text" pattern="\d*" maxlength="9" id="order_phone2" name="cell_phone" placeholder="Введите свой номер">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-input col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0">
-                                            <div class="form-group">
-                                                <label>Улица <span class="red-star">*</span></label>
-                                                <input class="form-control" maxlength="250" required name="address" id="order_address" type="text" placeholder="Улица">
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label>Ориентир</label>
-                                                <input class="form-control" maxlength="250"  type="text" placeholder="Ориентир">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Телефон, если не дозвонимся</label>
-                                                <input class="form-control" required type="text" pattern="\d*" maxlength="9" id="order_phone2" name="cell_phone" placeholder="Введите свой номер">
-                                            </div>
+
+                                        <div class="form-group col-12 p-0">
+                                            <label>Комментарии</label>
+                                            <textarea class="form-control" maxlength="250" name="comment" id="order_comment" type="text" placeholder="Дополнительные пожелания"></textarea>
                                         </div>
                                     </div>
-                                    
-                                    <div class="form-group col-12 p-0">
-                                        <label>Комментарии</label>
-                                        <textarea class="form-control" maxlength="250" name="comment" id="order_comment" type="text" placeholder="Дополнительные пожелания"></textarea>
-                                    </div>
-                                </div>
-                                <div class="checkout_min_sum_div" style="display: none;">
+                                    <div class="checkout_min_sum_div" style="display: none;">
                                         <h4 style="color: #4d4dbf;font-size:16px">Минимальная сумма должна быть 35 сомони</h4>
-                                </div>
-                                <?php else: ?>
+                                    </div>
+                                <?php else : ?>
                                     <div class="checkout_ecom_div">
                                         <h4 class="checkout_ecom_type_title">Метод оплаты</h4>
                                         <div class="checkout_bInfo">
@@ -69,7 +69,7 @@
                                                 </span>
                                             </div>
                                             <label for="bWallet" class="checkout_bWallet_label">MyBabilon
-                                            <img class="w-auto wlogo" src="{base_url}img/online_wallet/babilon-m.png" alt="MyBabilon">
+                                                <img class="w-auto wlogo" src="{base_url}img/online_wallet/babilon-m.png" alt="MyBabilon">
                                             </label>
                                         </div>
                                         <br>
@@ -99,34 +99,34 @@
                                             <figure class="delivery-figure product-form_text">
                                                 <figcaption><strong>Доставка</strong></figcaption>
                                                 {delivery}
-                                                    <div class="delivery-div">
-                                                        <input type="radio" name="delivery" id="{delivery_id}" value="{delivery_price}">
-                                                        <label for="{delivery_id}">{delivery_name} - <span style="font-weight: bold;">{delivery_price} сом</span></label><br>
-                                                    </div>
+                                                <div class="delivery-div">
+                                                    <input type="radio" name="delivery" id="{delivery_id}" value="{delivery_price}">
+                                                    <label for="{delivery_id}">{delivery_name} - <span style="font-weight: bold;">{delivery_price} сом</span></label><br>
+                                                </div>
                                                 {/delivery}
                                             </figure>
                                             <figure class="total-form_figure">
                                                 <figcaption><strong class="total-form_text">Общая сумма</strong><strong id="tot_pr_checkout" class="total-form_text"></strong></figcaption>
                                             </figure>
                                         </div>
-                                        
-                                        
-                                        
+
+
+
 
                                         <!-- <figure class="ps-block__shipping">
                                             <h3>Способ оплаты</h3> -->
-                                            <!-- <input type="radio" name="payment" id="pay_cash" value="cash">
+                                        <!-- <input type="radio" name="payment" id="pay_cash" value="cash">
                                             <label for="pay_cash">Наличными при получении</label><br>
                                             <input type="radio" name="payment" id="pay_app" value="app">
                                             <label for="pay_app">Мобильный кошелёк alif </label> -->
                                         <!-- </figure> -->
-                                        <?php if($bUser): ?>
+                                        <?php if ($bUser) : ?>
                                             <div class="checkout_bContinue_div">
                                                 <button class="checkout_bContinue_btn" onclick="startTrans()">Продолжить</button>
                                             </div>
                                         <?php endif; ?>
                                     </div>
-                                        <input onclick="order_confirm()" type="submit" style="height: 3em" value="Оформить заказ" class="ps-btn ps-btn--fullwidth">
+                                    <input onclick="order_confirm()" type="submit" style="height: 3em" value="Оформить заказ" class="ps-btn ps-btn--fullwidth">
                                 </div>
                             </div>
                         </div>
@@ -255,7 +255,7 @@
                     required: "Ввeдите ваш номер телефона без +992",
                 },
                 terms_conditions: "",
-                delivery:{
+                delivery: {
                     required: "Выберите тип доставки"
                 }
             },
@@ -267,7 +267,7 @@
             //         required: "Пожалуйста вводите фамилию",
             //         maxlength: jQuery.validator.format("Пожалуйста введите не больше {0} знаков"),
             //     },
-           
+
             //     landmark: jQuery.validator.format("Пожалуйста введите не больше {0} знаков"),
             //     comment: jQuery.validator.format("Пожалуйста введите не больше {0} знаков"),
             //     address:  { 
@@ -303,7 +303,7 @@
                 sum += (item.product_count * item.product_price);
                 $('#prod_list_checkout').append(html);
             });
-            $('#prod_tot_pr_checkout').text(sum + ' с.');
+            $('#prod_tot_pr_checkout').text(sum + ' сом.');
             countSumWithDelivery();
         }
     }
@@ -316,7 +316,7 @@
                 cart_total_sum += (item.product_count * item.product_price);
             });
             if (cart_total_sum < 35) {
-            // if (false) {
+                // if (false) {
                 $(".checkout_ecom_div").hide();
                 $(".ps-form__billing-info").hide();
                 $(".checkout_min_sum_div").show();
@@ -349,12 +349,12 @@
                 var comment = $('#order_comment').val();
                 var delivery_id = $('input[name=delivery]:checked').attr("id")
                 // var cash_type = $('input[name=payment]:checked').val() ?? '';
-                
+
                 $.post("<?= $base_url; ?>index.php/main/confirmOrder", {
                     "phone_number": phone_number,
                     "phone_number2": phone_number2,
                     "name": name,
-                    "address": address+landmark+building,
+                    "address": address + landmark + building,
                     "comment": comment,
                     "delivery_id": delivery_id,
                     // "cash_type": cash_type,
@@ -414,7 +414,7 @@
                     var html =
                         "<i class=\"fa fa-check-square-o\" id=\"success_icon\"></i>" +
                         "<h4 class=\"text-muted\">Ваш заказ принят!</h4>" +
-                        "<p><strong>Мы свяжемся с Вами в ближайшее время.</p>"+ 
+                        "<p><strong>Мы свяжемся с Вами в ближайшее время.</p>" +
                         "<div class=\"order_numb_div\"> Номер заказа <span style=\"color:#3c3a3a\">#" + data.order.id + "</span></strong> </div>" +
                         "<br />";
 
@@ -500,7 +500,7 @@
 
     function startTrans() {
         var checkedDel = false;
-        $.each($('input[name=delivery]'), function( index, value ) {
+        $.each($('input[name=delivery]'), function(index, value) {
             if ($(value).prop("checked")) {
                 checkedDel = true;
             }
@@ -509,7 +509,7 @@
             if (localStorage.getItem("product_list")) {
                 $('#checkout_loading').css('display', 'block');
                 var mydata = JSON.parse(localStorage.getItem("product_list"));
-                
+
                 $.post("<?= $base_url; ?>index.php/main/startTransMyBabilon", {
                     "products": mydata,
                     "phone_number": null,
@@ -548,7 +548,7 @@
     }
 
     function countSumWithDelivery() {
-        $('input[type=radio][name="delivery"]').change(function () {
+        $('input[type=radio][name="delivery"]').change(function() {
             $('.delivery-figure').css("border-bottom", "1px solid #eaeaea");
             if (localStorage.getItem("product_list")) {
                 var mydata = JSON.parse(localStorage.getItem("product_list"));
@@ -557,7 +557,7 @@
                     sum += (item.product_count * item.product_price);
                 });
                 sum += ($('input[name=delivery]:checked').val() ? parseInt($('input[name=delivery]:checked').val()) : 0);
-                $('#tot_pr_checkout').text(sum + ' с.');
+                $('#tot_pr_checkout').text(sum + ' сом.');
             }
         });
     }
