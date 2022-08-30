@@ -5205,7 +5205,6 @@ button:focus {
         color: #1EBEBE;
         font-weight: 300;
         font-size: 14px;
-        padding: 25px 0;
     }
     .popular-blogs a:hover {
         text-decoration: underline;
@@ -6462,7 +6461,7 @@ button:focus {
     
     .ps-block--products-of-category .ps-block__categories h3 {
         margin-bottom: 10px;
-        font-weight: 400;
+        font-weight: 600;
         font-size: 20px;
     }
     .ps-block--products-of-category .ps-block__categories ul li a {
@@ -14930,7 +14929,6 @@ button:focus {
         .favorite-cart_btn {
             display: flex;
         }
-
     }
     .pb-jcs {
         display: flex;
@@ -18020,6 +18018,12 @@ button:focus {
         .ps-block--products-of-category .ps-block__slider {
             max-width: 100%;
             height: 220px;
+        }
+        .burger-mobail_icon i {
+            display: block !important;
+        }
+        .card-body img {
+            display: block !important;
         }
     }
     @media (min-width: 768px) and (max-width: 992px) {
@@ -34026,6 +34030,7 @@ section {
     -moz-box-orient: vertical;
     line-clamp: 6;
     box-orient: vertical;
+    color: #6D6D6D;
 }
 .blog_title {
     overflow: hidden;
@@ -34039,6 +34044,7 @@ section {
     -moz-box-orient: vertical;
     line-clamp: 3;
     box-orient: vertical;
+    padding-top: 20px;
 }
 .fa-navicon:before, .fa-reorder:before, .fa-bars:before {
     color: #A8A8A8;
@@ -34051,6 +34057,9 @@ section {
 .changeIcon-active span{
     color:red;
 }
+.ps-btn, button.ps-btn {
+    font-size: 14px;
+}
 .btn-cart_cat {
     padding: 0 5px !important;
     border-radius: 0 5px 5px 0 !important;
@@ -34060,4 +34069,10 @@ section {
 }
 .price-span_favorite {
     padding: 6px 5px 6px 5px !important;
+}
+.burger-mobail_icon i {
+    display: none;
+}
+.card-body img {
+    display: none;
 }

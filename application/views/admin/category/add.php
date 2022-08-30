@@ -30,6 +30,10 @@
                 <label>Наименование </label>
                 <input type="text" id="category_name" name="category_name" class="form-control" placeholder="Вводите ..." >
             </div>
+             <div class="form-group">
+                <label>Иконка </label>
+                <input type="file" id="category_icon" name="category_icon" class="form-control" placeholder="Вводите ..." >
+            </div>
 <!--            <div class="form-group">-->
 <!--                <label>Категории </label>-->
 <!--                -->

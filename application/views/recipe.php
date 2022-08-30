@@ -210,7 +210,8 @@
         $('#loading').show();
         // console.log($('.recipe_phone_number')[2].value);
         var validate = validatePhone($('.recipe_phone_number')[2].value);
-        console.log($('.recipe_phone_number').val())
+        console.log($('.recipe_phone_number')[2].value)
+
         if (validate) {
             var upload = $("#user_files").data("kendoUpload"),
                 files2 = upload.getFiles();

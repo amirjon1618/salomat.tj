@@ -513,15 +513,15 @@
                                                 <i class="zmdi zmdi-account"><img src="{base_url}img/up-user.svg" alt="icon"></i>Личная информация</a>
                                         </div>
                                         <div class="account-dropdown__item">
-                                            <a href="#">
+                                            <a href="{base_url}index.php/main/user_info">
                                                 <i class="zmdi zmdi-settings"><img src="{base_url}img/up-cart.svg" alt="icon"></i>Мои заказы</a>
                                         </div>
                                         <div class="account-dropdown__item">
-                                            <a href="#">
+                                            <a href="{base_url}index.php/main/user_info">
                                                 <i class="zmdi zmdi-money-box"><img src="{base_url}img/up-like.svg" alt="icon"></i>Избранное</a>
                                         </div>
                                         <div class="account-dropdown__item">
-                                            <a href="#">
+                                            <a href="{base_url}index.php/main/user_info">
                                                 <i class="zmdi zmdi-money-box"><img src="{base_url}img/up-save.svg" alt="icon"></i>Безопастность</a>
                                         </div>
                                     </div>
@@ -931,6 +931,8 @@
 
     .form-v8-content .form-row .form-row-inner {
         position: relative;
+        display: flex;
+        justify-content: center;
     }
 
     .form-v8-content .form-row .form-row-inner .label {
@@ -1198,7 +1200,7 @@
                     "        </div>\n" +
                     "        <div class=\"ps-product__content\">\n" +
                     "            <i style=\"cursor:pointer\" class=\"ps-product__remove icon-cross\" id=\"ps-product__remove\" onclick=\"remove_from_header_cart(" + item.product_id + ")\"></i>\n" +
-                    "            <a href=\"<?= $base_url ?>index.php/product/" + item.product_id + "\">" + item.product_name + "</a>\n" +
+                    "            <a href=\"<?= $base_url ?>index.php/main/product/" + item.product_id + "\">" + item.product_name + "</a>\n" +
                     "            <p>" + item.product_brand.brand_name + "</p><small>" + item.product_count + " x " + item.product_price + " c.</small>\n" +
                     "        </div>\n" +
                     "    </div>";
