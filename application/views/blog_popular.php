@@ -41,12 +41,13 @@
                                 // $(".blog_title").text(blogShow.content.blog_title);
                                 // $(".blog_about").html(blogShow.content.blog_about);
                                 blogShow.content.blogs.forEach((elem, ind) => {
-                                        console.log(elem)
+                                        console.log(elem['id'])
                                         const img = document.createElement("img");
                                         img.className += "blog_pic"
                                         img.src = "{base_url}upload_blog/" + elem.blog_pic;
                                         $(".bloginfo-imgs").append(img);
                                         console.log(elem.blog_pic);
+
                                         document.querySelector(".popular-blogs").innerHTML += `                 
                                                 <article class="popular-blogs_content pbc_blog ${ind === 0 ? 'col-lg-4 col-md-8 col-sm-12 col-xs-12' : 'col-lg-2 col-md-4 col-sm-6 col-xs-6' } post">
                                                         <img class="blog_pic img-fluid" src="{base_url}upload_blog/${elem.blog_pic}" alt="...">
@@ -55,7 +56,7 @@
                                                         </a>
                                                         <span class="blog_created_at">${elem.blog_created_at}</span>
                                                         <div class="blog-about_p">${elem.blog_about}</div>
-                                                        <a href="{base_url}main/blogInfo"> читать дальше ...</a>
+                                                        <a href="{base_url}main/blogInfo?blog_id=${elem['id']}"> читать дальше ...</a>
                                                 </article> `;
 
                                 })

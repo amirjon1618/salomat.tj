@@ -42,7 +42,7 @@
                                     <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
                                             <input class="form-control height50" id="count_input" type="number" value="1" style="display: none;">
                                             <?php if ($cat_p['product_old_price'] != 0) : ?><del><?= $cat_p['product_old_price'] ?> </del><?php endif; ?>
-                                            <?= $cat_p['product_price'] ?> c. </span><button onclick='addToCart(res = <?= json_encode($cat_p) ?>)' class="ps-btn btn-cart_cat">В корзину</button></p>
+                                            <?= $cat_p['product_price'] ?>c. </span><button onclick='addToCart(res = <?= json_encode($cat_p) ?>)' class="ps-btn btn-cart_cat">В корзину</button></p>
                                 </div>
                                 <div class="product_add_notification_div" style="display: none;">
                                     <i class="fa fa-check-circle" aria-hidden="true"></i>

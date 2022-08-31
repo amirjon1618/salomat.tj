@@ -126,7 +126,7 @@
                                             </div>
                                         <?php endif; ?>
                                     </div>
-                                    <input onclick="order_confirm()" type="submit" style="height: 3em" value="Оформить заказ" class="ps-btn ps-btn--fullwidth">
+                                    <input onclick="onPsBlockRight()" type="submit" style="height: 3em" value="Оформить заказ" class="ps-btn ps-btn--fullwidth">
                                 </div>
                             </div>
                         </div>

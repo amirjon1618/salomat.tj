@@ -14,7 +14,7 @@
         <section class="section-forms section-tabs">
             <div class="container my-5">
                 <div class="user-info">
-                    <div class="up-left-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12 p-0 mb-3">
+                <div class="up-left-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12 p-0 mb-3">
                         <ul class="user-info_ul nav nav-pills d-block" id="myTab" role="tablist">
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab" data-toggle="tab" href="#user-info" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-user.svg" alt="Icon">Личная информация</a></li>
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab" data-toggle="tab" href="#user-order" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-cart.svg" alt="Icon">Мои заказы</a></li>
@@ -87,9 +87,9 @@
                                         <img src="{base_url}img/user.png" alt="Icon" class="rounded-circle" style="width: 100px;">
                                         <form class="form-del">
                                             <div class="input__wrapper">
-                                                <input name="file" type="file" name="file" id="input__file" class="input input__file" onchange="uploadIMG(this)"  multiple>
+                                                <input name="file" type="file" name="file" id="input__file" class="input input__file" onchange="uploadIMG(this)" multiple>
                                                 <label for="input__file" class="input__file-button mt-5 ">
-                                                    <span  class="input__file-button-text ">Сменить фото</span>
+                                                    <span class="input__file-button-text ">Сменить фото</span>
                                                 </label>
                                             </div>
                                             <div class="del-photo">
@@ -195,56 +195,54 @@
                                         <?php foreach ($favorites as $favorite) : ?>
 
                                             <div class="favorite-content">
-                                                <div class="col">
-                                                    <div class="d-flex col-lg-3 col-md-6 col-sm-6 col-xs-12 pb-5">
-                                                        <div class="ps-product ps-product--inner ps-product_of_the_day">
-                                                            <label>
-                                                                <input value="<?php $favorite['id'] ?>" <?php echo $favorite['id']  ?  'checked' : null  ?> type="checkbox" id="red">
-                                                                <svg id="shape" fill="none" data-id="<?= $favorite['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                                </svg>
-                                                            </label>
+                                                <div class="d-flex col-lg-3 col-md-6 col-sm-6 col-xs-12 pb-5">
+                                                    <div class="ps-product ps-product--inner ps-product_of_the_day">
+                                                        <label>
+                                                            <input value="<?php $favorite['id'] ?>" <?php echo $favorite['id']  ?  'checked' : null  ?> type="checkbox" id="red">
+                                                            <svg id="shape" fill="none" data-id="<?= $favorite['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
+                                                                <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                            </svg>
+                                                        </label>
 
-                                                            <div class="ps-product__thumbnail ps-product__thumbnail_img_div  hover01">
-                                                                <a href="{base_url}index.php/main/product/2997?from=main">
-                                                                    <img class="imgs" src="{base_url}upload_product/<?php echo $favorite['product_pic'] ?>" alt="">
-                                                                </a>
+                                                        <div class="ps-product__thumbnail ps-product__thumbnail_img_div  hover01">
+                                                            <a href="{base_url}index.php/main/product/2997?from=main">
+                                                                <img class="imgs" src="{base_url}upload_product/<?php echo $favorite['product_pic'] ?>" alt="">
+                                                            </a>
+                                                        </div>
+
+                                                        <div class="ps-product__container">
+                                                            <div class="ps-product__content"><a class="ps-product__title product_title_new" href="{base_url}index.php/main/product/2997">
+                                                                    <?php echo $favorite['product_name'] ?></a>
+                                                                <div class="ps-product__rating">
+                                                                    <select class="ps-rating" data-read-only="true">
+
+                                                                        <?php if (!isset($favorite['review_count'])) : ?>
+                                                                            <?php for ($i = 1; $i <= $favorite['prod_rating_average']; $i++) : ?>
+                                                                                <option value="1"></option>
+                                                                            <?php endfor; ?>
+                                                                            <?php for ($i = ($favorite['prod_rating_average'] + 1); $i <= 5; $i++) : ?>
+                                                                                <option value="<?= $i ?>"><?= $i ?></option>
+                                                                            <?php endfor; ?>
+                                                                        <?php else : ?>
+                                                                            <!-- <option value="" selected disabled hidden></option> -->
+                                                                            <option value="0">0</option>
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="4">4</option>
+                                                                            <option value="5">5</option>
+                                                                        <?php endif; ?>
+                                                                    </select><span>(1)</span>
+                                                                </div>
+                                                                <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span price-span_favorite">
+                                                                        <input class="form-control height50" id="count_input" type="number" value="1" style="display: none;">
+                                                                        <?php if ($favorite['product_old_price'] != 0) : ?><del><?= $favorite['product_old_price'] ?> </del><?php endif; ?>
+                                                                        <?= $favorite['product_price'] ?>c. </span><button onclick='addToCart(res = <?= json_encode($favorite) ?>)' class="ps-btn btn-cart_cat">В корзину</button></p>
+
                                                             </div>
-
-                                                            <div class="ps-product__container">
-                                                                <div class="ps-product__content"><a class="ps-product__title product_title_new" href="{base_url}index.php/main/product/2997">
-                                                                        <?php echo $favorite['product_name'] ?></a>
-                                                                    <div class="ps-product__rating">
-                                                                        <select class="ps-rating" data-read-only="true">
-
-                                                                            <?php if (!isset($favorite['review_count'])) : ?>
-                                                                                <?php for ($i = 1; $i <= $favorite['prod_rating_average']; $i++) : ?>
-                                                                                    <option value="1"></option>
-                                                                                <?php endfor; ?>
-                                                                                <?php for ($i = ($favorite['prod_rating_average'] + 1); $i <= 5; $i++) : ?>
-                                                                                    <option value="<?= $i ?>"><?= $i ?></option>
-                                                                                <?php endfor; ?>
-                                                                            <?php else : ?>
-                                                                                <!-- <option value="" selected disabled hidden></option> -->
-                                                                                <option value="0">0</option>
-                                                                                <option value="1">1</option>
-                                                                                <option value="2">2</option>
-                                                                                <option value="3">3</option>
-                                                                                <option value="4">4</option>
-                                                                                <option value="5">5</option>
-                                                                            <?php endif; ?>
-                                                                        </select><span>(1)</span>
-                                                                    </div>
-                                                                    <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span price-span_favorite">
-                                                                            <input class="form-control height50" id="count_input" type="number" value="1" style="display: none;">
-                                                                            <?php if ($favorite['product_old_price'] != 0) : ?><del><?= $favorite['product_old_price'] ?> </del><?php endif; ?>
-                                                                            <?= $favorite['product_price'] ?> c. </span><button onclick='addToCart(res = <?= json_encode($favorite) ?>)' class="ps-btn btn-cart_cat">В корзину</button></p>
-
-                                                                </div>
-                                                                <div class="product_add_notification_div" style="display: none;">
-                                                                    <i class="fa fa-check-circle" aria-hidden="true"></i>
-                                                                    <span class="prod_add_notification_text">"<span class="span_added_prod_name"></span>" успешно добавлен в вашу корзину.</span>
-                                                                </div>
+                                                            <div class="product_add_notification_div" style="display: none;">
+                                                                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                                                <span class="prod_add_notification_text">"<span class="span_added_prod_name"></span>" успешно добавлен в вашу корзину.</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -285,7 +283,6 @@
     </div>
 </div>
 <script>
-
     let imgVal;
     async function postData(url = '', data = {}) {
         // Default options are marked with *
@@ -303,17 +300,22 @@
     }
 
     function uploadIMG(e) {
-        var input = document.querySelector(e)
 
         var data = new FormData()
-        data.append('file', e.files[0])
-        data.append('user', 'hubot')
+        console.log(e.files[0]);
 
         fetch('<?= base_url() ?>users/user_img?type=save', {
             method: 'POST',
-            body: data
+            body: {
+                name: 'photo_2022-07-13_16-07-06.jpg',
+                lastModified: 1661747805931,
+                lastModifiedDate: 'Mon Aug 29 2022 09: 36: 45 GMT + 0500(Узбекистан, стандартное время)',
+                webkitRelativePath: '',
+                size: 58981,
+            }
         })
-        //postData('<?//= base_url() ?>///users/user_img?type=save', [{name:'Komyob'}])
+        //postData('<? //= base_url() 
+                    ?>///users/user_img?type=save', [{name:'Komyob'}])
         //    .then((data) => {
         //        console.log(data); // JSON data parsed by `response.json()` call
         //    })
@@ -521,5 +523,13 @@
     #red:checked+#shape path {
         fill: #DD2E44;
         stroke: #DD2E44 !important;
+    }
+    .nav-item {
+        background: rgba(188, 189, 255, 0.2);
+        border-radius: 4px 4px 0px 0px;
+        border-right: 3px solid #4839C3;
+    }
+    .user-active + tr div{
+        display: block !important;
     }
 </style>

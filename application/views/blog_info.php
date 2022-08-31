@@ -18,31 +18,31 @@
                 <div class="bi-left-sidebar col-lg-2 col-md-10 col-sm-12 col-xs-12 pt-3">
                     <h2>Похожие статьи</h2>
                     <div class="blog-articles-mini">
-                        <a href="{base_url}main/blogInfo">
+                        <a href="{base_url}main/blogInfo?blog_id=3">
                             <h3>Собираем аптечку вместе...</h3>
                             <span>25.09.2021</span>
                         </a>
                     </div>
                     <div class="blog-articles-mini">
-                        <a href="{base_url}main/blogInfo">
+                        <a href="{base_url}main/blogInfo?blog_id=3">
                             <h3>Чем нельзя запивать и заедать таблетки...</h3>
                             <span>25.09.2021</span>
                         </a>
                     </div>
                     <div class="blog-articles-mini">
-                        <a href="{base_url}main/blogInfo">
+                        <a href="{base_url}main/blogInfo?blog_id=3">
                             <h3>Что следует знать о холестерине...</h3>
                             <span>25.09.2021</span>
                         </a>
                     </div>
                     <div class="blog-articles-mini">
-                        <a href="{base_url}main/blogInfo">
+                        <a href="{base_url}main/blogInfo?blog_id=3">
                             <h3>Можно ли ломать таблетки...</h3>
                             <span>25.09.2021</span>
                         </a>
                     </div>
                     <div class="blog-articles-mini">
-                        <a href="{base_url}main/blogInfo">
+                        <a href="{base_url}main/blogInfo?blog_id=3">
                             <h3>Можно ли ломать таблетки...</h3>
                             <span>25.09.2021</span>
                         </a>
@@ -55,8 +55,6 @@
                     <h3 class="blog_title"> </h3>
                     <span class="blog_created_at"></span>
                     <p class="text-justify blog_about-full"> </p>
-                    <p>Литтература: </p>
-                    <a href="#">1. Restrepo, B.J., Zeballos, E. The effect of working from home on major time allocations with a focus on food-related activities. Rev Econ Household 18, 1165–1187 (2020).</a>
                     <div class="blog-articles-btn">
                         <a href="https://www.t.me/Salomat9990" target="_blank">
                             <img src="{base_url}img/telegram.svg" alt=""></a>
@@ -177,9 +175,10 @@
     }
 
     function getBlog() {
+        const blog_id = window.location.search.substr(window.location.search.length - 1 ,1)
         $.ajax({
             type: "GET",
-            url: "{base_url}blogs/blog?blog_id=1",
+            url: `{base_url}blogs/blog?blog_id=${blog_id}`,
             headers: {
                 "Accept": "application/json",
             },

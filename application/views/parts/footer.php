@@ -44,7 +44,7 @@
                     <aside class="widget widget_footer widget_footer2">
                         <ul class="ps-list--link pb-2">
                             <li class="footer-title">О компании</li>
-                            <li><a href="{base_url}index.php/main/recipe">О проекте</a></li>
+                            <li><a href="{base_url}index.php/main/page/1">О проекте</a></li>
                             <li><a href="{base_url}index.php/main/recipe">Отправить рецепт</a></li>
                             <li><a href="{base_url}index.php/main/page/2">Как сделать заказ</a></li>
                             <li><a href="{base_url}index.php/main/page/3">Доставка и оплата</a></li>
@@ -55,10 +55,10 @@
                     <aside class="widget widget_footer widget_footer2">
                         <ul class="ps-list--link pb-2">
                             <li class="footer-title">Ассортимент</li>
-                            <li><a href="{base_url}index.php/main/recipe">Витамины и Бады</a></li>
-                            <li><a href="{base_url}index.php/main/page/2">Для похудения</a></li>
-                            <li><a href="{base_url}index.php/main/page/3">Против аллергии</a></li>
-                            <li><a href="{base_url}index.php/main/page/3">Медицинские товары</a></li>
+                            <li><a href="{base_url}index.php/main/categoryProducts/178">Витамины и Бады</a></li>
+                            <li><a href="{base_url}index.php/main/categoryProducts/299">Для похудения</a></li>
+                            <li><a href="{base_url}index.php/main/categoryProducts/15">Против аллергии</a></li>
+                            <li><a href="{base_url}index.php/main/categoryProducts/211">Медицинские товары</a></li>
                         </ul>
                     </aside>
                 </div>
