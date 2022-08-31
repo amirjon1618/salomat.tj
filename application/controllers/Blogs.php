@@ -15,6 +15,7 @@ class Blogs extends REST_Controller {
 
         $this->load->model('tag');
         $this->load->model('blog');
+        $this->load->library('session');
         $this->load->library('form_validation');
         $this->load->database();
     }

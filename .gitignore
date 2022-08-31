@@ -9,6 +9,7 @@ application/config/config.php
 application/logs/*
 !application/logs/index.html
 upload_recipe/
+user_img/
 upload_product/
 upload_blog/
 upload_banner/
