@@ -24,7 +24,7 @@
                                             <div class="form-input col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0">
                                                 <div class="form-group pr-3">
                                                     <label>Имя Фамилия <span class="red-star">*</span></label>
-                                                    <input class="form-control" maxlength="80" required pattern="\d*" name="name" value="<?php echo $name ?>" id="order_name" type="text" placeholder="Имя Фамилия">
+                                                    <input class="form-control" maxlength="24" required pattern="\d*" name="name" value="<?php echo $name ?>" id="order_name" type="text" placeholder="Имя Фамилия">
                                                 </div>
                                                 <div class="form-group pr-3">
                                                     <label>Дом <span></span></label>
@@ -32,13 +32,13 @@
                                                 </div>
                                                 <div class="form-group pr-3">
                                                     <label>Номер телефона <span class="red-star">*</span></label>
-                                                    <input class="form-control" required type="text" pattern="\d*" maxlength="9" id="order_phone" name="cell_phone" placeholder="Введите свой номер">
+                                                    <input class="form-control" required type="text" pattern="\d*" maxlength="9" value="<?php echo $address ?>" id="order_phone" name="cell_phone" placeholder="Введите свой номер">
                                                 </div>
                                             </div>
                                             <div class="form-input col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0">
                                                 <div class="form-group">
                                                     <label>Улица <span class="red-star">*</span></label>
-                                                    <input class="form-control" maxlength="250" required name="address" id="order_address" type="text" placeholder="Улица">
+                                                    <input class="form-control" maxlength="250" required name="address" value="<?php echo $address ?>" id="order_address" type="text" placeholder="Улица">
                                                 </div>
 
                                                 <div class="form-group">
@@ -47,7 +47,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Телефон, если не дозвонимся</label>
-                                                    <input class="form-control" required type="text" pattern="\d*" maxlength="9" id="order_phone2" name="cell_phone" placeholder="Введите свой номер">
+                                                    <input class="form-control" required type="text" maxlength="9" id="order_phone2" name="cell_phone" placeholder="Введите свой номер">
                                                 </div>
                                             </div>
                                         </div>
@@ -126,7 +126,7 @@
                                             </div>
                                         <?php endif; ?>
                                     </div>
-                                    <input onclick="onPsBlockRight()" type="submit" style="height: 3em" value="Оформить заказ" class="ps-btn ps-btn--fullwidth">
+                                    <input onclick="javascript: (localStorage.getItem('userId')) ? startTrans() : onPsBlockRight()" type="submit" style="height: 4em" value="Оформить заказ" class="ps-btn ps-btn--fullwidth">
                                 </div>
                             </div>
                         </div>
@@ -354,6 +354,7 @@
                     "phone_number": phone_number,
                     "phone_number2": phone_number2,
                     "name": name,
+                    "product_total_count": 2,
                     "address": address + landmark + building,
                     "comment": comment,
                     "delivery_id": delivery_id,
@@ -508,16 +509,31 @@
         if (checkedDel) {
             if (localStorage.getItem("product_list")) {
                 $('#checkout_loading').css('display', 'block');
+                // var mydata = JSON.parse(localStorage.getItem("product_list"));
                 var mydata = JSON.parse(localStorage.getItem("product_list"));
-
+                var phone_number = $('#order_phone').val();
+                var phone_number2 = $('#order_phone2').val();
+                var name = $('#order_name').val();
+                var address = $('#order_address').val();
+                var landmark = $('#landmark').val();
+                var building = $('#building').val();
+                var comment = $('#order_comment').val();
+                var totalPrice = $('#tot_pr_checkout').val();
+                var delivery_id = $('input[name=delivery]:checked').attr("id")
+                console.log(totalPrice);
                 $.post("<?= $base_url; ?>index.php/main/startTransMyBabilon", {
+                    "total_price": totalPrice,
+                    "phone_number": phone_number,
+                    "phone_number2": phone_number2,
+                    "name": name,
+                    "product_total_count": 2,
+                    "address": address + ' ' + landmark + ' ' + building,
+                    "comment": comment,
+                    "delivery_id": delivery_id,
+                    // "cash_type": cash_type,
                     "products": mydata,
-                    "phone_number": null,
-                    "name": null,
-                    "address": null,
-                    "comment": null,
                     "wallet_name": "MyBabilon",
-                    "delivery_id": $('input[name=delivery]:checked').attr("id")
+                    // "delivery_id": $('input[name=delivery]:checked').attr("id")
                 }, function(data) {
                     console.log(data);
                     if (data.answ == 1) {

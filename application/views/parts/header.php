@@ -509,19 +509,19 @@
                                     </div>
                                     <div class="account-dropdown__body">
                                         <div class="account-dropdown__item">
-                                            <a href="{base_url}index.php/main/user_info">
+                                            <a href="{base_url}index.php/main/user_info#user-info">
                                                 <i class="zmdi zmdi-account"><img src="{base_url}img/up-user.svg" alt="icon"></i>Личная информация</a>
                                         </div>
                                         <div class="account-dropdown__item">
-                                            <a href="{base_url}index.php/main/user_info">
+                                            <a href="{base_url}index.php/main/user_info#user-order">
                                                 <i class="zmdi zmdi-settings"><img src="{base_url}img/up-cart.svg" alt="icon"></i>Мои заказы</a>
                                         </div>
                                         <div class="account-dropdown__item">
-                                            <a href="{base_url}index.php/main/user_info">
+                                            <a href="{base_url}index.php/main/user_info#user-favorite">
                                                 <i class="zmdi zmdi-money-box"><img src="{base_url}img/up-like.svg" alt="icon"></i>Избранное</a>
                                         </div>
                                         <div class="account-dropdown__item">
-                                            <a href="{base_url}index.php/main/user_info">
+                                            <a href="{base_url}index.php/main/user_info#user-save">
                                                 <i class="zmdi zmdi-money-box"><img src="{base_url}img/up-save.svg" alt="icon"></i>Безопастность</a>
                                         </div>
                                     </div>
@@ -1639,7 +1639,7 @@
                 headers: {
                     "Accept": "application/json",
                 },
-                data: { 
+                data: {
                     phone: Number(localStorage.getItem("ver-number")),
                     password: $("#enter-password").val()
                 },
@@ -1841,18 +1841,4 @@
             }
         }, 1000);
     }
-    // for (let i = 0; i < __navItems.length; i++) {
-    //     console.log((__navItems[i].dataset.id === localStorage.getItem("changeIcon")));
-    //     if (__navItems[i].dataset.id === localStorage.getItem("changeIcon")) {
-    //         __navItems[i].style.color = "red";
-    //         __navItems[i].childNodes[1].src = `{base_url}/img/inactive.icon${__navItems[i].dataset.id}.svg`
-    //     }
-    // }
-    // for (let i = 0; i < __navItems.length; i++) {
-    //     __navItems[i].addEventListener('click', function() {
-    //         localStorage.setItem("changeIcon", this.dataset.id);
-    //         console.log(localStorage.getItem("changeIcon"))
-    //         __navItems[i].childNodes[1].src = `{base_url}/img/inactive.icon${localStorage.getItem("changeIcon")}.svg`
-    //     })
-    // }
 </script>

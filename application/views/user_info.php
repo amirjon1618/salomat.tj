@@ -14,7 +14,7 @@
         <section class="section-forms section-tabs">
             <div class="container my-5">
                 <div class="user-info">
-                <div class="up-left-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12 p-0 mb-3">
+                    <div class="up-left-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12 p-0 mb-3">
                         <ul class="user-info_ul nav nav-pills d-block" id="myTab" role="tablist">
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab" data-toggle="tab" href="#user-info" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-user.svg" alt="Icon">Личная информация</a></li>
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab" data-toggle="tab" href="#user-order" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-cart.svg" alt="Icon">Мои заказы</a></li>
@@ -84,15 +84,15 @@
                                 </div>
                                 <div class="up-right-sidebar col-lg-2 col-md-2 col-sm-12 col-xs-12 p-4">
                                     <div class="text-center">
-                                        <img src="{base_url}img/user.png" alt="Icon" class="rounded-circle" style="width: 100px;">
-                                        <form class="form-del">
+                                        <img src="{base_url}img/user.png" alt="Icon" id="user_icon" class="rounded-circle" style="width: 100px; height: 100px;">
+                                        <form class="form-del" enctype="multipart/form-data">
                                             <div class="input__wrapper">
                                                 <input name="file" type="file" name="file" id="input__file" class="input input__file" onchange="uploadIMG(this)" multiple>
                                                 <label for="input__file" class="input__file-button mt-5 ">
                                                     <span class="input__file-button-text ">Сменить фото</span>
                                                 </label>
                                             </div>
-                                            <div class="del-photo">
+                                            <div class="del-photo" onclick="delPhoto()">
                                                 <span class="text-del text-danger btn">Удалить фото</span>
                                             </div>
                                         </form>
@@ -298,30 +298,37 @@
         });
         return await response.json(); // parses JSON response into native JavaScript objects
     }
+    if (localStorage.getItem("user_icon") !== null) {
+        document.querySelector("#user_icon").src = localStorage.getItem("user_icon");
+    } else {
+        document.querySelector("#user_icon").src = "{base_url}img/user.png";
+    }
 
     function uploadIMG(e) {
+        console.dir(e.files[0].path);
+        var formdata = new FormData();
+        formdata.append("img", e.files[0], "url");
+        var fReader = new FileReader();
+        fReader.readAsDataURL(e.files[0]);
+        fReader.onloadend = function(event) {
+            localStorage.setItem("user_icon", event.target.result);
+            document.querySelector("#user_icon").src = localStorage.getItem("user_icon");
+            var requestOptions = {
+                method: 'POST',
+                body: event.target.result,
+                redirect: 'follow'
+            };
+            fetch("{base_url}users/user_img?=save", requestOptions)
+                .then(response => response.json())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
 
-        var data = new FormData()
-        console.log(e.files[0]);
+        }
+    }
 
-        fetch('<?= base_url() ?>users/user_img?type=save', {
-            method: 'POST',
-            body: {
-                name: 'photo_2022-07-13_16-07-06.jpg',
-                lastModified: 1661747805931,
-                lastModifiedDate: 'Mon Aug 29 2022 09: 36: 45 GMT + 0500(Узбекистан, стандартное время)',
-                webkitRelativePath: '',
-                size: 58981,
-            }
-        })
-        //postData('<? //= base_url() 
-                    ?>///users/user_img?type=save', [{name:'Komyob'}])
-        //    .then((data) => {
-        //        console.log(data); // JSON data parsed by `response.json()` call
-        //    })
-        //    .catch(res => {
-        //        console.log(res)
-        //    });
+    function delPhoto() {
+        localStorage.removeItem("user_icon");
+        window.location.reload();
     }
 
     $(document).ready(function() {
@@ -524,12 +531,14 @@
         fill: #DD2E44;
         stroke: #DD2E44 !important;
     }
+
     .nav-item {
         background: rgba(188, 189, 255, 0.2);
         border-radius: 4px 4px 0px 0px;
         border-right: 3px solid #4839C3;
     }
-    .user-active + tr div{
+
+    .user-active+tr div {
         display: block !important;
     }
 </style>
