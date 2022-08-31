@@ -286,7 +286,7 @@ class Order extends CI_Model
             );
             $this->db->insert('product_order', $another_arr);
 
-            $count = floatval($product['product_total_count']) - floatval(($product['product_count']));
+            $count = floatval($array['product_total_count']) - floatval(($product['product_count']));
             $this->db->set('total_count_in_store', $count);
             $this->db->where('id', $product['product_id']);
             $this->db->update('product');

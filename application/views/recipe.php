@@ -331,6 +331,7 @@
         var upload = $("#user_files").data("kendoUpload");
         upload.clearAllFiles();
     }
+    
     $(document).ready(function() {
         recipe_pics = [];
         recipe_ids = [];
