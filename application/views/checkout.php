@@ -28,7 +28,7 @@
                                                 </div>
                                                 <div class="form-group pr-3">
                                                     <label>Дом <span></span></label>
-                                                    <input class="form-control" id="building" maxlength="250" type="text" placeholder="Дом">
+                                                    <input class="form-control" maxlength="250" type="text" placeholder="Дом">
                                                 </div>
                                                 <div class="form-group pr-3">
                                                     <label>Номер телефона <span class="red-star">*</span></label>
@@ -43,7 +43,7 @@
 
                                                 <div class="form-group">
                                                     <label>Ориентир</label>
-                                                    <input class="form-control" maxlength="250" id="landmark" type="text" placeholder="Ориентир">
+                                                    <input class="form-control" maxlength="250" type="text" placeholder="Ориентир">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Телефон, если не дозвонимся</label>
@@ -127,8 +127,8 @@
                                         <?php endif; ?>
                                     </div>
                                     <input onclick="javascript: (localStorage.getItem('userId')) ? startTrans() : onPsBlockRight()" type="submit" style="height: 4em" value="Оформить заказ" class="ps-btn ps-btn--fullwidth">
-                                    <div class="enter-btn-bg">
-                                        <div class="enter-btn-modal">
+                                    <div class="order-sended">
+                                        <div class="order-sended-modal">
                                             <div class="page-content">
                                                 <div class="form-v8-content">
                                                     <div class="enter-form text-center">
@@ -142,7 +142,7 @@
                                                                 <h3 style="font-size: 22px; font-weight: 700;">Всё готово</h3>
                                                                 <p style="width: 300px; color: #AAABAD;">Наш специалист свяжится с вами в ближайшее время.</p>
                                                                 <p style="color: #AAABAD;">Спасибо за покупку.</p>
-                                                                <input type="submit" style="height: 4em" value="Номер заказа №1894" class="ps-btn ps-btn_order">
+                                                                <input type="submit" style="height: 4em" value="Номер заказа №1894" class="ps-btn_order">
 
                                                             </div>
                                                             <form class="form-detail">
@@ -232,57 +232,10 @@
         <span class="sr-only">Loading...</span>
     </div>
 </div>
-<style>
-    .enter-btn-bg {
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        left: 0;
-        top: 0;
-        z-index: 10000;
-        width: 100vw;
-        height: 100vh;
-        transition: 1000ms;
-        display: none;
-    }
-
-    .enter-btn-modal {
-        background-color: #fff;
-        padding: 45px;
-        border-radius: 5px;
-        box-shadow: 5px 5px 5px 5px #e5e5e5;
-    }
-
-    .ps-btn_order {
-        border: 1px solid #A8A8A8;
-        background: none;
-        color: #222222;
-    }
-
-    .ps-btn_order:hover {
-        border: 1px solid #A8A8A8;
-        background: none;
-        color: #222222;
-    }
-</style>
 <script src="{base_url}plugins/jquery.form.validation.min.js"></script>
 <script src="{base_url}js/jquery.validate.min.js"></script>
 <script src="{base_url}js/form_validation_messages_ru.js"></script>
 <script>
-    function onPsBlockRight() {
-        document.querySelector(".enter-btn-bg").style.display = "flex";
-        document.querySelector(".enter-btn-bg").classList.add("active-animation");
-        document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
-    }
-    document.querySelector(".enter-btn-bg").addEventListener('click', ({
-        target
-    }) => {
-        if (target.classList.contains("enter-btn-bg")) {
-            document.querySelector(".enter-btn-bg").classList.remove("active-animation");
-            document.querySelector(".enter-btn-bg").classList.add("disactive-animation");
-            document.querySelector(".enter-btn-bg").style.display = "none";
-        }
-    })
     var orderCode = null;
     var orderId = null;
     var bUserInfo = <?= $bUserInfo; ?>;
@@ -596,15 +549,16 @@
                 var landmark = $('#landmark').val();
                 var building = $('#building').val();
                 var comment = $('#order_comment').val();
-                var totalPrice = document.getElementById('tot_pr_checkout');
+                var totalPrice = $('#tot_pr_checkout').val();
                 var delivery_id = $('input[name=delivery]:checked').attr("id")
+                console.log(totalPrice);
                 $.post("<?= $base_url; ?>index.php/main/startTransMyBabilon", {
-                    "total_price": parseInt(totalPrice.textContent, 10),
+                    "total_price": totalPrice,
                     "phone_number": phone_number,
                     "phone_number2": phone_number2,
                     "name": name,
                     "product_total_count": 2,
-                    "address": address + ' ' + building + ' Орентир: ' + landmark,
+                    "address": address + ' ' + landmark + ' ' + building,
                     "comment": comment,
                     "delivery_id": delivery_id,
                     // "cash_type": cash_type,
@@ -669,3 +623,37 @@
         $('#not_found_checkout').hide();
     })
 </script>
+
+<style>
+    .order-sended {
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 10000;
+        width: 100vw;
+        height: 100vh;
+        transition: 1000ms;
+        display: none;
+    }
+
+    .order-sended-modal {
+        background-color: #fff;
+        padding: 45px;
+        border-radius: 5px;
+        box-shadow: 5px 5px 5px 5px #e5e5e5;
+    }
+
+    .ps-btn_order {
+        border: 1px solid #A8A8A8;
+        background: none;
+        color: #222222;
+    }
+
+    .ps-btn_order:hover {
+        border: 1px solid #A8A8A8;
+        background: none;
+        color: #222222;
+    }
+</style>
