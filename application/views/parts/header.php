@@ -491,13 +491,13 @@
                         <div class="account-wrap" id="account-wrap" style="display: none;">
                             <div class="account-item clearfix js-item-menu">
                                 <div class="image">
-                                    <img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" />
+                                    <img class="rounded-circle" class="user_icon" src="" alt="User Icon" />
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" />
+                                                <img class="rounded-circle" class="user_icon" src="" alt="User Icon" />
                                             </a>
                                         </div>
                                         <div class="content">
@@ -1106,10 +1106,21 @@
     }
 </style>
 <script>
+    const __userIcons = Array.from(document.querySelectorAll(".image  img"));
+    console.log(__userIcons)
+    __userIcons.forEach(elem => {
+        console.log(elem)
+        elem.src = "{base_url}img/user.png";
+        if (localStorage.getItem("user_icon") !== null) {
+            elem.src = localStorage.getItem("user_icon");
+        } else {
+            elem.src = "{base_url}img/user.png";
+        }
+    })
+
     if (localStorage.getItem("userId") !== null) {
         $(".account-btn").css("display", "none")
         $(".account-wrap").css("display", "block")
-
     }
 
     function remove_from_header_cart(id) {
@@ -1377,6 +1388,7 @@
         // $('.srch_pr_inp_mobile').val('');
         // }
     }
+
 
     function change_z_index_on_scroll() {
         $(window).scroll(function() {

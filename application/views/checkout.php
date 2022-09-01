@@ -28,7 +28,7 @@
                                                 </div>
                                                 <div class="form-group pr-3">
                                                     <label>Дом <span></span></label>
-                                                    <input class="form-control" maxlength="250" type="text" placeholder="Дом">
+                                                    <input class="form-control" id="building" maxlength="250" type="text" placeholder="Дом">
                                                 </div>
                                                 <div class="form-group pr-3">
                                                     <label>Номер телефона <span class="red-star">*</span></label>
@@ -43,7 +43,7 @@
 
                                                 <div class="form-group">
                                                     <label>Ориентир</label>
-                                                    <input class="form-control" maxlength="250" type="text" placeholder="Ориентир">
+                                                    <input class="form-control" id="landmark" maxlength="250" type="text" placeholder="Ориентир">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Телефон, если не дозвонимся</label>
@@ -127,8 +127,8 @@
                                         <?php endif; ?>
                                     </div>
                                     <input onclick="javascript: (localStorage.getItem('userId')) ? startTrans() : onPsBlockRight()" type="submit" style="height: 4em" value="Оформить заказ" class="ps-btn ps-btn--fullwidth">
-                                    <div class="order-sended">
-                                        <div class="order-sended-modal">
+                                    <div class="order-sended h-100 align-items-center justify-content-center">
+                                        <div class="order-sended-modal align-items-center justify-content-center">
                                             <div class="page-content">
                                                 <div class="form-v8-content">
                                                     <div class="enter-form text-center">
@@ -142,13 +142,13 @@
                                                                 <h3 style="font-size: 22px; font-weight: 700;">Всё готово</h3>
                                                                 <p style="width: 300px; color: #AAABAD;">Наш специалист свяжится с вами в ближайшее время.</p>
                                                                 <p style="color: #AAABAD;">Спасибо за покупку.</p>
-                                                                <input type="submit" style="height: 4em" value="Номер заказа №1894" class="ps-btn_order">
+                                                                <input style="height: 4em; border-color: #A8A8A8; border-radius: 5px; padding: 10px 0;" value="Номер заказа №1894" class="ps-btn_order text-center">
 
                                                             </div>
                                                             <form class="form-detail">
                                                                 <div class="tabcontent" id="sign-phone">
                                                                     <div class="form-row-last text-center">
-                                                                        <a href="/" style=" height: 3em; color: #fff; font-size: 18px; font-weight: 500; padding: 17px 45px 15px 45px;" class="ps-btn"><img style="padding-right: 10px;" src="{base_url}img/order-send-arrow.svg" alt=""> На главную</a>
+                                                                        <a href="/" style=" height: 3em; color: #fff; font-size: 18px; font-weight: 500; padding: 15px 35px 15px 35px;" class="ps-btn"><img style="padding-right: 10px;" src="{base_url}img/order-send-arrow.svg" alt=""> На главную</a>
                                                                     </div>
                                                                 </div>
                                                             </form>
@@ -531,6 +531,7 @@
     }
 
     function startTrans() {
+
         var checkedDel = false;
         $.each($('input[name=delivery]'), function(index, value) {
             if ($(value).prop("checked")) {
@@ -549,16 +550,16 @@
                 var landmark = $('#landmark').val();
                 var building = $('#building').val();
                 var comment = $('#order_comment').val();
-                var totalPrice = $('#tot_pr_checkout').val();
+                var totalPrice = $('#tot_pr_checkout');
                 var delivery_id = $('input[name=delivery]:checked').attr("id")
                 console.log(totalPrice);
                 $.post("<?= $base_url; ?>index.php/main/startTransMyBabilon", {
-                    "total_price": totalPrice,
+                    "total_price": parseInt(totalPrice.textContent, 10),
                     "phone_number": phone_number,
                     "phone_number2": phone_number2,
                     "name": name,
                     "product_total_count": 2,
-                    "address": address + ' ' + landmark + ' ' + building,
+                    "address": address + ' ' + building + ' Ориентир: ' + landmark,
                     "comment": comment,
                     "delivery_id": delivery_id,
                     // "cash_type": cash_type,
@@ -566,6 +567,7 @@
                     "wallet_name": "MyBabilon",
                     // "delivery_id": $('input[name=delivery]:checked').attr("id")
                 }, function(data) {
+                    $(".order-sended").css("display", "flex")
                     console.log(data);
                     if (data.answ == 1) {
                         $('#checkout_loading').css('display', 'none');
@@ -643,6 +645,9 @@
         padding: 45px;
         border-radius: 5px;
         box-shadow: 5px 5px 5px 5px #e5e5e5;
+        height: 600px;
+        width: 500px;
+        display: flex;
     }
 
     .ps-btn_order {
