@@ -28,11 +28,11 @@
                                                 </div>
                                                 <div class="form-group pr-3">
                                                     <label>Дом <span></span></label>
-                                                    <input class="form-control" maxlength="250" type="text" placeholder="Дом">
+                                                    <input class="form-control" id="building" maxlength="250" type="text" placeholder="Дом">
                                                 </div>
                                                 <div class="form-group pr-3">
                                                     <label>Номер телефона <span class="red-star">*</span></label>
-                                                    <input class="form-control" required type="text" pattern="\d*" maxlength="9" value="<?php echo $address ?>" id="order_phone" name="cell_phone" placeholder="Введите свой номер">
+                                                    <input class="form-control" required type="text" pattern="\d*" maxlength="9" value="<?php echo $phone ?>" id="order_phone" name="cell_phone" placeholder="Введите свой номер">
                                                 </div>
                                             </div>
                                             <div class="form-input col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0">
@@ -43,7 +43,7 @@
 
                                                 <div class="form-group">
                                                     <label>Ориентир</label>
-                                                    <input class="form-control" maxlength="250" type="text" placeholder="Ориентир">
+                                                    <input class="form-control" maxlength="250" id="landmark" type="text" placeholder="Ориентир">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Телефон, если не дозвонимся</label>
@@ -127,6 +127,37 @@
                                         <?php endif; ?>
                                     </div>
                                     <input onclick="javascript: (localStorage.getItem('userId')) ? startTrans() : onPsBlockRight()" type="submit" style="height: 4em" value="Оформить заказ" class="ps-btn ps-btn--fullwidth">
+                                    <div class="enter-btn-bg">
+                                        <div class="enter-btn-modal">
+                                            <div class="page-content">
+                                                <div class="form-v8-content">
+                                                    <div class="enter-form text-center">
+                                                        <div class="enter-form_reg efr1">
+                                                            <div class="tab">
+                                                                <div class="tab-inner pb-5">
+                                                                    <img src="{base_url}img/order-send-corect.png" alt="icon">
+                                                                </div>
+                                                            </div>
+                                                            <div class="tab-inner_text">
+                                                                <h3 style="font-size: 22px; font-weight: 700;">Всё готово</h3>
+                                                                <p style="width: 300px; color: #AAABAD;">Наш специалист свяжится с вами в ближайшее время.</p>
+                                                                <p style="color: #AAABAD;">Спасибо за покупку.</p>
+                                                                <input type="submit" style="height: 4em" value="Номер заказа №1894" class="ps-btn ps-btn_order">
+
+                                                            </div>
+                                                            <form class="form-detail">
+                                                                <div class="tabcontent" id="sign-phone">
+                                                                    <div class="form-row-last text-center">
+                                                                        <a href="/" style=" height: 3em; color: #fff; font-size: 18px; font-weight: 500; padding: 17px 45px 15px 45px;" class="ps-btn"><img style="padding-right: 10px;" src="{base_url}img/order-send-arrow.svg" alt=""> На главную</a>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -201,10 +232,57 @@
         <span class="sr-only">Loading...</span>
     </div>
 </div>
+<style>
+    .enter-btn-bg {
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 10000;
+        width: 100vw;
+        height: 100vh;
+        transition: 1000ms;
+        display: none;
+    }
+
+    .enter-btn-modal {
+        background-color: #fff;
+        padding: 45px;
+        border-radius: 5px;
+        box-shadow: 5px 5px 5px 5px #e5e5e5;
+    }
+
+    .ps-btn_order {
+        border: 1px solid #A8A8A8;
+        background: none;
+        color: #222222;
+    }
+
+    .ps-btn_order:hover {
+        border: 1px solid #A8A8A8;
+        background: none;
+        color: #222222;
+    }
+</style>
 <script src="{base_url}plugins/jquery.form.validation.min.js"></script>
 <script src="{base_url}js/jquery.validate.min.js"></script>
 <script src="{base_url}js/form_validation_messages_ru.js"></script>
 <script>
+    function onPsBlockRight() {
+        document.querySelector(".enter-btn-bg").style.display = "flex";
+        document.querySelector(".enter-btn-bg").classList.add("active-animation");
+        document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
+    }
+    document.querySelector(".enter-btn-bg").addEventListener('click', ({
+        target
+    }) => {
+        if (target.classList.contains("enter-btn-bg")) {
+            document.querySelector(".enter-btn-bg").classList.remove("active-animation");
+            document.querySelector(".enter-btn-bg").classList.add("disactive-animation");
+            document.querySelector(".enter-btn-bg").style.display = "none";
+        }
+    })
     var orderCode = null;
     var orderId = null;
     var bUserInfo = <?= $bUserInfo; ?>;
@@ -518,16 +596,15 @@
                 var landmark = $('#landmark').val();
                 var building = $('#building').val();
                 var comment = $('#order_comment').val();
-                var totalPrice = $('#tot_pr_checkout').val();
+                var totalPrice = document.getElementById('tot_pr_checkout');
                 var delivery_id = $('input[name=delivery]:checked').attr("id")
-                console.log(totalPrice);
                 $.post("<?= $base_url; ?>index.php/main/startTransMyBabilon", {
-                    "total_price": totalPrice,
+                    "total_price": parseInt(totalPrice.textContent, 10),
                     "phone_number": phone_number,
                     "phone_number2": phone_number2,
                     "name": name,
                     "product_total_count": 2,
-                    "address": address + ' ' + landmark + ' ' + building,
+                    "address": address + ' ' + building + ' Орентир: ' + landmark,
                     "comment": comment,
                     "delivery_id": delivery_id,
                     // "cash_type": cash_type,

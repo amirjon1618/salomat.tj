@@ -63,7 +63,7 @@
                                         <td class="border-0 table-text-end table-text-bold"><span class="number-currency"> </span><span class="text-currency"> сом</span></td>
                                     </tr>
                                     <td class="border-0">Стоимост доставки: </td>
-                                    <td class="border-0 table-text-end table-text-bold font-weight-bold">10 <span class="text-currency"> сом</span></td>
+                                    <td class="border-0 table-text-end table-text-bold font-weight-bold">20 <span class="text-currency"> сом</span></td>
                                     </tr>
 
                                 </tbody>
@@ -260,7 +260,7 @@
         }
         console.log(sum)
         $(".number-currency").text(`${sum}`);
-        $(".number-currency_total").text(`${sum + 10}`);
+        $(".number-currency_total").text(`${sum + 20}`);
     }
 
 
