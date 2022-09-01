@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="up-right-sidebar col-lg-2 col-md-2 col-sm-12 col-xs-12 p-4">
                                     <div class="text-center">
-                                        <img src="{base_url}img/user.png" alt="Icon" id="user_icon" class="rounded-circle" style="width: 100px; height: 100px;">
+                                        <img src="" alt="Icon" id="user_icon1" class="rounded-circle" style="width: 100px; height: 100px;">
                                         <form class="form-del" enctype="multipart/form-data">
                                             <div class="input__wrapper">
                                                 <input name="file" type="file" name="file" id="input__file" class="input input__file" onchange="uploadIMG(this)" multiple>
@@ -283,6 +283,11 @@
     </div>
 </div>
 <script>
+    // document.getElementById("user_icon").src = localStorage.getItem("user_icon");
+
+    // if (localStorage.getItem("userId") !== null) {
+    //     document.getElementById("user_icon").src = localStorage.getItem("user_icon");
+    // } else document.getElementById("user_icon").src = localStorage.getItem("user_icon").src = "{base_url}img/user.png"
     let imgVal;
     async function postData(url = '', data = {}) {
         // Default options are marked with *
@@ -298,10 +303,13 @@
         });
         return await response.json(); // parses JSON response into native JavaScript objects
     }
+    document.querySelector("#user_icon1").src = "{base_url}img/user.png";
+
+    console.log(document.querySelector("#user_icon1"))
     if (localStorage.getItem("user_icon") !== null) {
-        document.querySelector("#user_icon").src = localStorage.getItem("user_icon");
+        document.querySelector("#user_icon1").src = localStorage.getItem("user_icon");
     } else {
-        document.querySelector("#user_icon").src = "{base_url}img/user.png";
+        document.querySelector("#user_icon1").src = "{base_url}img/user.png";
     }
 
     function uploadIMG(e) {
@@ -324,6 +332,8 @@
                 .catch(error => console.log('error', error));
 
         }
+        window.location.reload();
+
     }
 
     function delPhoto() {

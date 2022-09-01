@@ -28,7 +28,7 @@
                                                 </div>
                                                 <div class="form-group pr-3">
                                                     <label>Дом <span></span></label>
-                                                    <input class="form-control" maxlength="250" type="text" placeholder="Дом">
+                                                    <input class="form-control" id="building" maxlength="250" type="text" placeholder="Дом">
                                                 </div>
                                                 <div class="form-group pr-3">
                                                     <label>Номер телефона <span class="red-star">*</span></label>
@@ -43,7 +43,7 @@
 
                                                 <div class="form-group">
                                                     <label>Ориентир</label>
-                                                    <input class="form-control" maxlength="250" type="text" placeholder="Ориентир">
+                                                    <input class="form-control" id="landmark" maxlength="250" type="text" placeholder="Ориентир">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Телефон, если не дозвонимся</label>
@@ -550,16 +550,16 @@
                 var landmark = $('#landmark').val();
                 var building = $('#building').val();
                 var comment = $('#order_comment').val();
-                var totalPrice = $('#tot_pr_checkout').val();
+                var totalPrice = $('#tot_pr_checkout');
                 var delivery_id = $('input[name=delivery]:checked').attr("id")
                 console.log(totalPrice);
                 $.post("<?= $base_url; ?>index.php/main/startTransMyBabilon", {
-                    "total_price": totalPrice,
+                    "total_price": parseInt(totalPrice.textContent, 10),
                     "phone_number": phone_number,
                     "phone_number2": phone_number2,
                     "name": name,
                     "product_total_count": 2,
-                    "address": address + ' ' + landmark + ' ' + building,
+                    "address": address + ' ' + building + ' Ориентир: ' + landmark,
                     "comment": comment,
                     "delivery_id": delivery_id,
                     // "cash_type": cash_type,
@@ -567,7 +567,7 @@
                     "wallet_name": "MyBabilon",
                     // "delivery_id": $('input[name=delivery]:checked').attr("id")
                 }, function(data) {
-                    $(".order-sended").css("display","flex")
+                    $(".order-sended").css("display", "flex")
                     console.log(data);
                     if (data.answ == 1) {
                         $('#checkout_loading').css('display', 'none');
