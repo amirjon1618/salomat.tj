@@ -74,8 +74,17 @@ class Admin extends CI_Controller
     {
         $data = array('base_url' => base_url(), 'alert' => '');
         $this->load->model('product');
+        $this->load->model('recipe');
+        $this->load->model('order');
+
 
         $data['total_prods'] = ($this->product->get_all_count())[0]['total_products'];
+        $data['total_users'] = count($this->user->getAllUser());
+////        var_dump(count($data['total_users']));
+//        var_dump($this->recipe->get_all());
+
+        $data['total_recipe'] = count($this->recipe->get_all());
+        $data['total_orders'] = count($this->order->getForStatic());
         $data['content'] = $this->parser->parse('admin/main_content', $data, true);
 
         $this->template($data);

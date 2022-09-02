@@ -164,6 +164,14 @@ class Order extends CI_Model
         return $query->result_array()[0];
     }
 
+    public function getForStatic()
+    {
+        $this->db->select('*');
+        $this->db->from('order');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function get_order_status($id)
     {
         $array = array('base_url' => base_url());

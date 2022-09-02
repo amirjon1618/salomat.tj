@@ -17,13 +17,18 @@ class Favorite extends CI_Model
      */
     public function get($user_id)
     {
-        $this->db->select("*");
+        $this->db->select("product.*");
         $this->db->where('user_id', $user_id);
         $this->db->from('favorites');
-        $this->db->join('products', 'products.id =','favorites.favoriteable_id');
+        $this->db->join('product', 'product.id = favorites.favoriteable_id', 'left');
         $query = $this->db->get();
-
-        return $query->result_array();
+        $favorites = $query->result_array();
+        $data = [];
+        foreach ($favorites as $favorite => $key){
+                $key['is_favorite'] = true;
+                $data [] = $key;
+        }
+        return $data;
     }
 
     /***
