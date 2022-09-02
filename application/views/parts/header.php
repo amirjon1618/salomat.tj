@@ -567,7 +567,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="navigation__right">
+                <div class="navigation__right header-flex_content">
                     <ul class="menu header_links">
                         <li class="">
                             <a href="{base_url}index.php/main/sales/11"><img src="{base_url}img/alergi.svg" /> При алергии</a>
@@ -590,9 +590,9 @@
     <!-- MOBILE -->
 
     <header class="header header--mobile" data-sticky="true">
-        <div class="navigation--mobile srch_inp_header_div">
+        <div class="navigation--mobile srch_inp_header_div header-flex_content">
             <a class="navigation__item ps-toggle--sidebar" href="#navigation-mobile">
-                <i class="fa fa-bars" aria-hidden="true"></i>
+                <img src="{base_url}img/burger-mobile_icon.svg" alt="Mobil Icon" style="width: 22px; height: 20px">
             </a>
             <div class="navigation__left">
                 <a class="ps-logo" href="{base_url}"><img class="header-logo_img" src="{base_url}img/logo.png" alt=""></a>
@@ -602,7 +602,7 @@
                 <!-- <div class="ps-cart--mini header_phone_number"> -->
                 <a class="header__extra header_phone_number call" href="javascript:void(0)" onclick="window.location='tel:9990'" target="_blank">
                     <strong>
-                        <img src="/img/tel.svg " alt="" style="width: 20px; margin-right: 10px;">99-90
+                        <img src="/img/tel.svg " alt="" style="width: 18px; margin-right: 10px;">99-90
                     </strong>
                     <p class="text-muted">09:00-18:00</p>
                 </a>
@@ -658,13 +658,15 @@
                     <line x1="18" y1="6" x2="6" y2="18" />
                     <line x1="6" y1="6" x2="18" y2="18" />
                 </svg></a>
-            <h3>Категории</h3>
+            <h3 style="padding-left: 20px;">Каталог товаров</h3>
         </div>
         <div class="ps-panel__content">
             <ul class="menu--mobile">
                 <?php foreach ($categories as $cat) : ?>
                     <li class="menu-item-has-children has-mega-menu">
-                        <a href="#"> <?= $cat['category_name'] ?></a><span class="sub-toggle"></span>
+                        
+                    <a href="#"><img src="{base_url}img/vector-icon1.svg" alt="Icon" style="padding-right: 15px;"> <?= $cat['category_name'] ?></a><span class="sub-toggle"></span>
+
                         <div class="mega-menu">
                             <div class="mega-menu__column">
                                 <?php foreach ($cat['sub_cat'] as $sub_cat) : ?>

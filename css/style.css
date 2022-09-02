@@ -88,6 +88,8 @@ button:focus {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    display: flex;
+    align-items: center;
 }
 
 .account-dropdown .info .content {
@@ -9357,7 +9359,6 @@ button:focus {
         color: #ffffff;
         font-size: 1rem;
         line-height: 20px;
-        text-transform: uppercase;
         letter-spacing: .05em;
     }
     
@@ -14702,7 +14703,6 @@ button:focus {
         }
         .ps-panel__header {
             display: flex;
-            justify-content: space-between;
             padding: 0 16px;
         }
         .header__filter {
@@ -14740,6 +14740,23 @@ button:focus {
     }
 
     @media (min-width: 320px) and (max-width: 576px) {
+        .rcd-position {
+            padding-top: 15px;
+        }
+        .header_phone_number > strong {
+            font-size: 20px !important;
+        }
+        .header-logo_img {
+            width: 130px;
+        }
+        .header-flex_content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .text-muted {
+            display: none;
+        }
         .collapse {
 
             display: block !important;
@@ -18645,6 +18662,8 @@ button:focus {
         padding: 15px 20px;
         line-height: 20px;
         font-size: 15px;
+        color: #000;
+        font-weight: 500;
     }
     
     .menu--mobile>li>a:hover {
@@ -19229,6 +19248,7 @@ button:focus {
         justify-content: space-between;
         padding: 10px 30px;
         border-bottom: none;
+        background-color: #fff;
     }
     
     .header--mobile .navigation--mobile .navigation__left {
@@ -19257,7 +19277,7 @@ button:focus {
         top: 0;
         width: 100%;
         z-index: 1000;
-        background-color: #f4f5f5;
+        background-color: #fff;
         -ms-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.12);
         box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.12);
     }
@@ -19313,6 +19333,9 @@ button:focus {
         }
         .header--mobile .ps-search--mobile {
             display: block;
+            background-color: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 20px;
         }
     }
     
