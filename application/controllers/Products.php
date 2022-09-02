@@ -213,7 +213,6 @@ class Products extends REST_Controller {
 
     public function category_products_get($id)
     {
-        var_dump($id);
         $current_page = $this->input->get('page');
         $sort_by = $this->input->get('sort_by');
 
@@ -308,7 +307,7 @@ class Products extends REST_Controller {
                 $row['review_count'] = 0;
             }
 
-            $favorite = $this->get_favorite($row['id']);
+            $favorite = $this->get_favorite($row['id'],$user_id);
             if (sizeof($favorite) != 0) {
                 $row['is_favorite'] = true;
             } else {
@@ -381,10 +380,10 @@ class Products extends REST_Controller {
         return $array;
     }
 
-    public function get_favorite($id)
+    public function get_favorite($id,$user_id)
     {
         $array = array();
-        $q_count = $this->db->query("SELECT COUNT(*) as count FROM `favorites` WHERE `favoriteable_id` = " . $id . " AND `user_id` = 61");
+        $q_count = $this->db->query("SELECT COUNT(*) as count FROM `favorites` WHERE `favoriteable_id` = " . $id . " AND `user_id` = ".$user_id);
         $arr_count = $q_count->result_array();
         if ($arr_count[0]['count'] != 0) {
             $this->db->select('*');
@@ -397,4 +396,52 @@ class Products extends REST_Controller {
         }
         return $array;
     }
+
+    /**
+     * @return void
+     */
+    public function show_get()
+    {
+        $category_id = '';
+        $user_id = $this->input->get('user_id');
+        $id = $this->input->get('product_id');
+
+        if ($id == '') {
+            redirect('errors/cli/error_404', TRUE);
+            return;
+        }
+        $res = $this->product->get($id, 'main',$user_id);
+        if (!isset($res['product_name'])) {
+            redirect('errors/cli/error_404', TRUE);
+            return;
+        }
+        if ($category_id == '') {
+            $category_prod = $this->product->get_product_category($id);
+            if(sizeof($category_prod) > 0) {
+                $category_id = $category_prod['category_id'];
+            }
+        }
+        $category_with_parents = $this->category->get_parent_categories($category_id);
+        if (sizeof($category_with_parents) == 0) {
+            $category_with_parents = [];
+        } else {
+            if ($category_with_parents['parent_cat']['parent_id'] == 0) {
+                $data['is_second_categ'] = true;
+            }
+        }
+        $data['product'] = $res;
+        $data['product_avatar'] = $res['product_pic'];
+        if ($res['product_pic']) {
+            $data['meta_social_image'] = base_url('upload_product/' . $res['product_pic']);
+        } else {
+            $data['meta_social_image'] = base_url('qwerty.png');
+        }
+
+        $data['comments'] = $this->rating->get_rating_info($id);
+        $data['similar_products'] = $this->product->get_similar_products($id);
+        $data['prods_suggestions'] = $this->product->get_prods_by_slider_type('product_suggestions');
+
+        $this->response($data, REST_Controller::HTTP_OK);
+    }
+
 }

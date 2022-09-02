@@ -10,6 +10,7 @@ class Product extends CI_Model
         parent::__construct();
         // Your own constructor code
         $this->load->database();
+        $this->load->library('session');
     }
 
     public function get_all_count()
@@ -89,7 +90,7 @@ class Product extends CI_Model
         return $id;
     }
 
-    public function get($id, $str = '')
+    public function get($id, $str = '' , $user_id = null)
     {
         $array = array();
         $this->db->select("*");
@@ -117,7 +118,9 @@ class Product extends CI_Model
             // $row['product_country'] = $this->get_other_fields($row['product_country'], 'country');
             $row['active_substance'] = $q->result_array();
             $row['categories'] = $q3->result_array();
-            $user_id = $this->session->userdata('user_id');
+            if (!isset($user_id))
+                $user_id = $this->session->userdata('user_id');
+
             $favorite = $this->get_favorite($row['id'],$user_id?:0);
             if (sizeof($favorite) != 0) {
                 $row['is_favorite'] = true;
@@ -446,7 +449,7 @@ class Product extends CI_Model
     }
 
     private $per_page_admin = 30;
-    public function get_all($current_page, $brand_id = '', $price = '', $search_text = '', $export_status_sort = '')
+    public function get_all($current_page, $brand_id = '', $price = '', $search_text = '', $export_status_sort = '',$category_id = '')
     {
         //echo $current_page;
         $array = array('base_url' => base_url());
@@ -1038,7 +1041,15 @@ class Product extends CI_Model
         }
         return $array;
     }
-    public function search_for_prod($str, $min_price = '', $max_price = '')
+
+    /**
+     * Search for product
+     * @param $str
+     * @param $min_price
+     * @param $max_price
+     * @return array
+     */
+    public function search_for_prod($str, $min_price , $max_price , $user_id = '')
     {
         if ($str == '')
             return [];
@@ -1080,7 +1091,9 @@ class Product extends CI_Model
                 $row['prod_rating_average'] = '';
                 $row['review_count'] = 0;
             }
-            $user_id = $this->session->userdata('user_id');
+            if (!isset($user_id))
+                $user_id = $this->session->userdata('user_id');
+
             $favorite = $this->get_favorite($row['id'],$user_id?:0);
             if (sizeof($favorite) != 0) {
                 $row['is_favorite'] = true;
@@ -1088,14 +1101,16 @@ class Product extends CI_Model
                 $row['is_favorite'] = false;
             }
 
-            $array[] = $row;
+
+            $array []= $row;
         }
         if (sizeof($query->result_array()) != 0) {
-            $newArray = $array;
+            $newArray  = $array;
             if (sizeof($newArray) != 0) {
                 array_multisort(array_column($newArray, 'product_price'), SORT_DESC, $newArray);
+//                $array['srch_prod_max_pr'] = $newArray[0]['product_price'];
+
             }
-            $array['srch_prod_max_pr'] = $newArray[0]['product_price'];
         }
 
         return $array;

@@ -58,7 +58,7 @@ class Users extends REST_Controller {
 
         $is_valid_token = $this->authorization_token->validateToken();
 
-        if(!empty($is_valid_token) && $is_valid_token['status'] === TRUE) {
+//        if(!empty($is_valid_token) && $is_valid_token['status'] === TRUE) {
             if (!empty($is_valid_token)) {
                 $headers = $this->input->request_headers();
                 $platform = $headers['platform'] ?? 'android';
@@ -69,13 +69,13 @@ class Users extends REST_Controller {
                 }
                 // $this->load->model('driver_model');
                 $this->response($this->user->show_user($id), REST_Controller::HTTP_OK);
-            } else {
-                $message = [
-                    'status' => FALSE,
-                    'message' => $is_valid_token['message']
-                ];
-                $this->response($message, REST_Controller::HTTP_OK);
-            }
+//            } else {
+//                $message = [
+//                    'status' => FALSE,
+//                    'message' => $is_valid_token['message']
+//                ];
+//                $this->response($message, REST_Controller::HTTP_OK);
+//            }
         }
     }
 
