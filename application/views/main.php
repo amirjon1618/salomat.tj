@@ -13,8 +13,11 @@
             <div class="ps-section__left">
                 <div class="ps-carousel--nav-inside owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
                     <?php foreach ($main_slider as $slider) : ?>
-                        <a href="<?= $slider['slider_link'] ?>">
-                            <img class="slider_img" src="<?= $slider['base_url'] ?>upload_banner/<?= $slider['slider_pic'] ?>" alt=""></a>
+                        <div style="margin-left: 5px; !important">
+                            <a href="<?= $slider['slider_link'] ?>">
+                                <img class="slider_img" src="<?= $slider['base_url'] ?>upload_banner/<?= $slider['slider_pic'] ?>" alt="">
+                            </a>
+                        </div>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -44,56 +47,59 @@
             <div class="ps-section__content">
                 <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
                     <?php foreach ($prods_of_the_day as $prod_of_the_day) : ?>
-                        <div class="ps-product ps-product--inner ps-product_of_the_day">
-                            <label>
-                                <input value="<?php $prod_of_the_day['id'] ?>" <?php echo $prod_of_the_day['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
-                                <svg id="shape" fill="none" data-id="<?= $prod_of_the_day['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
-                                    <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </label>
-                            <div class="ps-product__thumbnail ps-product__thumbnail_img_div  hover01">
-                                <a href="<?= $base_url ?>index.php/main/product/<?= $prod_of_the_day['id'] ?>?from=main">
-                                    <img class="imgs" src="<?= $base_url ?>upload_product/<?= $prod_of_the_day['product_pic'] ?>" alt="Product IMG">
-                                </a>
-                            </div>
-                            <div class="ps-product__container">
-                                <div class="ps-product__content"><a class="ps-product__title product_title_new" href="<?= $base_url ?>index.php/main/product/<?= $prod_of_the_day['id'] ?>">
-                                        <?= $prod_of_the_day['product_name'] ?></a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <?php if ($prod_of_the_day['review_count'] != 0) : ?>
-                                                <?php for ($i = 1; $i <= $prod_of_the_day['prod_rating_average']; $i++) : ?>
-                                                    <option value="1"></option>
-                                                <?php endfor; ?>
-                                                <?php for ($i = ($prod_of_the_day['prod_rating_average'] + 1); $i <= 5; $i++) : ?>
-                                                    <option value="<?= $i ?>"><?= $i ?></option>
-                                                <?php endfor; ?>
-                                            <?php else : ?>
-                                                <!-- <option value="" selected disabled hidden></option> -->
-                                                <option value="0">0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            <?php endif; ?>
-                                        </select><span>(<?= $prod_of_the_day['review_count'] ?>)</span>
-                                    </div>
-                                    <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
-                                            <input class="form-control height50" id="count_input" type="number" value="1" style="display: none;">
-                                            <?php if ($prod_of_the_day['product_old_price'] != 0) : ?><del><?= $prod_of_the_day['product_old_price'] ?> </del><?php endif; ?>
-                                            <?= $prod_of_the_day['product_price'] ?>c. </span><button onclick='addToCart(res = <?= json_encode($prod_of_the_day) ?>)' class="ps-btn btn-cart_cat">В корзину</button></p>
+                        <div class="main-ps-product">
+                            <div class="ps-product ps-product--inner ps-product_of_the_day">
+                                <label class="main-like_btn">
+                                    <input value="<?php $prod_of_the_day['id'] ?>" <?php echo $prod_of_the_day['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
+                                    <svg id="shape" fill="none" data-id="<?= $prod_of_the_day['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
+                                        <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </label>
+                                <div class="ps-product__thumbnail ps-product__thumbnail_img_div  hover01">
+                                    <a href="<?= $base_url ?>index.php/main/product/<?= $prod_of_the_day['id'] ?>?from=main">
+                                        <img class="imgs" src="<?= $base_url ?>upload_product/<?= $prod_of_the_day['product_pic'] ?>" alt="Product IMG">
+                                    </a>
+                                </div>
+                                <div class="ps-product__container">
+                                    <div class="ps-product__content"><a class="ps-product__title product_title_new" href="<?= $base_url ?>index.php/main/product/<?= $prod_of_the_day['id'] ?>">
+                                            <?= $prod_of_the_day['product_name'] ?></a>
+                                        <div class="ps-product__rating">
+                                            <select class="ps-rating" data-read-only="true">
+                                                <?php if ($prod_of_the_day['review_count'] != 0) : ?>
+                                                    <?php for ($i = 1; $i <= $prod_of_the_day['prod_rating_average']; $i++) : ?>
+                                                        <option value="1"></option>
+                                                    <?php endfor; ?>
+                                                    <?php for ($i = ($prod_of_the_day['prod_rating_average'] + 1); $i <= 5; $i++) : ?>
+                                                        <option value="<?= $i ?>"><?= $i ?></option>
+                                                    <?php endfor; ?>
+                                                <?php else : ?>
+                                                    <!-- <option value="" selected disabled hidden></option> -->
+                                                    <option value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                <?php endif; ?>
+                                            </select><span>(<?= $prod_of_the_day['review_count'] ?>)</span>
+                                        </div>
+                                        <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
+                                                <input class="form-control height50" id="count_input" type="number" value="1" style="display: none;">
+                                                <?php if ($prod_of_the_day['product_old_price'] != 0) : ?><del><?= $prod_of_the_day['product_old_price'] ?> </del><?php endif; ?>
+                                                <?= $prod_of_the_day['product_price'] ?>c. </span><button onclick='addToCart(res = <?= json_encode($prod_of_the_day) ?>)' class="ps-btn btn-cart_cat">В корзину</button></p>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        
                     <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </div>
     <div class="ps-section--gray">
-        <div class="container">
+        <div class="container" style="padding: 0;">
             <?php foreach ($categories_for_main_page as $cat) : ?>
                 <div class="ps-block--products-of-category">
                     <div class="ps-block__categories">
@@ -144,7 +150,7 @@
                     <div class="ps-block__product-box">
                         <?php foreach ($cat['categ_prods'] as $cat_p) : ?>
                             <div class="ps-product ps-product--simple hover01">
-                                <label>
+                                <label class="main-like_btn">
                                     <input value="<?php $cat_p['id'] ?>" <?php echo $cat_p['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
                                     <svg id="shape" fill="none" data-id="<?= $cat_p['id']?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
                                         <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -223,6 +229,7 @@
 
                                     </div>
                                     <div class="blog-articles-btn bab_mobile">
+                                        <div></div>
                                         <a href="{base_url}main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все статьи</button></a>
                                         <a href="https://www.t.me/Salomat9990" target="_blank">
                                             <img src="{base_url}img/telegram.svg" alt=""></a>

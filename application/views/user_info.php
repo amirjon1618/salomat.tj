@@ -16,15 +16,15 @@
                 <div class="user-info">
                     <div class="up-left-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12 p-0 mb-3">
                         <ul class="user-info_ul nav nav-pills d-block" id="myTab" role="tablist">
-                            <li class="nav-item5" role="presentation"><a id="webdisign-tab" data-toggle="tab" href="#user-info" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-user.svg" alt="Icon">Личная информация</a></li>
-                            <li class="nav-item5" role="presentation"><a id="webdisign-tab" data-toggle="tab" href="#user-order" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-cart.svg" alt="Icon">Мои заказы</a></li>
-                            <li class="nav-item5" role="presentation"><a id="webdisign-tab" data-toggle="tab" href="#user-favorite" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-like.svg" alt="Icon">Избранное</a></li>
-                            <li class="nav-item5" role="presentation"><a id="webdisign-tab" data-toggle="tab" href="#user-save" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-save.svg" alt="Icon">Безопасность</a></li>
+                            <li class="nav-item5" role="presentation"><a id="webdisign-tab0" data-toggle="tab" href="#user-info" data-hash="#user-info" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-user.svg" alt="Icon">Личная информация</a></li>
+                            <li class="nav-item5" role="presentation"><a id="webdisign-tab1" data-toggle="tab" href="#user-order" data-hash="#user-order" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-cart.svg" alt="Icon">Мои заказы</a></li>
+                            <li class="nav-item5" role="presentation"><a id="webdisign-tab2" data-toggle="tab" href="#user-favorite" data-hash="#user-favorite" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-like.svg" alt="Icon">Избранное</a></li>
+                            <li class="nav-item5" role="presentation"><a id="webdisign-tab3" data-toggle="tab" href="#user-save" data-hash="#user-save" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-save.svg" alt="Icon">Безопасность</a></li>
                         </ul>
                     </div>
                     <?php if (isset($auth)) : ?>
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="user-info" role="tabpanel" aria-labelledby="webdisign-tab">
+                            <div class="tab-pane fade show" data-hash="#user-info" id="user-info" role="tabpanel" aria-labelledby="webdisign-tab">
                                 <div class="up-content col-lg-6 col-md-6 col-sm-12 col-xs-12 p-4 mb-3">
                                     <div class="up-content-info">
                                         <h2>Личная информация</h2>
@@ -99,7 +99,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade show" id="user-order" role="tabpanel" aria-labelledby="webdisign-tab">
+                            <div class="tab-pane fade show" data-hash="#user-order" id="user-order" role="tabpanel" aria-labelledby="webdisign-tab">
                                 <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-4">
                                     <div class="table-title">
                                         <h2 class="pb-5">Мои заказы</h2>
@@ -183,7 +183,7 @@
                             <?php endif; ?>
                             </div>
 
-                            <div class="tab-pane fade show" id="user-favorite" role="tabpanel">
+                            <div class="tab-pane fade show" data-hash="#user-favorite" id="user-favorite" role="tabpanel">
 
                                 <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-3">
 
@@ -195,7 +195,7 @@
                                         <?php foreach ($favorites as $favorite) : ?>
 
                                             <div class="favorite-content">
-                                                <div class="d-flex col-lg-3 col-md-6 col-sm-6 col-xs-12 pb-5">
+                                                <div class="d-flex col-xs-6 col-lg-3 col-md-6 col-sm-6 pb-5">
                                                     <div class="ps-product ps-product--inner ps-product_of_the_day">
                                                         <label>
                                                             <input value="<?php $favorite['id'] ?>" <?php echo $favorite['id']  ?  'checked' : null  ?> type="checkbox" id="red">
@@ -252,7 +252,7 @@
                                     <?php endif; ?>
                                 </div>
                             </div>
-                            <div class="tab-pane fade show" id="user-save" role="tabpanel">
+                            <div class="tab-pane fade show" data-hash="#user-save" id="user-save" role="tabpanel">
                                 <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-3">
                                     <div class="user-save-title mb-5">
                                         <h2>Безопасность</h2>
@@ -400,9 +400,37 @@
         })
     }
 
+
+    const __hash = Array.from(document.querySelectorAll(".user-info_ul a"));
+    const __tab = Array.from(document.querySelectorAll(".tab-pane"));
+
+    __tab.forEach(elem => {
+        if (window.location.hash === elem.dataset.hash) {
+            elem.classList.add("active");
+        }
+    })
+
+    __hash.forEach(el => {
+        if (window.location.hash === el.dataset.hash) {
+            el.parentElement.classList.add("nav-item");
+        } else {
+            el.parentElement.classList.remove("nav-item");
+        }
+    })
+
+
     $(".user-info_ul a").on("click", function() {
-        $(".user-info_ul").find(".nav-item").removeClass("nav-item");
-        $(this).parent().addClass("nav-item");
+        window.location.hash = this.dataset.hash;
+        console.log(window.location.hash)
+        __hash.forEach(el => {
+            if (window.location.hash === el.dataset.hash) {
+                console.log(this.parentElement)
+                el.parentElement.classList.add("nav-item")
+            }
+            if (window.location.hash !== el.dataset.hash) {
+                el.parentElement.classList.remove("nav-item");
+            }
+        })
     });
 
     function decrease_count() {

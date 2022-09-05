@@ -6566,27 +6566,29 @@ button:focus {
             margin-bottom: 50px;
         }
         .ps-block--products-of-category .ps-block__product-box {
-            border-bottom: 1px solid #e1e1e1;
-            border-right: 1px solid #e1e1e1;
+            justify-content: center;
         }
         .ps-block--products-of-category .ps-block__product-box>* {
-            max-width: 50%;
-            flex-basis: 50%;
+            max-width: 44%;
+            flex-basis: 44%;
         }
         .ps-block--products-of-category .ps-product--simple {
             padding: 20px;
             border: 1px solid #e1e1e1;
-            border-right: none;
-            border-bottom: none;
+            border-radius: 5px;
+            margin: 10px;
         }
     }
     
     @media (max-width: 479px) {
         .ps-block--products-of-category {
             margin-bottom: 35px;
+            background-color: #fff;
+            padding: 0 10px 20px 10px;
         }
         .ps-block--products-of-category .ps-product--simple {
             padding: 10px;
+
         }
     }
     
@@ -14740,6 +14742,97 @@ button:focus {
     }
 
     @media (min-width: 320px) and (max-width: 576px) {
+        .owl-carousel .owl-item img {
+            height: 80%;
+        }
+        .header_phone_number > p {
+            display: none;
+        }
+        .popular-blogs_content img {
+            width: 80px !important;
+            height: 80px !important;
+        }
+        .popular-blogs_content h3 {
+            padding-right: 60px;
+            color: #1E323C;
+            padding-top: 0;
+        }
+        .form-v8-content .tab {
+            margin: 5px 0 !important;
+        }
+        .form-v8-content .form-detail .enter {
+            background: #1EBEBE;
+            border-radius: 5px;
+            color: #fff;
+            width: 120px !important;
+            height: 44px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 18px;
+        }
+        .form-v8-content .form-detail .enter-main {
+            width: 100% !important;
+            background: #1EBEBE;
+            border-radius: 5px;
+            color: #fff;
+            height: 44px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 18px;
+        }
+    
+        .form-v8-content .form-detail .register {
+            border-radius: 5px;
+            border: 1px solid #1EBEBE !important;
+            color: #1EBEBE;
+            width: 120px !important;
+            height: 44px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 18px;
+            margin-bottom: 0 !important;
+        }
+        .main-product_img {
+            margin-right: 0 !important;
+            margin-left: 25px !important;
+        }
+        .ps-block__product-box > div:not(:first-child) {
+           display: none !important;
+        }
+        .ps-block__product-box > div:nth-child(2) { 
+           display: block !important;
+        }
+        .owl-stage .owl-item {
+            margin: 0 !important;
+        }
+        .blog-articles-btn button {
+            width: 120px;
+        }
+        .blog-articles_right {
+            border: none;
+        }
+        .content-bg {
+            padding: 0 10px 10px 10px;
+        }
+        .ps-block--products-of-category .ps-block__slider a img {
+            padding: 10px;
+            border-radius: 15px !important;
+        }
+        .main-like_btn {
+            display: none;
+        }
+        .ps-btn, button.ps-btn {
+            display: none;
+        }
+        .owl-carousel.owl-drag .owl-item {
+            border-radius: 5px;
+        }
+        .ps-product.ps-product--inner {
+            padding: 0 !important;
+        }
         .rcd-position {
             padding-top: 15px;
         }
@@ -14753,9 +14846,6 @@ button:focus {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        .text-muted {
-            display: none;
         }
         .collapse {
 
@@ -14775,12 +14865,22 @@ button:focus {
         }
         .prods_slider span {
             padding: 6px 10px 6px 10px;
+            border: none;
         }
         .ps-product__price-link {
             padding: 5px 8px;
         }
+        .container-normalize {
+            padding: 0 !important;
+        }
         .owl-carousel.owl-drag .owl-item {
-            padding: 6px 10px 8px 10px;
+            padding: 0;
+        }
+        .main-ps-product {
+            border: 1px solid #E5E5E5;
+            border-radius: 5px;
+            padding: 0 10px;
+            margin: 0 10px;
         }
         .bab_mobile {
             display: flex;
@@ -14810,7 +14910,14 @@ button:focus {
             display: flex;
         }
         .ps-product .ps-product__title {
-            margin-bottom: 21px;
+            margin-bottom: 5px;
+            margin-top: -26px;
+        }
+        .ps-product .ps-product__price {
+            margin-bottom: 0;
+        }
+        .ps-product .ps-product__container {
+            padding: 0;
         }
         .bi-left-sidebar {
             display: none;
@@ -14945,6 +15052,9 @@ button:focus {
         }
         .favorite-cart_btn {
             display: flex;
+        }
+        .slider_img {
+            height: 100% !important;
         }
     }
     .pb-jcs {
@@ -15703,7 +15813,7 @@ button:focus {
         justify-content: space-between;
         -webkit-box-align: center;
         align-items: center;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #e5e5e5;
     }
     
     .ps-deal-of-day .ps-section__header>a {
@@ -18583,6 +18693,7 @@ button:focus {
         border-left: none;
         height: 100%;
         border-radius: 0 0 5px 0;
+        overflow-y: auto;
     }
     
     .menu--dropdown>li:hover {
@@ -34098,4 +34209,12 @@ section {
 }
 .card-body img {
     display: none;
+}
+.close-form_btn {
+    float: right;
+    cursor: pointer;
+    padding: 10px;
+}
+.registration-form {
+    padding: 10px 35px 35px 35px;
 }
