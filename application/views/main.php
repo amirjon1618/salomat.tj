@@ -1,7 +1,7 @@
 <div id="homepage-3">
     <div class="ps-home-banner">
 
-        <div class="container recipe_container_div">
+        <div class="container recipe_container_div rcd-position">
             <div class="recipe_div_main" col="12">
                 <div class="recipe_sheet_div">
                     <a href="{base_url}index.php/main/recipe"><img src="/img/photo.svg" alt="Recept" style="padding-right: 15px;"> Фото рецепта</a>
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="ps-section__content">
-                <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="1" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
+                <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
                     <?php foreach ($prods_of_the_day as $prod_of_the_day) : ?>
                         <div class="ps-product ps-product--inner ps-product_of_the_day">
                             <label>
@@ -59,7 +59,7 @@
                             <div class="ps-product__container">
                                 <div class="ps-product__content"><a class="ps-product__title product_title_new" href="<?= $base_url ?>index.php/main/product/<?= $prod_of_the_day['id'] ?>">
                                         <?= $prod_of_the_day['product_name'] ?></a>
-                                    <div class="ps-product__rating">    
+                                    <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <?php if ($prod_of_the_day['review_count'] != 0) : ?>
                                                 <?php for ($i = 1; $i <= $prod_of_the_day['prod_rating_average']; $i++) : ?>
@@ -144,12 +144,12 @@
                     <div class="ps-block__product-box">
                         <?php foreach ($cat['categ_prods'] as $cat_p) : ?>
                             <div class="ps-product ps-product--simple hover01">
-                            <label>
-                                <input value="<?php $prod_of_the_day['id'] ?>" <?php echo $prod_of_the_day['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
-                                <svg id="shape" fill="none" data-id="<?= $prod_of_the_day['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
-                                    <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </label>
+                                <label>
+                                    <input value="<?php $cat_p['id'] ?>" <?php echo $cat_p['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
+                                    <svg id="shape" fill="none" data-id="<?= $cat_p['id']?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
+                                        <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </label>
                                 <div class="ps-product__thumbnail ">
                                     <a href="{base_url}main/product/<?= $cat_p['id'] ?>">
                                         <img class="category_imgs" src="<?= $cat_p['base_url'] ?>upload_product/<?= $cat_p['product_pic'] ?>" alt="">
@@ -296,7 +296,6 @@
                 if (_like.fill === "none") {
                     $.ajax({
                         type: "POST",
-
                         url: "{base_url}favorites",
                         headers: {
                             "Accept": "application/json",
@@ -356,7 +355,7 @@
                      <div class="text-justify blog_about">${blogShow.blog_about}</div>
                      <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"> читать дальше...</a>
                 `;
-                })  
+                })
 
             }
         })
@@ -499,5 +498,4 @@
         fill: #DD2E44;
         stroke: #DD2E44 !important;
     }
-
 </style>
