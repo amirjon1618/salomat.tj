@@ -928,7 +928,7 @@ class Main extends CI_Controller
             $this->load->library('session');
             $user = $this->getUser( $this->session->userdata('user_id'));
 
-            $this->order->save_user_order_status_change($user['user_id'], $answer['order_id'],1,1,$this->input->post("comment"));
+            $this->order->save_user_order_status_change($user['user_id'], $answer['order_id'], 1, 1, $this->input->post("comment"));
 
             $sms_id = $this->sms->add(array('sms_mobile' => $array["phone_number"], 'sms_text' => $rand_num));
             $sms_resp = $this->create_url_f55($array["phone_number"], $rand_num, $sms_id);

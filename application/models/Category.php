@@ -66,6 +66,28 @@ class Category extends CI_Model
         $this->db->select("*");
         $this->db->from('category');
         $this->db->where('parent_id', '0');
+        $this->db->order_by("order_id", "asc");
+        $query = $this->db->get();
+        $categories = $query->result_array();
+        $i = 0;
+        foreach ($categories as $cat) {
+            $categories[$i]['base_url'] = base_url();
+            $categories[$i]['total_cat_in_main'] = sizeof($this->get_categories_from_main());
+            $categories[$i]['sub_cat'] = $this->_sub_categories($cat['id']);
+            $i++;
+        }
+        return $categories;
+    }
+
+    public function get_by_sort_all($array)
+    {
+        $this->db->select("*");
+        $this->db->from('category');
+        $this->db->where('parent_id', '0');
+        $this->db->where_in('id', $array);
+        $order = sprintf('FIELD(id, %s)', implode(', ', $array));
+
+        $this->db->order_by($order);
         $query = $this->db->get();
         $categories = $query->result_array();
         $i = 0;
