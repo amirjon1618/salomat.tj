@@ -552,9 +552,8 @@
                 var comment = $('#order_comment').val();
                 var totalPrice = $('#tot_pr_checkout');
                 var delivery_id = $('input[name=delivery]:checked').attr("id")
-                console.log(totalPrice);
                 $.post("<?= $base_url; ?>index.php/main/startTransMyBabilon", {
-                    "total_price": parseInt(totalPrice.textContent, 10),
+                    "total_price": totalPrice[0].textContent.split(' ')[0],
                     "phone_number": phone_number,
                     "phone_number2": phone_number2,
                     "name": name,

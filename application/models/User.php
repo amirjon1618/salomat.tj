@@ -261,7 +261,7 @@ class User extends CI_Model
         return $this->db->insert_id();
     }
 
-    function user_login($phone, $password, $key)
+    function user_login($phone, $password)
     {
 
         $this->db->where('login', $phone);
