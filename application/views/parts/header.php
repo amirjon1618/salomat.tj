@@ -151,238 +151,243 @@
             <div class="page-content">
                 <div class="form-v8-content">
                     <div class="enter-form" style="display: none;">
-                        <div class="enter-form_reg efr1">
-                            <div class="tab">
-                                <div class="tab-inner">
-                                    <h3 class="tablinks text-center">Вход или регистрация</h3>
-                                </div>
-                            </div>
-                            <form id="form1" class="form-detail" method="post">
-                                <div class="tabcontent" id="sign-phone">
-                                    <div class="form-row">
-                                        <span class="text-label">Телефон</span>
-                                        <label class="form-row-inner">
-                                            <input type="number" name="restore-sms" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
-                                            <span class="border"></span>
-                                        </label>
-                                    </div>
-                                    <div class="form-row-last d-grid">
-                                        <a href="#"><input type="submit" name="enter" class="enter ef1 enter-reg_btn" value="Вход или  регистрация"></a>
-                                    </div>
-                                </div>
-                            </form>
+                        <div class="close-form_btn" onclick="javascript:document.querySelector('.enter-btn-bg').style.display='none';">
+                            <img src=" {base_url}img/plus-close_form.svg" alt="X">
                         </div>
-                        <div class="enter-form_reg efr2">
-                            <div class="tab">
-                                <div class="tab-inner">
-                                    <h3 class="tablinks text-center">Вход</h3>
-                                </div>
-                            </div>
-                            <form id="form2" class="form-detail" action="#" method="post">
-                                <div class="tabcontent" id="sign-pass">
-                                    <div class="form-row">
-                                        <span class="text-label">Пароль</span>
-                                        <label class="form-row-inner position-relative">
-                                            <input type="password" data-active="0" name="password" id="enter-password" minlength="4" maxlength="32" class="input-text hide-pass" required placeholder="* * * * * * * * * *">
-                                            <div class="hide-btn-pass">
-                                                <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass1">
-                                            </div>
-                                        </label>
-                                        <p class="validate-text"></p>
+                        <div class="registration-form">
+                            <div class="enter-form_reg efr1">
+                                <div class="tab">
+                                    <div class="tab-inner">
+                                        <h3 class="tablinks text-center">Вход или регистрация</h3>
                                     </div>
-                                    <div class="forgot-pass d-flex justify-content-between align-items-center pt-2">
-                                        <div class="form-check p-0">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                Запомнить
+                                </div>
+                                <form id="form1" class="form-detail" method="post">
+                                    <div class="tabcontent" id="sign-phone">
+                                        <div class="form-row">
+                                            <span class="text-label">Телефон</span>
+                                            <label class="form-row-inner">
+                                                <input type="number" name="restore-sms" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
+                                                <span class="border"></span>
                                             </label>
                                         </div>
-                                        <div class="forgot-pass_a">
-                                            <a href="#">Забыли пароль?</a>
+                                        <div class="form-row-last d-grid">
+                                            <a href="#" style="width: 100%;"><input type="submit" name="enter" class="enter-main ef1 enter-reg_btn main-enter_btn" value="Вход или  регистрация"></a>
                                         </div>
                                     </div>
-                                    <div class="form-row-last d-flex justify-content-between">
-                                        <a href="#"><input type="submit" name="register" class="enter ef2" value="Вход"></a>
-                                        <a href="#"><input type="submit" name="cancel" class="register rf2" value="Отмена"></a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="enter-form_reg efr3">
-                            <div class="tab">
-                                <div class="tab-inner">
-                                    <h3 class="tablinks text-center">Регистрация</h3>
-                                </div>
+                                </form>
                             </div>
-                            <form id="form3" class="form-detail " action="#" method="post">
-                                <div class="tabcontent2" id="ver-in">
-                                    <div class="form-row user-phone">
-                                        <span class="text-label">Введите код из смс</span>
-                                        <label class="form-row-inner">
-                                            <input type="number" name="tel-number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" minlength="4" id="ver-sms" class="input-text" required placeholder=" __ __ __ __ ">
-                                            <span class="border"></span>
-                                        </label>
+                            <div class="enter-form_reg efr2">
+                                <div class="tab">
+                                    <div class="tab-inner">
+                                        <h3 class="tablinks text-center">Вход</h3>
                                     </div>
-                                    <p class="validate-text"></p>
-                                    <div class="timer-agree">
-                                        <div class="showTimer">
-                                            <p>Повторная отправка сообщения будет доступна через:</p>
-                                            <div class="text-center pb-4">
-                                                <span class="min-time"></span>
-                                                <span>:</span>
-                                                <span class="sec-time"></span>
+                                </div>
+                                <form id="form2" class="form-detail" action="#" method="post">
+                                    <div class="tabcontent" id="sign-pass">
+                                        <div class="form-row">
+                                            <span class="text-label">Пароль</span>
+                                            <label class="form-row-inner position-relative">
+                                                <input type="password" data-active="0" name="password" id="enter-password" minlength="4" maxlength="32" class="input-text hide-pass" required placeholder="* * * * * * * * * *">
+                                                <div class="hide-btn-pass">
+                                                    <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass1">
+                                                </div>
+                                            </label>
+                                            <p class="validate-text"></p>
+                                        </div>
+                                        <div class="forgot-pass d-flex justify-content-between align-items-center pt-2">
+                                            <div class="form-check p-0">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Запомнить
+                                                </label>
+                                            </div>
+                                            <div class="forgot-pass_a">
+                                                <a href="#">Забыли пароль?</a>
                                             </div>
                                         </div>
-                                        <div class="hideTimer  justify-content-center" style="display: none;">
-                                            <a href="#" class="hideTimer_a">Повторная отправка</a>
-                                        </div>
-                                        <svg class="mx-auto mb-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 19.5C7.24795 19.5 3.59625 15.8063 3.59625 11.25C3.59625 6.69365 7.24795 3 11.7526 3C16.2572 3 19.9089 6.69365 19.9089 11.25C19.9089 15.8063 16.2572 19.5 11.7526 19.5ZM2.11328 11.25C2.11328 16.6348 6.42893 21 11.7526 21C17.0762 21 21.3918 16.6348 21.3918 11.25C21.3918 5.86522 17.0762 1.5 11.7526 1.5C6.42893 1.5 2.11328 5.86522 2.11328 11.25Z" fill="#7A769D" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 15C12.1621 15 12.494 14.6642 12.494 14.25V11.25C12.494 10.8358 12.1621 10.5 11.7526 10.5C11.3431 10.5 11.0111 10.8358 11.0111 11.25V14.25C11.0111 14.6642 11.3431 15 11.7526 15Z" fill="#7A769D" />
-                                            <path d="M12.7412 8.25C12.7412 7.69771 12.2986 7.25 11.7526 7.25C11.2065 7.25 10.7639 7.69771 10.7639 8.25C10.7639 8.80229 11.2065 9.25 11.7526 9.25C12.2986 9.25 12.7412 8.80229 12.7412 8.25Z" fill="#7A769D" />
-                                        </svg>
-                                        <p class="mb-0">Нажав на кнопку “Продолжить”, я принимаю <a href="#" class="text-primary">условия пользования</a></p>
-                                    </div>
-                                    <div class="form-row-last d-flex justify-content-between">
-                                        <a href="#"><input type="submit" name="register" class="enter ef3" value="Продолжить"></a>
-                                        <a href="#"><input type="submit" name="register" class="register rf3" value="Отмена"></a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="enter-form_reg efr4">
-                            <div class="tab">
-                                <div class="tab-inner">
-                                    <h3 class="tablinks text-center">Регистрация</h3>
-                                </div>
-                            </div>
-                            <form id="form4" class="form-detail " action="#" method="post">
-                                <div class="tabcontent2" id="ver-in2">
-                                    <div class="form-row">
-                                        <span class="text-label">Пароль</span>
-                                        <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="first-password" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
-                                            <div class="hide-btn-pass" data-active="0">
-                                                <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass2">
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <div class="form-row">
-                                        <span class="text-label">Повторный пароль</span>
-                                        <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="second-password" minlength="4" maxlength="32" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
-                                            <div class="hide-btn-pass" data-active="0">
-                                                <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass3">
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <p class="validate-text"></p>
-                                    <div class="timer-agree">
-                                        <svg class="mx-auto mb-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 19.5C7.24795 19.5 3.59625 15.8063 3.59625 11.25C3.59625 6.69365 7.24795 3 11.7526 3C16.2572 3 19.9089 6.69365 19.9089 11.25C19.9089 15.8063 16.2572 19.5 11.7526 19.5ZM2.11328 11.25C2.11328 16.6348 6.42893 21 11.7526 21C17.0762 21 21.3918 16.6348 21.3918 11.25C21.3918 5.86522 17.0762 1.5 11.7526 1.5C6.42893 1.5 2.11328 5.86522 2.11328 11.25Z" fill="#7A769D" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 15C12.1621 15 12.494 14.6642 12.494 14.25V11.25C12.494 10.8358 12.1621 10.5 11.7526 10.5C11.3431 10.5 11.0111 10.8358 11.0111 11.25V14.25C11.0111 14.6642 11.3431 15 11.7526 15Z" fill="#7A769D" />
-                                            <path d="M12.7412 8.25C12.7412 7.69771 12.2986 7.25 11.7526 7.25C11.2065 7.25 10.7639 7.69771 10.7639 8.25C10.7639 8.80229 11.2065 9.25 11.7526 9.25C12.2986 9.25 12.7412 8.80229 12.7412 8.25Z" fill="#7A769D" />
-                                        </svg>
-                                        <p class="mb-0">Нажав на кнопку “Регистрация”, я принимаю <a href="#" class="text-primary">условия пользования</a></p>
-                                    </div>
-                                    <div class="form-row-last d-flex justify-content-between">
-                                        <a href="{base_url}index.php/main/user_info"><input type="submit" name="register" class="enter ef4" value="Регистрация"></a>
-                                        <a href="#"><input type="submit" name="register" class="register rf4" value="Отмена"></a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="enter-form_reg efr5" style="display: none;">
-                            <div class="tab">
-                                <div class="tab-inner">
-                                    <h3 class="tablinks text-center">Восстановление пароля</h3>
-                                </div>
-                            </div>
-                            <form id="form5" class="form-detail" method="post">
-                                <div class="tabcontent" id="sign-phone">
-                                    <div class="form-row">
-                                        <span class="text-label">Телефон</span>
-                                        <label class="form-row-inner">
-                                            <input type="number" name="tel-number" id="errorPhone" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
-                                            <span class="border"></span>
-                                        </label>
-                                    </div>
-                                    <p class="validate-text"></p>
-                                    <div class="form-row-last d-grid">
-                                        <a href="#"><input type="submit" name="enter" class="enter ef5 enter-reg_btn" value="Отправить код"></a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="enter-form_reg efr6" style="display: none;">
-                            <div class="tab">
-                                <div class="tab-inner">
-                                    <h3 class="tablinks text-center">Восстановление пароля</h3>
-                                </div>
-                            </div>
-                            <form id="form6" class="form-detail " action="#" method="post">
-                                <div class="tabcontent2" id="ver-in">
-                                    <div class="form-row user-phone">
-                                        <span class="text-label">Введите код из смс</span>
-                                        <label class="form-row-inner">
-                                            <input type="number" name="tel-number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" minlength="4" id="ver-sms2" class="input-text" required placeholder=" __ __ __ __ ">
-                                            <span class="border"></span>
-                                        </label>
-                                    </div>
-                                    <p class="validate-text"></p>
-                                    <div class="timer-agree">
-                                        <div class="showTimer">
-                                            <p>Повторная отправка сообщения будет доступна через:</p>
-                                            <div class="text-center pb-4">
-                                                <span class="min-time"></span>
-                                                <span>:</span>
-                                                <span class="sec-time"></span>
-                                            </div>
-                                        </div>
-                                        <div class="hideTimer  justify-content-center" style="display: none;">
-                                            <a href="#" class="hideTimer_a">Повторная отправка</a>
+                                        <div class="form-row-last d-flex justify-content-between">
+                                            <a href="#"><input type="submit" name="register" class="enter ef2" value="Вход"></a>
+                                            <a href="#"><input type="submit" name="cancel" class="register rf2" value="Отмена"></a>
                                         </div>
                                     </div>
-                                    <div class="form-row-last d-flex justify-content-between">
-                                        <a href="#"><input type="submit" name="register" class="enter ef3" value="Продолжить"></a>
-                                        <a href="#"><input type="submit" name="register" class="register cancel-btn" value="Отмена"></a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="enter-form_reg efr7" style="display: none;">
-                            <div class="tab">
-                                <div class="tab-inner">
-                                    <h3 class="tablinks text-center">Восстановление пароля</h3>
-                                </div>
+                                </form>
                             </div>
-                            <form id="form7" class="form-detail " action="#" method="post">
-                                <div class="tabcontent2" id="ver-in2">
-                                    <div class="form-row">
-                                        <span class="text-label">Пароль</span>
-                                        <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="first-password2" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
-                                            <div class="hide-btn-pass" data-active="0">
-                                                <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass4">
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <div class="form-row">
-                                        <span class="text-label">Повторный пароль</span>
-                                        <label class="form-row-inner position-relative">
-                                            <input type="password" name="password" id="second-password2" minlength="4" maxlength="32" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
-                                            <div class="hide-btn-pass" data-active="0">
-                                                <img src=" {base_url}img/show-pass.svg" alt="Icon" id="hidePass5">
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <p class="validate-text"></p>
-                                    <div class="form-row-last d-flex justify-content-between">
-                                        <a href="{base_url}index.php/main/user_info"><input type="submit" name="register" class="enter ef4" value="Продолжить"></a>
-                                        <a href="#"><input type="submit" name="register" class="register cancel-btn2" value="Отмена"></a>
+                            <div class="enter-form_reg efr3">
+                                <div class="tab">
+                                    <div class="tab-inner">
+                                        <h3 class="tablinks text-center">Регистрация</h3>
                                     </div>
                                 </div>
-                            </form>
+                                <form id="form3" class="form-detail " action="#" method="post">
+                                    <div class="tabcontent2" id="ver-in">
+                                        <div class="form-row user-phone">
+                                            <span class="text-label">Введите код из смс</span>
+                                            <label class="form-row-inner">
+                                                <input type="number" name="tel-number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" minlength="4" id="ver-sms" class="input-text" required placeholder=" __ __ __ __ ">
+                                                <span class="border"></span>
+                                            </label>
+                                        </div>
+                                        <p class="validate-text"></p>
+                                        <div class="timer-agree">
+                                            <div class="showTimer">
+                                                <p>Повторная отправка сообщения будет доступна через:</p>
+                                                <div class="text-center pb-4">
+                                                    <span class="min-time"></span>
+                                                    <span>:</span>
+                                                    <span class="sec-time"></span>
+                                                </div>
+                                            </div>
+                                            <div class="hideTimer  justify-content-center" style="display: none;">
+                                                <a href="#" class="hideTimer_a">Повторная отправка</a>
+                                            </div>
+                                            <svg class="mx-auto mb-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 19.5C7.24795 19.5 3.59625 15.8063 3.59625 11.25C3.59625 6.69365 7.24795 3 11.7526 3C16.2572 3 19.9089 6.69365 19.9089 11.25C19.9089 15.8063 16.2572 19.5 11.7526 19.5ZM2.11328 11.25C2.11328 16.6348 6.42893 21 11.7526 21C17.0762 21 21.3918 16.6348 21.3918 11.25C21.3918 5.86522 17.0762 1.5 11.7526 1.5C6.42893 1.5 2.11328 5.86522 2.11328 11.25Z" fill="#7A769D" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 15C12.1621 15 12.494 14.6642 12.494 14.25V11.25C12.494 10.8358 12.1621 10.5 11.7526 10.5C11.3431 10.5 11.0111 10.8358 11.0111 11.25V14.25C11.0111 14.6642 11.3431 15 11.7526 15Z" fill="#7A769D" />
+                                                <path d="M12.7412 8.25C12.7412 7.69771 12.2986 7.25 11.7526 7.25C11.2065 7.25 10.7639 7.69771 10.7639 8.25C10.7639 8.80229 11.2065 9.25 11.7526 9.25C12.2986 9.25 12.7412 8.80229 12.7412 8.25Z" fill="#7A769D" />
+                                            </svg>
+                                            <p class="mb-0">Нажав на кнопку “Продолжить”, я принимаю <a href="#" class="text-primary">условия пользования</a></p>
+                                        </div>
+                                        <div class="form-row-last d-flex justify-content-between">
+                                            <a href="#"><input type="submit" name="register" class="enter ef3" value="Продолжить"></a>
+                                            <a href="#"><input type="submit" name="register" class="register rf3" value="Отмена"></a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="enter-form_reg efr4">
+                                <div class="tab">
+                                    <div class="tab-inner">
+                                        <h3 class="tablinks text-center">Регистрация</h3>
+                                    </div>
+                                </div>
+                                <form id="form4" class="form-detail " action="#" method="post">
+                                    <div class="tabcontent2" id="ver-in2">
+                                        <div class="form-row">
+                                            <span class="text-label">Пароль</span>
+                                            <label class="form-row-inner position-relative">
+                                                <input type="password" name="password" id="first-password" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
+                                                <div class="hide-btn-pass" data-active="0">
+                                                    <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass2">
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="form-row">
+                                            <span class="text-label">Повторный пароль</span>
+                                            <label class="form-row-inner position-relative">
+                                                <input type="password" name="password" id="second-password" minlength="4" maxlength="32" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
+                                                <div class="hide-btn-pass" data-active="0">
+                                                    <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass3">
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <p class="validate-text"></p>
+                                        <div class="timer-agree">
+                                            <svg class="mx-auto mb-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 19.5C7.24795 19.5 3.59625 15.8063 3.59625 11.25C3.59625 6.69365 7.24795 3 11.7526 3C16.2572 3 19.9089 6.69365 19.9089 11.25C19.9089 15.8063 16.2572 19.5 11.7526 19.5ZM2.11328 11.25C2.11328 16.6348 6.42893 21 11.7526 21C17.0762 21 21.3918 16.6348 21.3918 11.25C21.3918 5.86522 17.0762 1.5 11.7526 1.5C6.42893 1.5 2.11328 5.86522 2.11328 11.25Z" fill="#7A769D" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 15C12.1621 15 12.494 14.6642 12.494 14.25V11.25C12.494 10.8358 12.1621 10.5 11.7526 10.5C11.3431 10.5 11.0111 10.8358 11.0111 11.25V14.25C11.0111 14.6642 11.3431 15 11.7526 15Z" fill="#7A769D" />
+                                                <path d="M12.7412 8.25C12.7412 7.69771 12.2986 7.25 11.7526 7.25C11.2065 7.25 10.7639 7.69771 10.7639 8.25C10.7639 8.80229 11.2065 9.25 11.7526 9.25C12.2986 9.25 12.7412 8.80229 12.7412 8.25Z" fill="#7A769D" />
+                                            </svg>
+                                            <p class="mb-0">Нажав на кнопку “Регистрация”, я принимаю <a href="#" class="text-primary">условия пользования</a></p>
+                                        </div>
+                                        <div class="form-row-last d-flex justify-content-between">
+                                            <a href="{base_url}index.php/main/user_info"><input type="submit" name="register" class="enter ef4" value="Регистрация"></a>
+                                            <a href="#"><input type="submit" name="register" class="register rf4" value="Отмена"></a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="enter-form_reg efr5" style="display: none;">
+                                <div class="tab">
+                                    <div class="tab-inner">
+                                        <h3 class="tablinks text-center">Восстановление пароля</h3>
+                                    </div>
+                                </div>
+                                <form id="form5" class="form-detail" method="post">
+                                    <div class="tabcontent" id="sign-phone">
+                                        <div class="form-row">
+                                            <span class="text-label">Телефон</span>
+                                            <label class="form-row-inner">
+                                                <input type="number" name="tel-number" id="errorPhone" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
+                                                <span class="border"></span>
+                                            </label>
+                                        </div>
+                                        <p class="validate-text"></p>
+                                        <div class="form-row-last d-grid">
+                                            <a href="#" style="width: 100%;"><input type="submit" name="enter" class="enter-main ef5 enter-reg_btn" value="Отправить код"></a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="enter-form_reg efr6" style="display: none;">
+                                <div class="tab">
+                                    <div class="tab-inner">
+                                        <h3 class="tablinks text-center">Восстановление пароля</h3>
+                                    </div>
+                                </div>
+                                <form id="form6" class="form-detail " action="#" method="post">
+                                    <div class="tabcontent2" id="ver-in">
+                                        <div class="form-row user-phone">
+                                            <span class="text-label">Введите код из смс</span>
+                                            <label class="form-row-inner">
+                                                <input type="number" name="tel-number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" minlength="4" id="ver-sms2" class="input-text" required placeholder=" __ __ __ __ ">
+                                                <span class="border"></span>
+                                            </label>
+                                        </div>
+                                        <p class="validate-text"></p>
+                                        <div class="timer-agree">
+                                            <div class="showTimer">
+                                                <p>Повторная отправка сообщения будет доступна через:</p>
+                                                <div class="text-center pb-4">
+                                                    <span class="min-time"></span>
+                                                    <span>:</span>
+                                                    <span class="sec-time"></span>
+                                                </div>
+                                            </div>
+                                            <div class="hideTimer  justify-content-center" style="display: none;">
+                                                <a href="#" class="hideTimer_a">Повторная отправка</a>
+                                            </div>
+                                        </div>
+                                        <div class="form-row-last d-flex justify-content-between">
+                                            <a href="#"><input type="submit" name="register" class="enter ef3" value="Продолжить"></a>
+                                            <a href="#"><input type="submit" name="register" class="register cancel-btn" value="Отмена"></a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="enter-form_reg efr7" style="display: none;">
+                                <div class="tab">
+                                    <div class="tab-inner">
+                                        <h3 class="tablinks text-center">Восстановление пароля</h3>
+                                    </div>
+                                </div>
+                                <form id="form7" class="form-detail " action="#" method="post">
+                                    <div class="tabcontent2" id="ver-in2">
+                                        <div class="form-row">
+                                            <span class="text-label">Пароль</span>
+                                            <label class="form-row-inner position-relative">
+                                                <input type="password" name="password" id="first-password2" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
+                                                <div class="hide-btn-pass" data-active="0">
+                                                    <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass4">
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="form-row">
+                                            <span class="text-label">Повторный пароль</span>
+                                            <label class="form-row-inner position-relative">
+                                                <input type="password" name="password" id="second-password2" minlength="4" maxlength="32" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
+                                                <div class="hide-btn-pass" data-active="0">
+                                                    <img src=" {base_url}img/show-pass.svg" alt="Icon" id="hidePass5">
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <p class="validate-text"></p>
+                                        <div class="form-row-last d-flex justify-content-between">
+                                            <a href="{base_url}index.php/main/user_info"><input type="submit" name="register" class="enter ef4" value="Продолжить"></a>
+                                            <a href="#"><input type="submit" name="register" class="register cancel-btn2" value="Отмена"></a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -491,13 +496,13 @@
                         <div class="account-wrap" id="account-wrap" style="display: none;">
                             <div class="account-item clearfix js-item-menu">
                                 <div class="image">
-                                    <img class="rounded-circle" class="user_icon" src="" alt="User Icon" />
+                                    <img class="rounded-circle" style="min-height: 40px;" class="user_icon" src="" alt="User Icon" />
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img class="rounded-circle" class="user_icon" src="" alt="User Icon" />
+                                                <img class="rounded-circle" style="min-height: 60px;" class="user_icon" src="" alt="User Icon" />
                                             </a>
                                         </div>
                                         <div class="content">
@@ -508,22 +513,12 @@
                                         </div>
                                     </div>
                                     <div class="account-dropdown__body">
-                                        <div class="account-dropdown__item">
-                                            <a href="{base_url}index.php/main/user_info#user-info">
-                                                <i class="zmdi zmdi-account"><img src="{base_url}img/up-user.svg" alt="icon"></i>Личная информация</a>
-                                        </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="{base_url}index.php/main/user_info#user-order">
-                                                <i class="zmdi zmdi-settings"><img src="{base_url}img/up-cart.svg" alt="icon"></i>Мои заказы</a>
-                                        </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="{base_url}index.php/main/user_info#user-favorite">
-                                                <i class="zmdi zmdi-money-box"><img src="{base_url}img/up-like.svg" alt="icon"></i>Избранное</a>
-                                        </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="{base_url}index.php/main/user_info#user-save">
-                                                <i class="zmdi zmdi-money-box"><img src="{base_url}img/up-save.svg" alt="icon"></i>Безопастность</a>
-                                        </div>
+                                        <ul class="user-info_ul nav nav-pills d-block" id="myTab" role="tablist">
+                                            <li class="nav-item5" role="presentation"><a id="webdisign-tab0" data-toggle="tab" href="#user-info" data-hash="#user-info" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-user.svg" alt="Icon">Личная информация</a></li>
+                                            <li class="nav-item5" role="presentation"><a id="webdisign-tab1" data-toggle="tab" href="#user-order" data-hash="#user-order" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-cart.svg" alt="Icon">Мои заказы</a></li>
+                                            <li class="nav-item5" role="presentation"><a id="webdisign-tab2" data-toggle="tab" href="#user-favorite" data-hash="#user-favorite" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-like.svg" alt="Icon">Избранное</a></li>
+                                            <li class="nav-item5" role="presentation"><a id="webdisign-tab3" data-toggle="tab" href="#user-save" data-hash="#user-save" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-save.svg" alt="Icon">Безопасность</a></li>
+                                        </ul>
                                     </div>
                                     <div class="account-dropdown__footer">
                                         <a href="/" onclick="onRemoveLS()">
@@ -664,8 +659,8 @@
             <ul class="menu--mobile">
                 <?php foreach ($categories as $cat) : ?>
                     <li class="menu-item-has-children has-mega-menu">
-                        
-                    <a href="#"><img src="{base_url}img/vector-icon1.svg" alt="Icon" style="padding-right: 15px;"> <?= $cat['category_name'] ?></a><span class="sub-toggle"></span>
+
+                        <a href="#"><img src="{base_url}img/vector-icon1.svg" alt="Icon" style="padding-right: 15px;"> <?= $cat['category_name'] ?></a><span class="sub-toggle"></span>
 
                         <div class="mega-menu">
                             <div class="mega-menu__column">
@@ -875,7 +870,6 @@
     .form-v8-content .enter-form {
         position: relative;
         width: 100%;
-        padding: 35px 40px;
         background: #fff;
         border-radius: 5px;
     }
@@ -1049,6 +1043,18 @@
         font-size: 18px;
     }
 
+    .form-v8-content .form-detail .enter-main {
+        width: 100% !important;
+        background: #1EBEBE;
+        border-radius: 5px;
+        color: #fff;
+        height: 44px;
+        border: none;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 18px;
+    }
+
     .form-v8-content .form-detail .enter:hover {
         background: #18A1A1;
         border-radius: 5px;
@@ -1060,6 +1066,9 @@
         color: #fff;
     }
 
+    .main-enter_btn {
+        width: 100% !important;
+    }
 
     /* Responsive */
     @media screen and (max-width: 991px) {
@@ -1737,6 +1746,12 @@
             }
         })
     }
+    $(".user-info_ul a").on("click", function() {
+        window.location.hash = "";
+        window.location.href = `{base_url}index.php/main/user_info${this.dataset.hash}`
+        $(".user-info_ul").find(".nav-item").removeClass("nav-item");
+        $(this).parent().addClass("nav-item");
+        });
 
     function onPost() {
         $.ajax({

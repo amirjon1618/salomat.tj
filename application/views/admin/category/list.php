@@ -41,7 +41,7 @@
             </thead>
             <tbody id="dragAndDrop" draggable="true">
               <?php foreach ($list as $item) : ?>
-                <tr>
+                <tr ondrop="onDrop()">
                   <td><?= $item['id'] ?></td>
                   <td><?= $item['category_name'] ?></td>
                   <!-- <td>{category_name}</td> -->
@@ -91,6 +91,31 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 <script>
+  function onDrop() {
+    const sort = [];
+    const childs = document.querySelectorAll("#dragAndDrop tr td:first-child");
+    childs.forEach(elem => {
+      const numbers = Number(elem.textContent);
+      sort.push(Number(elem.textContent));
+    })
+    $.ajax({
+      type: "POST",
+      url: "{base_url}products/updateOrderInCategory",
+      headers: {
+        "Accept": "application/json",
+      },
+      data: {
+        sort
+      },
+    })
+  }
+
+  // Array.from(document.querySelectorAll("#TableUser tr")).forEach(elem => {
+  //   elem.addEventListener("mouseup", () => {
+  //     alert("")
+  //   })
+  // })
+
   function change_status(id) {
     var checked = 0;
     if ($('#stat_checkbox' + id).is(':checked')) {
@@ -106,6 +131,7 @@
       }
     });
   }
+
 
   function onPsBlockRight() {
     document.querySelector(".enter-btn-bg").style.display = "flex";

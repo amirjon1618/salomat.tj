@@ -724,7 +724,7 @@ function select2Cofig() {
                         animateOut: dataAnimateOut,
                         margin: dataGap,
                         autoplay: dataAuto,
-                        autoplayTimeout: 3000,
+                        autoplayTimeout: 5000,
                         autoplayHoverPause: true,
                         loop: dataLoop,
                         nav: dataNav,
