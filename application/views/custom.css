@@ -138,6 +138,7 @@ body {
 .header_phone_number > strong > i {
    margin-right: 5px;
    font-size: 15px;
+   align-items: center;
 }
 
 .header_top {
