@@ -41,11 +41,11 @@ class Users extends REST_Controller {
         $this->response($this->user->get_users(), REST_Controller::HTTP_OK);
     }
 
-
     /**
      * Show the User.
      *
-     * @param int  $id
+     * @param $id
+     * @return void
      */
     public function show_get($id){
 
@@ -58,7 +58,7 @@ class Users extends REST_Controller {
 
         $is_valid_token = $this->authorization_token->validateToken();
 
-//        if(!empty($is_valid_token) && $is_valid_token['status'] === TRUE) {
+        if(!empty($is_valid_token) && $is_valid_token['status'] === TRUE) {
             if (!empty($is_valid_token)) {
                 $headers = $this->input->request_headers();
                 $platform = $headers['platform'] ?? 'android';
@@ -69,13 +69,13 @@ class Users extends REST_Controller {
                 }
                 // $this->load->model('driver_model');
                 $this->response($this->user->show_user($id), REST_Controller::HTTP_OK);
-//            } else {
-//                $message = [
-//                    'status' => FALSE,
-//                    'message' => $is_valid_token['message']
-//                ];
-//                $this->response($message, REST_Controller::HTTP_OK);
-//            }
+            } else {
+                $message = [
+                    'status' => FALSE,
+                    'message' => $is_valid_token['message']
+                ];
+                $this->response($message, REST_Controller::HTTP_OK);
+            }
         }
     }
 
@@ -315,12 +315,7 @@ class Users extends REST_Controller {
 
     public function login_post()
     {
-        // var_dump($phone      = $this->input->post('phone'));
         header("Access-Control-Allow-Origin: *");
-
-        #Getting key from DB for hash
-        $key = $this->user->get_keys();
-        $key = $key[0]->key;
 
         $headers    = $this->input->request_headers();
         $platform   = $headers['platform'] ?? 'android';
@@ -347,7 +342,7 @@ class Users extends REST_Controller {
 
             $phone      = $this->input->post('phone');
             $password   = $this->input->post('password');
-            $output     = $this->user->user_login($phone, $password, $key);
+            $output     = $this->user->user_login($phone, $password);
 
             $this->response($output, REST_Controller::HTTP_OK);
 
@@ -367,9 +362,7 @@ class Users extends REST_Controller {
                 $auth_id = $this->user->CreateSession($session);
                 $this->isAuth = true;
 
-    
                 setcookie("auth_id", $auth_id, time()+3600*24*15, '/');
-    
 
                 $user_token = $this->authorization_token->generateToken($token_data);
 
@@ -399,23 +392,48 @@ class Users extends REST_Controller {
         }
     }
 
-    public function update_user_post()
+    public function update_user_post($id)
     {
-        $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        if (($this->input->post('confirm')) != 1 ){
+            $this->form_validation->set_rules('name', 'ФИО', 'xss_clean|trim|max_length[20]');
+            $this->form_validation->set_rules('email', 'Почта', 'xss_clean|trim|max_length[20]');
+            $this->form_validation->set_rules('login', 'Телефон', 'xss_clean|trim|max_length[20]|min_length[9]');
+            $this->form_validation->set_rules('address', 'Адрес', 'xss_clean|trim|max_length[20]');
+            $this->form_validation->set_rules('gender', 'Пол', 'xss_clean|trim|max_length[20]');
+            $this->form_validation->set_rules('birth_date', 'Дата рождения', 'xss_clean|trim|max_length[20]');
 
-        if(isset($user))
-            $userData['name'] = $this->input->post('name');
-            $userData['email'] = $this->input->post('email');
-            $userData['login'] = $this->input->post('login');
-            $userData['birth_date'] = $this->input->post('birth_date');
-            $userData['address'] = $this->input->post('address');
-            $userData['gender'] = $this->input->post('gender');
+            if($this->form_validation->run() == FALSE) {
+                $message = array(
+                    'status'    => false,
+                    'error'     => $this->form_validation->error_array(),
+                    'message'   => validation_errors()
+                );
 
-        $this->db->where("user_id", $user['user_id']);
-        $this->db->update("users", $userData);
+                $this->response($message, 400);
 
-        redirect(base_url('/index.php/main/user_info'), 'refresh');
+            } else {
+                $this->load->library('session');
+                $user = $this->getUser($id);
+
+                if (isset($user))
+                    $userData['name'] = $this->input->post('name')??$user['name'];
+                $userData['email'] = $this->input->post('email')??$user['email'];
+                $userData['login'] = $this->input->post('login')??$user['login'];
+                $userData['birth_date'] = $this->input->post('birth_date')??$user['birth_date'];
+                $userData['address'] = $this->input->post('address')??$user['address'];
+                $userData['gender'] = $this->input->post('gender')??$user['gender'];
+
+                $this->db->where("user_id", $user['user_id']);
+                $this->db->update("users", $userData);
+
+                redirect(base_url('/index.php/main/user_info'), 'refresh');
+            }
+        }else{
+            $this->form_validation->set_rules('name', 'Телефон', 'xss_clean|trim|max_length[20]');
+            $phone = $this->input->post('login');
+            $this->resend_sms_post($phone);
+        }
+
     }
 
     public function edit_user_post($id)
@@ -512,14 +530,14 @@ class Users extends REST_Controller {
      * Send Sms for confirm
      *
      */
-    public function resend_sms_post()
+    public function resend_sms_post($phone)
     {
-        if ($this->input->post("phone")) {
+        if ($this->input->post("phone") || $phone) {
             $rand_num = rand(1000, 9999);
             $array['code'] = $rand_num;
             $now = date('Y-m-d H:i');
-            $sms_id = $this->sms->add_phone(array('phone' => $this->input->post("phone"), 'confirm_code' => $rand_num, 'qty' => 1, 'created_at' => $now, 'updated_at' => $now));
-            $this->create_url_f55($this->input->post("phone"), $rand_num, $sms_id);
+            $sms_id = $this->sms->add_phone(array('phone' => $this->input->post("phone") ?? $phone, 'confirm_code' => $rand_num, 'qty' => 1, 'created_at' => $now, 'updated_at' => $now));
+            $this->create_url_f55($this->input->post("phone")??$phone, $rand_num, $sms_id);
             $this->response($rand_num);
         } else {
             echo json_encode(-1);

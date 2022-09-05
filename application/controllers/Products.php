@@ -444,4 +444,23 @@ class Products extends REST_Controller {
         $this->response($data, REST_Controller::HTTP_OK);
     }
 
+    /**
+     * @return void
+     *
+     */
+    public function updateOrderInCategory_post()
+    {
+        $array = $this->input->post('sort');
+
+        $categories = $this->category->get_by_sort_all($array);
+            foreach (array_values($categories) as $order => $key){
+                $update_rows = array(
+                    'order_id' => $order,
+                );
+                $this->db->where('id', $key['id'] );
+                $result = $this->db->update('category', $update_rows);
+            }
+
+        $this->response($categories, REST_Controller::HTTP_OK);
+    }
 }

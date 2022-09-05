@@ -265,6 +265,7 @@ class Order extends CI_Model
             $array['wallet_name'] = "";
         }
         $new_arr = array(
+            'total_price'  =>  $array['total_price'],
             'full_name' => $array['name'],
             'phone_number' => $array['phone_number'],
             'address' => $array['address'],
@@ -360,8 +361,6 @@ class Order extends CI_Model
     //     }
     //     return $array;
     // }
-
-
 
     public function update($id, $array)
     {

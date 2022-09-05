@@ -1049,7 +1049,7 @@ class Product extends CI_Model
      * @param $max_price
      * @return array
      */
-    public function search_for_prod($str, $min_price , $max_price , $user_id = '')
+    public function search_for_prod($str, $min_price = '' , $max_price ='', $user_id = '')
     {
         if ($str == '')
             return [];
