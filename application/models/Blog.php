@@ -24,6 +24,7 @@ class Blog extends CI_Model
         if ($search_inp != '') {
             $this->db->where('blog.blog_title', $search_inp);
         }
+        $this->db->order_by("blog.order_id", "asc");
         $qq = $this->db->get();
         $total_pages = 0;
 
@@ -75,6 +76,7 @@ class Blog extends CI_Model
         if ($page <= $total_pages) {
             $this->db->select("*");
             $this->db->from('blog');
+            $this->db->order_by("blog.order_id", "asc");
             if ($tag_id != 0) {
                 $this->db->join('blog_tag', 'blog_tag.blog_id = blog.id');
                 $this->db->join('tag', 'tag.id = blog_tag.tag_id');
@@ -93,6 +95,19 @@ class Blog extends CI_Model
         } else {
         }
         return $array;
+    }
+
+    public function get_all_by_sort($sort)
+    {
+        $this->db->select("*");
+        $this->db->from('blog');
+        $this->db->where_in('id', $sort);
+        $order = sprintf('FIELD(id, %s)', implode(', ', $sort));
+        $this->db->order_by($order);
+        $query = $this->db->get();
+        $blod = $query->result_array();
+
+        return $blod;
     }
 
 
@@ -196,6 +211,7 @@ class Blog extends CI_Model
         $array = array();
         $this->db->select("COUNT(*) as total_blog_items");
         $this->db->from('blog');
+        $this->db->order_by("blog.order_id", "asc");
         if ($tag_id != 0) {
             $this->db->join('blog_tag', 'blog_tag.blog_id = blog.id');
             $this->db->join('tag', 'tag.id = blog_tag.tag_id');
