@@ -445,6 +445,8 @@ class Products extends REST_Controller {
     }
 
     /**
+     * Updated Sort for Category.
+     *
      * @return void
      *
      */
@@ -461,6 +463,53 @@ class Products extends REST_Controller {
                 $result = $this->db->update('category', $update_rows);
             }
 
-        $this->response($categories, REST_Controller::HTTP_OK);
+        $this->response($array, REST_Controller::HTTP_OK);
+    }
+
+    /**
+     * Updated Sort for Slider.
+     *
+     * @return void
+     *
+     */
+    public function updateOrderInSlider_post()
+    {
+        $array = $this->input->post('sort');
+
+        $sliders = $this->slider->get_all_by_sort($array);
+
+        foreach (array_values($sliders) as $order => $key){
+            $update_rows = array(
+                'order_id' => $order,
+            );
+            $this->db->where('slider_id', $key['slider_id'] );
+            $this->db->update('slider', $update_rows);
+        }
+
+        $this->response($array, REST_Controller::HTTP_OK);
+    }
+
+    /**
+     * Updated Sort for Blog.
+     *
+     * @return void
+     *
+     */
+    public function updateOrderInBlog_post()
+    {
+        $array = $this->input->post('sort');
+
+        $blogs = $this->blog->get_all_by_sort($array);
+        $this->response($blogs, REST_Controller::HTTP_OK);
+
+        foreach (array_values($blogs) as $order => $key){
+            $update_rows = array(
+                'order_id' => $order,
+            );
+            $this->db->where('id', $key['id'] );
+            $this->db->update('blog', $update_rows);
+        }
+
+        $this->response($array, REST_Controller::HTTP_OK);
     }
 }
