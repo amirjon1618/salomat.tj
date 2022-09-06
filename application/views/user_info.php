@@ -28,7 +28,7 @@
                                 <div class="up-content col-lg-6 col-md-6 col-sm-12 col-xs-12 p-4 mb-3">
                                     <div class="up-content-info">
                                         <h2>Личная информация</h2>
-                                        <form action="{base_url}users/update_user" method="post" class="up-content-info_form">
+                                        <form action="{base_url}users/update_user_web" method="post" class="up-content-info_form">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                 <div class="form-col">
                                                     <label for="validationCustom01">Имя*</label>
@@ -259,7 +259,7 @@
                                     </div>
                                     <?php if (isset($auth)) : ?>
                                         <div class="user-save-content">
-                                            <form action="{base_url}users/update_user" method="post" class="up-content-info_form">
+                                            <form action="{base_url}users/update_user_web" method="post" class="up-content-info_form">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12 pb-5">
                                                         <label for="validationCustom02">Номер телефона*</label>

@@ -393,11 +393,30 @@ class Users extends REST_Controller {
         }
     }
 
+    public function update_user_web_post()
+    {
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+
+        if(isset($user))
+            $userData['name'] = $this->input->post('name');
+        $userData['email'] = $this->input->post('email');
+        $userData['login'] = $this->input->post('login');
+        $userData['birth_date'] = $this->input->post('birth_date');
+        $userData['address'] = $this->input->post('address');
+        $userData['gender'] = $this->input->post('gender');
+
+        $this->db->where("user_id", $user['user_id']);
+        $this->db->update("users", $userData);
+
+        redirect(base_url('/index.php/main/user_info'), 'refresh');
+    }
+
     public function update_user_post($id)
     {
         if (($this->input->post('confirm')) != 1 ){
-            $this->form_validation->set_rules('name', 'ФИО', 'xss_clean|trim|max_length[40]max_length[20]');
-            $this->form_validation->set_rules('email', 'Почта', 'xss_clean|trim|max_length[20]');
+            $this->form_validation->set_rules('name', 'ФИО', 'xss_clean|trim|max_length[40]|min_length[3]');
+            $this->form_validation->set_rules('email', 'Почта', 'xss_clean|trim|max_length[40]');
             $this->form_validation->set_rules('login', 'Телефон', 'xss_clean|trim|max_length[9]|min_length[9]');
             $this->form_validation->set_rules('address', 'Адрес', 'xss_clean|trim|max_length[20]');
             $this->form_validation->set_rules('gender', 'Пол', 'xss_clean|trim|max_length[20]');
