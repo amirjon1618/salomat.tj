@@ -39,7 +39,7 @@
                                                 </div>
                                                 <div class="form-col">
                                                     <label for="validationCustom02">Номер телефона*</label>
-                                                    <input type="tel" class="form-control" id="validationCustom02" name="login" placeholder="+992 XXX XX XX XX" required value="<?php echo $phone ?>">
+                                                    <input type="tel" class="form-control" id="validationCustom02" readonly name="login" placeholder="+992 XXX XX XX XX" required value="<?php echo $phone ?>">
                                                     <div class="valid-feedback">
                                                         Правильно!
                                                     </div>
@@ -185,7 +185,7 @@
 
                             <div class="tab-pane fade show" data-hash="#user-favorite" id="user-favorite" role="tabpanel">
 
-                                <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-3">
+                                <div class="up-content col-lg-8 col-md-8 col-sm-12 col-xs-12 p-3" id="favorite-parent">
 
                                     <div class="favorite-title pb-5">
                                         <h2 class="border-bottom pb-4">Избранное</h2>
@@ -194,11 +194,11 @@
                                     <?php if (isset($auth) && !empty($favorites)) : ?>
                                         <?php foreach ($favorites as $favorite) : ?>
 
-                                            <div class="favorite-content">
+                                            <div class="favorite-content" data-favoriteid="<?= $favorite['id'] ?>">
                                                 <div class="d-flex col-xs-6 col-lg-3 col-md-6 col-sm-6 pb-5">
                                                     <div class="ps-product ps-product--inner ps-product_of_the_day">
                                                         <label>
-                                                            <input value="<?php $favorite['id'] ?>" <?php echo $favorite['id']  ?  'checked' : null  ?> type="checkbox" id="red">
+                                                            <input onclick="deleteProduct(<?= $favorite['id'] ?>)" value="<?php $favorite['id'] ?>" <?php echo $favorite['id']  ?  'checked' : null  ?> type="checkbox" id="red">
                                                             <svg id="shape" fill="none" data-id="<?= $favorite['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
                                                                 <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                                             </svg>
@@ -259,18 +259,25 @@
                                     </div>
                                     <?php if (isset($auth)) : ?>
                                         <div class="user-save-content">
-                                            <form class="user-save-form" action="{base_url}users/update_user_password" method="post">
-                                                <div class="user-save-div">
-                                                    <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                            <form action="{base_url}users/update_user" method="post" class="up-content-info_form">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12 pb-5">
+                                                        <label for="validationCustom02">Номер телефона*</label>
+                                                        <input type="tel" class="form-control" id="validationCustom02" name="login" placeholder="+992 XXX XX XX XX" required value="<?php echo $phone ?>">
+                                                        <div class="valid-feedback">
+                                                            Правильно!
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
                                                         <label for="exampleInputPassword1">Пароль*</label>
                                                         <input type="password" class="form-control form-control-save" name="password" id="validationCustom01" placeholder="Введите новый пароль" required>
                                                     </div>
-                                                    <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                    <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                         <label for="exampleInputPassword2">Повторите пароль*</label>
                                                         <input type="password" class="form-control form-control-save" name="password_confirm" id="validationCustom02" placeholder="Введите повторно пароль" required>
                                                     </div>
                                                 </div>
-                                                <button class="form-btn mr-3">Сохранить</button>
+                                                <button class="form-btn my-4 mx-3" onclick="onPsBlockRight()" id="enter-profile">Сохранить</button>
                                             </form>
                                         </div>
                                     <?php endif; ?>
@@ -283,6 +290,22 @@
     </div>
 </div>
 <script>
+    function onPsBlockRight() {
+        $(".enter-form").css("display", "block");
+        document.querySelector(".enter-btn-bg").style.display = "flex";
+        document.querySelector(".enter-btn-bg").classList.add("active-animation");
+        document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
+    }
+    document.getElementById("red").addEventListener("click", function() {
+        this.parentElement.parentElement.remove()
+    })
+
+    function deleteProduct(id) {
+        const favoriteId = document.querySelector(`[data-favoriteid="${id}"]`);
+        const parent = document.getElementById('favorite-parent');
+        parent.removeChild(favoriteId);
+    }
+
     // document.getElementById("user_icon").src = localStorage.getItem("user_icon");
 
     // if (localStorage.getItem("userId") !== null) {

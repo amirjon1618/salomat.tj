@@ -36,7 +36,7 @@
                 <th style="text-align: center;">Удалить</th>
               </tr>
             </thead>
-            <tbody id="dragAndDrop" draggable="true">
+            <tbody>
               <?php foreach ($list as $item) : ?>
                 <tr>
                   <td><?= $item['id'] ?></td>

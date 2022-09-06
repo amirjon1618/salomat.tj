@@ -11057,6 +11057,7 @@ button:focus {
     
     .ps-product--wide:hover {
         border: 1px solid #ccc;
+        border-radius: 5px;
     }
     
     .ps-product--wide:hover .ps-product__content {
@@ -11602,7 +11603,7 @@ button:focus {
         -webkit-box-pack: justify;
         justify-content: space-between;
         -webkit-box-align: end;
-        align-items: flex-end;
+        align-items: baseline;
         max-width: 420px;
     }
     
@@ -14821,12 +14822,6 @@ button:focus {
             padding: 10px;
             border-radius: 15px !important;
         }
-        .main-like_btn {
-            display: none;
-        }
-        .ps-btn, button.ps-btn {
-            display: none;
-        }
         .owl-carousel.owl-drag .owl-item {
             border-radius: 5px;
         }
@@ -15756,7 +15751,7 @@ button:focus {
             padding: 0 2px;
         }
         .ps-shopping-product .ps-product {
-            margin-bottom: 4px;
+            margin-bottom: 30px;
         }
         .ps-shopping-product .ps-product .ps-product__badge {
             top: 5px;

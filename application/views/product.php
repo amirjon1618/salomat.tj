@@ -11,7 +11,7 @@
                             <li class="third"><a href="#tab-4">Отзывы (<?= $category_products['review_count'] ?>)</a></li>
                         </ul>
                     </div>
-                    <div class="ps-product__shopping"><span class="ps-product__price"><span><?= $category_products['product_price'] ?> сом.</span>
+                    <div class="ps-product__shopping"><span class="ps-product__price-top"><span><?= $category_products['product_price'] ?> сом.</span>
                             <?php if ($category_products['product_old_price'] != 0) : ?>
                                 <del><?= $category_products['product_old_price'] ?> сом.</del><?php endif; ?>
                         </span>
@@ -115,7 +115,7 @@
 
                             <div style="display: flex; justify-content: flex-end;">
                                 <?php if ($category_products['product_old_price'] != 0) : ?>
-                                    <del><?= $category_products['product_old_price'] ?> сом.</del><?php endif; ?>
+                                    <del class="ps-pp_db-del"><?= $category_products['product_old_price'] ?> сом.</del><?php endif; ?>
                                 <div class="like-icon">
                                     <label>
                                         <input value="<?php $category_products['id'] ?>" <?php echo $category_products['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
@@ -576,8 +576,11 @@
     if (document.querySelector(".global-product-not-exist") === null) {
         $('.ps-pp_dn').css("display", "none");
         $('.ps-pp_db').css("display", "block");
+        $('.ps-pp_db-del').css("display", "block")
     } else {
         $('.ps-pp_db').css("display", "none");
+        $('.ps-pp_db-del').css("display", "none")
+        $('.ps-product__price-top').css("display", "none")
     }
     // if ($('.global-product-not-exist')){
     //     $('.ps-product__price').hide();
