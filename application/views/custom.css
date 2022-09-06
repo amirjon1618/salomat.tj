@@ -426,7 +426,7 @@ body {
 }
 
 .ps-product__thumbnail_img_div {
-   min-height: 204px !important;
+   /* min-height: 204px !important; */
 }
 
 .owl-nav .owl-next {
@@ -634,7 +634,7 @@ textarea.error {
 .srch_res_sort_by_price,
 .sales_res_sort_by_price {
    padding: 10px;
-   background: #89e486;
+   background: #18a1a1;
    border: 0;
    font-size: 16px;
    font-weight: bold;
@@ -646,7 +646,7 @@ textarea.error {
 .sort_by_price_mobile:hover,
 .srch_res_sort_by_price:hover,
 .sales_res_sort_by_price:hover {
-   background: #89e486;
+   background: #18a1a1;
    border: 0;
    outline: none;
 }
@@ -655,7 +655,7 @@ textarea.error {
 .sort_by_price_mobile:focus,
 .srch_res_sort_by_price:focus,
 .sales_res_sort_by_price:focus {
-   background: #89e486;
+   background: #18a1a1;
    border: 0;
    outline: none;
 }
@@ -1341,7 +1341,7 @@ button {
 }
 
 .product_add_notification_div {
-   background: #18A1A1;
+   background: #18a1a1;
    border-radius: 7px;
    align-items: center;
    position: fixed;

@@ -1751,7 +1751,7 @@
         window.location.href = `{base_url}index.php/main/user_info${this.dataset.hash}`
         $(".user-info_ul").find(".nav-item").removeClass("nav-item");
         $(this).parent().addClass("nav-item");
-        });
+    });
 
     function onPost() {
         $.ajax({

@@ -16,7 +16,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">СПИСОК БАННЕРОВ</h3>
+          <h3 class="box-title">СПИСОК СЛАЙДЕРОВ</h3>
           <a href="{base_url}index.php/admin/addBanner" class="add_btns add_btns_color btn btn-primary">
           <i class="fa fa-plus"></i> Добавить баннер
         </a>

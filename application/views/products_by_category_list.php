@@ -259,7 +259,7 @@
             $('.ps-filter--sidebar').removeClass("active");
         }
         $('.sort_by_price, .sort_by_price_mobile').css({
-            'cssText': 'background: #89e486 !important;outline:none !important'
+            'cssText': 'background: #18A1A1 !important;outline:none !important'
         })
     });
 

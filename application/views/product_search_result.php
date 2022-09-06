@@ -18,7 +18,7 @@
                 <span class="ps-slider__value slider__value_max"><span class="ps-slider__max_mobile"></span> смн.</span>
             </p>
             <div style="text-align: center serch-result_btn">
-                <button class="btn btn-info btn-lg sort_by_price_mobile" type="button">Показать</button>
+                <button class="btn btn-info btn-lg sort_by_price_mobile" style="display: flex;" type="button">Показать</button>
             </div>
         </aside>
     </div>
@@ -31,14 +31,14 @@
                         <figure class="srch_sort_pr_figure">
                             <h4 class="widget-title">По цене</h4>
                             <div class="nonlinear"></div>
-                            <p class="ps-slider__meta">
+                            <p class="ps-slider__meta mb-5">
                                 <span class="ps-slider__value slider__value_min">
                                     <span class="ps-slider__min srch-ps-slider__min"></span> смн.</span>
                                 <span class="ps-slider__value slider__value_max">
                                     <span class="ps-slider__max srch-ps-slider__max"></span> смн.</span>
                             </p>
-                            <div style="text-align: center">
-                                <button class="btn btn-info btn-lg srch_res_sort_by_price" type="button">Показать</button>
+                            <div style="text-align: center mt-5">
+                                <button class="btn btn-info btn-lg srch_res_sort_by_price" style="width: 100%;" type="button">Показать</button>
                             </div>
                         </figure>
                     </aside>
