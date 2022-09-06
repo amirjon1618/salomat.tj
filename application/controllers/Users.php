@@ -127,6 +127,7 @@ class Users extends REST_Controller {
                 'error'     => $this->form_validation->error_array(),
                 'message'   => validation_errors()
             );
+
             $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
         }
         else
@@ -395,9 +396,9 @@ class Users extends REST_Controller {
     public function update_user_post($id)
     {
         if (($this->input->post('confirm')) != 1 ){
-            $this->form_validation->set_rules('name', 'ФИО', 'xss_clean|trim|max_length[20]');
+            $this->form_validation->set_rules('name', 'ФИО', 'xss_clean|trim|max_length[40]max_length[20]');
             $this->form_validation->set_rules('email', 'Почта', 'xss_clean|trim|max_length[20]');
-            $this->form_validation->set_rules('login', 'Телефон', 'xss_clean|trim|max_length[20]|min_length[9]');
+            $this->form_validation->set_rules('login', 'Телефон', 'xss_clean|trim|max_length[9]|min_length[9]');
             $this->form_validation->set_rules('address', 'Адрес', 'xss_clean|trim|max_length[20]');
             $this->form_validation->set_rules('gender', 'Пол', 'xss_clean|trim|max_length[20]');
             $this->form_validation->set_rules('birth_date', 'Дата рождения', 'xss_clean|trim|max_length[20]');
@@ -425,6 +426,12 @@ class Users extends REST_Controller {
 
                 $this->db->where("user_id", $user['user_id']);
                 $this->db->update("users", $userData);
+
+                $message = [
+                    'status'   => true,
+                    'message'  => 'Successful'
+                ];
+                $this->response($message, 200);
 
                 redirect(base_url('/index.php/main/user_info'), 'refresh');
             }

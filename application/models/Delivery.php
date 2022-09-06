@@ -7,8 +7,6 @@ class Delivery extends CI_Model
         // Your own constructor code        
         $this->load->database();    
     }    
-    
-
 
     // public function add($array)    
     // {
