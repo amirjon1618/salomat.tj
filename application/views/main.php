@@ -347,7 +347,7 @@
                 blogShow.content.blogs.forEach(blogShow => {
                     document.querySelector(".blog_show").innerHTML = `
                        <img class="blog_pic img-fluid pb-3" src="{base_url}upload_blog/${blogShow.blog_pic}" alt="...">
-                      <h3 class="blog_title">${blogShow.blog_title}</h3>
+                       <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3></a>
                      <span class="blog_created_at">${blogShow.blog_created_at}</span>
                      <div class="text-justify blog_about-main">${blogShow.blog_about}</div>
                      <a style="display: flex; justify-content: flex-end; padding-top: 10px;" href="{base_url}main/blogInfo?blog_id=${blogShow.id}"> читать дальше...</a>
@@ -357,7 +357,7 @@
                 const filtered = sorted.filter((elem, ind) => ind === 1 || ind === 2 || ind === 3)
                 filtered.forEach(blogShow => {
                     document.querySelector(".popular-blogs").innerHTML += `
-                      <h3 class="blog_title">${blogShow.blog_title}</h3>
+                    <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3></a>
                      <span class="blog_created_at">${blogShow.blog_created_at}</span>
                      <div class="text-justify blog_about">${blogShow.blog_about}</div>
                      <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"> читать дальше...</a>

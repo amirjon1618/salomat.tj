@@ -195,7 +195,7 @@
                                         <?php foreach ($favorites as $favorite) : ?>
 
                                             <div class="favorite-content" data-favoriteid="<?= $favorite['id'] ?>">
-                                                <div class="d-flex col-xs-6 col-lg-3 col-md-6 col-sm-6 pb-5">
+                                                <div class="d-flex col-xs-3 col-lg-3 col-md-6 col-sm-6 pb-5">
                                                     <div class="ps-product ps-product--inner ps-product_of_the_day">
                                                         <label>
                                                             <input onclick="deleteProduct(<?= $favorite['id'] ?>)" value="<?php $favorite['id'] ?>" <?php echo $favorite['id']  ?  'checked' : null  ?> type="checkbox" id="red">
@@ -262,22 +262,23 @@
                                             <form action="{base_url}users/update_user" method="post" class="up-content-info_form">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12 pb-5">
-                                                        <label for="validationCustom02">Номер телефона*</label>
-                                                        <input type="tel" class="form-control" id="validationCustom02" name="login" placeholder="+992 XXX XX XX XX" required value="<?php echo $phone ?>">
+                                                        <label for="validationCustom02">Новый номер телефона*</label>
+                                                        <input type="number" pattern="\d*" maxlength="9" class="form-control" id="validationPhone" name="login" placeholder="+992 XXX XX XX XX" required value="<?php echo $phone ?>">
                                                         <div class="valid-feedback">
                                                             Правильно!
                                                         </div>
                                                     </div>
                                                     <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
-                                                        <label for="exampleInputPassword1">Пароль*</label>
-                                                        <input type="password" class="form-control form-control-save" name="password" id="validationCustom01" placeholder="Введите новый пароль" required>
+                                                        <label for="exampleInputPassword1">Новый пароль*</label>
+                                                        <input type="password" class="form-control form-control-save" name="password" id="validationCustom01" placeholder="Введите новый пароль">
                                                     </div>
                                                     <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                        <label for="exampleInputPassword2">Повторите пароль*</label>
-                                                        <input type="password" class="form-control form-control-save" name="password_confirm" id="validationCustom02" placeholder="Введите повторно пароль" required>
+                                                        <label for="exampleInputPassword2">Повторите новый пароль*</label>
+                                                        <input type="password" class="form-control form-control-save" name="password_confirm" id="validationCustom02" placeholder="Введите повторно пароль">
                                                     </div>
                                                 </div>
-                                                <button class="form-btn my-4 mx-3" onclick="onPsBlockRight()" id="enter-profile">Сохранить</button>
+                                                
+                                                <button class="form-btn my-4 mx-3" onclick="changeUserInfo()" id="enter-profile">Сохранить</button>
                                             </form>
                                         </div>
                                     <?php endif; ?>
@@ -290,12 +291,14 @@
     </div>
 </div>
 <script>
-    function onPsBlockRight() {
-        $(".enter-form").css("display", "block");
-        document.querySelector(".enter-btn-bg").style.display = "flex";
-        document.querySelector(".enter-btn-bg").classList.add("active-animation");
-        document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
+    function changeUserInfo() {
+        if ($('#validationPhone').val() === localStorage.getItem("ver-number")) {
+        alert()
+        }else{
+            
+        }
     }
+
     document.getElementById("red").addEventListener("click", function() {
         this.parentElement.parentElement.remove()
     })

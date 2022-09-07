@@ -73,7 +73,7 @@
                                 <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg><span class="like-span">в избранное</span>
                         </label>
-                        <button class="ps-btn" onclick="add_to_cart(
+                        <button class="ps-btn ps-btn-products" onclick="add_to_cart(
                                                 '<?= $cat_p['id'] ?>',
                                                 `<?= str_replace($char, $charHtml, $cat_p['product_name']) ?>`,
                                                 '<?= $cat_p['product_old_price'] ?>',
