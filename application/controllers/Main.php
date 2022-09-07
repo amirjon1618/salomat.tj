@@ -996,6 +996,8 @@ class Main extends CI_Controller
                 $array["delivery_id"] = 1;
             }
             $res = $this->order->add($array);
+            $user = $this->getUser( $this->session->userdata('user_id'));
+            $this->order->save_user_order_status_change($user['user_id'], $res['order_id'], 1, 1, $this->input->post("comment"));
             $delivery_info = $this->delivery->get($array["delivery_id"]);
             $order_id = null;
             if ($res["stat"] == 1) {
@@ -1300,5 +1302,22 @@ class Main extends CI_Controller
 
         }
         return $array;
+    }
+
+    public function createOrder()
+    {
+        $this->load->model("order");
+        if ($this->input->post("products")) {
+            $array = $this->input->post();
+            $array['code'] = null;
+            if (!is_numeric($array["delivery_id"])) {
+                $array["delivery_id"] = 1;
+            }
+            $res = $this->order->add($array);
+            $user = $this->getUser( $this->session->userdata('user_id'));
+            $this->order->save_user_order_status_change($user['user_id'], $res['order_id'], 1, 1, $this->input->post("comment"));
+
+            echo $res['order_id'];
+        }
     }
 }
