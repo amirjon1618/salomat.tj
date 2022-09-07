@@ -552,7 +552,7 @@
                 var comment = $('#order_comment').val();
                 var totalPrice = $('#tot_pr_checkout');
                 var delivery_id = $('input[name=delivery]:checked').attr("id")
-                $.post("<?= $base_url; ?>index.php/main/startTransMyBabilon", {
+                $.post("<?= $base_url; ?>index.php/main/createOrder", {
                     "total_price": totalPrice[0].textContent.split(' ')[0],
                     "phone_number": phone_number,
                     "phone_number2": phone_number2,
@@ -568,15 +568,13 @@
                 }, function(data) {
                     $(".order-sended").css("display", "flex")
                     console.log(data);
-                    if (data.answ == 1) {
+                    if (data != 0) {
                         $('#checkout_loading').css('display', 'none');
-                        var inputForB = `
-                        <input name="createdTransactionId" type="hidden" id="createdTransactionId" value="${data["info"].TransactionId}" hidden>
-                        `;
+                        var inputForB = true
                         // $.removeCookie('product_list', {
                         //     path: '/'
                         // });
-                        localStorage.removeItem("product_list")
+                        localStorage.removeItem("product_list");
                         $(".checkout_bContinue_div").hide();
                         $(".checkout_ecom_div").append(`<h4>Пожалуйста подождите</h4>`);
                         $("#checkout_main_tag").append(inputForB);
