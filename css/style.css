@@ -3497,6 +3497,10 @@ button:focus {
         transition: all .4s ease;
         cursor: pointer;
     }
+    .ps-btn,
+    button.ps-btn-products {
+        display: block !important;
+    }
     
     .ps-btn--rounded,
     button.ps-btn--rounded {
@@ -5207,6 +5211,7 @@ button:focus {
         color: #1EBEBE;
         font-weight: 300;
         font-size: 14px;
+        display: block;
     }
     .popular-blogs a:hover {
         text-decoration: underline;
@@ -6200,6 +6205,7 @@ button:focus {
         color: #1EBEBE;
         font-size: 14px;
         font-weight: 300;
+        display: block;
     }
     .blog-articles-btn button{
         width: 180px;
@@ -14748,6 +14754,24 @@ button:focus {
         }
         .header_phone_number > p {
             display: none;
+        }
+        .ps-btn, button.ps-btn {
+            font-size: 14px;
+            display: none !important;
+        }
+        .ps-btn, button.ps-btn-products {
+        display: block !important;
+        }
+        .status-delivered {
+            background-color: #1EBEBE !important;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 5px;
+            border-radius: 24px;
+        }
+        .ps-product .ps-product__thumbnail img {
+            height: 80%;
         }
         .popular-blogs_content img {
             width: 80px !important;
@@ -34212,4 +34236,7 @@ section {
 }
 .registration-form {
     padding: 10px 35px 35px 35px;
+}
+#favorite-parent {
+    min-height: 520px;
 }

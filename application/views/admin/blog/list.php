@@ -39,7 +39,7 @@
                         </thead>
                         <tbody id="dragAndDrop" draggable="true">
                             <?php foreach ($list as $item) : ?>
-                                <tr>
+                                <tr ondrop="onDrop()">
                                     <td><?= $item['id'] ?></td>
                                     <td class="blog_title_list"><?= $item['blog_title'] ?></td>
                                     <!-- <td><?= $item['blog_about'] ?></td> -->
@@ -99,6 +99,24 @@
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
 <script>
+    function onDrop() {
+    const sort = [];
+    const childs = document.querySelectorAll("#dragAndDrop tr td:first-child");
+    childs.forEach(elem => {
+      const numbers = Number(elem.textContent);
+      sort.push(Number(elem.textContent));
+    })
+    $.ajax({
+      type: "POST",
+      url: "{base_url}products/updateOrderInBlog",
+      headers: {
+        "Accept": "application/json",
+      },
+      data: {
+        sort
+      },
+    })
+  }
     $(function() {
         $('#TableUser').DataTable({
             "paging": false,
