@@ -498,8 +498,6 @@
                 "order_id": orderId
             },
             success: function(data) {
-                console.log(data);
-                console.log('2222data');
                 begin();
                 if (data == 1) {
                     $('#checkout_loading').hide();
@@ -567,7 +565,6 @@
                     // "delivery_id": $('input[name=delivery]:checked').attr("id")
                 }, function(data) {
                     $(".order-sended").css("display", "flex")
-                    console.log(data);
                     if (data != 0) {
                         $('#checkout_loading').css('display', 'none');
                         var inputForB = true

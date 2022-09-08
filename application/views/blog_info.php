@@ -183,7 +183,6 @@
                 "Accept": "application/json",
             },
             success: function(blogShow) {
-                console.log(blogShow.blog)
                 $(".blog_created_at").text(blogShow.blog.blog_created_at);
                 $(".blog_title").text(blogShow.blog.blog_title);
                 $(".blog_about-full").html(blogShow.blog.blog_about);
@@ -192,7 +191,6 @@
                     img.className += "blog_pic"
                     img.src = "{base_url}upload_blog/" + elem.blog_pic;
                     $(".bloginfo-imgs").append(img);
-                    console.log(elem.blog_pic)
                 })
             }
         })

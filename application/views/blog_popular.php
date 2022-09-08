@@ -34,12 +34,10 @@
                                 // $(".blog_title").text(blogShow.content.blog_title);
                                 // $(".blog_about").html(blogShow.content.blog_about);
                                 blogShow.content.blogs.forEach((elem, ind) => {
-                                        console.log(elem['id'])
                                         const img = document.createElement("img");
                                         img.className += "blog_pic"
                                         img.src = "{base_url}upload_blog/" + elem.blog_pic;
                                         $(".bloginfo-imgs").append(img);
-                                        console.log(elem.blog_pic);
 
                                         document.querySelector(".popular-blogs").innerHTML += `                 
                                                 <article class="popular-blogs_content col-lg-3 col-md-6 col-sm-12 col-xs-12 post" style="border-bottom: 1px solid #E5E5E5; padding-bottom: 20px;">

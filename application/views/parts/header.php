@@ -143,6 +143,9 @@
 </head>
 
 <body>
+<div class="main-loader_icon">
+    <img src="img/loader-icon.gif" alt="load" width="128px">
+</div>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFMLHJS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
@@ -520,13 +523,13 @@
                         <!-- <a class="header__extra header_phone_number" href="tel:9990"> -->
                         <a class="header__extra header_phone_number call" href="javascript:void(0)" onclick="window.location='tel:9990'">
                             <strong>
-                                <img src="{base_url}img/tel.svg " alt="" style="width: 25px; margin-right: 10px;"> 99-90
+                                <img src="{base_url}img/header-phone.svg " alt="" style="width: 25px; margin-right: 10px; margin-top: 10px;"> 99-90
                             </strong>
                             <p class="text-muted">09:00-18:00</p>
                         </a>
                         <div class="ps-cart--mini">
                             <a class="header__extra header_cart_a" href="#">
-                                <img src="{base_url}img/cart.svg" style="margin-bottom: -30px;">
+                                <img src="{base_url}img/header-basket.svg" style="margin-bottom: -30px;">
                                 <span class="header_cart_tot_span">
                                     <i id="total_count_in_cart_header">0</i>
                                 </span>
@@ -1209,6 +1212,7 @@
     .ok-btn input {
         color: #fff !important;
     }
+
     .ok-btn:hover {
         background: #18A1A1;
         color: #fff !important;
@@ -1219,6 +1223,10 @@
     }
 </style>
 <script>
+    window.onload = () => {
+        $(".main-loader_icon").css("display", "none")
+    }
+    const al = () => alert()
     const __userIcons = Array.from(document.querySelectorAll(".image  img"));
     console.log(__userIcons)
     __userIcons.forEach(elem => {
@@ -1237,14 +1245,19 @@
     }
 
     function remove_from_header_cart(id) {
-
+        const __categores = Array.from(document.querySelectorAll(".ps-product--simple"));
+        __categores.forEach(elem => {
+            console.log(elem.dataset.id)
+            if (Number(elem.dataset.id) === id) {
+                elem.classList.remove("main-products_border")
+            }
+        })
         var mydata = $.parseJSON(localStorage.getItem("product_list"));
-
         if (mydata.length == 1) {
             // $.removeCookie('product_list', {
             //     path: '/'
             // });
-            localStorage.removeItem("product_list")
+            localStorage.removeItem("product_list");
             $('.pr-list').html('');
             if (typeof goHome == 'function') {
                 goHome();
@@ -1690,7 +1703,6 @@
 
     $("#form8").submit((e) => {
         e.preventDefault();
-        console.log($("#ver-sms8").val())
         if ($("#ver-sms8").val() === String(localStorage.getItem("res-sms"))) {
             $(".enter-btn-bg").css("display", "none");
             $.ajax({
