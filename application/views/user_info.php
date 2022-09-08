@@ -20,6 +20,7 @@
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab1" data-toggle="tab" href="#user-order" data-hash="#user-order" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-cart.svg" alt="Icon">Мои заказы</a></li>
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab2" data-toggle="tab" href="#user-favorite" data-hash="#user-favorite" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-like.svg" alt="Icon">Избранное</a></li>
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab3" data-toggle="tab" href="#user-save" data-hash="#user-save" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-save.svg" alt="Icon">Безопасность</a></li>
+                            <li class="nav-item5" role="presentation"><a id="webdisign-tab4" data-toggle="tab" href="#phone-number" data-hash="#phone-number" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-save.svg" alt="Icon">Номер телефона</a></li>
                         </ul>
                     </div>
                     <?php if (isset($auth)) : ?>
@@ -261,27 +262,37 @@
                                         <div class="user-save-content">
                                             <form action="{base_url}users/update_user_web" method="post" class="up-content-info_form">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12 pb-5">
-                                                        <label for="validationCustom02">Новый номер телефона*</label>
-                                                        <input type="number" pattern="\d*" maxlength="9" class="form-control" id="validationPhone" name="login" placeholder="+992 XXX XX XX XX" required value="<?php echo $phone ?>">
-                                                        <div class="valid-feedback">
-                                                            Правильно!
-                                                        </div>
-                                                    </div>
                                                     <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
-                                                        <label for="exampleInputPassword1">Новый пароль*</label>
-                                                        <input type="password" class="form-control form-control-save" name="password" id="validationCustom01" placeholder="Введите новый пароль">
+                                                        <label for="exampleInputPassword1">Пароль*</label>
+                                                        <input type="password" class="form-control form-control-save" name="password" id="validationCustom01" placeholder="Введите новый пароль" required>
                                                     </div>
                                                     <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                        <label for="exampleInputPassword2">Повторите новый пароль*</label>
-                                                        <input type="password" class="form-control form-control-save" name="password_confirm" id="validationCustom02" placeholder="Введите повторно пароль">
+                                                        <label for="exampleInputPassword2">Повторите пароль*</label>
+                                                        <input type="password" class="form-control form-control-save" name="password_confirm" id="validationCustom02" placeholder="Введите повторно пароль" required>
                                                     </div>
+                                                    <button class="form-btn my-4 mx-3">Сохранить</button>
                                                 </div>
-                                                
-                                                <button class="form-btn my-4 mx-3" onclick="changeUserInfo()" id="enter-profile">Сохранить</button>
                                             </form>
                                         </div>
                                     <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade show" data-hash="#phone-number" id="phone-number" role="tabpanel">
+                                <div class="up-content col-lg-5 col-md-5 col-sm-12 col-xs-12 p-3">
+                                    <div class="user-phone-title mb-5">
+                                        <h2>Номер телефона</h2>
+                                    </div>
+                                    <div class="user-phone-content">
+                                        <form class="up-content-info_form" id="changePhone">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-col col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-5" id="save-form">
+                                                    <label for="validationCustom02">Новый номер*</label>
+                                                    <input type="number" pattern="\d*" maxlength="9" class="form-control" id="validationPhone" name="login" placeholder="+992 XXX XX XX XX" required value="<?php echo $phone ?>">
+                                                    <button class="form-btn my-4">Изменить</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -291,23 +302,32 @@
     </div>
 </div>
 <script>
-    function changeUserInfo() {
-        if ($('#validationPhone').val() === localStorage.getItem("ver-number")) {
-        alert()
-        }else{
-            
-        }
-    }
+    $("#changePhone").on("submit", (e) => {
+        e.preventDefault()
+        if ($("#validationPhone").val() !== localStorage.getItem("ver-number")) {
+            onPsBlockRight();
+            $(".efr1").css("display", "none");
+            $(".efr8").css("display", "block");
+            localStorage.setItem("ver-number", Number($("#validationPhone").val()))
+            $.ajax({
+                type: "POST",
+                url: "{base_url}/users/resend_sms",
+                headers: {
+                    "Accept": "application/json",
+                },
+                data: {
+                    phone: Number(localStorage.getItem("ver-number"))
+                },
+                success(result) {
+                    localStorage.setItem("res-sms", result);
+                    
+                }
+            })
 
-    document.getElementById("red").addEventListener("click", function() {
-        this.parentElement.parentElement.remove()
+        }
     })
 
-    function deleteProduct(id) {
-        const favoriteId = document.querySelector(`[data-favoriteid="${id}"]`);
-        const parent = document.getElementById('favorite-parent');
-        parent.removeChild(favoriteId);
-    }
+    
 
     // document.getElementById("user_icon").src = localStorage.getItem("user_icon");
 
@@ -413,9 +433,9 @@
             } else {
                 this.removeAttribute('id');
                 $(".enter-form").css("display", "block");
-                document.querySelector(".enter-btn-bg").style.display = "flex";
-                document.querySelector(".enter-btn-bg").classList.add("active-animation");
-                document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
+                document.querySelector(".enter-btn-phone").style.display = "flex";
+                document.querySelector(".enter-btn-phone").classList.add("active-animation");
+                document.querySelector(".enter-btn-phone").classList.remove("disactive-animation");
             }
         })
     }

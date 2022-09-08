@@ -1,8 +1,5 @@
 <header class="header header--mobile header--mobile-categories header_class_sort" data-sticky="true">
-    <div class="header__filter">
-        <button class="ps-shop__filter-mb" id="filter-sidebar">
-            <i class="icon-equalizer"></i><span>Фильтр</span></button>
-    </div>
+    
 </header>
 
 <div class="ps-breadcrumb">
@@ -15,7 +12,19 @@
         </div>
     </div>
 </div>
-
+<div class="header__filter pb-3">
+        <aside class="widget widget_shop">
+            <h4 class="widget-title">По цене</h4>
+            <div class="nonlinear_mobile_aside"></div>
+            <p class="ps-slider__meta">
+                <span class="ps-slider__value slider__value_min"><span class="ps-slider__min_mobile"></span> смн.</span>
+                <span class="ps-slider__value slider__value_max"><span class="ps-slider__max_mobile"></span> смн.</span>
+            </p>
+            <div style="text-align: center serch-result_btn">
+                <button class="btn btn-info btn-lg sort_by_price_mobile" style="display: flex;" type="button">Показать</button>
+            </div>
+        </aside>
+    </div>
 
 <div class="ps-page--shop" id="shop-sidebar">
     <div class="container">
@@ -25,14 +34,14 @@
                     <figure class="srch_sort_pr_figure">
                         <h4 class="widget-title">По цене</h4>
                         <div class="nonlinear"></div>
-                        <p class="ps-slider__meta">
+                        <p class="ps-slider__meta mb-5">
                             <span class="ps-slider__value slider__value_min">
-                                <span class="ps-slider__min sales-ps-slider__min"></span> смн.</span>
+                                <span class="ps-slider__min srch-ps-slider__min"></span> смн.</span>
                             <span class="ps-slider__value slider__value_max">
-                                <span class="ps-slider__max sales-ps-slider__max"></span> смн.</span>
+                                <span class="ps-slider__max srch-ps-slider__max"></span> смн.</span>
                         </p>
-                        <div style="text-align: center">
-                            <button class="btn btn-info btn-lg sales_res_sort_by_price" type="button">Показать</button>
+                        <div style="text-align: center mt-5">
+                            <button class="btn btn-info btn-lg srch_res_sort_by_price" style="width: 100%;" type="button">Показать</button>
                         </div>
                     </figure>
                 </aside>
@@ -49,7 +58,7 @@
             </div>
             <div class="ps-layout__right">
                 <div class="ps-shopping-product sales_res_products">
-					
+
                 </div>
             </div>
         </div>
@@ -74,8 +83,8 @@
         console.log(id);
         console.log('id');
         $.getJSON("{base_url}index.php/main/get_sales_prods?" +
-            "sales_id=" + id + 
-            "&page="+ page +
+            "sales_id=" + id +
+            "&page=" + page +
             "&min_price=" + min_price +
             "&max_price=" + max_price,
             function(data, status) {
@@ -112,10 +121,12 @@
             get_sales_product_list(sales_id, min_pr, max_pr);
         });
     }
+
     function topage(p) {
         page = p;
         get_sales_product_list(sales_id, min_pr, max_pr);
     }
+
     function filterSliderMobileAside(price) {
         var nonLinearSliderMobile = document.querySelector('.nonlinear_mobile_aside');
         if (typeof nonLinearSliderMobile != 'undefined' && nonLinearSliderMobile != null) {
