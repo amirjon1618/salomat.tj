@@ -146,12 +146,34 @@
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFMLHJS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    <div class="enter-btn-phone">
+        <div class="enter-btn-modal">
+            <div class="page-content">
+                <div class="form-v8-content">
+                    <div class="enter-form_pass">
+                        <div class="tab">
+                            <div class="tab-inner">
+                                <h3 class="tablinks text-center">Ваш пароль изменён!</h3>
+                            </div>
+                        </div>
+                        <form class="form-detail">
+                            <div class="tabcontent" id="sign-phone">
+                                <div class="form-row-last d-flex justify-content-center">
+                                    <a href="#user-info" id="ok-btn" class="ok-btn" onclick="javascript:window.location.hash = '#user-info';window.location.reload()">OK</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="enter-btn-bg">
         <div class="enter-btn-modal">
             <div class="page-content">
                 <div class="form-v8-content">
                     <div class="enter-form" style="display: none;">
-                        <div class="close-form_btn" onclick="javascript:document.querySelector('.enter-btn-bg').style.display='none';">
+                        <div class="close-form_btn" onclick="javascript:window.location.reload()">
                             <img src=" {base_url}img/plus-close_form.svg" alt="X">
                         </div>
                         <div class="registration-form">
@@ -388,6 +410,42 @@
                                     </div>
                                 </form>
                             </div>
+                            <div class="enter-form_reg efr8" style="display: none;">
+                                <div class="tab">
+                                    <div class="tab-inner">
+                                        <h3 class="tablinks text-center">Восстановление пароля</h3>
+                                    </div>
+                                </div>
+                                <form id="form8" class="form-detail " action="#" method="post">
+                                    <div class="tabcontent2" id="ver-in">
+                                        <div class="form-row user-phone">
+                                            <span class="text-label">Введите код из смс</span>
+                                            <label class="form-row-inner">
+                                                <input type="number" name="tel-number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" minlength="4" id="ver-sms8" class="input-text" required placeholder=" __ __ __ __ ">
+                                                <span class="border"></span>
+                                            </label>
+                                        </div>
+                                        <p class="validate-text"></p>
+                                        <div class="timer-agree">
+                                            <div class="showTimer">
+                                                <p>Повторная отправка сообщения будет доступна через:</p>
+                                                <div class="text-center pb-4">
+                                                    <span class="min-time"></span>
+                                                    <span>:</span>
+                                                    <span class="sec-time"></span>
+                                                </div>
+                                            </div>
+                                            <div class="hideTimer  justify-content-center" style="display: none;">
+                                                <a href="#" class="hideTimer_a">Повторная отправка</a>
+                                            </div>
+                                        </div>
+                                        <div class="form-row-last d-flex justify-content-between">
+                                            <a href="#"><input type="submit" name="register" class="enter ef3" value="Изменить"></a>
+                                            <a href="#"><input type="submit" name="register" class="register cancel-btn8" value="Отмена"></a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -518,6 +576,7 @@
                                             <li class="nav-item5" role="presentation"><a id="webdisign-tab1" data-toggle="tab" href="#user-order" data-hash="#user-order" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-cart.svg" alt="Icon">Мои заказы</a></li>
                                             <li class="nav-item5" role="presentation"><a id="webdisign-tab2" data-toggle="tab" href="#user-favorite" data-hash="#user-favorite" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-like.svg" alt="Icon">Избранное</a></li>
                                             <li class="nav-item5" role="presentation"><a id="webdisign-tab3" data-toggle="tab" href="#user-save" data-hash="#user-save" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-save.svg" alt="Icon">Безопасность</a></li>
+                                            <li class="nav-item5" role="presentation"><a id="webdisign-tab3" data-toggle="tab" href="#phone-number" data-hash="#phone-number" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-save.svg" alt="Icon">Номер телефона</a></li>
                                         </ul>
                                     </div>
                                     <div class="account-dropdown__footer">
@@ -1115,6 +1174,49 @@
             -webkit-flex-direction: column;
         }
     }
+
+    .enter-btn-phone {
+        padding: 45px;
+        border-radius: 5px;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 10000;
+        width: 100vw;
+        height: 100vh;
+        transition: 1000ms;
+        display: none;
+
+    }
+
+    .enter-form_pass {
+        box-shadow: 5px 5px 5px 5px #e5e5e5;
+        padding: 20px 40px;
+        border-radius: 5px;
+    }
+
+    .ok-btn {
+        background: #1EBEBE;
+        padding: 10px 45px;
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        font-size: 18px;
+    }
+
+    .ok-btn input {
+        color: #fff !important;
+    }
+    .ok-btn:hover {
+        background: #18A1A1;
+        color: #fff !important;
+    }
+
+    .ok-btn input:hover {
+        color: #fff !important;
+    }
 </style>
 <script>
     const __userIcons = Array.from(document.querySelectorAll(".image  img"));
@@ -1566,6 +1668,10 @@
         $(".efr6").hide();
         $(".efr5").css("display", "block");
     })
+    $(".cancel-btn8").click((e) => {
+        e.preventDefault();
+        $(".enter-btn-bg").hide();
+    })
     $(".cancel-btn2").click((e) => {
         e.preventDefault();
         $(".efr7").hide();
@@ -1581,6 +1687,52 @@
         }
     })
 
+
+    $("#form8").submit((e) => {
+        e.preventDefault();
+        console.log($("#ver-sms8").val())
+        if ($("#ver-sms8").val() === String(localStorage.getItem("res-sms"))) {
+            $(".enter-btn-bg").css("display", "none");
+            $.ajax({
+                type: "POST",
+                url: `{base_url}/users/check_register_code`,
+                data: {
+                    phone: Number(localStorage.getItem("ver-number")),
+                    confirm_code: Number(localStorage.getItem("res-sms"))
+                },
+                success: function(result) {
+                    $(".validate-text").text("");
+                    updatePhone();
+                },
+                error: function(error) {
+                    $(".validate-text").text("Неправильный номер");
+                }
+            })
+        } else {
+            $(".validate-text").text("Введен неправильный код.");
+        }
+    })
+
+
+    function updatePhone() {
+        $.ajax({
+            type: "POST",
+            url: `{base_url}users/edit_user/${Number(JSON.parse(localStorage.getItem("userId")).user_id)}`,
+            headers: {
+                "Accept": "application/json",
+            },
+            data: {
+                phone: Number(localStorage.getItem("ver-number")),
+            },
+            success: function(result) {
+                $(".validate-text").text("");
+                $(".enter-btn-phone").css("display", "block")
+            },
+            error: function(error) {
+
+            }
+        })
+    }
     $("#form1").submit((e) => {
         e.preventDefault();
         onPost();

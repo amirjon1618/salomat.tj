@@ -11,7 +11,7 @@
 
         <div class="container main-banner_container">
             <div class="ps-section__left">
-                <div class="ps-carousel--nav-inside owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
+                <div class="ps-carousel--nav-inside owl-slider main-sliders" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
                     <?php foreach ($main_slider as $slider) : ?>
                         <div style="margin-left: 5px; !important">
                             <a href="<?= $slider['slider_link'] ?>">
@@ -134,7 +134,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="ps-block__slider">
+                    <div class="ps-block__slider main-sliders">
                         <div style="height: 100%;" class="ps-carousel--product-box owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="7000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="500" data-owl-mousedrag="off">
                             <?php foreach ($cat['categ_slider'] as $cat_slider) : ?>
                                 <a href="<?= $cat_slider['slider_link'] ?>">

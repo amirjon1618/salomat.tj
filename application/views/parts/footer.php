@@ -1,7 +1,7 @@
 <div class="ps-newsletter">
-    <div class="container">
+    <div class="container p-0">
         <div class="ps-site-features paddingTopBot">
-            <div class="container">
+            <div class="container p-0">
                 <div class="ps-block--site-features ps-block--site-features-2">
                     <div class="ps-block__item">
                         <div class="ps-block__left">
