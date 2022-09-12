@@ -86,7 +86,6 @@
         var max_count_reached = false;
    
         function add_to_cart(id, name, old_price, price, brand, pic, total_count, product_articule) {
-            console.log(name)
             max_count_reached = false;
             var array = [];
             var count = 1;
@@ -102,7 +101,6 @@
                 prod_articule: product_articule
             };
             var found = false;
-            console.log(total_count)
             if (total_count <= 0) {
                 $('.product_add_notification_div_error').css({
                     'cssText': 'display: flex !important'

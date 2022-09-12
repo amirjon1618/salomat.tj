@@ -20,7 +20,7 @@
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab1" data-toggle="tab" href="#user-order" data-hash="#user-order" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-cart.svg" alt="Icon">Мои заказы</a></li>
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab2" data-toggle="tab" href="#user-favorite" data-hash="#user-favorite" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-like.svg" alt="Icon">Избранное</a></li>
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab3" data-toggle="tab" href="#user-save" data-hash="#user-save" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-save.svg" alt="Icon">Безопасность</a></li>
-                            <li class="nav-item5" role="presentation"><a id="webdisign-tab4" data-toggle="tab" href="#phone-number" data-hash="#phone-number" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-save.svg" alt="Icon">Номер телефона</a></li>
+                            <li class="nav-item5" role="presentation"><a id="webdisign-tab4" data-toggle="tab" href="#phone-number" data-hash="#phone-number" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/header-phone.svg" alt="Icon" width="34px">Изменит телефон</a></li>
                         </ul>
                     </div>
                     <?php if (isset($auth)) : ?>
@@ -40,7 +40,7 @@
                                                 </div>
                                                 <div class="form-col">
                                                     <label for="validationCustom02">Номер телефона*</label>
-                                                    <input type="tel" class="form-control" id="validationCustom02" readonly name="login" placeholder="+992 XXX XX XX XX" required value="<?php echo $phone ?>">
+                                                    <input type="tel" title="Изменить номер телефона на вкладке (Изменить телефон)" class="form-control" id="validationCustom02" readonly name="login" placeholder="+992 XXX XX XX XX" required value="<?php echo $phone ?>">
                                                     <div class="valid-feedback">
                                                         Правильно!
                                                     </div>
@@ -280,7 +280,7 @@
                             <div class="tab-pane fade show" data-hash="#phone-number" id="phone-number" role="tabpanel">
                                 <div class="up-content col-lg-5 col-md-5 col-sm-12 col-xs-12 p-3">
                                     <div class="user-phone-title mb-5">
-                                        <h2>Номер телефона</h2>
+                                        <h2>Изменит телефон</h2>
                                     </div>
                                     <div class="user-phone-content">
                                         <form class="up-content-info_form" id="changePhone">
@@ -320,15 +320,19 @@
                 },
                 success(result) {
                     localStorage.setItem("res-sms", result);
-                    
+
                 }
             })
 
         }
     })
 
-    
 
+    function deleteProduct(id) {
+        const favoriteId = document.querySelector(`[data-favoriteid="${id}"]`);
+        const parent = document.getElementById('favorite-parent');
+        parent.removeChild(favoriteId);
+    }
     // document.getElementById("user_icon").src = localStorage.getItem("user_icon");
 
     // if (localStorage.getItem("userId") !== null) {
@@ -337,7 +341,6 @@
     let imgVal;
     async function postData(url = '', data = {}) {
         // Default options are marked with *
-        // console.log(JSON.stringify(data));
         const response = await fetch(url, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
@@ -349,38 +352,40 @@
         });
         return await response.json(); // parses JSON response into native JavaScript objects
     }
-    document.querySelector("#user_icon1").src = "{base_url}img/user.png";
+    // document.querySelector("#user_icon1").src = "{base_url}img/user.png";
 
-    console.log(document.querySelector("#user_icon1"))
-    if (localStorage.getItem("user_icon") !== null) {
-        document.querySelector("#user_icon1").src = localStorage.getItem("user_icon");
-    } else {
-        document.querySelector("#user_icon1").src = "{base_url}img/user.png";
-    }
+    // if (localStorage.getItem("user_icon") !== null) {
+    //     document.querySelector("#user_icon1").src = localStorage.getItem("user_icon");
+    // } else {
+    //     document.querySelector("#user_icon1").src = "{base_url}img/user.png";
+    // }
 
     function uploadIMG(e) {
-        console.dir(e.files[0].path);
-        var formdata = new FormData();
-        formdata.append("img", e.files[0], "url");
-        var fReader = new FileReader();
-        fReader.readAsDataURL(e.files[0]);
-        fReader.onloadend = function(event) {
-            localStorage.setItem("user_icon", event.target.result);
-            document.querySelector("#user_icon").src = localStorage.getItem("user_icon");
-            var requestOptions = {
-                method: 'POST',
-                body: event.target.result,
-                redirect: 'follow'
-            };
-            fetch("{base_url}users/user_img?=save", requestOptions)
-                .then(response => response.json())
-                .then(result => console.log(result))
-                .catch(error => console.log('error', error));
-
-        }
-        window.location.reload();
-
+        // console.dir(e.files[0].path);
+        // var formdata = new FormData();
+        // formdata.append("img", e.files[0], "url");
+        // var fReader = new FileReader();
+        // fReader.readAsDataURL(e.files[0]);
+        // fReader.onloadend = function(event) {
+        //     localStorage.setItem("user_icon", event.target.result);
+        //     document.querySelector("#user_icon").src = localStorage.getItem("user_icon");
+        const myFile = document.getElementById("input__file");
+        var form = new FormData();
+        form.append("img", myFile.files[0], `${myFile.files[0].name}`);
+        var requestOptions = {
+            method: 'POST',
+            body: form,
+            redirect: 'follow'
+        };
+        fetch("{base_url}users/user_img?=save", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result.upload_data.full_path);
+                document.querySelector("#user_icon1").src = '';
+            })
     }
+    // window.location.reload();
+
 
     function delPhoto() {
         localStorage.removeItem("user_icon");
@@ -467,10 +472,8 @@
 
     $(".user-info_ul a").on("click", function() {
         window.location.hash = this.dataset.hash;
-        console.log(window.location.hash)
         __hash.forEach(el => {
             if (window.location.hash === el.dataset.hash) {
-                console.log(this.parentElement)
                 el.parentElement.classList.add("nav-item")
             }
             if (window.location.hash !== el.dataset.hash) {
@@ -500,12 +503,7 @@
 
     function change_count() {
         $('#count_input').change(function() {
-            // console.log('total_count_global:'+$('#count_input').val());
-            // if(Number($('#count_input').val()) > total_count_global){
-            //     // console.log('total_count_global:'+total_count_global);
-            //     count = total_count_global
-            //     $('#count_input').val(count);
-            // } else 
+
             if ($('#count_input').val() > 0) {
                 count = $('#count_input').val();
             } else {

@@ -39,7 +39,6 @@
 <!-- Bootstrap WYSIHTML5 -->
 <script>
     function cancel_file_input(str) {
-        console.log(str)
 ;        $(str).val('');
     }
     $(document).ready(function() {

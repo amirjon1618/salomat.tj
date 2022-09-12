@@ -1,4 +1,6 @@
-
+<div class="main-loader_icon">
+    <img src="img/loader-icon.gif" alt="load" width="128px">
+</div>
 <div id="homepage-3">
     <div class="ps-home-banner">
 
@@ -281,7 +283,11 @@
 </div>
 
 <script>
-    
+    window.onload = () => {
+        $(".main-loader_icon").css("display", "none")
+    }
+
+
     document.getElementsByClassName('blog_about').offsetWidth / 100;
     if (document.querySelector(".ps-product__content i")) document.querySelector(".ps-product__content i").addEventListener("click", onAddBorder())
 
@@ -409,12 +415,6 @@
 
     function change_count() {
         $('#count_input').change(function() {
-            // console.log('total_count_global:'+$('#count_input').val());
-            // if(Number($('#count_input').val()) > total_count_global){
-            //     // console.log('total_count_global:'+total_count_global);
-            //     count = total_count_global
-            //     $('#count_input').val(count);
-            // } else 
             if ($('#count_input').val() > 0) {
                 count = $('#count_input').val();
             } else {

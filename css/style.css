@@ -6466,6 +6466,9 @@ button:focus {
         flex-flow: row nowrap;
         background-color: #fff;
     }
+    .bg-blog_transparent {
+        background-color: transparent;
+    }
     
     .ps-block--products-of-category>* {
         width: 100%;
@@ -11030,6 +11033,7 @@ button:focus {
         top: 8px;
         left: 0;
         background-color: #999;
+        display: none;
     }
     
     .ps-product--wide .ps-product__shopping {
@@ -14779,6 +14783,10 @@ button:focus {
         .owl-carousel .owl-item img {
             height: 80%;
         }
+        .popular-blog_col {
+            border-bottom: 1px solid #E5E5E5 !important;
+            padding-bottom: 20px !important;
+        }
         .header_phone_number > p {
             display: none;
         }
@@ -15713,7 +15721,7 @@ button:focus {
     
     @media (max-width: 767px) {
         .ps-newsletter {
-            padding: 50px 0;
+            padding: 50px 35px;
         }
     }
     
