@@ -283,7 +283,6 @@
                             product_id: Number(this.getAttribute("data-id")),
                         },
                     })
-                    console.log("Disike");
 
                 } else {
                     $.ajax({
@@ -298,7 +297,6 @@
                         },
                     })
                 }
-                console.log("Like");
             } else {
                 this.removeAttribute('id');
                 $(".enter-form").css("display", "block");
@@ -330,12 +328,7 @@
 
     function change_count() {
         $('#count_input').change(function() {
-            // console.log('total_count_global:'+$('#count_input').val());
-            // if(Number($('#count_input').val()) > total_count_global){
-            //     // console.log('total_count_global:'+total_count_global);
-            //     count = total_count_global
-            //     $('#count_input').val(count);
-            // } else 
+            
             if ($('#count_input').val() > 0) {
                 count = $('#count_input').val();
             } else {

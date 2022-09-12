@@ -208,10 +208,7 @@
 
     function sendSms() {
         $('#loading').show();
-        // console.log($('.recipe_phone_number')[2].value);
         var validate = validatePhone($('.recipe_phone_number')[2].value);
-        console.log($('.recipe_phone_number')[2].value)
-
         if (validate) {
             var upload = $("#user_files").data("kendoUpload"),
                 files2 = upload.getFiles();
@@ -226,8 +223,6 @@
                     "recipe_pics": recipe_pics
                 },
                 success: function(data) {
-                    console.log(data);
-                    console.log('data');
                     if (data.stat == 1) {
                         recipe_id = data.recipe_id;
                         recipe_phone_number = $('.recipe_phone_number')[2].value;

@@ -1,3 +1,6 @@
+<div class="main-loader_icon">
+    <img src="img/loader-icon.gif" alt="load" width="128px">
+</div>
 <div id="homepage-3">
     <div class="ps-home-banner">
 
@@ -149,7 +152,7 @@
                     </div>
                     <div class="ps-block__product-box">
                         <?php foreach ($cat['categ_prods'] as $cat_p) : ?>
-                            <div class="ps-product ps-product--simple hover01">
+                            <div class="ps-product ps-product--simple hover01" data-id="<?php echo  $cat_p['id'] ?>">
                                 <label class="main-like_btn">
                                     <input value="<?php $cat_p['id'] ?>" <?php echo $cat_p['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
                                     <svg id="shape" fill="none" data-id="<?= $cat_p['id'] ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
@@ -280,7 +283,29 @@
 </div>
 
 <script>
+    window.onload = () => {
+        $(".main-loader_icon").css("display", "none")
+    }
+
+
     document.getElementsByClassName('blog_about').offsetWidth / 100;
+    if (document.querySelector(".ps-product__content i")) document.querySelector(".ps-product__content i").addEventListener("click", onAddBorder())
+
+
+    function onAddBorder() {
+        const __products = JSON.parse(localStorage.getItem("product_list"));
+        const __categores = Array.from(document.querySelectorAll(".ps-product--simple"));
+        if (__products !== null) {
+            __categores.forEach(elem => {
+                __products.forEach(product => {
+                    if (elem.dataset.id === product.product_id) {
+                        elem.classList.add("main-products_border");
+                    }
+                })
+            })
+        }
+    }
+    onAddBorder();
     $(document).ready(function() {
         var os = '<?php if (isset($os)) echo $os; ?>';
         if (os == 1) {
@@ -390,12 +415,6 @@
 
     function change_count() {
         $('#count_input').change(function() {
-            // console.log('total_count_global:'+$('#count_input').val());
-            // if(Number($('#count_input').val()) > total_count_global){
-            //     // console.log('total_count_global:'+total_count_global);
-            //     count = total_count_global
-            //     $('#count_input').val(count);
-            // } else 
             if ($('#count_input').val() > 0) {
                 count = $('#count_input').val();
             } else {
@@ -429,7 +448,6 @@
             product_total_count: total_count,
             prod_articule: product_articule
         };
-
         var found = false;
         if (total_count <= 0) {
             $('.product_add_notification_div_error').css({
@@ -466,12 +484,14 @@
                 //     path: '/'
                 // });
                 localStorage.setItem("product_list", JSON.stringify(mydata))
+                onAddBorder()
             } else {
                 array.push(obj);
                 // $.cookie("product_list", JSON.stringify(array), {
                 //     path: '/'
                 // });
                 localStorage.setItem("product_list", JSON.stringify(array))
+                onAddBorder()
             }
             if (!max_count_reached) {
                 $('.span_added_prod_name').text('' + name);

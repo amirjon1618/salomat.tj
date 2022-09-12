@@ -210,7 +210,6 @@
                     };
                 },
                 processResults: function(data) {
-                    console.log(data)
                     return {
                         results: data
                     };
@@ -228,7 +227,6 @@
                     };
                 },
                 processResults: function(data) {
-                    console.log(data);
                     return {
                         results: data
                     };

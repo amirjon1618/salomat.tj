@@ -221,8 +221,6 @@
                 var name = $('#order_name').val();
                 var address = $('#order_address').val();
                 var comment = $('#order_comment').val();
-                // var cash_type = $('#payment').children("option:selected").val();
-                // console.log($('#payment').children("option:selected").val());
                 $.post("<?= $base_url; ?>index.php/admin/addOrderConfirm", {
                     "phone_number": phone_number,
                     "name": name,

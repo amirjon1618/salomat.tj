@@ -149,8 +149,7 @@
         width: 186px;
         text-align: center;
         font-weight: 600;
-        padding: 5px 0;
-        height: 50px;
+        height: 45px;
         align-items: center;
         margin-bottom: 10px;
         cursor: pointer;

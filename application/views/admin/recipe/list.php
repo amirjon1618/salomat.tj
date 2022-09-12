@@ -98,7 +98,6 @@
     $('.recipe_pics_tbody').html('');
     $.getJSON('<?= $base_url ?>index.php/api/GetRecipePics/' + id, function(data, status) {
       $('.modal-title').text(data.recipe_phone + ' фотографии');
-      console.log(data.pics);
       data.pics.forEach(function(item, index) {
         var html = `<tr> +
                     <td>${item.id}</td>

@@ -454,9 +454,6 @@
 
             doActiveLink.parent().addClass("active");
 
-
-            //console.log(doActiveLink.parent().parent().length);
-
         });
     </script>
 

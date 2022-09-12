@@ -258,7 +258,6 @@
 
             $('.pr-list').html('');
         }
-        console.log(sum)
         $(".number-currency").text(`${sum}`);
         $(".number-currency_total").text(`${sum + 20}`);
     }

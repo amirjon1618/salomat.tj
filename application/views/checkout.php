@@ -328,8 +328,8 @@
             var mydata = JSON.parse(localStorage.getItem("product_list"));
             var sum = 0;
             mydata.forEach(function(item, index) {
-                var html = "<a href=\"<?= $base_url ?>index.php/main/product/" + item.product_id + "\"><strong>" + item.product_name + "</strong><span>x" + item.product_count + "</span>" +
-                    "<small style='margin-left:10px'> " + item.product_price + "</small>" +
+                var html = "<a href=\"<?= $base_url ?>index.php/main/product/" + item.product_id + "\"><strong style='width:70%'>" + item.product_name + "</strong>" + "<div><span>x" + item.product_count + "</span>" +
+                    "<small style='margin-left:10px'> " + item.product_price + "</small></div>" +
                     "</a>";
                 sum += (item.product_count * item.product_price);
                 $('#prod_list_checkout').append(html);
@@ -498,8 +498,6 @@
                 "order_id": orderId
             },
             success: function(data) {
-                console.log(data);
-                console.log('2222data');
                 begin();
                 if (data == 1) {
                     $('#checkout_loading').hide();
@@ -567,7 +565,6 @@
                     // "delivery_id": $('input[name=delivery]:checked').attr("id")
                 }, function(data) {
                     $(".order-sended").css("display", "flex")
-                    console.log(data);
                     if (data != 0) {
                         $('#checkout_loading').css('display', 'none');
                         var inputForB = true

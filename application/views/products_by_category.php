@@ -60,16 +60,18 @@
                         </ul>
                     </aside>
                 <?php endif; ?>
-                <aside class="widget widget_shop widget_shop_price_sort">
-                    <figure>
+                <aside class="widget widget_shop srch_sort_pr_aside">
+                    <figure class="srch_sort_pr_figure">
                         <h4 class="widget-title">По цене</h4>
                         <div class="nonlinear"></div>
-                        <p class="ps-slider__meta">
-                            <span class="ps-slider__value slider__value_min"><span class="ps-slider__min"></span> смн.</span>
-                            <span class="ps-slider__value slider__value_max"><span class="ps-slider__max"></span> смн.</span>
+                        <p class="ps-slider__meta mb-5">
+                            <span class="ps-slider__value slider__value_min">
+                                <span class="ps-slider__min srch-ps-slider__min"></span> смн.</span>
+                            <span class="ps-slider__value slider__value_max">
+                                <span class="ps-slider__max srch-ps-slider__max"></span> смн.</span>
                         </p>
-                        <div style="text-align: center">
-                            <button class="btn btn-info btn-lg sort_by_price" type="button">Показать</button>
+                        <div style="text-align: center mt-5">
+                            <button class="btn btn-info btn-lg srch_res_sort_by_price" style="width: 100%;" type="button">Показать</button>
                         </div>
                     </figure>
                 </aside>
@@ -195,22 +197,6 @@
                         });
                     }
 
-
-                    // function active_substances_filter() {
-                    //     $('#active-sub-checkbox input:checked').each(function() {
-                    //         selected_act_sub.push($(this).attr('name'));
-                    //     });
-                    //     console.log(selected_act_sub);
-                    // }
-
-                    // function indications_filter() {
-                    //     $.each($("input[name='indications']:checked'"), function() {
-                    //         selected_ind.push($(this).val);
-                    //     });
-                    //     console.log(selected_ind);
-                    // }
-
-
                     function topage(p) {
                         page = p;
                         if (selectedSort == '') {
@@ -328,8 +314,6 @@
                     }
                     $(document).ready(function() {
                         filterSlider('<?= $prod_max_price ?>');
-                        // console.log('<?= $prod_max_price ?>');
-
                         filterSliderMobileAside('<?= $prod_max_price ?>');
                         sub_toggle();
                         get_product_list();

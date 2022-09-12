@@ -143,31 +143,11 @@
 </head>
 
 <body>
+
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFMLHJS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <div class="enter-btn-phone">
-        <div class="enter-btn-modal">
-            <div class="page-content">
-                <div class="form-v8-content">
-                    <div class="enter-form_pass">
-                        <div class="tab">
-                            <div class="tab-inner">
-                                <h3 class="tablinks text-center">Ваш пароль изменён!</h3>
-                            </div>
-                        </div>
-                        <form class="form-detail">
-                            <div class="tabcontent" id="sign-phone">
-                                <div class="form-row-last d-flex justify-content-center">
-                                    <a href="#user-info" id="ok-btn" class="ok-btn" onclick="javascript:window.location.hash = '#user-info';window.location.reload()">OK</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <div class="enter-btn-bg">
         <div class="enter-btn-modal">
             <div class="page-content">
@@ -452,6 +432,28 @@
             </div>
         </div>
     </div>
+    <div class="enter-btn-phone">
+        <div class="enter-btn-modal">
+            <div class="page-content">
+                <div class="form-v8-content">
+                    <div class="enter-form_pass">
+                        <div class="tab">
+                            <div class="tab-inner">
+                                <h3 class="tablinks text-center">Ваш пароль изменён!</h3>
+                            </div>
+                        </div>
+                        <form class="form-detail">
+                            <div class="tabcontent" id="sign-phone">
+                                <div class="form-row-last d-flex justify-content-center">
+                                    <a href="#user-info" id="ok-btn" class="ok-btn" onclick="javascript:window.location.hash = '#user-info';window.location.reload()">OK</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <header class="header header--standard header--market-place-1" data-sticky="true">
         <div class="header__top header_top">
             <div class="container">
@@ -520,13 +522,13 @@
                         <!-- <a class="header__extra header_phone_number" href="tel:9990"> -->
                         <a class="header__extra header_phone_number call" href="javascript:void(0)" onclick="window.location='tel:9990'">
                             <strong>
-                                <img src="{base_url}img/tel.svg " alt="" style="width: 25px; margin-right: 10px;"> 99-90
+                                <img src="{base_url}img/header-phone.svg " alt="" style="width: 25px; margin-right: 10px; margin-top: 10px;"> 99-90
                             </strong>
                             <p class="text-muted">09:00-18:00</p>
                         </a>
                         <div class="ps-cart--mini">
                             <a class="header__extra header_cart_a" href="#">
-                                <img src="{base_url}img/cart.svg" style="margin-bottom: -30px;">
+                                <img src="{base_url}img/header-basket.svg" style="margin-bottom: -30px;">
                                 <span class="header_cart_tot_span">
                                     <i id="total_count_in_cart_header">0</i>
                                 </span>
@@ -576,7 +578,7 @@
                                             <li class="nav-item5" role="presentation"><a id="webdisign-tab1" data-toggle="tab" href="#user-order" data-hash="#user-order" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-cart.svg" alt="Icon">Мои заказы</a></li>
                                             <li class="nav-item5" role="presentation"><a id="webdisign-tab2" data-toggle="tab" href="#user-favorite" data-hash="#user-favorite" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-like.svg" alt="Icon">Избранное</a></li>
                                             <li class="nav-item5" role="presentation"><a id="webdisign-tab3" data-toggle="tab" href="#user-save" data-hash="#user-save" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-save.svg" alt="Icon">Безопасность</a></li>
-                                            <li class="nav-item5" role="presentation"><a id="webdisign-tab3" data-toggle="tab" href="#phone-number" data-hash="#phone-number" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-save.svg" alt="Icon">Номер телефона</a></li>
+                                            <li class="nav-item5" role="presentation"><a id="webdisign-tab3" data-toggle="tab" href="#phone-number" data-hash="#phone-number" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/header-phone.svg" alt="Icon" width="34px">Номер телефона</a></li>
                                         </ul>
                                     </div>
                                     <div class="account-dropdown__footer">
@@ -1209,6 +1211,7 @@
     .ok-btn input {
         color: #fff !important;
     }
+
     .ok-btn:hover {
         background: #18A1A1;
         color: #fff !important;
@@ -1219,10 +1222,9 @@
     }
 </style>
 <script>
+    const al = () => alert()
     const __userIcons = Array.from(document.querySelectorAll(".image  img"));
-    console.log(__userIcons)
     __userIcons.forEach(elem => {
-        console.log(elem)
         elem.src = "{base_url}img/user.png";
         if (localStorage.getItem("user_icon") !== null) {
             elem.src = localStorage.getItem("user_icon");
@@ -1237,14 +1239,18 @@
     }
 
     function remove_from_header_cart(id) {
-
+        const __categores = Array.from(document.querySelectorAll(".ps-product--simple"));
+        __categores.forEach(elem => {
+            if (Number(elem.dataset.id) === id) {
+                elem.classList.remove("main-products_border")
+            }
+        })
         var mydata = $.parseJSON(localStorage.getItem("product_list"));
-
         if (mydata.length == 1) {
             // $.removeCookie('product_list', {
             //     path: '/'
             // });
-            localStorage.removeItem("product_list")
+            localStorage.removeItem("product_list");
             $('.pr-list').html('');
             if (typeof goHome == 'function') {
                 goHome();
@@ -1643,9 +1649,6 @@
                     $(".validate-text").text("Нет такого пользователья");
                 }
             },
-            error: function(error) {
-                console.log(error);
-            }
         })
 
         $.ajax({
@@ -1690,7 +1693,6 @@
 
     $("#form8").submit((e) => {
         e.preventDefault();
-        console.log($("#ver-sms8").val())
         if ($("#ver-sms8").val() === String(localStorage.getItem("res-sms"))) {
             $(".enter-btn-bg").css("display", "none");
             $.ajax({
@@ -1875,7 +1877,6 @@
             }
         })
     }
-    console.log($("#first-password"))
 
     function verSms() {
         $.ajax({
@@ -1991,12 +1992,9 @@
     const __navItems = Array.from(document.querySelectorAll(" .navigation__content .navigation__item"));
     __navItems.forEach((link, ind) => {
         const elem = link.childNodes[1].src;
-        console.log(elem)
         link.addEventListener("click", function() {
             localStorage.setItem("iconItem", this.dataset.id)
             __navItems.forEach((link) => {
-                console.log(link.childNodes[1].src);
-                console.log(elem)
                 link.childNodes[1].src = link.dataset.src;
             });
             link.childNodes[1].src = `{base_url}/img/inactive.icon${link.dataset.id}.svg`
