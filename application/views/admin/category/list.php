@@ -54,7 +54,7 @@
                   </td>
                   <td style="text-align: center;width: 100px;"> <a class="" href="<?= base_url() ?>index.php/Admin/addBanner/<?= $item['id'] ?>"><i style="font-size: 24px;" class="fa fa-plus-square-o"> </i></a></td>
                   <td style="text-align: center;width: 100px;"> <a class="" href="<?= base_url() ?>index.php/Admin/categoryBanners/<?= $item['id'] ?>"><i style="font-size: 24px;" class="fa fa-list"> </i></a></td>
-                  <td style="text-align: center;width: 100px;"> <a class="" onclick="onPsBlockRight()" href="#"><i style="font-size: 24px;color:red" class="fa fa-remove"> </i></a></td>
+                  <td style="text-align: center;width: 100px;"> <a class="" onclick="onPsBlockRight(<?php echo $item['id']  ?>)" href="#"><i style="font-size: 24px;color:red" class="fa fa-remove"> </i></a></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
@@ -78,8 +78,8 @@
             <form class="form-detail">
               <div class="tabcontent" id="sign-phone">
                 <div class="form-row-last d-flex justify-content-between">
-                  <a href="#"><input type="submit" name="register" class="cancel ef1" value="Отмена"></a>
-                  <a href="<?= base_url() ?>index.php/Admin/Categories?do=remove&cat_id=<?= $item['id'] ?>"><input type="button" name="register" class="remove rf1" value="Удалить"></a>
+                  <button type="button" name="register" class="cancel ef1" value="Отмена">Отмена</button>
+                  <a href="<?= base_url() ?>index.php/Admin/Categories?do=remove&cat_id=<?= $item['id'] ?>" id="deleteCategories"><input type="button" name="register" class="remove rf1" value="Удалить"></a>
                 </div>
               </div>
             </form>
@@ -133,7 +133,8 @@
   }
 
 
-  function onPsBlockRight() {
+  function onPsBlockRight(id) {
+    deleteCategories.href = `<?= base_url() ?>index.php/Admin/Categories?do=remove&cat_id=${id}`;
     document.querySelector(".enter-btn-bg").style.display = "flex";
     document.querySelector(".enter-btn-bg").classList.add("active-animation");
     document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
@@ -155,6 +156,9 @@
     chosenClass: "sortable-chosen",
     dragClass: "sortable-drag"
   });
+  $(".cancel").on("click", () => {
+    $(".enter-btn-bg").hide()
+  })
 </script>
 <style>
   .enter-btn-bg {

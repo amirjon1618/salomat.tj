@@ -558,7 +558,7 @@
 
     function change_count() {
         $('#count_input').change(function() {
-            
+
             if ($('#count_input').val() > 0) {
                 count = $('#count_input').val();
             } else {

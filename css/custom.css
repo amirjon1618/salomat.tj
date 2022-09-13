@@ -798,6 +798,7 @@ textarea.error {
    font-weight: bold;
    /* margin-top: 30px; */
    box-shadow: none !important;
+   width: 100%;
 }
 
 .sort_by_price:hover,

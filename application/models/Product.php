@@ -1007,6 +1007,7 @@ class Product extends CI_Model
         foreach ($query->result_array() as $row) {
             $row['base_url'] = base_url();
             $rating = $this->get_rating($row['id']);
+            $row['product_brand'] = $this->get_other_fields($row['product_brand'], 'brand');
             if (sizeof($rating) != 0) {
                 $row['prod_rating_average'] = $rating['prod_rating_average'];
                 $row['review_count'] = $rating['review_count'];

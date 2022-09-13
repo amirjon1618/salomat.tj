@@ -2937,7 +2937,7 @@ button:focus {
     
     @media (max-width: 479px) {
         .ps-container {
-            padding: 0 15px;
+            padding: 0 14px;
         }
     }
     
@@ -6111,6 +6111,9 @@ button:focus {
         padding: 20px;
         margin-right: 20px;
         height: fit-content;
+        position: fixed !important;
+        z-index: 1000;
+        width: 180px !important;
     }
     
     .bi-left-sidebar h2{
@@ -6458,7 +6461,7 @@ button:focus {
     }
     
     .ps-block--products-of-category {
-        margin-bottom: 70px;
+        margin-bottom: 40px;
         display: -webkit-box;
         display: flex;
         -webkit-box-orient: horizontal;
@@ -6468,6 +6471,7 @@ button:focus {
     }
     .bg-blog_transparent {
         background-color: transparent;
+        position: relative;
     }
     
     .ps-block--products-of-category>* {
@@ -11017,7 +11021,6 @@ button:focus {
     }
     
     .ps-product--wide .ps-product__desc li {
-        padding-left: 15px;
         position: relative;
         color: #999999;
         line-height: 1.8em;
@@ -11038,6 +11041,8 @@ button:focus {
     
     .ps-product--wide .ps-product__shopping {
         flex-basis: 250px;
+        display: grid;
+        justify-content: end;
     }
     .validate-text {
         text-align: center !important;
@@ -14935,11 +14940,12 @@ button:focus {
         }
         .owl-carousel.owl-drag .owl-item {
             padding: 0;
+            min-width: 193px;
         }
         .main-ps-product {
             border: 1px solid #E5E5E5;
             border-radius: 5px;
-            padding: 0 10px;
+            padding: 5px 10px;
             margin: 0 10px;
         }
         .bab_mobile {
@@ -15600,7 +15606,7 @@ button:focus {
     }
     
     .ps-section--gray {
-        padding: 30px 0;
+        padding: 15px 0;
         background-color: #f4f5f5;
     }
     
@@ -15721,7 +15727,7 @@ button:focus {
     
     @media (max-width: 767px) {
         .ps-newsletter {
-            padding: 50px 35px;
+            padding: 0 50px 35px;
         }
     }
     

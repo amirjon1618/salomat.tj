@@ -320,14 +320,14 @@
                 },
                 success(result) {
                     localStorage.setItem("res-sms", result);
-
+                    
                 }
             })
 
         }
     })
 
-
+    
     function deleteProduct(id) {
         const favoriteId = document.querySelector(`[data-favoriteid="${id}"]`);
         const parent = document.getElementById('favorite-parent');
@@ -352,40 +352,35 @@
         });
         return await response.json(); // parses JSON response into native JavaScript objects
     }
-    // document.querySelector("#user_icon1").src = "{base_url}img/user.png";
+    document.querySelector("#user_icon1").src = "{base_url}img/user.png";
 
-    // if (localStorage.getItem("user_icon") !== null) {
-    //     document.querySelector("#user_icon1").src = localStorage.getItem("user_icon");
-    // } else {
-    //     document.querySelector("#user_icon1").src = "{base_url}img/user.png";
-    // }
+    if (localStorage.getItem("user_icon") !== null) {
+        document.querySelector("#user_icon1").src = localStorage.getItem("user_icon");
+    } else {
+        document.querySelector("#user_icon1").src = "{base_url}img/user.png";
+    }
 
     function uploadIMG(e) {
-        // console.dir(e.files[0].path);
-        // var formdata = new FormData();
-        // formdata.append("img", e.files[0], "url");
-        // var fReader = new FileReader();
-        // fReader.readAsDataURL(e.files[0]);
-        // fReader.onloadend = function(event) {
-        //     localStorage.setItem("user_icon", event.target.result);
-        //     document.querySelector("#user_icon").src = localStorage.getItem("user_icon");
-        const myFile = document.getElementById("input__file");
-        var form = new FormData();
-        form.append("img", myFile.files[0], `${myFile.files[0].name}`);
-        var requestOptions = {
-            method: 'POST',
-            body: form,
-            redirect: 'follow'
-        };
-        fetch("{base_url}users/user_img?=save", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                console.log(result.upload_data.full_path);
-                document.querySelector("#user_icon1").src = '';
-            })
-    }
-    // window.location.reload();
+        console.dir(e.files[0].path);
+        var formdata = new FormData();
+        formdata.append("img", e.files[0], "url");
+        var fReader = new FileReader();
+        fReader.readAsDataURL(e.files[0]);
+        fReader.onloadend = function(event) {
+            localStorage.setItem("user_icon", event.target.result);
+            document.querySelector("#user_icon").src = localStorage.getItem("user_icon");
+            var requestOptions = {
+                method: 'POST',
+                body: event.target.result,
+                redirect: 'follow'
+            };
+            fetch("{base_url}users/user_img?=save", requestOptions)
+                .then(response => response.json())
 
+        }
+        window.location.reload();
+
+    }
 
     function delPhoto() {
         localStorage.removeItem("user_icon");

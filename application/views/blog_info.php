@@ -48,7 +48,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="bi-right-sidebar col-lg-10 col-md-10 col-sm-12 col-xs-12 pt-3">
+                <div class="bi-right-sidebar col-lg-10 col-md-9 col-sm-12 col-xs-12 pt-3 offset-xl-2 offset-lg-3 offset-md-4 offset-sm-0 p-4">
                     <div class="bloginfo-imgs">
 
                     </div>
