@@ -147,7 +147,7 @@
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFMLHJS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    
+
     <div class="enter-btn-bg">
         <div class="enter-btn-modal">
             <div class="page-content">
@@ -292,7 +292,7 @@
                                             <p class="mb-0">Нажав на кнопку “Регистрация”, я принимаю <a href="#" class="text-primary">условия пользования</a></p>
                                         </div>
                                         <div class="form-row-last d-flex justify-content-between">
-                                            <a href="{base_url}index.php/main/user_info"><input type="submit" name="register" class="enter ef4" value="Регистрация"></a>
+                                            <a href="{base_url}index.php/main/user_info#user-info"><input type="submit" name="register" class="enter ef4" value="Регистрация"></a>
                                             <a href="#"><input type="submit" name="register" class="register rf4" value="Отмена"></a>
                                         </div>
                                     </div>
@@ -384,7 +384,7 @@
                                         </div>
                                         <p class="validate-text"></p>
                                         <div class="form-row-last d-flex justify-content-between">
-                                            <a href="{base_url}index.php/main/user_info"><input type="submit" name="register" class="enter ef4" value="Продолжить"></a>
+                                            <a href="{base_url}index.php/main/user_info#user-info"><input type="submit" name="register" class="enter ef4" value="Продолжить"></a>
                                             <a href="#"><input type="submit" name="register" class="register cancel-btn2" value="Отмена"></a>
                                         </div>
                                     </div>
@@ -439,7 +439,7 @@
                     <div class="enter-form_pass">
                         <div class="tab">
                             <div class="tab-inner">
-                                <h3 class="tablinks text-center">Ваш пароль изменён!</h3>
+                                <h3 class="tablinks text-center">Ваш номер изменён!</h3>
                             </div>
                         </div>
                         <form class="form-detail">
