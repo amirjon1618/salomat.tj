@@ -636,13 +636,13 @@ class Main extends CI_Controller
     {
         if ($this->input->get("cat_id") && $this->input->get("page") && $this->input->get("sort")) {
             if ($this->input->get("min_price") == "" && $this->input->get("max_price") == "") {
-                $res = $this->product->get_products_by_category($this->input->get("cat_id"), $this->input->get("page"), $this->input->get("sort"));
+                $res = $this->product->get_products_by_category($this->input->get("cat_id"), $this->input->get("sort"), $this->input->get("page"));
             } else {
                 $res = $this->product
                     ->get_products_by_category(
                         $this->input->get("cat_id"),
-                        $this->input->get("page"),
                         $this->input->get("sort"),
+                        $this->input->get("page"),
                         $this->input->get("min_price"),
                         $this->input->get("max_price")
                     );
