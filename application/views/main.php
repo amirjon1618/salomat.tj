@@ -50,8 +50,8 @@
             <div class="ps-section__content">
                 <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
                     <?php foreach ($prods_of_the_day as $prod_of_the_day) : ?>
-                        <div class="main-ps-product">
-                            <div class="ps-product ps-product--inner ps-product_of_the_day">
+                        <div class="main-ps-product " data-id="<?php echo  $prod_of_the_day['id'] ?>">
+                            <div class=" ps-product ps-product--inner ps-product_of_the_day">
                                 <label class="main-like_btn">
                                     <input value="<?php $prod_of_the_day['id'] ?>" <?php echo $prod_of_the_day['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
                                     <svg id="shape" fill="none" data-id="<?= $prod_of_the_day['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
@@ -86,10 +86,19 @@
                                                 <?php endif; ?>
                                             </select><span>(<?= $prod_of_the_day['review_count'] ?>)</span>
                                         </div>
-                                        <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
+                                        <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span ">
                                                 <input class="form-control height50" id="count_input" type="number" value="1" style="display: none;">
                                                 <?php if ($prod_of_the_day['product_old_price'] != 0) : ?><del><?= $prod_of_the_day['product_old_price'] ?> </del><?php endif; ?>
-                                                <?= $prod_of_the_day['product_price'] ?>c. </span><button onclick='addToCart(res = <?= json_encode($prod_of_the_day) ?>)' class="ps-btn btn-cart_cat">В корзину</button></p>
+                                                <?= $prod_of_the_day['product_price'] ?>c. </span><button onclick='addToCart(res = <?= json_encode($prod_of_the_day) ?>)' class="ps-btn btn-cart_cat">В корзину</button>
+                                        <figure>
+                                            <div class="form-group--number">
+                                                <button class="up" id="increase_count" onclick="valueCount(this)" data-id="<?php echo $prod_of_the_day['id'] ?>">+</button>
+                                                <button class="down" id="decrease_count" data-id="<?php echo $prod_of_the_day['id'] ?>">-</i>
+                                                </button>
+                                                <input class="form-control height50 valueCount" id="count_input" type="number" value="1">
+                                            </div>
+                                        </figure>
+                                        </p>
 
                                     </div>
                                 </div>
@@ -150,6 +159,10 @@
                         <i class="fa fa-check-circle" aria-hidden="true"></i>
                         <span class="prod_add_notification_text">"<span class="span_added_prod_name"></span>" успешно добавлен в вашу корзину.</span>
                     </div>
+                    <div class="product_add_notification_div_error" style="display: none;">
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                        <span class="prod_add_notification_text">К сожалению товар нет в наличии. Помощь по телефону 9990</span>
+                    </div>
                     <div class="ps-block__product-box">
                         <?php foreach ($cat['categ_prods'] as $cat_p) : ?>
                             <div class="ps-product ps-product--simple hover01" data-id="<?php echo  $cat_p['id'] ?>">
@@ -188,9 +201,9 @@
                                                 <?php endif; ?>
                                             </select><span>(<?= $cat_p['review_count'] ?>)</span>
                                         </div>
-                                        <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
+                                        <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span pps-custom">
                                                 <?php if ($cat_p['product_old_price'] != 0) : ?><del><?= $cat_p['product_old_price'] ?> </del><?php endif; ?>
-                                                <?= $cat_p['product_price'] ?> c. </span><button onclick='addToCart(res = <?= json_encode($cat_p) ?>)' class="ps-btn btn-cart_cat">В корзину</button></p>
+                                                <?= $cat_p['product_price'] ?> c. </span><button onclick='addToCart(res = <?= json_encode($cat_p) ?>)' class="ps-btn btn-cart_cat bcc-custom">В корзину</button></p>
                                     </div>
                                 </div>
                             </div>
@@ -286,7 +299,24 @@
     window.onload = () => {
         $(".main-loader_icon").css("display", "none")
     }
+    const __valueCounts = document.querySelector(".valueCount");
+    const filteredCount = JSON.parse(localStorage.getItem("product_list"));
+    let $index;
 
+    function valueCount(e) {
+        const product_id = e.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.dataset.id;
+        let value = e.parentNode.children[2];
+        console.dir(value);
+
+        $index = filteredCount.findIndex(elem => elem.product_id === product_id)
+        if ($index !== null) {
+            filteredCount[$index].product_count = filteredCount[$index].product_count + 1;
+            value.value = filteredCount[$index].product_count
+            console.log(filteredCount[$index]);
+        }
+    }
+
+    document.querySelector(".valueCount").value
 
     document.getElementsByClassName('blog_about').offsetWidth / 100;
     if (document.querySelector(".ps-product__content i")) document.querySelector(".ps-product__content i").addEventListener("click", onAddBorder())
@@ -294,7 +324,8 @@
 
     function onAddBorder() {
         const __products = JSON.parse(localStorage.getItem("product_list"));
-        const __categores = Array.from(document.querySelectorAll(".ps-product--simple"));
+        const __categores = Array.from(document.querySelectorAll(".ps-product--simple,.main-ps-product"));
+
         if (__products !== null) {
             __categores.forEach(elem => {
                 __products.forEach(product => {
@@ -385,7 +416,7 @@
                     <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3></a>
                      <span class="blog_created_at">${blogShow.blog_created_at}</span>
                      <div class="text-justify blog_about">${blogShow.blog_about}</div>
-                     <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"> читать дальше...</a>
+                     <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}" class="pb-4"> читать дальше...</a>
                 `;
                 })
 
@@ -413,17 +444,6 @@
         })
     }
 
-    function change_count() {
-        $('#count_input').change(function() {
-            if ($('#count_input').val() > 0) {
-                count = $('#count_input').val();
-            } else {
-                count = 1;
-                $('#count_input').val(count);
-            }
-            // else if ($('#count_input').val() < 1 || Number($('#count_input').val()) == 0)
-        })
-    }
 
     function addToCart(res) {
         max_count_reached = false;
@@ -435,7 +455,7 @@
         var brand = res.product_brand;
         var pic = res.product_pic;
         var name = res.product_name;
-        var total_count = res.product_total_count;
+        var total_count = res.total_count_in_store;
         var product_articule = res.product_articule;
         var obj = {
             product_id: id,
@@ -485,6 +505,8 @@
                 // });
                 localStorage.setItem("product_list", JSON.stringify(mydata))
                 onAddBorder()
+                $valueCount();
+
             } else {
                 array.push(obj);
                 // $.cookie("product_list", JSON.stringify(array), {
@@ -492,6 +514,8 @@
                 // });
                 localStorage.setItem("product_list", JSON.stringify(array))
                 onAddBorder()
+                $valueCount();
+
             }
             if (!max_count_reached) {
                 $('.span_added_prod_name').text('' + name);
