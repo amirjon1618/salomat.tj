@@ -214,7 +214,7 @@ body {
 }
 
 .navigation .navigation__right {
-   padding-left: 55px;
+   padding-left: 70px;
 }
 
 .ps-tab {
@@ -576,7 +576,7 @@ body {
    font-weight: 700;
    font-size: 14px;
    color: #1e323c;
-   padding: 6px 12px 6px 12px;
+   padding: 6px 15px;
    line-height: 22px;
 }
 
@@ -1693,10 +1693,10 @@ button {
 }
 
 #count_input {
-   padding: 0 28px 5px 40px !important;
+   padding: 0 25px 0px 25px !important;
    border-radius: 5px;
-   font-size: 20px;
-   color: #6d6d6d;
+   font-size: 18px;
+   color: #6D6D6D;
 }
 
 .pr_side_icons {

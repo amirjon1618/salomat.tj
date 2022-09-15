@@ -1239,7 +1239,7 @@
     }
 
     function remove_from_header_cart(id) {
-        const __categores = Array.from(document.querySelectorAll(".ps-product--simple"));
+        const __categores = Array.from(document.querySelectorAll(".ps-product--simple,.main-ps-product"));
         __categores.forEach(elem => {
             if (Number(elem.dataset.id) === id) {
                 elem.classList.remove("main-products_border")
