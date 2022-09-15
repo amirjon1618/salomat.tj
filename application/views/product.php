@@ -162,8 +162,8 @@
                                 <div class="ps-product__btn-group">
                                     <figure>
                                         <div class="form-group--number">
-                                            <button class="up" id="increase_count"><i class="fa fa-plus"></i></button>
-                                            <button class="down" id="decrease_count"><i class="fa fa-minus"></i>
+                                            <button class="up" id="increase_count">+</button>
+                                            <button class="down" id="decrease_count">-</i>
                                             </button>
                                             <input class="form-control height50" id="count_input" type="number" value="1">
                                         </div>
@@ -820,7 +820,7 @@
         var brand = res.product_brand;
         var pic = res.product_pic;
         var name = res.product_name;
-        var total_count = res.product_total_count;
+        var total_count = res.total_count_in_store;
         var product_articule = res.product_articule;
         var obj = {
             product_id: id,
@@ -833,7 +833,6 @@
             product_total_count: total_count,
             prod_articule: product_articule
         };
-
         var found = false;
         if (total_count <= 0) {
             $('.product_add_notification_div_error').css({

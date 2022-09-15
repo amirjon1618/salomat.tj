@@ -5212,11 +5212,12 @@ button:focus {
     .popular-blogs a {
         color: #1EBEBE;
         font-weight: 300;
-        font-size: 14px;
+        font-size: 16px;
         display: block;
     }
     .popular-blogs a:hover {
-        text-decoration: underline;
+        text-decoration: none;
+        color: #4a4ac3;
     }
     .forms-blocks {
         display: grid;
@@ -5370,6 +5371,9 @@ button:focus {
         font-size: 20px;
         font-weight: 700;
         padding-top: 18px;
+    }
+    .popular-blogs_content h3:hover {
+        color: #4a4ac3;
     }
     .popular-blogs_content p {
         font-size: 14px;
@@ -5763,10 +5767,13 @@ button:focus {
     }
     
     .ps-block--user-header .ps-block__right a {
-        display: block;
+        display: flex !important;
+        align-items: center;
+        height: 44px;
         font-weight: 700;
         line-height: 18px;
         text-decoration: none;
+
     }
     
     .ps-block--user-header .ps-block__right a:hover {
@@ -6111,7 +6118,8 @@ button:focus {
         padding: 20px;
         margin-right: 20px;
         height: fit-content;
-        position: fixed !important;
+        position: sticky !important;
+        top:1rem;
         z-index: 1000;
         width: 180px !important;
     }
@@ -6163,6 +6171,9 @@ button:focus {
         font-weight: 700;
         padding-bottom: 10px;
     }
+    .blog-articles_left h3:hover{
+        color: #4a4ac3;
+    }
     .blog-articles_left p{
         color: #6D6D6D;
         font-size: 14px;
@@ -6177,11 +6188,12 @@ button:focus {
     }
     .blog-articles_left a{
         color: #1EBEBE;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 300;
     }
     .blog-articles_left a:hover{
-        text-decoration: underline;
+        text-decoration: none;
+        color: #4839C3;
     }
     .blog-articles_left img{
         padding-bottom: 8px;
@@ -6208,6 +6220,9 @@ button:focus {
         font-size: 24px;
         font-weight: 700;
     }
+    .blog-articles_right h3:hover{
+        color: #4839C3;
+    }
     .blog-articles_right p{
         color: #6D6D6D;
         font-size: 14px;
@@ -6216,9 +6231,13 @@ button:focus {
     }
     .blog-articles_right a{
         color: #1EBEBE;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 300;
         display: block;
+    }
+    .blog-articles_right a:hover{
+        text-decoration: none;
+        color: #4839C3;
     }
     .blog-articles-btn button{
         width: 180px;
@@ -6559,7 +6578,7 @@ button:focus {
 
     .main-products_border {
         border: 2px solid #1EBEBE !important;
-        border-radius: 5px;
+        border-radius: 10px;
     }
     .main-products_border1 {
         border: none !important;
@@ -10720,7 +10739,7 @@ button:focus {
     
     .ps-product {
         position: relative;
-        padding: 20px 20px 0;
+        padding: 10px 10px 0 10px;
         border: 1px solid transparent;
         border-bottom: none;
     }
@@ -10754,7 +10773,7 @@ button:focus {
         color: #EF5D70;
         font-size: 10px;
         display: flex;
-        line-height: 5px;
+        line-height: 1px;
     }
     
     .ps-product .ps-product__actions {
@@ -10911,7 +10930,7 @@ button:focus {
     }
     
     .ps-product.ps-product--inner {
-        padding: 0 10px;
+        padding: 5px 10px 0 10px;
         border: none;
     }
     
@@ -14929,7 +14948,7 @@ button:focus {
             display: none;
         }
         .prods_slider span {
-            padding: 6px 10px 6px 10px;
+            padding: 6px 10px;
             border: none;
         }
         .ps-product__price-link {
@@ -18537,7 +18556,7 @@ button:focus {
     
     .menu>li>a {
         display: inline-block;
-        padding: 15px 25px;
+        padding: 15px 44px;
         font-size: 16px;
         font-weight: 400;
         line-height: 20px;
@@ -19204,6 +19223,7 @@ button:focus {
     
     .header--standard .ps-form--quick-search {
         width: 700px;
+        height: 44px;
     }
     
     .header--standard .ps-form--quick-search button {
@@ -19237,6 +19257,7 @@ button:focus {
     .header--standard .ps-form--quick-search input {
         border: 1px solid #e1e1e1;
         border-left: none;
+        height: 44px !important;
     }
     
     .header--standard .ps-form--quick-search input:focus {
@@ -34260,7 +34281,7 @@ section {
     font-size: 14px;
 }
 .btn-cart_cat {
-    padding: 0 5px !important;
+    padding: 0 15px !important;
     border-radius: 0 5px 5px 0 !important;
 }
 .btn-cart_products {
@@ -34285,4 +34306,10 @@ section {
 }
 #favorite-parent {
     min-height: 520px;
+}
+.pps-custom {
+    padding: 6px 12px !important;
+}
+.bcc-custom {
+    padding: 6px 12px !important;
 }

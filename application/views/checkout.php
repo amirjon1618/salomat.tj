@@ -142,7 +142,7 @@
                                                                 <h3 style="font-size: 22px; font-weight: 700;">Всё готово</h3>
                                                                 <p style="width: 300px; color: #AAABAD;">Наш специалист свяжится с вами в ближайшее время.</p>
                                                                 <p style="color: #AAABAD;">Спасибо за покупку.</p>
-                                                                <input style="height: 4em; border-color: #A8A8A8; border-radius: 5px; padding: 10px 0;" value="Номер заказа №1894" class="ps-btn_order text-center">
+                                                                <input style="height: 4em; border-color: #A8A8A8; border-radius: 5px; padding: 10px 0;" value="Номер заказа №1618" class="ps-btn_order text-center">
 
                                                             </div>
                                                             <form class="form-detail">
