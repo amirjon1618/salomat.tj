@@ -601,7 +601,8 @@ class Product extends CI_Model
     //...products with total_count > 0
     public function get_products_by_category($id, $sort_by, $current, $min_price = '', $max_price = '')
     {
-        if(isset($current)){
+//        var_dump($sort_by);
+        if(!isset($current)){
             $current = 1;
         }
         $this->load->model('category');
@@ -1066,7 +1067,35 @@ class Product extends CI_Model
         $this->db->where('product_status', 1);
         $this->db->limit(20);
         $query = $this->db->get();
-        foreach ($query->result_array() as $row) {
+        $qe[0] = $query->result_array();
+
+        if (empty($qe[0]))
+        {
+            $this->db->select('*');
+            $this->db->from('product');
+            if ($min_price != '' && $max_price != '') {
+                $this->db->where('product.product_price >=', $min_price);
+                $this->db->where('product.product_price <= ', $max_price);
+            }
+            $this->db->where('product_status', 1);
+            $query = $this->db->get();
+            $qe = $query->result_array();
+            $prod = [];
+            foreach ($qe as $q => $key)
+            {
+                $product_name = explode(" ", $key['product_name']);
+                foreach ($product_name as $name) {
+                    similar_text($str, $name, $percent);
+                    if ($percent >= 80) {
+                        $prod[] = $key;
+                    }
+                }
+            }
+
+            $qe[0] = $prod;
+        }
+
+        foreach ($qe[0] as $row) {
             $q = $this->db->query("SELECT active_substance_product.id as asp_id, active_substance.id, active_substance.tag_name FROM product 
                 LEFT JOIN active_substance_product ON active_substance_product.product_id = product.id
                 LEFT JOIN active_substance ON active_substance_product.active_substance_id = active_substance.id 
