@@ -1,5 +1,5 @@
 <div class="main-loader_icon">
-    <img src="img/loader-icon.gif" alt="load" width="128px">
+    <img class="rot" src="{base_url}img/preloader.png" alt="load" width="128px">
 </div>
 <div id="homepage-3">
     <div class="ps-home-banner">
@@ -90,7 +90,7 @@
                                                 <input class="form-control height50" id="count_input" type="number" value="1" style="display: none;">
                                                 <?php if ($prod_of_the_day['product_old_price'] != 0) : ?><del><?= $prod_of_the_day['product_old_price'] ?> </del><?php endif; ?>
                                                 <?= $prod_of_the_day['product_price'] ?>c. </span><button onclick='addToCart(res = <?= json_encode($prod_of_the_day) ?>)' class="ps-btn btn-cart_cat">В корзину</button>
-                                        
+
                                         </p>
 
                                     </div>
@@ -584,4 +584,32 @@
         fill: #DD2E44;
         stroke: #DD2E44 !important;
     }
+
+    img.rot {
+        animation: 1s linear 0s normal none infinite running rot;
+        -webkit-animation: 1s linear 0s normal none infinite running rot;
+        width: 100px;
+    }
+
+    @keyframes rot {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @-webkit-keyframes rot {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    <
 </style>

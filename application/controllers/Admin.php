@@ -80,8 +80,8 @@ class Admin extends CI_Controller
 
         $data['total_prods'] = ($this->product->get_all_count())[0]['total_products'];
         $data['total_users'] = count($this->user->getAllUser());
-////        var_dump(count($data['total_users']));
-//        var_dump($this->recipe->get_all());
+        ////        var_dump(count($data['total_users']));
+        //        var_dump($this->recipe->get_all());
 
         $data['total_recipe'] = count($this->recipe->get_all());
         $data['total_orders'] = count($this->order->getForStatic());
@@ -327,12 +327,12 @@ class Admin extends CI_Controller
         $blog = $this->blog->get($id);
         $data['blog'] = $blog;
         $data['list'] = $blog_images;
-                
+
         $data['content'] = $this->parser->parse('admin/blog/images', $data, true);
         $this->template($data);
     }
 
-    public function addBlogImage($id) 
+    public function addBlogImage($id)
     {
         $this->load->model('blog');
         if ($this->input->post("AddBtn")) {
@@ -344,7 +344,7 @@ class Admin extends CI_Controller
         }
     }
 
-   
+
 
     public function Admins()
     {
@@ -610,7 +610,7 @@ class Admin extends CI_Controller
         $data['cat_parent_id'] = $category['parent_id'];
         if ($this->input->post("AddBtn")) {
             $config['upload_path'] = './img/icons/';
-            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['allowed_types'] = 'svg|gif|jpg|png|jpeg|';
             $config['encrypt_name'] = 'TRUE';
             $config['max_size'] = '4500';
             $config['max_width'] = '6000';
@@ -629,7 +629,7 @@ class Admin extends CI_Controller
                 "category_name" => $this->input->post("category_name"),
             );
 
-            if (!empty($img['file_name'])){
+            if (!empty($img['file_name'])) {
                 $dd['icon'] = $img['file_name'];
             }
             $this->category->update($id, $dd);
@@ -660,7 +660,7 @@ class Admin extends CI_Controller
         $data['cat_parent_id'] = $id;
         if ($this->input->post("AddBtn")) {
             $config['upload_path'] = './img/icons/';
-            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg|svg';
             $config['encrypt_name'] = 'TRUE';
             $config['max_size'] = '4500';
             $config['max_width'] = '6000';
@@ -993,7 +993,7 @@ class Admin extends CI_Controller
         $data = array("base_url" => base_url(), "alert" => "");
 
         $advertisement = $this->advertisement->get($id);
-        if(sizeof($advertisement) == 0) {
+        if (sizeof($advertisement) == 0) {
             redirect('errors/cli/error_404.php', TRUE);
             return;
         }
@@ -1086,7 +1086,7 @@ class Admin extends CI_Controller
 
         echo json_encode(1);
     }
-    
+
     public function changeBlogAvatar()
     {
         $this->load->model('blog');
@@ -1524,14 +1524,14 @@ class Admin extends CI_Controller
         $sms_resp = $this->create_url_f55($array["phone_number"], $rand_num, $sms_id);
 
         if ($answer['stat'] == 1) {
-            $this->update_sms($sms_id, $sms_resp, $answer['order_id'], 'order');   
+            $this->update_sms($sms_id, $sms_resp, $answer['order_id'], 'order');
             $array2 = array('answ' => 1, 'order_id' => $answer['order_id'], 'order_phone' => $this->input->post("phone_number"));
             echo json_encode($array2);
         } else {
             echo json_encode(array('answ' => -1));
         }
     }
-    
+
     public function update_sms($sms_id, $array, $source_id, $source_name)
     {
         $date = new DateTime($array['msg']['timestamp']);
@@ -1558,7 +1558,7 @@ class Admin extends CI_Controller
         $this->load->model("status");
         $this->load->helper('cookie');
         $data = array("base_url" => base_url(), "alert" => "");
-        
+
         if ($this->input->get("do") == "updateok") {
             $data['alert'] = $this->createAlertInfo('Статус успешно обнoвлён');
         }
@@ -1570,7 +1570,7 @@ class Admin extends CI_Controller
             $user = $this->user->GetUserData($auth_id);
             $order = $this->order->get($id);
             $prev_status_id = ($this->order->get($id))['status_id'];
-                      
+
             if ($order["wallet_name"] && $order["transaction_id"]) {
                 $status_for_send = null;
                 if ($this->input->post('status') == 3) {
@@ -1583,18 +1583,18 @@ class Admin extends CI_Controller
                 }
                 if ($status_for_send != null && $status_for_send != -1) {
                     $url = "https://my1.babilon-m.tj/qrapi/MarketPlace/UpdateTxnOrder.aspx";
-                    $marketPlaceHash = hash('sha1',$this->marketPlaceId.$this->marketPlaceToken.$order["transaction_id"].$status_for_send);
+                    $marketPlaceHash = hash('sha1', $this->marketPlaceId . $this->marketPlaceToken . $order["transaction_id"] . $status_for_send);
                     $arr = array(
                         "Sign" =>  $marketPlaceHash,
                         "MarketPlaceId" => $this->marketPlaceId,
                         "TransactionId" => $order["transaction_id"],
-                        "NewStatus"=> $status_for_send,
+                        "NewStatus" => $status_for_send,
                     );
                     $result = json_decode($this->postCURL($url, $arr));
-                //    print_r($result);
-                //    die();
+                    //    print_r($result);
+                    //    die();
                     if ($result->result == 4 || $result == 6) {
-                        $this->order->change_status($id, $this->input->post('status')); 
+                        $this->order->change_status($id, $this->input->post('status'));
                         $this->save_user_or_sr_ch($user['user_id'], $id, $prev_status_id, $this->input->post('status'), $this->input->post('user_order_comment'));
                     } else {
                         $answ = $this->bOrderRes($result->result);
@@ -1603,7 +1603,7 @@ class Admin extends CI_Controller
                     }
                 }
             } else {
-                $answer = $this->order->change_status($id, $this->input->post('status'));  
+                $answer = $this->order->change_status($id, $this->input->post('status'));
                 if ($answer == 1) {
                     // date_default_timezone_set('Asia/Dushanbe');
                     // $now_date = date('Y-m-d H:i:s');
@@ -1627,7 +1627,8 @@ class Admin extends CI_Controller
         $this->template($data);
     }
 
-    private function save_user_or_sr_ch($user_id, $id, $prev_status_id, $status, $comment) {
+    private function save_user_or_sr_ch($user_id, $id, $prev_status_id, $status, $comment)
+    {
         $this->order->save_user_order_status_change(
             $user_id,
             $id,
@@ -1966,7 +1967,6 @@ class Admin extends CI_Controller
             $this->brand->update($id, $dd);
             redirect(base_url("index.php/admin/brands?do=addok"));
         }
-
     }
 
     public function recipes()
@@ -2059,7 +2059,7 @@ class Admin extends CI_Controller
         return $text;
     }
 
-    public function bOrderRes($id) 
+    public function bOrderRes($id)
     {
         $arr = array(
             "-7" => "Данная транзакция не существует!",
@@ -2137,22 +2137,23 @@ class Admin extends CI_Controller
         return array();
     }
 
-    public function postCURL($_url, $data){
+    public function postCURL($_url, $data)
+    {
 
-      
+
         $postData = json_encode($data);
 
         $curl = curl_init($_url);
 
         curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
-            
+
         /* Define content type */
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-            
+
         /* Return json */
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
-        $output=curl_exec($curl);
+        $output = curl_exec($curl);
 
         curl_close($curl);
 
@@ -2170,7 +2171,7 @@ class Admin extends CI_Controller
         $dlm = ";";
         $phone_number = $to; //номер телефона
         $txn_id = $id; //ID сообщения в вашей базе данных, оно должно быть уникальным для каждого сообщения
-        $str_hash = hash('sha256',$txn_id.$dlm.$login.$dlm.$source.$dlm.$phone_number.$dlm.$salt);
+        $str_hash = hash('sha256', $txn_id . $dlm . $login . $dlm . $source . $dlm . $phone_number . $dlm . $salt);
         //$message = "Привет, это тестовое сообщение!";
         $params = array(
             "from" => $source,
@@ -2178,10 +2179,10 @@ class Admin extends CI_Controller
             "msg" => "Salomat.tj: " . $sms . " - Ваш код для подтверждения телефона",
             "str_hash" => $str_hash,
             "txn_id" => $txn_id,
-            "login"=>$login,
+            "login" => $login,
         );
         $result = $this->call_api($server, "GET", $params);
-        
+
         // print_r($result);
 
         // $url = 'http://api.osonsms.com/sendsms_v1.php?login=' . $login . '&phone_number=' . $to . '&msg=' . urlencode($sms) . '&str_hash=' . $hh . '&from=' . $source . '&txn_id=' . $id;
@@ -2189,22 +2190,23 @@ class Admin extends CI_Controller
         return $result;
     }
 
-    private function call_api($url, $method, $params){
+    private function call_api($url, $method, $params)
+    {
         $curl = curl_init();
-        $data = http_build_query ($params);
+        $data = http_build_query($params);
         if ($method == "GET") {
-            curl_setopt ($curl, CURLOPT_URL, "$url?$data");
-        }else if($method == "POST"){
-            curl_setopt ($curl, CURLOPT_URL, $url);
-            curl_setopt ($curl, CURLOPT_POSTFIELDS, $data);
-        }else if($method == "PUT"){
-            curl_setopt ($curl, CURLOPT_URL, $url);
-            curl_setopt ($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded','Content-Length:'.strlen($data)));
-            curl_setopt ($curl, CURLOPT_POSTFIELDS, $data);
-        }else if ($method == "DELETE"){
-            curl_setopt ($curl, CURLOPT_URL, "$url?$data");
-            curl_setopt ($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
-        }else{
+            curl_setopt($curl, CURLOPT_URL, "$url?$data");
+        } else if ($method == "POST") {
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        } else if ($method == "PUT") {
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded', 'Content-Length:' . strlen($data)));
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        } else if ($method == "DELETE") {
+            curl_setopt($curl, CURLOPT_URL, "$url?$data");
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+        } else {
             //dd("unkonwn method");
         }
         curl_setopt_array($curl, array(
@@ -2215,7 +2217,7 @@ class Admin extends CI_Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => $method
         ));
-    
+
         $response = curl_exec($curl);
         $err = curl_error($curl);
         curl_close($curl);
@@ -2225,10 +2227,10 @@ class Admin extends CI_Controller
             $arr['msg'] = $err;
         } else {
             $res = json_decode($response);
-            if (isset($res->error)){
+            if (isset($res->error)) {
                 $arr['error'] = 1;
-                $arr['msg'] = "Error Code: ". $res->error->code . " Message: " . $res->error->msg;
-            }else{
+                $arr['msg'] = "Error Code: " . $res->error->code . " Message: " . $res->error->msg;
+            } else {
                 $arr['error'] = 0;
                 $arr['msg'] = json_decode($response, true);
             }

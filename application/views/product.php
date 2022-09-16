@@ -168,7 +168,19 @@
                                             <input class="form-control height50" id="count_input" type="number" value="1">
                                         </div>
                                     </figure>
-                                    <button onclick='addToCart(prod = <?= json_encode($category_products) ?>)' class="ps-btn">Купить</button>
+                                    <button style="padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #fff;
+    border: none;
+    width: 160px;
+    font-weight: 600;
+    border-radius: 4px;
+    background-color: #1EBEBE;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+    cursor: pointer;" onclick='addToCart(prod = <?= json_encode($category_products) ?>)' class="product-group_btn">Купить</button>
                                 </div>
                             </div>
                         </div>

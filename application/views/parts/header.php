@@ -556,13 +556,13 @@
                         <div class="account-wrap" id="account-wrap" style="display: none;">
                             <div class="account-item clearfix js-item-menu">
                                 <div class="image">
-                                    <img class="rounded-circle" style="min-height: 40px;" class="user_icon" src="" alt="User Icon" />
+                                    <img class="rounded-circle user_icon" style="min-height: 40px;" id="user_icon1" src="{base_url}user_img/<?php echo $image ?>" alt="User Icon" />
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img class="rounded-circle" style="min-height: 60px;" class="user_icon" src="" alt="User Icon" />
+                                                <img class="rounded-circle user_icon" id="user_icon1" style="min-height: 60px;" src="{base_url}user_img/<?php echo $image ?>" alt="User Icon" />
                                             </a>
                                         </div>
                                         <div class="content">
@@ -604,7 +604,7 @@
                                 <!--Лекарственные препараты-->
                                 <?php foreach ($categories as $cat) : ?>
                                     <li class="menu-item-has-children has-mega-menu">
-                                        <a href="#"><img src="{base_url}img/icons/<?= $cat['icon']?>" alt="Icon" style="padding-right: 15px;"><?= $cat['category_name'] ?></a>
+                                        <a href="#"><img src="{base_url}img/icons/<?= $cat['icon'] ?>" alt="Icon" style="padding-right: 15px;"><?= $cat['category_name'] ?></a>
                                         <div class="mega-menu">
                                             <div class="mega-menu__column">
                                                 <ul class="mega-menu__list">
@@ -721,7 +721,7 @@
                 <?php foreach ($categories as $cat) : ?>
                     <li class="menu-item-has-children has-mega-menu">
 
-                        <a href="#"><img src="{base_url}img/vector-icon1.svg" alt="Icon" style="padding-right: 15px;"> <?= $cat['category_name'] ?></a><span class="sub-toggle"></span>
+                        <a href="#"><img src="{base_url}img/icons/<?= $cat['icon'] ?>" alt="Icon" style="padding-right: 15px;"> <?= $cat['category_name'] ?></a><span class="sub-toggle"></span>
 
                         <div class="mega-menu">
                             <div class="mega-menu__column">
@@ -781,7 +781,7 @@
             </div>
             <div class="account-wrap" id="account-wrap2" style="display: none;">
                 <div class="user-image__link">
-                    <a href="{base_url}index.php/main/user_info"><img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" /></a>
+                    <a href="{base_url}index.php/main/user_info#user-info"><img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" /></a>
                 </div>
             </div>
         </div>
@@ -1224,14 +1224,8 @@
 <script>
     const al = () => alert()
     const __userIcons = Array.from(document.querySelectorAll(".image  img"));
-    __userIcons.forEach(elem => {
-        elem.src = "{base_url}img/user.png";
-        if (localStorage.getItem("user_icon") !== null) {
-            elem.src = localStorage.getItem("user_icon");
-        } else {
-            elem.src = "{base_url}img/user.png";
-        }
-    })
+
+
 
     if (localStorage.getItem("userId") !== null) {
         $(".account-btn").css("display", "none")
