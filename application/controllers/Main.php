@@ -1332,4 +1332,24 @@ class Main extends CI_Controller
         }
     }
 
+    /**
+     * List PromoCode
+     *
+     * @return void
+     */
+    public function promo()
+    {
+        $this->load->model("PromoCode");
+
+        if ($this->input->get("promo_code")) {
+
+            $data = $this->PromoCode->get_promo_code($this->input->get("promo_code"));
+
+           echo json_encode($data[0]);
+
+        } else{
+            return false;
+        }
+    }
+
 }
