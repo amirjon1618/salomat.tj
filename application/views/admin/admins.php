@@ -61,6 +61,7 @@
 
               <tr>
                 <th>#</th>
+                <th>Фото</th>
                 <th>Имя</th>
                 <th>Login</th>
                 <th>Тип</th>
@@ -75,12 +76,13 @@
               {clientList}
 
               <tr>
-                <td>{user_id}</a></td>
-                <td>{name}</td>
-                <td>{login}</td>
-                <td>{access_type}</td>
-                <td style="text-align: center;width: 100px;"><a href="<?= base_url() ?>index.php/admin/editAdmin/{user_id}"><i style="font-size: 24px;" class="fa fa-edit"> </i></a> </td>
-                <td style="text-align: center;width: 100px;"><a class="confirmation" href="/index.php/admin/admins?do=remove&user_id={user_id}"><i style="font-size: 24px;color: red;" class="fa fa-remove"> </i></a></td>
+                  <td>{user_id}</a></td>
+                  <td style="text-align: center;width: 100px;"><img src="<?= base_url() ?>user_img/{image}" style="width: 100px;" /></a></td>
+                  <td>{name}</td>
+                  <td>{login}</td>
+                  <td>{access_type}</td>
+                  <td style="text-align: center;width: 100px;"><a href="<?= base_url() ?>index.php/admin/editAdmin/{user_id}"><i style="font-size: 24px;" class="fa fa-edit"> </i></a> </td>
+                  <td style="text-align: center;width: 100px;"><a class="confirmation" href="/index.php/admin/admins?do=remove&user_id={user_id}"><i style="font-size: 24px;color: red;" class="fa fa-remove"> </i></a></td>
               </tr>
 
               {/clientList}

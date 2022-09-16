@@ -179,7 +179,6 @@ class Users extends REST_Controller
      */
     public function user_img_post()
     {
-
         $config['upload_path']          = './user_img';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 40011;
@@ -190,7 +189,16 @@ class Users extends REST_Controller
 
             $this->response($error, REST_Controller::HTTP_OK);
         } else {
-            $data = array('upload_data' => $this->upload->data());
+            $data = array($this->upload->data());
+            $user_pic= $data[0]['file_name'];
+
+            $user_id = $this->input->post('user_id');
+            if (isset($user_id)) {
+                if (!empty($user_pic))
+                    $userData['image'] = $user_pic;
+                $this->db->where("user_id", $user_id);
+                $this->db->update("users", $userData);
+            }
 
             $this->response($data, REST_Controller::HTTP_OK);
         }

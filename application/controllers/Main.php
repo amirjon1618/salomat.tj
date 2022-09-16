@@ -214,7 +214,7 @@ class Main extends CI_Controller
         $data['category_id'] = $id;
         $data['page'] = $current_page;
         $data['sort'] = $sort_by;
-        $res = $this->product->get_products_by_category($id, $current_page, $sort_by); //returns products with total count > 0
+        $res = $this->product->get_products_by_category($id,  $sort_by,$current_page); //returns products with total count > 0
         $data['total_products'] = $res['total_products'];
         $data['category_with_parents'] = $category_with_parents;
         unset($res['total_products']);
@@ -432,6 +432,17 @@ class Main extends CI_Controller
         $this->parser->parse('template', $data);
     }
 
+    public function searchProductForBlog()
+    {
+        $data['srch_inp'] = $this->input->get("srch_pr_inp");
+        var_dump($data);
+        $res = $this->product->search_for_prod(
+            $this->input->get("srch_pr_inp")
+        );
+        echo json_encode($res);
+    }
+
+
     public function searchProductResult()
     {
         $data = array('base_url' => base_url());
@@ -636,13 +647,13 @@ class Main extends CI_Controller
     {
         if ($this->input->get("cat_id") && $this->input->get("page") && $this->input->get("sort")) {
             if ($this->input->get("min_price") == "" && $this->input->get("max_price") == "") {
-                $res = $this->product->get_products_by_category($this->input->get("cat_id"), $this->input->get("page"), $this->input->get("sort"));
+                $res = $this->product->get_products_by_category($this->input->get("cat_id"), $this->input->get("sort"), $this->input->get("page"));
             } else {
                 $res = $this->product
                     ->get_products_by_category(
                         $this->input->get("cat_id"),
-                        $this->input->get("page"),
                         $this->input->get("sort"),
+                        $this->input->get("page"),
                         $this->input->get("min_price"),
                         $this->input->get("max_price")
                     );
@@ -1320,4 +1331,5 @@ class Main extends CI_Controller
             echo $res['order_id'];
         }
     }
+
 }

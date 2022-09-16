@@ -274,7 +274,7 @@ class Order extends CI_Model
             'delivery_type' => $array['delivery_id'],
             // 'cash_type' => $array['cash_type'],
             'code' => $array['code'],
-            'status_id' => 0
+            'status_id' => 1
             // 'created_at' => $created_at
         );
         $this->db->insert('order', $new_arr);
