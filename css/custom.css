@@ -412,7 +412,7 @@ body {
 .recipe_div_main {
    background-image: url("/img/pills.svg");
    background-size: cover;
-   height: 170px;
+   height: 160px;
    padding-left: 40px;
    padding-top: 80px;
    display: flex;

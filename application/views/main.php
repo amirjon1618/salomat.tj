@@ -90,14 +90,7 @@
                                                 <input class="form-control height50" id="count_input" type="number" value="1" style="display: none;">
                                                 <?php if ($prod_of_the_day['product_old_price'] != 0) : ?><del><?= $prod_of_the_day['product_old_price'] ?> </del><?php endif; ?>
                                                 <?= $prod_of_the_day['product_price'] ?>c. </span><button onclick='addToCart(res = <?= json_encode($prod_of_the_day) ?>)' class="ps-btn btn-cart_cat">В корзину</button>
-                                        <figure>
-                                            <div class="form-group--number">
-                                                <button class="up" id="increase_count" onclick="valueCount(this)" data-id="<?php echo $prod_of_the_day['id'] ?>">+</button>
-                                                <button class="down" id="decrease_count" data-id="<?php echo $prod_of_the_day['id'] ?>">-</i>
-                                                </button>
-                                                <input class="form-control height50 valueCount" id="count_input" type="number" value="1">
-                                            </div>
-                                        </figure>
+                                        
                                         </p>
 
                                     </div>
@@ -113,7 +106,7 @@
     <div class="ps-section--gray">
         <div class="container" style="padding: 0;">
             <?php foreach ($categories_for_main_page as $cat) : ?>
-                <div class="ps-block--products-of-category">
+                <div class="ps-block--products-of-category mt-5">
                     <div class="ps-block__categories">
                         <div class="accordion" id="accordionExample">
                             <div style="border: none;" class="card">
@@ -299,24 +292,64 @@
     window.onload = () => {
         $(".main-loader_icon").css("display", "none")
     }
-    const __valueCounts = document.querySelector(".valueCount");
+    // const __valueCounts = document.querySelector(".valueCount");
     const filteredCount = JSON.parse(localStorage.getItem("product_list"));
-    let $index;
+    // let $index;
+    // const _elem = document.querySelectorAll("#count_input");
+    // _elem.forEach(el => {
+    //     console.log()
+    // })
+    // document.querySelector(".valueCount").value
 
-    function valueCount(e) {
-        const product_id = e.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.dataset.id;
-        let value = e.parentNode.children[2];
-        console.dir(value);
+    // let resCount;
 
-        $index = filteredCount.findIndex(elem => elem.product_id === product_id)
-        if ($index !== null) {
-            filteredCount[$index].product_count = filteredCount[$index].product_count + 1;
-            value.value = filteredCount[$index].product_count
-            console.log(filteredCount[$index]);
-        }
+
+    let counterInput;
+
+    function decrease_count() {
+        $('#decrease_count').on('click', function(e) {
+            const prod_id = e.parentNode.dataset.id;
+            let countInput = e.parentNode[2];
+            try {
+                resCount = filteredCount.filter(elem => elem.product_id === idCount)[0].product_count;
+            } catch (error) {
+                resCount = 1
+            }
+            resCount--;
+            if (resCount < 1) {
+                resCount = 1;
+            }
+            countInput.value = resCount;
+            // console.log('hi');
+        })
     }
 
-    document.querySelector(".valueCount").value
+    function increase_count() {
+        $('#increase_count').on('click', function() {
+            const prod_id = e.parentNode.dataset.id;
+            let countInput = e.parentNode[2];
+            try {
+                resCount = filteredCount.filter(elem => elem.product_id === idCount)[0].product_count;
+            } catch (error) {
+                resCount = 1
+            }
+            resCount++;
+            countInput.value = resCount;
+        })
+    }
+
+    function change_count() {
+        $('#count_input').change(function() {
+
+            if ($('#count_input').val() > 0) {
+                resCount = $('#count_input').val();
+            } else {
+                resCount = 1;
+                $('#count_input').val(resCount);
+            }
+            // else if ($('#count_input').val() < 1 || Number($('#count_input').val()) == 0)
+        })
+    }
 
     document.getElementsByClassName('blog_about').offsetWidth / 100;
     if (document.querySelector(".ps-product__content i")) document.querySelector(".ps-product__content i").addEventListener("click", onAddBorder())
@@ -425,24 +458,24 @@
     }
     getBlog();
 
-    function decrease_count() {
-        $('#decrease_count').on('click', function() {
-            count--;
-            if (count < 1) {
-                count = 1;
-            }
-            $('#count_input').val(count);
-        })
-    }
+    // function decrease_count() {
+    //     $('#decrease_count').on('click', function() {
+    //         count--;
+    //         if (count < 1) {
+    //             count = 1;
+    //         }
+    //         $('#count_input').val(count);
+    //     })
+    // }
 
-    function increase_count() {
-        $('#increase_count').on('click', function() {
-            // if (count < total_count_global) {
-            count++;
-            // }
-            $('#count_input').val(count);
-        })
-    }
+    // function increase_count() {
+    //     $('#increase_count').on('click', function() {
+    //         // if (count < total_count_global) {
+    //         count++;
+    //         // }
+    //         $('#count_input').val(count);
+    //     })
+    // }
 
 
     function addToCart(res) {
@@ -505,7 +538,6 @@
                 // });
                 localStorage.setItem("product_list", JSON.stringify(mydata))
                 onAddBorder()
-                $valueCount();
 
             } else {
                 array.push(obj);
@@ -514,7 +546,6 @@
                 // });
                 localStorage.setItem("product_list", JSON.stringify(array))
                 onAddBorder()
-                $valueCount();
 
             }
             if (!max_count_reached) {
@@ -529,6 +560,10 @@
             set_prods_header();
         }
     }
+
+    decrease_count();
+    increase_count();
+    change_count();
 </script>
 
 <style>
