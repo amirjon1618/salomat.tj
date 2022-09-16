@@ -30,10 +30,15 @@
                 <label>Наименование </label>
                 <input type="text" id="category_name" name="category_name" class="form-control" placeholder="Вводите ..." >
             </div>
-             <div class="form-group">
-                <label>Иконка </label>
-                <input type="file" id="category_icon" name="category_icon" class="form-control" placeholder="Вводите ..." >
-            </div>
+<!--             <div class="form-group">-->
+<!--                <label>Иконка </label>-->
+<!--                <input type="file" id="category_icon" name="category_icon" class="form-control" placeholder="Вводите ..." >-->
+<!--            </div>-->
+                <div class="form-group" id="file_div">
+                    <label class="userfile_label">Иконка </label>
+                    <input type="file" name="userfile" class="file_inp" size="50" />
+                    <i class="fa fa-times fa_cancel_file" onclick="cancel_file_input()"></i>
+                </div>
 <!--            <div class="form-group">-->
 <!--                <label>Категории </label>-->
 <!--                -->
@@ -75,4 +80,47 @@
         </div><!-- /.box-body -->
         </section >
       <!-- Bootstrap WYSIHTML5 -->
+
+<script>
+    function cancel_file_input() {
+        $('.file_inp').val('');
+    }
+
+    function validate_chekout() {
+        jQuery.validator.setDefaults({
+            debug: true,
+            success: "valid"
+        });
+
+        $('form').validate({
+            lang: 'ru',
+            rules: {
+                slider_name: {
+                    required: true
+                },
+                slider_link: {
+                    required: true,
+                    url: true
+                },
+                userfile: {
+                    required: false,
+                    accept: "image/jpg,image/jpeg,image/png",
+                    // filesize: 4500000
+                }
+            },
+            messages: {
+                userfile: {
+                    required: "Пожалуйста выберите файл"
+                }
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        // validate_chekout();
+    });
+</script>
 

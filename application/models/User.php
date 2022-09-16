@@ -75,6 +75,8 @@ class User extends CI_Model
 			$row['enabled_str'] = 'false';
 			$row['access_type'] = '';
 
+            if($row['access'])
+                $row['access_type'] = 'Пользователь';
 			if($row['access']==60)
 				$row['access_type'] = 'Сотрудник';
 			if($row['access']==100)
