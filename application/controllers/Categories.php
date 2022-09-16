@@ -54,7 +54,7 @@ class Categories extends REST_Controller
         $data['category_id'] = $id;
         $data['page'] = $current_page;
         $data['sort'] = $sort_by;
-        $res = $this->product->get_products_by_category($id, $current_page, $sort_by, $min_price, $max_price, $user_id); //returns products with total count > 0
+        $res = $this->product->get_products_by_category($id,  $sort_by,$current_page, $min_price, $max_price, $user_id); //returns products with total count > 0
         $data['total_products'] = $res['total_products'];
         $data['category_with_parents'] = $category_with_parents;
         unset($res['total_products']);

@@ -213,6 +213,76 @@ class Admin extends CI_Controller
         }
     }
 
+    /**
+     * List PromoCode
+     *
+     * @return void
+     */
+    public function promo_codes()
+    {
+        if ($this->user->myData['access'] != 100)
+            die();
+        $this->load->model("PromoCode");
+
+        $data = array("base_url" => base_url(), "alert" => "");
+
+        if ($this->input->get("do") == "remove") {
+            $this->PromoCode->remove($this->input->get("id"));
+            $data['alert'] = $this->createAlertInfo('Данные успешно удалены');
+        } else if ($this->input->get("do") == "addok") {
+            $data['alert'] = $this->createAlertInfo('Данные успешно обновлены');
+        }
+
+        $code = $this->PromoCode->get_all();
+        $data['list'] = $code;
+
+        $data['content'] = $this->parser->parse('admin/promo_code/list', $data, true);
+        $this->template($data);
+    }
+
+    /**
+     * Added Promo Code
+     *
+     * @return void
+     */
+
+    public function addPromoCode()
+    {
+        if ($this->user->myData['access'] != 100)
+            die();
+        $this->load->model("PromoCode");
+
+        $data = array("base_url" => base_url(), "alert" => "");
+        if ($this->input->post("AddBtn")) {
+            $dd = array("code" => $this->input->post("code"), "discount" => $this->input->post("discount"));
+            $this->PromoCode->add($dd);
+            redirect(base_url("index.php/admin/promo_codes?do=addok"));
+        }
+    }
+
+    /**
+     * Updated Promo Code
+     *
+     * @return void
+     */
+
+    public function editPromoCode($id)
+    {
+        if ($this->user->myData['access'] != 100)
+            die();
+        $this->load->model("PromoCode");
+
+        $data = array("base_url" => base_url(), "alert" => "");
+
+        $data['tag'] = $this->PromoCode->get($id);
+
+        if ($this->input->post("AddBtn")) {
+            $dd = array("code" => $this->input->post("code"), "discount" => $this->input->post("discount"));
+            $this->PromoCode->update($id, $dd);
+            redirect(base_url("index.php/admin/promo_codes?do=addok"));
+        }
+    }
+
     public function blogs()
     {
         if ($this->user->myData['access'] != 100)
