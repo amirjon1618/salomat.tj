@@ -18,7 +18,7 @@
                 <span class="ps-slider__value slider__value_max"><span class="ps-slider__max_mobile"></span> смн.</span>
             </p>
             <div style="text-align: center serch-result_btn">
-                <button class="btn btn-info btn-lg sort_by_price_mobile" style="display: flex;" type="button">Показать</button>
+                <button class="btn btn-info btn-lg sort_by_price_mobile" style="display: flex; justify-content: center;" type="button">Показать</button>
             </div>
         </aside>
     </div>

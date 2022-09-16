@@ -161,14 +161,26 @@
                             <div class="ps-product__shopping extend">
                                 <div class="ps-product__btn-group">
                                     <figure>
-                                        <div class="form-group--number">
-                                            <button class="up" id="increase_count">+</button>
+                                        <div class=" form-group--number" data-id="<?= $category_products['id'] ?>">
+                                            <button class=" up" id="increase_count">+</button>
                                             <button class="down" id="decrease_count">-</i>
                                             </button>
                                             <input class="form-control height50" id="count_input" type="number" value="1">
                                         </div>
                                     </figure>
-                                    <button onclick='addToCart(prod = <?= json_encode($category_products) ?>)' class="ps-btn">Купить</button>
+                                    <button style="padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #fff;
+    border: none;
+    width: 160px;
+    font-weight: 600;
+    border-radius: 4px;
+    background-color: #1EBEBE;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+    cursor: pointer;" onclick='addToCart(prod = <?= json_encode($category_products) ?>)' class="product-group_btn">Купить</button>
                                 </div>
                             </div>
                         </div>
@@ -533,26 +545,39 @@
     <span class="prod_add_notification_text">Максимальное количество товаров уже добавлено в корзину</span>
 </div>
 
+
+
 <script src="{base_url}plugins/jquery.form.validation.min.js"></script>
 <script src="{base_url}js/jquery.validate.min.js"></script>
 <script src="{base_url}js/form_validation_messages_ru.js"></script>
 <script>
+    const idCount = count_input.parentElement.dataset.id
+    const _elem = JSON.parse(localStorage.getItem("product_list"))
+    let resCount;
+    try {
+        resCount = _elem.filter(elem => elem.product_id === idCount)[0].product_count;
+    } catch (error) {
+        resCount = 1
+    }
+    $('#count_input').val(resCount)
+
     function decrease_count() {
         $('#decrease_count').on('click', function() {
-            count--;
-            if (count < 1) {
-                count = 1;
+            resCount--;
+            if (resCount < 1) {
+                resCount = 1;
             }
-            $('#count_input').val(count);
+            $('#count_input').val(resCount);
+            // console.log('hi');
         })
     }
 
     function increase_count() {
         $('#increase_count').on('click', function() {
             // if (count < total_count_global) {
-            count++;
+            resCount++;
             // }
-            $('#count_input').val(count);
+            $('#count_input').val(resCount);
         })
     }
 
@@ -560,10 +585,10 @@
         $('#count_input').change(function() {
 
             if ($('#count_input').val() > 0) {
-                count = $('#count_input').val();
+                resCount = $('#count_input').val();
             } else {
-                count = 1;
-                $('#count_input').val(count);
+                resCount = 1;
+                $('#count_input').val(resCount);
             }
             // else if ($('#count_input').val() < 1 || Number($('#count_input').val()) == 0)
         })
@@ -751,7 +776,7 @@
 
             tabsObj = target;
         });
-        $('#count_input').val(count);
+        $('#count_input').val(resCount);
         showFullText();
         rating_form_validate();
         decrease_count();
@@ -846,7 +871,7 @@
                 var mydata = $.parseJSON(localStorage.getItem("product_list"));
                 mydata.forEach(function(elem, index) {
                     if (elem.product_id == id) {
-                        elem.product_count += count;
+                        elem.product_count = resCount;
 
                         // if (elem.product_count > total_count) {
                         //     elem.product_count = total_count;
