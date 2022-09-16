@@ -32,6 +32,11 @@
                             <select required data-placeholder="Выберите ..." multiple name="tags[]" id="tags" class="form-control">
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="srch_pr_inp">Продукты</label>
+                            <select required data-placeholder="Выберите ..." multiple name="srch_pr_inp[]" id="srch_pr_inp" class="form-control">
+                            </select>
+                        </div>
 
                         <div class="box-footer">
                             <button type="button" onclick="javascript:window.location.href='{base_url}index.php/admin/blogs'" class="btn btn-default">Отмена</button>
@@ -75,6 +80,30 @@
                 data: function(term) {
                     return {
                         term: term.term
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data
+                    };
+                }
+            }
+        });
+    });
+
+    $(document).ready(function() {
+
+        $("#srch_pr_inp").select2({
+
+            minimumInputLength: 1,
+            allowClear: true,
+            ajax: {
+                url: '{base_url}Main/searchProductForBlog',
+                dataType: "json",
+                data: function(term) {
+                    console.log(term.term)
+                    return {
+                        srch_pr_inp: term.term
                     };
                 },
                 processResults: function(data) {

@@ -478,7 +478,7 @@
                             <ul class="menu--dropdown">
                                 <?php foreach ($categories as $cat) : ?>
                                     <li class="menu-item-has-children has-mega-menu">
-                                        <a href="#"><img src="{base_url}img/vector-icon1.svg" alt="Icon" style="padding-right: 15px;"> <?= $cat['category_name'] ?></a>
+                                        <a href="#"><img src="{base_url}img/icons/<?= $cat['icon'] ?>" alt="Icon" style="padding-right: 15px;"> <?= $cat['category_name'] ?></a>
                                         <div class="mega-menu">
                                             <div class="mega-menu__column">
                                                 <ul class="mega-menu__list">
@@ -604,7 +604,7 @@
                                 <!--Лекарственные препараты-->
                                 <?php foreach ($categories as $cat) : ?>
                                     <li class="menu-item-has-children has-mega-menu">
-                                        <a href="#"><img src="{base_url}img/vector-icon1.svg" alt="Icon" style="padding-right: 15px;"><?= $cat['category_name'] ?></a>
+                                        <a href="#"><img src="{base_url}img/icons/<?= $cat['icon']?>" alt="Icon" style="padding-right: 15px;"><?= $cat['category_name'] ?></a>
                                         <div class="mega-menu">
                                             <div class="mega-menu__column">
                                                 <ul class="mega-menu__list">

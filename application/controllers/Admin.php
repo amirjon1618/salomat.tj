@@ -609,7 +609,29 @@ class Admin extends CI_Controller
         }
         $data['cat_parent_id'] = $category['parent_id'];
         if ($this->input->post("AddBtn")) {
-            $dd = array("category_name" => $this->input->post("category_name"));
+            $config['upload_path'] = './img/icons/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['encrypt_name'] = 'TRUE';
+            $config['max_size'] = '4500';
+            $config['max_width'] = '6000';
+            $config['max_height'] = '4000';
+
+            $this->load->library('upload', $config);
+
+            $this->upload->do_upload("userfile");
+            if ($this->upload->display_errors() != '') {
+                $data['alert'] = $this->createAlert($this->upload->display_errors());
+            }
+
+            $img = $this->upload->data();
+
+            $dd = array(
+                "category_name" => $this->input->post("category_name"),
+            );
+
+            if (!empty($img['file_name'])){
+                $dd['icon'] = $img['file_name'];
+            }
             $this->category->update($id, $dd);
             if ($category['parent_id'] == 0) {
                 redirect(base_url("index.php/admin/categories?do=addok"));
@@ -637,9 +659,25 @@ class Admin extends CI_Controller
         }
         $data['cat_parent_id'] = $id;
         if ($this->input->post("AddBtn")) {
+            $config['upload_path'] = './img/icons/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['encrypt_name'] = 'TRUE';
+            $config['max_size'] = '4500';
+            $config['max_width'] = '6000';
+            $config['max_height'] = '4000';
+
+            $this->load->library('upload', $config);
+
+            $this->upload->do_upload("userfile");
+            if ($this->upload->display_errors() != '') {
+                $data['alert'] = $this->createAlert($this->upload->display_errors());
+            }
+
+            $img = $this->upload->data();
             $dd = array(
                 "category_name" => $this->input->post("category_name"),
-                "parent_id" => $id
+                "parent_id" => $id,
+                "icon" => $img['file_name'],
             );
             $this->category->add($dd);
             if ($id == 0) {

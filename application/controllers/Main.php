@@ -214,7 +214,7 @@ class Main extends CI_Controller
         $data['category_id'] = $id;
         $data['page'] = $current_page;
         $data['sort'] = $sort_by;
-        $res = $this->product->get_products_by_category($id, $current_page, $sort_by); //returns products with total count > 0
+        $res = $this->product->get_products_by_category($id,  $sort_by,$current_page); //returns products with total count > 0
         $data['total_products'] = $res['total_products'];
         $data['category_with_parents'] = $category_with_parents;
         unset($res['total_products']);
@@ -431,6 +431,17 @@ class Main extends CI_Controller
 
         $this->parser->parse('template', $data);
     }
+
+    public function searchProductForBlog()
+    {
+        $data['srch_inp'] = $this->input->get("srch_pr_inp");
+        var_dump($data);
+        $res = $this->product->search_for_prod(
+            $this->input->get("srch_pr_inp")
+        );
+        echo json_encode($res);
+    }
+
 
     public function searchProductResult()
     {
@@ -1320,4 +1331,5 @@ class Main extends CI_Controller
             echo $res['order_id'];
         }
     }
+
 }
