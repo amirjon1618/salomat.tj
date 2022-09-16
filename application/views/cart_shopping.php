@@ -81,7 +81,7 @@
                             </table>
                         </div>
                         <div class="price-text px-4 pb-4">
-                            <input type="text" class="border price-text__input" placeholder="Активировать промо код">
+                            <input type="text" name="promo_code"  id="promo_code" class="border price-text__input" placeholder="Активировать промо код">
                             <button class="price-text__btn"><img src="{base_url}img/right-arrow.svg" alt=""></button>
                         </div>
 
@@ -217,6 +217,7 @@
                     "</div>";
                 td1.innerHTML += div1;
                 sum += (item.product_count * item.product_price);
+
                 var td2 = document.createElement('td');
                 if (item.product_old_price != 0) {
                     var div2 = "<p class=\"margBot0\">" +
@@ -259,9 +260,10 @@
             $('.pr-list').html('');
         }
         $(".number-currency").text(`${sum}`);
-        $(".number-currency_total").text(`${sum + 20}`);
-    }
+       // $(".number-currency_total").text(`${sum + 20}`);
+        var sum1 = sum + 20;
 
+    }
 
     $(document).ready(function() {
         set_prods_header();
@@ -276,4 +278,28 @@
             }
         });
     })
+
+
+    // get PromoCode
+
+    $(function () {
+        $('input').on('click', function () {
+            var discount = "";
+            var promo_code = $(this).val();
+            $.ajax({
+                url: '<?= $base_url ?>index.php/main/promo',
+                data: {
+                    text: $("textarea[name=promo_code]").val(),
+                    promo_code: promo_code
+                },
+                dataType : 'json',
+                success: function(data){
+                    discount = data.discount;
+
+                    $('#number-currency_total').text(`${ discount * sum1 / 100 }`);
+                    console.log(discount * sum1 / 100 )
+                }
+            });
+        });
+    });
 </script>

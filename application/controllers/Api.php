@@ -139,6 +139,13 @@ class Api extends CI_Controller
 		echo json_encode($data);
 	}
 
+    public function GetPromoCodeInfo($id)
+    {
+        $this->load->model("PromoCode");
+        $data = $this->PromoCode->get($id);
+        echo json_encode($data);
+    }
+
 	public function GetRecipePics($id)
 	{
 		$this->load->model("recipe");
