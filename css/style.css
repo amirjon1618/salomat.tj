@@ -2349,6 +2349,7 @@ a {
 a:active,
 a:hover {
     outline-width: 0;
+    text-decoration: none;
 }
 
 abbr[title] {
@@ -6157,11 +6158,8 @@ textarea.form-control {
     display: inline-block;
 }
 .bi-right-sidebar h3{
-    padding-bottom: 40px;
+    padding-bottom: 10px;
     color: #1E323C;
-}
-.bi-right-sidebar p{
-    padding: 15px 0;
 }
 .bloginfo-page h3{
     font-size: 18px;
@@ -14815,6 +14813,18 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     .owl-carousel .owl-item img {
         height: 80%;
     }
+    .send_recipe_btn {
+        width: 95%;
+    }
+    .recipe_social_div {
+        width: 123%;
+    }
+    .recipe_div h5 {
+        font-size: 1rem;
+    }
+    .recipe_phone_div_button_send_sms {
+        width: 100% !important;
+    }
     .popular-blog_col {
         border-bottom: 1px solid #E5E5E5 !important;
         padding-bottom: 20px !important;
@@ -14848,6 +14858,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     }
     .favorite-cc {
         justify-content: center;
+        padding: 0 !important;
     }
     .ps-product .ps-product__thumbnail img {
         height: 80%;
@@ -15984,6 +15995,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .ps-layout--shop .ps-layout__right .owl-slider {
     max-width: 100%;
+    display: flex;
+    justify-content: center;
+    
 }
 
 @media (max-width: 1199px) {
@@ -17156,7 +17170,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     background: #1EBEBE;
     border-radius: 5px;
     border: none;
-    padding: 12px !important; 
+    padding: 13px 12px 11px 12px !important;
 }
 .price-text__btn:hover {
     background: #18A1A1;
@@ -17180,7 +17194,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     border: 1px solid #1EBEBE !important;
     border-radius: 5px;
     padding: 14px;
-    height: 42px;
+    height: 44px;
     width: 220px;
 }
 .price-text__input:hover {
@@ -34326,4 +34340,10 @@ padding: 6px 12px !important;
 }
 .bcc-custom {
 padding: 6px 12px !important;
+}
+.user-info_favorite {
+    padding: 0 !important;
+}
+.user-info_favorite button {
+    padding: 0 7px !important;
 }

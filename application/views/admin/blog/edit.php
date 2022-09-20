@@ -39,6 +39,17 @@
                                 <?php endif; ?>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="srch_pr_inp">Продукты </label>
+                            <select required data-placeholder="Выберите ..." multiple name="srch_pr_inp[]" id="srch_pr_inp" class="form-control">
+                                <?php if (sizeof($srch_pr_inp) != 0) : ?>
+                                    <?php foreach ($srch_pr_inp as $value) : ?>
+                                        <option value="<?= $value['tag_id']; ?>" selected>
+                                            <?= $value['tag_name']; ?></option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
+                        </div>
                         <div class="box-footer">
                             <button type="button" onclick="javascript:window.location.href='{base_url}index.php/admin/blogs'" class="btn btn-default">Отмена</button>
                             <input type="submit" name="AddBtn" value="Изменить" class="btn btn-primary pull-right" />

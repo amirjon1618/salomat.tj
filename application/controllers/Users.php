@@ -152,6 +152,7 @@ class Users extends REST_Controller
                 /* Register driver*/
 
                 $output = $this->user->register_user($user_data);
+
                 if ($output > 0 && !empty($output)) {
                     //If registered successfully
                     $message = [

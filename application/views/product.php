@@ -11,9 +11,9 @@
                             <li class="third"><a href="#tab-4">Отзывы (<?= $category_products['review_count'] ?>)</a></li>
                         </ul>
                     </div>
-                    <div class="ps-product__shopping"><span class="ps-product__price-top"><span><?= $category_products['product_price'] ?> сом.</span>
+                    <div class="ps-product__shopping"><span class="ps-product__price-top"><span><?= $category_products['product_price'] ?> смн.</span>
                             <?php if ($category_products['product_old_price'] != 0) : ?>
-                                <del><?= $category_products['product_old_price'] ?> сом.</del><?php endif; ?>
+                                <del><?= $category_products['product_old_price'] ?> смн.</del><?php endif; ?>
                         </span>
                         <button onclick='addToCart(prod = <?= json_encode($category_products) ?>)' class="ps-btn ">В корзину</button>
                     </div>
@@ -115,7 +115,7 @@
 
                             <div style="display: flex; justify-content: flex-end;">
                                 <?php if ($category_products['product_old_price'] != 0) : ?>
-                                    <del class="ps-pp_db-del"><?= $category_products['product_old_price'] ?> сом.</del><?php endif; ?>
+                                    <del class="ps-pp_db-del"><?= $category_products['product_old_price'] ?> смн.</del><?php endif; ?>
                                 <div class="like-icon">
                                     <label>
                                         <input value="<?php $category_products['id'] ?>" <?php echo $category_products['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
@@ -126,8 +126,8 @@
                                 </div>
                             </div>
 
-                            <h4 class="ps-product__price ps-pp_db"><?= $category_products['product_price'] ?> сом.</h4>
-                            <h4 class="ps-product__price ps-pp_dn">_ _._ _ сом.</h4>
+                            <h4 class="ps-product__price ps-pp_db"><?= $category_products['product_price'] ?> смн.</h4>
+                            <h4 class="ps-product__price ps-pp_dn">_ _._ _ смн.</h4>
                             <div class="ps-product__desc">
                                 <?php if ($category_products['total_count_in_store'] > 0) : ?>
                                     <p class="global-product-exist"><strong>В наличии</strong></p>
@@ -232,10 +232,10 @@
                                                                 <?php endif; ?>
                                                             </select><span>(<?= $sm_prod['review_count'] ?>)</span>
                                                         </div>
-                                                        <p class="ps-product__price sale prods_slider"><?= $sm_prod['product_price'] ?> <?php if ($sm_prod['product_old_price'] != 0) : ?> сом. <del><?= $sm_prod['product_old_price'] ?> </del><?php endif; ?></p>
+                                                        <p class="ps-product__price sale prods_slider"><?= $sm_prod['product_price'] ?> <?php if ($sm_prod['product_old_price'] != 0) : ?> смн. <del><?= $sm_prod['product_old_price'] ?> </del><?php endif; ?></p>
                                                     </div>
                                                     <div class="ps-product__content hover"><a class="ps-product__title product_title_new" href="{base_url}main/product/<?= $sm_prod['id'] ?>"><?= $sm_prod['product_name'] ?></a>
-                                                        <p class="ps-product__price sale"><span><?= $sm_prod['product_price'] ?></span> <?php if ($sm_prod['product_old_price'] != 0) : ?> сом. <del><?= $sm_prod['product_old_price'] ?> </del><?php endif; ?></p>
+                                                        <p class="ps-product__price sale"><span><?= $sm_prod['product_price'] ?></span> <?php if ($sm_prod['product_old_price'] != 0) : ?> смн. <del><?= $sm_prod['product_old_price'] ?> </del><?php endif; ?></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -271,10 +271,10 @@
                                                         <?php endif; ?>
                                                     </select><span>(<?= $similar_products[0]['review_count'] ?>)</span>
                                                 </div>
-                                                <p class="ps-product__price sale prods_slider"><?= $similar_products[0]['product_price'] ?> <?php if ($similar_products[0]['product_old_price'] != 0) : ?> сом. <del><?= $similar_products[0]['product_old_price'] ?> </del><?php endif; ?></p>
+                                                <p class="ps-product__price sale prods_slider"><?= $similar_products[0]['product_price'] ?> <?php if ($similar_products[0]['product_old_price'] != 0) : ?> смн. <del><?= $similar_products[0]['product_old_price'] ?> </del><?php endif; ?></p>
                                             </div>
                                             <!-- <div class="ps-product__content hover"><a class="ps-product__title" href="{base_url}main/product/<?= $similar_products[0]['id'] ?>"><?= $similar_products[0]['product_name'] ?></a>
-                                                <p class="ps-product__price sale"><span><?= $similar_products[0]['product_price'] ?></span> <?php if ($similar_products[0]['product_old_price'] != 0) : ?> сом. <del><?= $similar_products[0]['product_old_price'] ?> </del><?php endif; ?></p>
+                                                <p class="ps-product__price sale"><span><?= $similar_products[0]['product_price'] ?></span> <?php if ($similar_products[0]['product_old_price'] != 0) : ?> смн. <del><?= $similar_products[0]['product_old_price'] ?> </del><?php endif; ?></p>
                                             </div> -->
                                         </div>
                                     </div>
@@ -568,7 +568,6 @@
                 resCount = 1;
             }
             $('#count_input').val(resCount);
-            // console.log('hi');
         })
     }
 
