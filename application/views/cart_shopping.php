@@ -60,10 +60,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="border-0 fw-bolder table-text-bold" style="font-weight: 500;">Стоимост товаров: </td>
-                                        <td class="border-0 table-text-end table-text-bold"><span class="number-currency"> </span><span class="text-currency"> сом</span></td>
-                                    </tr>
-                                    <td class="border-0">Стоимост доставки: </td>
-                                    <td class="border-0 table-text-end table-text-bold font-weight-bold">20 <span class="text-currency"> сом</span></td>
+                                        <td class="border-0 table-text-end table-text-bold"><span class="number-currency"> </span><span class="text-currency"> смн.</span></td>
                                     </tr>
 
                                 </tbody>
@@ -74,15 +71,15 @@
                                 <tbody>
                                     <tr>
                                         <td class="border-0 table-text-bold" style="font-weight: 500;">Итого: </td>
-                                        <td class="border-0 table-text-end table-text-bold"><span class="number-currency_total"> </span><span class="text-currency"> сом</span></td>
+                                        <td class="border-0 table-text-end table-text-bold"><span class="number-currency_total"> </span><span class="text-currency"> смн.</span></td>
                                     </tr>
 
                                 </tbody>
                             </table>
                         </div>
                         <div class="price-text px-4 pb-4">
-                            <input type="text" name="promo_code"  id="promo_code" class="border price-text__input" placeholder="Активировать промо код">
-                            <button class="price-text__btn"><img src="{base_url}img/right-arrow.svg" alt=""></button>
+                            <input type="text" name="promo_code" id="promo_code" class="border price-text__input" placeholder="Активировать промо код">
+                            <button class="price-text__btn" onclick="onPromoCode()"><img src="{base_url}img/right-arrow.svg" alt=""></button>
                         </div>
 
                     </div>
@@ -192,6 +189,8 @@
         set_prods_header();
     }
 
+    let sum1;
+    let totalSum;
 
     function product_list() {
         let sum = 0;
@@ -221,11 +220,11 @@
                 var td2 = document.createElement('td');
                 if (item.product_old_price != 0) {
                     var div2 = "<p class=\"margBot0\">" +
-                        "<del>" + item.product_old_price + " cом.</del>\n" +
-                        "</p>" + item.product_price + " cом.";
+                        "<del>" + item.product_old_price + " смн.</del>\n" +
+                        "</p>" + item.product_price + " смн.";
                 } else {
                     var div2 = "<p class=\"margBot0\">" +
-                        "</p>" + item.product_price + " cом.";
+                        "</p>" + item.product_price + " смн.";
                 }
                 td2.innerHTML += div2;
                 var td3 = document.createElement('td');
@@ -236,7 +235,7 @@
                     "</div>";
                 td3.innerHTML += dv3;
                 var td4 = document.createElement('td');
-                var text = document.createTextNode(item.product_count * item.product_price + ' cом');
+                var text = document.createTextNode(item.product_count * item.product_price + ' смн');
                 td4.appendChild(text);
 
                 var td5 = document.createElement('td');
@@ -260,9 +259,12 @@
             $('.pr-list').html('');
         }
         $(".number-currency").text(`${sum}`);
-       // $(".number-currency_total").text(`${sum + 20}`);
-        var sum1 = sum + 20;
-
+        if (localStorage.getItem("product_list") === null) {
+            localStorage.removeItem("promocode_discount")
+        }
+        $('.number-currency_total').text(`${localStorage.getItem('promocode_discount') || sum + 0}`);
+        totalSum = sum + 0;
+        sum1 = sum;
     }
 
     $(document).ready(function() {
@@ -281,25 +283,26 @@
 
 
     // get PromoCode
+    function onPromoCode() {
+        var discount = "";
+        var promo_code = $("#promo_code").val();
+        $.ajax({
+            url: '<?= $base_url ?>index.php/main/promo',
+            data: {
+                text: $("textarea[name=promo_code]").val(),
+                promo_code: promo_code
+            },
+            dataType: 'json',
+            success: function(data) {
+                discount = data.discount;
+                localStorage.setItem('promocode_discount', totalSum - (discount * sum1 / 100));
+                $('.number-currency_total').text(`${localStorage.getItem('promocode_discount')}`);
+                if (location.href !== ".checkout"){
+                    location.href = location.href(localStorage.removeItem("promocode_discount"))
+                }else {
 
-    $(function () {
-        $('input').on('click', function () {
-            var discount = "";
-            var promo_code = $(this).val();
-            $.ajax({
-                url: '<?= $base_url ?>index.php/main/promo',
-                data: {
-                    text: $("textarea[name=promo_code]").val(),
-                    promo_code: promo_code
-                },
-                dataType : 'json',
-                success: function(data){
-                    discount = data.discount;
-
-                    $('#number-currency_total').text(`${ discount * sum1 / 100 }`);
-                    console.log(discount * sum1 / 100 )
                 }
-            });
+            }
         });
-    });
+    }
 </script>

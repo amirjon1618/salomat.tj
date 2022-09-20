@@ -1228,6 +1228,8 @@ class Product extends CI_Model
                 $row['is_favorite'] = false;
             }
 
+            $row['text'] = $row['product_name'];
+
 
             $array []= $row;
         }

@@ -264,11 +264,11 @@
                     "<hr>";
                 var tot_sum = 0;
                 $.each(data.products, function(i, el) {
-                    html += `<p style="text-align:start"><strong>${el.product_name}</strong><span style="margin-left:25px;float:right">${el.total_count}x${el.product_price} = ${el.total_count * el.product_price} сом</span>`;
+                    html += `<p style="text-align:start"><strong>${el.product_name}</strong><span style="margin-left:25px;float:right">${el.total_count}x${el.product_price} = ${el.total_count * el.product_price} смн.</span>`;
                     tot_sum += el.total_count * el.product_price;
                 });
                 html += "<hr>" +
-                    `<p style="text-align:start"><strong>Итого: </strong><span style="float:right">${tot_sum} сом</span></p>`;
+                    `<p style="text-align:start"><strong>Итого: </strong><span style="float:right">${tot_sum} смн.</span></p>`;
                 $('#confirm_div_order_add').append(html);
                 $('#not_found').hide();
             } else {

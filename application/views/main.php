@@ -1,9 +1,8 @@
 <div class="main-loader_icon">
-    <img class="rot" src="{base_url}img/preloader.png" alt="load" width="128px">
-</div>
+        <img class="rot" src="{base_url}img/preloader.png" alt="load" width="128px">
+    </div>
 <div id="homepage-3">
     <div class="ps-home-banner">
-
         <div class="container recipe_container_div rcd-position">
             <div class="recipe_div_main" col="12">
                 <div class="recipe_sheet_div">
@@ -297,7 +296,6 @@
     // let $index;
     // const _elem = document.querySelectorAll("#count_input");
     // _elem.forEach(el => {
-    //     console.log()
     // })
     // document.querySelector(".valueCount").value
 
@@ -320,7 +318,6 @@
                 resCount = 1;
             }
             countInput.value = resCount;
-            // console.log('hi');
         })
     }
 
@@ -584,7 +581,6 @@
         fill: #DD2E44;
         stroke: #DD2E44 !important;
     }
-
     img.rot {
         animation: 1s linear 0s normal none infinite running rot;
         -webkit-animation: 1s linear 0s normal none infinite running rot;
@@ -610,6 +606,4 @@
             transform: rotate(360deg);
         }
     }
-
-    <
 </style>

@@ -57,9 +57,9 @@
                 </div>
                 <div class="ps-product__shopping">
                     <p class="ps-product__price product_long_format_price">
-                        <span><?= $cat_p['product_price'] ?> <span>c.</span></span>
+                        <span><?= $cat_p['product_price'] ?> <span>смн.</span></span>
                         <?php if ($cat_p['product_old_price'] != 0) : ?>
-                            <del><?= $cat_p['product_old_price'] ?> c.</del>
+                            <del><?= $cat_p['product_old_price'] ?> смн.</del>
                         <?php endif; ?>
                     </p>
                     <?php

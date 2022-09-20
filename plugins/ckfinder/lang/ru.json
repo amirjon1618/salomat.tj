@@ -110,7 +110,7 @@
    },
 
    "folders": {
-      "deleteConfirmation": "сом. уверены, что хотите удалить папку \"{name}\"?",
+      "deleteConfirmation": "смн. уверены, что хотите удалить папку \"{name}\"?",
 
       "destinationFolder": "Конечная папка",
 

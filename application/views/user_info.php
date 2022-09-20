@@ -1,3 +1,25 @@
+<div class="enter-btn-phone">
+        <div class="enter-btn-modal">
+            <div class="page-content">
+                <div class="form-v8-content">
+                    <div class="enter-form_pass">
+                        <div class="tab">
+                            <div class="tab-inner">
+                                <h3 class="tablinks text-center">Ваш номер изменён!</h3>
+                            </div>
+                        </div>
+                        <form class="form-detail">
+                            <div class="tabcontent" id="sign-phone">
+                                <div class="form-row-last d-flex justify-content-center">
+                                    <a href="#user-info" id="ok-btn" class="ok-btn" onclick="javascript:window.location.hash = '#user-info';window.location.reload()">OK</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <div id="homepage-3">
     <div class="ps-breadcrumb">
         <div class="container">
@@ -85,7 +107,7 @@
                                 </div>
                                 <div class="up-right-sidebar col-lg-2 col-md-2 col-sm-12 col-xs-12 p-4">
                                     <div class="text-center">
-                                        <img src="{base_url}user_img/<?php echo $image ?>" alt="Icon" id="user_icon1" class="rounded-circle user_icon" style="width: 100px; height: 100px;">
+                                        <img src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="Icon" id="user_icon1" class="rounded-circle user_icon" style="width: 100px; height: 100px;">
                                         <form class="form-del" enctype="multipart/form-data">
                                             <div class="input__wrapper">
                                                 <input name="file" type="file" name="file" id="input__file" class="input input__file" onchange="uploadIMG(this)" multiple>
@@ -146,7 +168,7 @@
                                                                                                         <th scope="row"><img style="max-width: 100px" src="{base_url}upload_product/<?php echo $product->product_pic; ?>" alt="IMG"></th>
                                                                                                         <td class="align-middle"><?php echo $product->product_name; ?></td>
                                                                                                         <td class="align-middle"><?php echo $product->total_count; ?> шт</td>
-                                                                                                        <td class="align-middle"><?php echo $product->product_sold_price; ?> сом</td>
+                                                                                                        <td class="align-middle"><?php echo $product->product_sold_price; ?> смн.</td>
                                                                                                     </tr>
                                                                                                 </tbody>
                                                                                             <?php endforeach; ?>
@@ -197,7 +219,7 @@
 
                                             <div class="favorite-content" data-favoriteid="<?= $favorite['id'] ?>">
                                                 <div class="d-flex col-xs-3 col-lg-3 col-md-6 col-sm-6 pb-5 favorite-cc">
-                                                    <div class="ps-product ps-product--inner ps-product_of_the_day">
+                                                    <div class="ps-product ps-product--inner ps-product_of_the_day user-info_favorite">
                                                         <label>
                                                             <input onclick="deleteProduct(<?= $favorite['id'] ?>)" value="<?php $favorite['id'] ?>" <?php echo $favorite['id']  ?  'checked' : null  ?> type="checkbox" id="red">
                                                             <svg id="shape" fill="none" data-id="<?= $favorite['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
@@ -352,13 +374,6 @@
         });
         return await response.json(); // parses JSON response into native JavaScript objects
     }
-    // document.querySelector("#user_icon1").src = "{base_url}img/user.png";
-
-    // if (localStorage.getItem("user_icon") !== null) {
-    //     document.querySelector("#user_icon1").src = localStorage.getItem("user_icon");
-    // } else {
-    //     document.querySelector("#user_icon1").src = "{base_url}img/user.png";
-    // }
 
     function uploadIMG(e) {
         // console.dir(e.files[0].path);
@@ -388,9 +403,21 @@
 
 
     function delPhoto() {
+        
         <?= $image = null ?>
         let a = "<?php echo $image ?>"
         if (a === '') {
+            var requestOptions = {
+            method: 'POST',
+            body: form,
+            redirect: 'follow'
+        };
+            fetch("{base_url}users/user_img?=save", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                window.location.reload()
+            })
+
             Array.from(document.querySelectorAll(".user_icon")).forEach(elem => elem.src = "{base_url}img/user.png")
         }
         // const myFile = document.getElementById("user_icon");
