@@ -80,7 +80,7 @@
                         <div class="ps-carousel--nav-inside owl-slider category_ad_slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
                             <?php foreach ($ad_slider as $ad) : ?>
                                 <a href="<?= $ad['advertisement_link'] ?>">
-                                    <img class="slider_img" src="<?= $ad['base_url'] ?>upload_banner/<?= $ad['advertisement_pic'] ?>" alt="">
+                                    <img class="slider_img img-fluid" src="<?= $ad['base_url'] ?>upload_banner/<?= $ad['advertisement_pic'] ?>" alt="">
                                 </a>
                             <?php endforeach; ?>
                         </div>
@@ -193,22 +193,6 @@
                             get_product_list(selectedSort, 1, min_pr, max_pr);
                         });
                     }
-
-
-                    // function active_substances_filter() {
-                    //     $('#active-sub-checkbox input:checked').each(function() {
-                    //         selected_act_sub.push($(this).attr('name'));
-                    //     });
-                    //     console.log(selected_act_sub);
-                    // }
-
-                    // function indications_filter() {
-                    //     $.each($("input[name='indications']:checked'"), function() {
-                    //         selected_ind.push($(this).val);
-                    //     });
-                    //     console.log(selected_ind);
-                    // }
-
 
                     function topage(p) {
                         page = p;
@@ -327,8 +311,6 @@
                     }
                     $(document).ready(function() {
                         filterSlider('<?= $prod_max_price ?>');
-                        // console.log('<?= $prod_max_price ?>');
-
                         filterSliderMobileAside('<?= $prod_max_price ?>');
                         sub_toggle();
                         get_product_list();

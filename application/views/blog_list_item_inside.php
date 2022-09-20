@@ -71,13 +71,13 @@
                                             <?php endif; ?>
                                         </select><span>(<?= $prod_of_the_day['review_count'] ?>)</span>
                                     </div>
-                                    <p class="ps-product__price sale"><?= $prod_of_the_day['product_price'] ?> сом. <del><?= $prod_of_the_day['product_price'] ?> сом.</del></p>
+                                    <p class="ps-product__price sale"><?= $prod_of_the_day['product_price'] ?> смн. <del><?= $prod_of_the_day['product_price'] ?> смн.</del></p>
                                 </div>
                                 <div class="ps-product__content hover">
                                     <a class="ps-product__title product_title_new" href="<?= $prod_of_the_day['base_url'] ?>index.php/main/product/<?= $prod_of_the_day['id'] ?>">
                                         <?= $prod_of_the_day['product_name'] ?>
                                     </a>
-                                    <p class="ps-product__price sale"><?= $prod_of_the_day['product_price'] ?> сом. <del><?= $prod_of_the_day['product_price'] ?> сом.</del></p>
+                                    <p class="ps-product__price sale"><?= $prod_of_the_day['product_price'] ?> смн. <del><?= $prod_of_the_day['product_price'] ?> смн.</del></p>
                                 </div>
                             </div>
                         </div>

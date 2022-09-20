@@ -94,14 +94,12 @@
     $(document).ready(function() {
 
         $("#srch_pr_inp").select2({
-
             minimumInputLength: 1,
             allowClear: true,
             ajax: {
                 url: '{base_url}Main/searchProductForBlog',
                 dataType: "json",
                 data: function(term) {
-                    console.log(term.term)
                     return {
                         srch_pr_inp: term.term
                     };

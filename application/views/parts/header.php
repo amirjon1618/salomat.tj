@@ -194,7 +194,7 @@
                                                     <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass1">
                                                 </div>
                                             </label>
-                                            <p class="validate-text"></p>
+                                            <p class="validate-text validate-text2"></p>
                                         </div>
                                         <div class="forgot-pass d-flex justify-content-between align-items-center pt-2">
                                             <div class="form-check p-0">
@@ -229,7 +229,7 @@
                                                 <span class="border"></span>
                                             </label>
                                         </div>
-                                        <p class="validate-text"></p>
+                                        <p class="validate-text validate-text3"></p>
                                         <div class="timer-agree">
                                             <div class="showTimer">
                                                 <p>Повторная отправка сообщения будет доступна через:</p>
@@ -282,7 +282,7 @@
                                                 </div>
                                             </label>
                                         </div>
-                                        <p class="validate-text"></p>
+                                        <p class="validate-text validate-text4"></p>
                                         <div class="timer-agree">
                                             <svg class="mx-auto mb-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 19.5C7.24795 19.5 3.59625 15.8063 3.59625 11.25C3.59625 6.69365 7.24795 3 11.7526 3C16.2572 3 19.9089 6.69365 19.9089 11.25C19.9089 15.8063 16.2572 19.5 11.7526 19.5ZM2.11328 11.25C2.11328 16.6348 6.42893 21 11.7526 21C17.0762 21 21.3918 16.6348 21.3918 11.25C21.3918 5.86522 17.0762 1.5 11.7526 1.5C6.42893 1.5 2.11328 5.86522 2.11328 11.25Z" fill="#7A769D" />
@@ -313,7 +313,7 @@
                                                 <span class="border"></span>
                                             </label>
                                         </div>
-                                        <p class="validate-text"></p>
+                                        <p class="validate-text validate-text5"></p>
                                         <div class="form-row-last d-grid">
                                             <a href="#" style="width: 100%;"><input type="submit" name="enter" class="enter-main ef5 enter-reg_btn" value="Отправить код"></a>
                                         </div>
@@ -335,7 +335,7 @@
                                                 <span class="border"></span>
                                             </label>
                                         </div>
-                                        <p class="validate-text"></p>
+                                        <p class="validate-text validate-text6"></p>
                                         <div class="timer-agree">
                                             <div class="showTimer">
                                                 <p>Повторная отправка сообщения будет доступна через:</p>
@@ -382,7 +382,7 @@
                                                 </div>
                                             </label>
                                         </div>
-                                        <p class="validate-text"></p>
+                                        <p class="validate-text validate-text7"></p>
                                         <div class="form-row-last d-flex justify-content-between">
                                             <a href="{base_url}index.php/main/user_info#user-info"><input type="submit" name="register" class="enter ef4" value="Продолжить"></a>
                                             <a href="#"><input type="submit" name="register" class="register cancel-btn2" value="Отмена"></a>
@@ -405,7 +405,7 @@
                                                 <span class="border"></span>
                                             </label>
                                         </div>
-                                        <p class="validate-text"></p>
+                                        <p class="validate-text validate-text8"></p>
                                         <div class="timer-agree">
                                             <div class="showTimer">
                                                 <p>Повторная отправка сообщения будет доступна через:</p>
@@ -427,28 +427,6 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="enter-btn-phone">
-        <div class="enter-btn-modal">
-            <div class="page-content">
-                <div class="form-v8-content">
-                    <div class="enter-form_pass">
-                        <div class="tab">
-                            <div class="tab-inner">
-                                <h3 class="tablinks text-center">Ваш номер изменён!</h3>
-                            </div>
-                        </div>
-                        <form class="form-detail">
-                            <div class="tabcontent" id="sign-phone">
-                                <div class="form-row-last d-flex justify-content-center">
-                                    <a href="#user-info" id="ok-btn" class="ok-btn" onclick="javascript:window.location.hash = '#user-info';window.location.reload()">OK</a>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -556,13 +534,13 @@
                         <div class="account-wrap" id="account-wrap" style="display: none;">
                             <div class="account-item clearfix js-item-menu">
                                 <div class="image">
-                                    <img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" />
+                                    <img class="rounded-circle user_icon" style="min-height: 40px;" id="user_icon1" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" />
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" />
+                                                <img class="rounded-circle user_icon" id="user_icon1" style="min-height: 60px;" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" />
                                             </a>
                                         </div>
                                         <div class="content">
@@ -810,16 +788,6 @@
             </button>
         </div>
     </div>
-
-    <!-- <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-        <div class="toast fade show" style="position: absolute; top: 0; right: 0;">
-
-            <div class="toast-body">
-                Hello, world! This is a toast message.
-            </div>
-        </div>
-    </div> -->
-    <!--nav class="navigation--mobile-product"><a class="ps-btn ps-btn--black" href="shopping-cart.html">Add to cart</a><a class="ps-btn" href="checkout.html">Buy Now</a></nav-->
 </body>
 <style>
     .enter-btn-bg {
@@ -1220,6 +1188,7 @@
     .ok-btn input:hover {
         color: #fff !important;
     }
+
 </style>
 <script>
     const al = () => alert()
@@ -1308,7 +1277,7 @@
             mydata.forEach(function(item, index) {
                 total_sum += (item.product_count * item.product_price);
             });
-            $('.total_cart_sum').text(total_sum + ' сом');
+            $('.total_cart_sum').text(total_sum + ' смн.');
 
             $('#total_count_in_cart_header').text(mydata.length);
             $('#total_count_in_cart_footer').text(mydata.length);
@@ -1385,7 +1354,7 @@
                                 "        <div class=\"ps-product__content srch_ps-product__content\">\n" +
                                 "            <div class=\"prod_pic\"><img src=\"<?= $base_url ?>upload_product/" + prod.product_pic + "\"></div>" +
                                 "            <div class=\"srch_prod_price \">" + prod.product_name + "\n" +
-                                "                <p class=\"ps-product__price sale\">" + prod.product_price + " сом <del>" + prod.product_old_price + "</del></p>" +
+                                "                <p class=\"ps-product__price sale\">" + prod.product_price + " смн. <del>" + prod.product_old_price + "</del></p>" +
                                 "            </div>\n" +
                                 "        </div>\n" +
                                 "    </div>" +
@@ -1397,7 +1366,7 @@
                                 "        <div class=\"ps-product__content srch_ps-product__content\">\n" +
                                 "            <div class=\"prod_pic\"><img src=\"<?= $base_url ?>upload_product/" + prod.product_pic + "\"></div>" +
                                 "            <div class=\"srch_prod_price \">" + prod.product_name + "\n" +
-                                "                <p class=\"ps-product__price  sale\">" + prod.product_price + " сом</p>" +
+                                "                <p class=\"ps-product__price  sale\">" + prod.product_price + " смн.</p>" +
                                 "            </div>\n" +
                                 "        </div>\n" +
                                 "    </div>" +
@@ -1464,7 +1433,7 @@
                             "        <div class=\"ps-product__content srch_ps-product__content\">\n" +
                             "            <div class=\"prod_pic_mobile\"><img src=\"<?= $base_url ?>upload_product/" + prod.product_pic + "\"></div>" +
                             "            <div class=\"srch_prod_price\">" + prod.product_name + "\n" +
-                            "                <p class=\"ps-product__price sale\">" + prod.product_price + " сом <del>" + prod.product_old_price + "</del></p>" +
+                            "                <p class=\"ps-product__price sale\">" + prod.product_price + " смн. <del>" + prod.product_old_price + "</del></p>" +
                             "            </div>\n" +
                             "        </div>\n" +
                             "    </div>" +
@@ -1476,7 +1445,7 @@
                             "        <div class=\"ps-product__content srch_ps-product__content\">\n" +
                             "            <div class=\"prod_pic_mobile\"><img src=\"<?= $base_url ?>upload_product/" + prod.product_pic + "\"></div>" +
                             "            <div class=\"srch_prod_price cust\">" + prod.product_name + "\n" +
-                            "                <p class=\"ps-product__price sale\">" + prod.product_price + " сом</p>" +
+                            "                <p class=\"ps-product__price sale\">" + prod.product_price + " смн.</p>" +
                             "            </div>\n" +
                             "        </div>\n" +
                             "    </div>" +
@@ -1636,11 +1605,11 @@
                     $(".efr5").css("display", "none");
                     userTimer();
                     $(".efr6").css("display", "block");
-                    $(".validate-text").text("");
+                    $(".validate-text5").text("");
                     localStorage.setItem("restore-phone", errorPhone.value);
 
                 } else {
-                    $(".validate-text").text("Нет такого пользователья");
+                    $(".validate-text5").text("Нет такого пользователья");
                 }
             },
         })
@@ -1680,7 +1649,7 @@
             $(".efr6").css("display", "none")
             $(".efr7").css("display", "block")
         } else {
-            $(".validate-text").text("Введен неправильный код.");
+            $(".validate-text6").text("Введен неправильный код.");
         }
     })
 
@@ -1697,15 +1666,15 @@
                     confirm_code: Number(localStorage.getItem("res-sms"))
                 },
                 success: function(result) {
-                    $(".validate-text").text("");
+                    $(".validate-text8").text("");
                     updatePhone();
                 },
                 error: function(error) {
-                    $(".validate-text").text("Неправильный номер");
+                    $(".validate-text8").text("Неправильный номер");
                 }
             })
         } else {
-            $(".validate-text").text("Введен неправильный код.");
+            $(".validate-text8").text("Введен неправильный код.");
         }
     })
 
@@ -1794,14 +1763,17 @@
                 password: $("#enter-password").val()
             },
             success: function(result) {
-                $(".validate-text").text("");
+                $(".validate-text2").text("");
                 userInfo();
             },
             error: function(error) {
-                $(".validate-text").text("Неправильный логин или пароль");
+                $(".validate-text2").text("Неправильный логин или пароль")
             }
         })
+
+
     })
+
     $("#form2").on('keyup', (e) => {
         if (e.keyCode === 13) {
             $.ajax({
@@ -1815,11 +1787,11 @@
                     password: $("#enter-password").val()
                 },
                 success: function(result) {
-                    $(".validate-text").text("");
+                    $(".validate-text2").text("");
                     userInfo();
                 },
                 error: function(error) {
-                    $(".validate-text").text("Неправильный логин или пароль");
+                    $(".validate-text2").text("Неправильный логин или пароль");
                 }
             })
         }

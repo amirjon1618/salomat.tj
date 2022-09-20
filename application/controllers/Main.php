@@ -59,7 +59,8 @@ class Main extends CI_Controller
         }
     }
 
-    public function techIssue() {
+    public function techIssue()
+    {
         redirect(base_url("../../technical_issues/index.html"));
     }
 
@@ -132,7 +133,7 @@ class Main extends CI_Controller
         $data['ad_mini'] = $this->advertisement->get_all('mini_pic');
         $user_id = $this->session->userdata('user_id');
 
-        $data['prods_of_the_day'] = $this->product->get_prods_by_slider_type('product_of_the_day',isset($user_id)?$user_id:0);
+        $data['prods_of_the_day'] = $this->product->get_prods_by_slider_type('product_of_the_day', isset($user_id) ? $user_id : 0);
 
         $isFromMyBabilon = $this->input->get('from');
         if ($isFromMyBabilon == 'babilon') {
@@ -151,7 +152,7 @@ class Main extends CI_Controller
             if ($categories[$i]['category_in_main'] == 1 && $j < 3) {
                 $array[$j]['categ'] = $categories[$i];
                 $array[$j]['categ_slider'] = $this->slider->get_by_slider_category($categories[$i]['id']);
-                $array[$j]['categ_prods'] = $this->product->get_prods_in_categ($categories[$i]['id'] ,$user_id??0);
+                $array[$j]['categ_prods'] = $this->product->get_prods_in_categ($categories[$i]['id'], $user_id ?? 0);
                 $j++;
             }
         }
@@ -164,7 +165,7 @@ class Main extends CI_Controller
         $data['name'] =  $this->session->userdata('name');
         $data['content'] = $this->parser->parse('main', $data, TRUE);
         $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        $user = $this->getUser($this->session->userdata('user_id'));
         $data['name'] =  $user['name'] ?? null;
         $data['image'] =  $user['image'] ?? null;
         $data['email'] =  $user['email'] ?? null;
@@ -184,8 +185,7 @@ class Main extends CI_Controller
         $this->db->from('users');
         $this->db->where('user_id', $user_id);
         $query = $this->db->get();
-        foreach ($query->result_array() as $row)
-        {
+        foreach ($query->result_array() as $row) {
             $array = $row;
         }
         return $array;
@@ -214,7 +214,7 @@ class Main extends CI_Controller
         $data['category_id'] = $id;
         $data['page'] = $current_page;
         $data['sort'] = $sort_by;
-        $res = $this->product->get_products_by_category($id,  $sort_by,$current_page); //returns products with total count > 0
+        $res = $this->product->get_products_by_category($id,  $sort_by, $current_page); //returns products with total count > 0
         $data['total_products'] = $res['total_products'];
         $data['category_with_parents'] = $category_with_parents;
         unset($res['total_products']);
@@ -243,7 +243,7 @@ class Main extends CI_Controller
         $data['isOnlySecondCategory'] = $res['isOnlySecondCategory'];
         $data['auth'] =   $this->input->cookie('auth_id');
         $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        $user = $this->getUser($this->session->userdata('user_id'));
         $data['name'] =  $user['name'] ?? null;
         $data['image'] =  $user['image'] ?? null;
         $data['email'] =  $user['email'] ?? null;
@@ -277,7 +277,7 @@ class Main extends CI_Controller
         $data['title'] = $data['meta_social_title'];
         $data['auth'] =   $this->input->cookie('auth_id');
         $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        $user = $this->getUser($this->session->userdata('user_id'));
         $data['name'] =  $user['name'] ?? null;
         $data['image'] =  $user['image'] ?? null;
         $data['email'] =  $user['email'] ?? null;
@@ -328,7 +328,7 @@ class Main extends CI_Controller
         $data['is_second_categ'] = '';
         if ($category_id == '') {
             $category_prod = $this->product->get_product_category($id);
-            if(sizeof($category_prod) > 0) {
+            if (sizeof($category_prod) > 0) {
                 $category_id = $category_prod['category_id'];
             }
         }
@@ -368,7 +368,7 @@ class Main extends CI_Controller
         $data['content'] = $this->parser->parse('product', $data, TRUE);
         $data['auth'] =   $this->input->cookie('auth_id');
         $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        $user = $this->getUser($this->session->userdata('user_id'));
         $data['name'] =  $user['name'] ?? null;
         $data['image'] =  $user['image'] ?? null;
         $data['email'] =  $user['email'] ?? null;
@@ -387,7 +387,7 @@ class Main extends CI_Controller
         $data['title'] = 'Корзина Salomat.tj';
         $data['auth'] =   $this->input->cookie('auth_id');
         $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        $user = $this->getUser($this->session->userdata('user_id'));
         $data['name'] =  $user['name'] ?? null;
         $data['image'] =  $user['image'] ?? null;
         $data['email'] =  $user['email'] ?? null;
@@ -415,7 +415,7 @@ class Main extends CI_Controller
         $data['title'] = 'Оформление заказа на Salomat.tj';
         $data['auth'] =   $this->input->cookie('auth_id');
         $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        $user = $this->getUser($this->session->userdata('user_id'));
         $data['name'] =  $user['name'] ?? null;
         $data['phone'] =  $user['login'] ?? null;
         $data['birth_date'] =  $user['birth_date'] ?? null;
@@ -435,10 +435,10 @@ class Main extends CI_Controller
     public function searchProductForBlog()
     {
         $data['srch_inp'] = $this->input->get("srch_pr_inp");
-        var_dump($data);
         $res = $this->product->search_for_prod(
             $this->input->get("srch_pr_inp")
         );
+
         echo json_encode($res);
     }
 
@@ -459,12 +459,12 @@ class Main extends CI_Controller
             $data['srch_prod_max_price'] = 9999;
         }
 
-        $data['title'] = 'Поиск: '.$this->input->get("srch_pr_inp").' на Salomat.tj';
+        $data['title'] = 'Поиск: ' . $this->input->get("srch_pr_inp") . ' на Salomat.tj';
 
         $data['content'] = $this->parser->parse('product_search_result', $data, TRUE);
         $data['auth'] =   $this->input->cookie('auth_id');
         $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        $user = $this->getUser($this->session->userdata('user_id'));
         $data['name'] =  $user['name'] ?? null;
         $data['image'] =  $user['image'] ?? null;
         $data['email'] =  $user['email'] ?? null;
@@ -488,7 +488,7 @@ class Main extends CI_Controller
         $data['prods_of_the_day'] = $this->product->get_prods_by_slider_type('product_of_the_day');
         $data['auth'] =   $this->input->cookie('auth_id');
         $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        $user = $this->getUser($this->session->userdata('user_id'));
         $data['name'] =  $user['name'] ?? null;
         $data['image'] =  $user['image'] ?? null;
         $data['email'] =  $user['email'] ?? null;
@@ -507,7 +507,7 @@ class Main extends CI_Controller
         $data['content'] = $this->parser->parse('blog_list', $data, TRUE);
         $data['auth'] =   $this->input->cookie('auth_id');
         $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        $user = $this->getUser($this->session->userdata('user_id'));
         $data['name'] =  $user['name'] ?? null;
         $data['image'] =  $user['image'] ?? null;
         $data['email'] =  $user['email'] ?? null;
@@ -528,7 +528,7 @@ class Main extends CI_Controller
         $data['content'] = $this->parser->parse('blog_info', $data, TRUE);
         $data['auth'] =   $this->input->cookie('auth_id');
         $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        $user = $this->getUser($this->session->userdata('user_id'));
         $data['name'] =  $user['name'] ?? null;
         $data['image'] =  $user['image'] ?? null;
         $data['email'] =  $user['email'] ?? null;
@@ -547,7 +547,7 @@ class Main extends CI_Controller
         $data['content'] = $this->parser->parse('blog_popular', $data, TRUE);
         $data['auth'] =   $this->input->cookie('auth_id');
         $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        $user = $this->getUser($this->session->userdata('user_id'));
         $data['name'] =  $user['name'] ?? null;
         $data['image'] =  $user['image'] ?? null;
         $data['email'] =  $user['email'] ?? null;
@@ -565,7 +565,7 @@ class Main extends CI_Controller
         $data['title'] = 'Личная страница Salomat.tj';
         $data['auth'] =   $this->input->cookie('auth_id');
         $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        $user = $this->getUser($this->session->userdata('user_id'));
         $data['name'] =  $user['name'] ?? null;
         $data['phone'] =  $user['login'] ?? null;
         $data['birth_date'] =  $user['birth_date'] ?? null;
@@ -581,26 +581,26 @@ class Main extends CI_Controller
         $this->db->join('order', 'user_order.order_id = order.id');
         $query = $this->db->get();
         $order = $query->result();
-        foreach ( $order as $item) {
+        foreach ($order as $item) {
             $this->db->select('*');
             $this->db->from('product_order');
             $this->db->where('order_id', $item->id);
             $this->db->join('product', 'product_order.product_id = product.id');
             $this->db->order_by('order_id ASC');
             $product = $this->db->get();
-            if ($product){
+            if ($product) {
                 $this->db->select('delivery_price');
                 $this->db->from('delivery');
                 $this->db->where('delivery_id', $item->delivery_type);
                 $delivery = $this->db->get();
             }
-            if ($product){
+            if ($product) {
                 $this->db->select('status_text');
                 $this->db->from('status');
                 $this->db->where('id', $item->status_id);
                 $status = $this->db->get();
             }
-            $order_product [] = [
+            $order_product[] = [
                 'order' => $item,
                 'status' => $status->result(),
                 'delivery' => $delivery->result(),
@@ -721,11 +721,11 @@ class Main extends CI_Controller
         $this->load->model('order');
         $answer = $this->order->get_order_prods_by_hash($hash);
         $data['order_date'] = '';
-        if(isset($answer['order_date'])) {
+        if (isset($answer['order_date'])) {
             $data['delivery_info'] = $answer["delivery_info"];
             unset($answer["delivery_info"]);
         }
-        if(isset($answer['order_date'])) {
+        if (isset($answer['order_date'])) {
             $date = new DateTime($answer['order_date']);
             $new_date = date_format($date, 'd.m.Y');
             $data['order_date'] = $new_date;
@@ -791,12 +791,10 @@ class Main extends CI_Controller
         $data['content'] = $this->parser->parse('page', $data, TRUE);
         $data['auth'] =   $this->input->cookie('auth_id');
         $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        $user = $this->getUser($this->session->userdata('user_id'));
         $data['name'] =  $user['name'] ?? null;
         $data['image'] =  $user['image'] ?? null;
-        $data['email'] =  $user['email'] ?? null;
-
-        ;
+        $data['email'] =  $user['email'] ?? null;;
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
         $this->parser->parse('template', $data);
@@ -810,7 +808,7 @@ class Main extends CI_Controller
         $data['title'] = 'Отправить рецепт | Саломат-Аптека';
         $data['auth'] =   $this->input->cookie('auth_id');
         $this->load->library('session');
-        $user = $this->getUser( $this->session->userdata('user_id'));
+        $user = $this->getUser($this->session->userdata('user_id'));
         $data['name'] =  $user['name'] ?? null;
         $data['image'] =  $user['image'] ?? null;
         $data['email'] =  $user['email'] ?? null;
@@ -937,7 +935,7 @@ class Main extends CI_Controller
             $array['code'] = $rand_num;
             $answer = $this->order->add($array);
             $this->load->library('session');
-            $user = $this->getUser( $this->session->userdata('user_id'));
+            $user = $this->getUser($this->session->userdata('user_id'));
 
             $this->order->save_user_order_status_change($user['user_id'], $answer['order_id'], 1, 1, $this->input->post("comment"));
 
@@ -969,7 +967,7 @@ class Main extends CI_Controller
             $order = $this->order->get($obj['order_id']);
 
             //sendTelegram
-            $text = "Пришел заказ #".$obj['order_id'].' номер: '.$obj['order_phone'].' https://salomat.tj/index.php/Admin/orderProducts/'.$obj['order_id'];
+            $text = "Пришел заказ #" . $obj['order_id'] . ' номер: ' . $obj['order_phone'] . ' https://salomat.tj/index.php/Admin/orderProducts/' . $obj['order_id'];
             $this->sendTelegramText($text);
 
             $sms_id = $this->sms->add(array('sms_mobile' => $obj['order_phone'], 'sms_text' => 'По данной ссылке вы можете проверить ваш заказ: ' . base_url() . 'index.php/main/userOrderReceipt/' . $order['hash']));
@@ -987,14 +985,14 @@ class Main extends CI_Controller
     {
         $text = urlencode($text);
 
-        $arrContextOptions=array(
-            "ssl"=>array(
-                "verify_peer"=>false,
-                "verify_peer_name"=>false,
+        $arrContextOptions = array(
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
             ),
         );
 
-        file_get_contents("https://salomat.tj/bot/tsend.php?text=".$text, false, stream_context_create($arrContextOptions));
+        file_get_contents("https://salomat.tj/bot/tsend.php?text=" . $text, false, stream_context_create($arrContextOptions));
     }
 
     public function startTransMyBabilon()
@@ -1007,7 +1005,7 @@ class Main extends CI_Controller
                 $array["delivery_id"] = 1;
             }
             $res = $this->order->add($array);
-            $user = $this->getUser( $this->session->userdata('user_id'));
+            $user = $this->getUser($this->session->userdata('user_id'));
             $this->order->save_user_order_status_change($user['user_id'], $res['order_id'], 1, 1, $this->input->post("comment"));
             $delivery_info = $this->delivery->get($array["delivery_id"]);
             $order_id = null;
@@ -1039,8 +1037,8 @@ class Main extends CI_Controller
                 "VendorCode" => null
             );
             $sum += $delivery_info["delivery_price"];
-            $marketPlaceHash = hash('sha1',$this->marketPlaceId.$this->marketPlaceToken.$sum.$order_id.$this->deliveryB);
-            $merchantHash = hash('sha1',$this->acquirerId.$this->merchantId.$this->merchantToken.$sum.$order_id);
+            $marketPlaceHash = hash('sha1', $this->marketPlaceId . $this->marketPlaceToken . $sum . $order_id . $this->deliveryB);
+            $merchantHash = hash('sha1', $this->acquirerId . $this->merchantId . $this->merchantToken . $sum . $order_id);
             $detailsArr[] = array(
                 "Sign" => $merchantHash,
                 "AcquirerId" =>  $this->acquirerId,
@@ -1053,7 +1051,7 @@ class Main extends CI_Controller
                 "Sign" =>  $marketPlaceHash,
                 "MarketPlaceId" => $this->marketPlaceId,
                 "Sum" => $sum,
-                "ReceiptId"=> $order_id,
+                "ReceiptId" => $order_id,
                 "Delivery" => $this->deliveryB,
                 "Details" => $detailsArr
             );
@@ -1092,7 +1090,8 @@ class Main extends CI_Controller
         return json_encode(array("result" => 1));
     }
 
-    public function postCURL($_url, $data){
+    public function postCURL($_url, $data)
+    {
 
         $postData = json_encode($data);
 
@@ -1106,7 +1105,7 @@ class Main extends CI_Controller
         /* Return json */
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
-        $output=curl_exec($curl);
+        $output = curl_exec($curl);
 
         curl_close($curl);
 
@@ -1124,7 +1123,7 @@ class Main extends CI_Controller
         $dlm = ";";
         $phone_number = $to; //номер телефона
         $txn_id = $id; //ID сообщения в вашей базе данных, оно должно быть уникальным для каждого сообщения
-        $str_hash = hash('sha256',$txn_id.$dlm.$login.$dlm.$source.$dlm.$phone_number.$dlm.$salt);
+        $str_hash = hash('sha256', $txn_id . $dlm . $login . $dlm . $source . $dlm . $phone_number . $dlm . $salt);
         $message = "Salomat.tj: " . $sms . " - Ваш код для подтверждения телефона";
         if (strlen($sms) > 4) {
             $message = $sms;
@@ -1135,7 +1134,7 @@ class Main extends CI_Controller
             "msg" => $message,
             "str_hash" => $str_hash,
             "txn_id" => $txn_id,
-            "login"=>$login,
+            "login" => $login,
         );
         $result = $this->call_api($server, "GET", $params);
 
@@ -1144,22 +1143,23 @@ class Main extends CI_Controller
         return $result;
     }
 
-    private function call_api($url, $method, $params){
+    private function call_api($url, $method, $params)
+    {
         $curl = curl_init();
-        $data = http_build_query ($params);
+        $data = http_build_query($params);
         if ($method == "GET") {
-            curl_setopt ($curl, CURLOPT_URL, "$url?$data");
-        }else if($method == "POST"){
-            curl_setopt ($curl, CURLOPT_URL, $url);
-            curl_setopt ($curl, CURLOPT_POSTFIELDS, $data);
-        }else if($method == "PUT"){
-            curl_setopt ($curl, CURLOPT_URL, $url);
-            curl_setopt ($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded','Content-Length:'.strlen($data)));
-            curl_setopt ($curl, CURLOPT_POSTFIELDS, $data);
-        }else if ($method == "DELETE"){
-            curl_setopt ($curl, CURLOPT_URL, "$url?$data");
-            curl_setopt ($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
-        }else{
+            curl_setopt($curl, CURLOPT_URL, "$url?$data");
+        } else if ($method == "POST") {
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        } else if ($method == "PUT") {
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded', 'Content-Length:' . strlen($data)));
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        } else if ($method == "DELETE") {
+            curl_setopt($curl, CURLOPT_URL, "$url?$data");
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+        } else {
             //dd("unkonwn method");
         }
         curl_setopt_array($curl, array(
@@ -1180,10 +1180,10 @@ class Main extends CI_Controller
             $arr['msg'] = $err;
         } else {
             $res = json_decode($response);
-            if (isset($res->error)){
+            if (isset($res->error)) {
                 $arr['error'] = 1;
-                $arr['msg'] = "Error Code: ". $res->error->code . " Message: " . $res->error->msg;
-            }else{
+                $arr['msg'] = "Error Code: " . $res->error->code . " Message: " . $res->error->msg;
+            } else {
                 $arr['error'] = 0;
                 $arr['msg'] = json_decode($response, true);
             }
@@ -1210,7 +1210,8 @@ class Main extends CI_Controller
     //     return $data;
     // }
 
-    public function user_favorite($user_id){
+    public function user_favorite($user_id)
+    {
 
         $this->db->select('product.*');
         $this->db->from('product');
@@ -1228,18 +1229,18 @@ class Main extends CI_Controller
                 $row['prod_rating_average'] = '';
                 $row['review_count'] = 0;
             }
-//
-//            $favorite = $this->get_favorite($row['id'],$user_id?:0);
-//            if (sizeof($favorite) != 0) {
-//                $row['is_favorite'] = true;
-//            } else {
-//                $row['is_favorite'] = false;
-//            }
+            //
+            //            $favorite = $this->get_favorite($row['id'],$user_id?:0);
+            //            if (sizeof($favorite) != 0) {
+            //                $row['is_favorite'] = true;
+            //            } else {
+            //                $row['is_favorite'] = false;
+            //            }
             $row['base_url'] = base_url();
 
             $array[] = $row;
         };
-//var_dump($array);
+        //var_dump($array);
         return $array;
     }
 
@@ -1310,7 +1311,6 @@ class Main extends CI_Controller
             $this->db->where('user_id', '61');
             $query = $this->db->get();
             $array['is_favorite'] = $query->result_array();
-
         }
         return $array;
     }
@@ -1325,7 +1325,7 @@ class Main extends CI_Controller
                 $array["delivery_id"] = 1;
             }
             $res = $this->order->add($array);
-            $user = $this->getUser( $this->session->userdata('user_id'));
+            $user = $this->getUser($this->session->userdata('user_id'));
             $this->order->save_user_order_status_change($user['user_id'], $res['order_id'], 1, 1, $this->input->post("comment"));
 
             echo $res['order_id'];
@@ -1345,9 +1345,8 @@ class Main extends CI_Controller
 
             $data = $this->PromoCode->get_promo_code($this->input->get("promo_code"));
 
-           echo json_encode($data[0]);
-
-        } else{
+            echo json_encode($data[0]);
+        } else {
             return false;
         }
     }
