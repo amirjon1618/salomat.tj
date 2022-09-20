@@ -556,13 +556,13 @@
                         <div class="account-wrap" id="account-wrap" style="display: none;">
                             <div class="account-item clearfix js-item-menu">
                                 <div class="image">
-                                    <img class="rounded-circle user_icon" style="min-height: 40px;" id="user_icon1" src="{base_url}user_img/<?php echo $image ?>" alt="User Icon" />
+                                    <img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" />
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img class="rounded-circle user_icon" id="user_icon1" style="min-height: 60px;" src="{base_url}user_img/<?php echo $image ?>" alt="User Icon" />
+                                                <img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" />
                                             </a>
                                         </div>
                                         <div class="content">

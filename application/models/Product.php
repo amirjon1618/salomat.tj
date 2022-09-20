@@ -132,7 +132,7 @@ class Product extends CI_Model
 
 
             $array = $row;
-            
+
         }
         $array['product_pics'] = $this->get_img_by_id($id);
 

@@ -81,15 +81,13 @@ align-items: center;
 }
 
 .account-dropdown .info .image {
-float: left;
-height: 65px;
-width: 65px;
-overflow: hidden;
--webkit-border-radius: 3px;
--moz-border-radius: 3px;
-border-radius: 3px;
-display: flex;
-align-items: center;
+    float: left;
+    height: 65px;
+    width: 65px;
+    overflow: hidden;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 .account-dropdown .info .content {
@@ -5291,13 +5289,13 @@ textarea.form-control {
     margin: 15px 0;
     text-align: center;
   }
-   
+
   .input__file {
     opacity: 0;
     visibility: hidden;
     position: absolute;
   }
-   
+
   .input__file-icon-wrapper {
     height: 44px;
     margin-right: 15px;
@@ -5312,13 +5310,13 @@ textarea.form-control {
             justify-content: center;
     border-right: 1px solid #fff;
   }
-   
+
   .input__file-button-text {
     margin: 0 auto;
     line-height: 1;
     margin-top: 1px;
   }
-   
+
   .input__file-button {
     width: 100%;
     height: 44px;
@@ -14799,7 +14797,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
-    
+
     .ps-product--detail .ps-tab-list {
         display: flex;
     }
@@ -14906,7 +14904,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     .ps-block__product-box > div:not(:first-child) {
        display: none !important;
     }
-    .ps-block__product-box > div:nth-child(2) { 
+    .ps-block__product-box > div:nth-child(2) {
        display: block !important;
     }
     .owl-stage .owl-item {
@@ -14948,12 +14946,12 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     .collapse {
 
         display: block !important;
-      
+
       }
       .collapse.show {
 
         display: none !important;
-      
+
       }
     .ps-block--products-of-category .ps-block__categories ul li {
         display: flex;
@@ -17156,7 +17154,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     background: #1EBEBE;
     border-radius: 5px;
     border: none;
-    padding: 12px !important; 
+    padding: 12px !important;
 }
 .price-text__btn:hover {
     background: #18A1A1;
@@ -21102,7 +21100,7 @@ html .bg--parallax {
     background-color: #1EBEBE;
     display: block;
     position: absolute;
-    bottom: -10px;    
+    bottom: -10px;
 }
 
 .ap-benefits_block p{

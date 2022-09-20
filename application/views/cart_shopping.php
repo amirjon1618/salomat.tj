@@ -116,7 +116,6 @@
         });
         product_list();
         set_prods_header();
-
     }
 
     function increase_count_cart(id) {
@@ -260,8 +259,8 @@
             $('.pr-list').html('');
         }
         $(".number-currency").text(`${sum}`);
-       // $(".number-currency_total").text(`${sum + 20}`);
-        var sum1 = sum + 20;
+        $(".number-currency_total").text(`${sum + 20}`);
+
 
     }
 

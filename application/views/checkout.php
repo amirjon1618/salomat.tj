@@ -328,8 +328,8 @@
             var mydata = JSON.parse(localStorage.getItem("product_list"));
             var sum = 0;
             mydata.forEach(function(item, index) {
-                var html = "<a href=\"<?= $base_url ?>index.php/main/product/" + item.product_id + "\"><strong style='width:70%'>" + item.product_name + "</strong>" + "<div><span>x" + item.product_count + "</span>" +
-                    "<small style='margin-left:10px'> " + item.product_price + "</small></div>" +
+                var html = "<a href=\"<?= $base_url ?>index.php/main/product/" + item.product_id + "\"><strong>" + item.product_name + "</strong><span>x" + item.product_count + "</span>" +
+                    "<small style='margin-left:10px'> " + item.product_price + "</small>" +
                     "</a>";
                 sum += (item.product_count * item.product_price);
                 $('#prod_list_checkout').append(html);

@@ -22,9 +22,10 @@ class Favorites extends REST_Controller
         $this->load->database();
     }
 
-
     /**
-     * Get user Favorites.
+     * Favorites list.
+     *
+     * @return void
      */
     public function index_get()
     {
