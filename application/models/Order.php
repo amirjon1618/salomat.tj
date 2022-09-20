@@ -287,11 +287,16 @@ class Order extends CI_Model
             return array('stat' => -1);
         }
         foreach ($array['products'] as $product) {
+            $this->db->select('*');
+            $this->db->from('product');
+            $this->db->where('id', $product['product_id']);
+            $q = $this->db->get();
+            $order_prods = $q->result_array();
             $another_arr = array(
                 'product_id' => $product['product_id'],
                 'order_id' => $id,
                 'total_count' => $product['product_count'],
-                'product_sold_price' => $product['product_price']
+                'product_sold_price' => $order_prods[0]['product_price']
             );
             $this->db->insert('product_order', $another_arr);
 
@@ -410,6 +415,20 @@ class Order extends CI_Model
         );
         foreach ($query->result_array() as $row) {
             $row['base_url'] = base_url();
+            $array[] = $row;
+        }
+        return $array;
+    }
+
+    public function get_user($order_id)
+    {
+        $this->db->select('*');
+        $this->db->from('user_order');
+        $this->db->where('order_id', $order_id);
+        $this->db->join('users', 'users.user_id = user_order.user_id');
+        $query = $this->db->get();
+        $array = [];
+        foreach ($query->result_array() as $row) {
             $array[] = $row;
         }
         return $array;

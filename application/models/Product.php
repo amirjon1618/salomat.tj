@@ -132,7 +132,7 @@ class Product extends CI_Model
 
 
             $array = $row;
-            
+
         }
         $array['product_pics'] = $this->get_img_by_id($id);
 
@@ -1227,6 +1227,8 @@ class Product extends CI_Model
             } else {
                 $row['is_favorite'] = false;
             }
+
+            $row['text'] = $row['product_name'];
 
 
             $array []= $row;

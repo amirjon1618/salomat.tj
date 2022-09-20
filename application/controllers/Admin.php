@@ -1684,7 +1684,9 @@ class Admin extends CI_Controller
         }
 
         $user_changes = $this->order->get_all_user_changes($id);
+        $user_info = $this->order->get_user($id);
         $data['user_changes'] = $user_changes;
+        $data['user_info'] = $user_info;
         $order_prods = $this->order->get_order_prods($id);
         $current_order = $this->order->get($id);
         $data['order'] = $current_order;
@@ -2085,7 +2087,7 @@ class Admin extends CI_Controller
                     $prev_status_id,
                     $this->input->post('status'),
                     $this->input->post('user_recipe_comment')
-                    // $now_date
+                // $now_date
                 );
             }
             redirect(base_url("index.php/admin/recipePics/" . $id . "?do=updateok"));

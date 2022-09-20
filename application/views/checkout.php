@@ -101,7 +101,7 @@
                                                 {delivery}
                                                 <div class="delivery-div">
                                                     <input type="radio" name="delivery" id="{delivery_id}" value="{delivery_price}">
-                                                    <label for="{delivery_id}">{delivery_name} - <span style="font-weight: bold;">{delivery_price} сом</span></label><br>
+                                                    <label for="{delivery_id}">{delivery_name} - <span style="font-weight: bold;">{delivery_price} смн.</span></label><br>
                                                 </div>
                                                 {/delivery}
                                             </figure>
@@ -142,11 +142,11 @@
                                                                 <h3 style="font-size: 22px; font-weight: 700;">Всё готово</h3>
                                                                 <p style="width: 300px; color: #AAABAD;">Наш специалист свяжится с вами в ближайшее время.</p>
                                                                 <p style="color: #AAABAD;">Спасибо за покупку.</p>
-                                                                <input style="height: 4em; border-color: #A8A8A8; border-radius: 5px; padding: 10px 0;" value="Номер заказа №1618" class="ps-btn_order text-center">
+                                                                <input style="height: 4em; border-color: #A8A8A8; border-radius: 5px; padding: 10px 0;" value="" class="ps-btn_order text-center">
 
                                                             </div>
                                                             <form class="form-detail">
-                                                                <div class="tabcontent" id="sign-phone">
+                                                                <div class="tabcontent d-flex justify-content-center" id="sign-phone">
                                                                     <div class="form-row-last text-center">
                                                                         <a href="/" style=" height: 3em; color: #fff; font-size: 18px; font-weight: 500; padding: 15px 35px 15px 35px;" class="ps-btn"><img style="padding-right: 10px;" src="{base_url}img/order-send-arrow.svg" alt=""> На главную</a>
                                                                     </div>
@@ -328,13 +328,13 @@
             var mydata = JSON.parse(localStorage.getItem("product_list"));
             var sum = 0;
             mydata.forEach(function(item, index) {
-                var html = "<a href=\"<?= $base_url ?>index.php/main/product/" + item.product_id + "\"><strong style='width:70%'>" + item.product_name + "</strong>" + "<div><span>x" + item.product_count + "</span>" +
-                    "<small style='margin-left:10px'> " + item.product_price + "</small></div>" +
+                var html = "<a href=\"<?= $base_url ?>index.php/main/product/" + item.product_id + "\"><strong>" + item.product_name + "</strong><span>x" + item.product_count + "</span>" +
+                    "<small style='margin-left:10px'> " + item.product_price + "</small>" +
                     "</a>";
-                sum += (item.product_count * item.product_price);
+                sum = localStorage.getItem('promocode_discount');
                 $('#prod_list_checkout').append(html);
             });
-            $('#prod_tot_pr_checkout').text(sum + ' сом.');
+            $('#prod_tot_pr_checkout').text(sum + ' смн.');
             countSumWithDelivery();
         }
     }
@@ -564,10 +564,10 @@
                     "wallet_name": "MyBabilon",
                     // "delivery_id": $('input[name=delivery]:checked').attr("id")
                 }, function(data) {
+                    $(".ps-btn_order").val("Номер заказа № " + data)
                     $(".order-sended").css("display", "flex")
                     if (data != 0) {
                         $('#checkout_loading').css('display', 'none');
-                        var inputForB = true
                         // $.removeCookie('product_list', {
                         //     path: '/'
                         // });
@@ -600,7 +600,7 @@
                     sum += (item.product_count * item.product_price);
                 });
                 sum += ($('input[name=delivery]:checked').val() ? parseInt($('input[name=delivery]:checked').val()) : 0);
-                $('#tot_pr_checkout').text(sum + ' сом.');
+                $('#tot_pr_checkout').text(sum + ' смн.');
             }
         });
     }
