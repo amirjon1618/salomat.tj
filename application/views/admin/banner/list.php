@@ -16,7 +16,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">СПИСОК БАННЕРОВ</h3>
+          <h3 class="box-title">СПИСОК СЛАЙДЕРОВ</h3>
           <a href="{base_url}index.php/admin/addBanner" class="add_btns add_btns_color btn btn-primary">
           <i class="fa fa-plus"></i> Добавить баннер
         </a>
@@ -35,9 +35,9 @@
                 <th style="text-align: center;">Удалить</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="dragAndDrop" draggable="true">
               <?php foreach ($list as $item) : ?>
-                <tr>
+                <tr ondrop="onDrop()">
                   <td><?= $item['slider_id'] ?></td>
                   <td><?= $item['slider_name'] ?></td>
                   <td><a href="<?= $item['slider_link'] ?>"><?= $item['slider_link'] ?></a></td>
@@ -90,7 +90,27 @@
     </div>
 <script src="{base_url}plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="{base_url}plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
 <script>
+  function onDrop() {
+    const sort = [];
+    const childs = document.querySelectorAll("#dragAndDrop tr td:first-child");
+    childs.forEach(elem => {
+      const numbers = Number(elem.textContent);
+      sort.push(Number(elem.textContent));
+    })
+    $.ajax({
+      type: "POST",
+      url: "{base_url}products/updateOrderInSlider",
+      headers: {
+        "Accept": "application/json",
+      },
+      data: {
+        sort
+      },
+    })
+  }
   $(function() {
     $('#TableUser').DataTable({
       "paging": false,
@@ -131,6 +151,14 @@
                 document.querySelector(".enter-btn-bg").style.display = "none";
             }
         })
+        /*===== DRAG and DROP =====*/
+  const dropItems = document.getElementById('dragAndDrop')
+
+new Sortable(dropItems, {
+    animation: 350,
+    chosenClass: "sortable-chosen",
+    dragClass: "sortable-drag"
+});
 </script>
 <style>
   .enter-btn-bg {

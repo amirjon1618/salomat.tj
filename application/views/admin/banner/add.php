@@ -80,7 +80,6 @@
         }
       },
       submitHandler: function(form) {
-        console.log('1');
         form.submit();
       }
     });

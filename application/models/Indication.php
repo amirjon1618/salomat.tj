@@ -101,7 +101,7 @@ class Indication extends CI_Model
         if ($current < $total_pages) {
             $array['next_page'] = $current + 1;
         }
-        
+
         if ($current <= $total_pages) {
             // $this->db->query(`
             //     SELECT product.*, category.id as category_id
@@ -177,7 +177,7 @@ class Indication extends CI_Model
             // $this->db->limit($this->per_page, ($current - 1) * $this->per_page);
             // $query = $this->db->get();
             // print_r($this->db->last_query());           
-            
+
             $array['prod_max_price'] = null;
             if (sizeof($query->result_array()) > 0) {
                 $query_string = $this->db->last_query();
@@ -186,7 +186,7 @@ class Indication extends CI_Model
                     $new_query = $result[0] . ' ORDER BY `product_price` DESC';
                     $qq3 = $this->db->query($new_query);
                     $array['prod_max_price'] = $qq3->result_array()[0]['product_price'];
-                }                
+                }
             }
             foreach ($query->result_array() as $row) {
                 $row['base_url'] = base_url();
@@ -199,6 +199,13 @@ class Indication extends CI_Model
                     $row['prod_rating_average'] = '';
                     $row['review_count'] = 0;
                 }
+                $user_id = $this->session->userdata('user_id');
+                $favorite = $this->get_favorite($row['id'],$user_id?:0);
+                if (sizeof($favorite) != 0) {
+                    $row['is_favorite'] = true;
+                } else {
+                    $row['is_favorite'] = false;
+                }
                 $array['total_prods'][] = $row;
             }
         }
@@ -207,6 +214,23 @@ class Indication extends CI_Model
         return $array;
     }
 
+
+    public function get_favorite($id, $user_id)
+    {
+        $array = array();
+        $q_count = $this->db->query("SELECT COUNT(*) as count FROM `favorites` WHERE `favoriteable_id` = " . $id . " AND `user_id` = ".$user_id);
+        $arr_count = $q_count->result_array();
+        if ($arr_count[0]['count'] != 0) {
+            $this->db->select('*');
+            $this->db->from('favorites');
+            $this->db->where('favoriteable_id', $id);
+            $this->db->where('user_id', '61');
+            $query = $this->db->get();
+            $array['is_favorite'] = $query->result_array();
+
+        }
+        return $array;
+    }
     public function get_rating($id)
     {
         $array = array();

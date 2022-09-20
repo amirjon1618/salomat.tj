@@ -180,12 +180,12 @@
 }
 
 #homepage-3 .ps-deal-of-day {
-  padding: 70px 0;
+  padding: 40px 0;
 }
 
 @media (max-width: 767px) {
   #homepage-3 .ps-deal-of-day {
-    padding: 45px 0;
+    padding: 30px 0 0 0;
   }
 }
 

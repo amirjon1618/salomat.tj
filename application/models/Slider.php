@@ -59,6 +59,7 @@ class Slider extends CI_Model
         $this->db->select('*');
         $this->db->from('slider');
         $this->db->join('category', 'category.id = slider.slider_category_id', 'left');
+        $this->db->order_by("slider.order_id", "asc");
         if ($category_id != '') {
             $this->db->where('slider_category_id', $category_id);
         }
@@ -72,6 +73,19 @@ class Slider extends CI_Model
             $array[] = $row;
         }
         return $array;
+    }
+
+    public function get_all_by_sort($sort)
+    {
+        $this->db->select('*');
+        $this->db->from('slider');
+        $this->db->where_in('slider_id', $sort);
+        $order = sprintf('FIELD(slider_id, %s)', implode(', ', $sort));
+        $this->db->order_by($order);
+        $query = $this->db->get();
+        $sliders = $query->result_array();
+
+        return $sliders;
     }
 
     public function get_by_slider_category($id) 

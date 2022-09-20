@@ -31,8 +31,8 @@
                             <span class="ps-slider__value slider__value_max">
                                 <span class="ps-slider__max sales-ps-slider__max"></span> смн.</span>
                         </p>
-                        <div style="text-align: center">
-                            <button class="btn btn-info btn-lg sales_res_sort_by_price" type="button">Показать</button>
+                        <div style="text-align: center" class="mt-5">
+                            <button class="btn btn-info btn-lg sales_res_sort_by_price" style="width: 100%;" type="button">Показать</button>
                         </div>
                     </figure>
                 </aside>
@@ -71,15 +71,12 @@
 
     function get_sales_product_list(id, min_price = '', max_price = '') {
         $('#loading').css('display', 'block');
-        console.log(id);
-        console.log('id');
         $.getJSON("{base_url}index.php/main/get_sales_prods?" +
             "sales_id=" + id + 
             "&page="+ page +
             "&min_price=" + min_price +
             "&max_price=" + max_price,
             function(data, status) {
-                console.log(data)
                 min_pr = data.prod_max_price;
                 $(".sales_res_products").html(data.html);
                 $('#loading').css('display', 'none');

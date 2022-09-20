@@ -34,6 +34,12 @@
                                    value="<?php echo $category['category_name'] ?>">
                         </div>
 
+                        <div class="form-group" id="file_div">
+                            <label class="userfile_label">Иконка </label>
+                            <input type="file" name="userfile" class="file_inp" size="50" />
+                            <i class="fa fa-times fa_cancel_file" onclick="cancel_file_input()"></i>
+                        </div>
+
                         <div class="box-footer">
                             <?php if ($cat_parent_id == 0): ?>
                                 <button type="button"
@@ -52,5 +58,10 @@
                     </form>
                 </div><!-- /.box-body -->
 </section>
+<script>
+    function cancel_file_input() {
+        $('.file_inp').val('');
+    }
+</script>
 <!-- Bootstrap WYSIHTML5 -->
 

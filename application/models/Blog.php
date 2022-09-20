@@ -24,6 +24,7 @@ class Blog extends CI_Model
         if ($search_inp != '') {
             $this->db->where('blog.blog_title', $search_inp);
         }
+        $this->db->order_by("blog.order_id", "asc");
         $qq = $this->db->get();
         $total_pages = 0;
 
@@ -75,6 +76,7 @@ class Blog extends CI_Model
         if ($page <= $total_pages) {
             $this->db->select("*");
             $this->db->from('blog');
+            $this->db->order_by("blog.order_id", "asc");
             if ($tag_id != 0) {
                 $this->db->join('blog_tag', 'blog_tag.blog_id = blog.id');
                 $this->db->join('tag', 'tag.id = blog_tag.tag_id');
@@ -94,12 +96,122 @@ class Blog extends CI_Model
         }
         return $array;
     }
+
+    public function get_all_by_sort($sort)
+    {
+        $this->db->select("*");
+        $this->db->from('blog');
+        $this->db->where_in('id', $sort);
+        $order = sprintf('FIELD(id, %s)', implode(', ', $sort));
+        $this->db->order_by($order);
+        $query = $this->db->get();
+        $blod = $query->result_array();
+
+        return $blod;
+    }
+
+
+    public function get_all_mb($page = 1, $tag_id = 0, $search_inp = '')
+    {
+        $array = array();
+        $this->db->select("COUNT(*) as total_blog_items");
+        $this->db->from('blog');
+        if ($tag_id != 0) {
+            $this->db->join('blog_tag', 'blog_tag.blog_id = blog.id');
+            $this->db->join('tag', 'tag.id = blog_tag.tag_id');
+            $this->db->where('tag.id', $tag_id);
+        }
+        if ($search_inp != '') {
+            $this->db->where('blog.blog_title', $search_inp);
+        }
+        $qq = $this->db->get();
+        $total_pages = 0;
+
+        foreach ($qq->result_array() as $row) {
+            if ($row['total_blog_items'] > 0)
+                $total_pages = ceil($row['total_blog_items'] / $this->per_page_admin);
+        }
+
+        $linkk = base_url("index.php/admin/blogs?");
+        if ($tag_id != 0) {
+            $linkk = $linkk . "tag_id=" . $tag_id . '&';
+        }
+        if ($search_inp != '') {
+            $linkk = $linkk . "search_inp=" . $search_inp . '&';
+        }
+        $linkk = $linkk . 'page=';
+        // $array['link'] = $linkk;
+        $pages = array();
+        for ($i = 1; $i <= $total_pages; $i++) {
+            if ($i == $page) {
+                $pages[] = array(
+                    "page" => $i,
+                    "current_page" => $page,
+                    "total_pages" => $total_pages,
+                    "base_url" => base_url(),
+                    "link" => $linkk,
+                    "current" => 'active'
+                );
+            } else {
+                $pages[] = array(
+                    "page" => $i,
+                    "current_page" => $page,
+                    "total_pages" => $total_pages,
+                    "base_url" => base_url(),
+                    "link" => $linkk,
+                    "current" => ''
+                );
+            }
+        }
+        $rr = $this->filter_pages($pages, $page);
+        $blog_page = $rr[0]['page'];
+        $blog_total_pages = $rr[0]['total_pages'];
+        $blog_current = $rr[0]['current'];
+
+
+        if ($page > 1 & $page <= $total_pages) {
+            $array['prev_page'] = $page - 1;
+        }
+        if ($page < $total_pages) {
+            $array['next_page'] = $page + 1;
+        }
+        if ($page <= $total_pages) {
+            $this->db->select("*");
+            $this->db->from('blog');
+            if ($tag_id != 0) {
+                $this->db->join('blog_tag', 'blog_tag.blog_id = blog.id');
+                $this->db->join('tag', 'tag.id = blog_tag.tag_id');
+                $this->db->where('tag.id', $tag_id);
+            }
+            if ($search_inp != '') {
+                $this->db->where('blog.blog_title', $search_inp);
+            }
+            $this->db->limit($this->per_page_admin, ($page - 1) * $this->per_page_admin);
+            $query = $this->db->get();
+            $array = [];
+            foreach ($query->result_array() as $row) {
+                $row['base_url'] = base_url();
+                $row['blog_pic'] = $this->get_blog_avatar($row['id']);
+                $array[] = $row;
+            }
+        }
+        $data = [
+            'blogs' => $array,
+            'page' => $blog_page,
+            'total_pages' => $blog_total_pages,
+            'current' => $blog_current
+        ];
+        return $data;
+    }
+
+
     private $per_page_main = 6;
     public function get_all_main($page = 1, $tag_id = 0)
     {
         $array = array();
         $this->db->select("COUNT(*) as total_blog_items");
         $this->db->from('blog');
+        $this->db->order_by("blog.order_id", "asc");
         if ($tag_id != 0) {
             $this->db->join('blog_tag', 'blog_tag.blog_id = blog.id');
             $this->db->join('tag', 'tag.id = blog_tag.tag_id');

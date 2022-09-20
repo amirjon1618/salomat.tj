@@ -130,7 +130,7 @@ class Recipe extends CI_Model
         $this->db->where('recipe_code', $array['recipe_code']);
         $query = $this->db->get();
         if (sizeof($query->result_array()) == 0) {
-            $this->db->insert('recipe', array('recipe_phone' => $array['recipe_phone'], 'recipe_code' => $array['recipe_code']));
+            $this->db->insert('recipe', array('recipe_phone' => $array['recipe_phone'], 'recipe_code' => $array['recipe_code'],'full_name' => $array['recipe_name'],'comment' => $array['recipe_comment'],'status_id'=> $array['status_id']??0));
             $recipe_id = $this->db->insert_id();
             return array('recipe_id' => $recipe_id, 'stat' => 1);
         } else {

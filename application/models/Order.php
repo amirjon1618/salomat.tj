@@ -164,6 +164,14 @@ class Order extends CI_Model
         return $query->result_array()[0];
     }
 
+    public function getForStatic()
+    {
+        $this->db->select('*');
+        $this->db->from('order');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function get_order_status($id)
     {
         $array = array('base_url' => base_url());
@@ -257,6 +265,7 @@ class Order extends CI_Model
             $array['wallet_name'] = "";
         }
         $new_arr = array(
+            'total_price'  =>  $array['total_price'],
             'full_name' => $array['name'],
             'phone_number' => $array['phone_number'],
             'address' => $array['address'],
@@ -265,7 +274,7 @@ class Order extends CI_Model
             'delivery_type' => $array['delivery_id'],
             // 'cash_type' => $array['cash_type'],
             'code' => $array['code'],
-            'status_id' => 0
+            'status_id' => 1
             // 'created_at' => $created_at
         );
         $this->db->insert('order', $new_arr);
@@ -286,7 +295,7 @@ class Order extends CI_Model
             );
             $this->db->insert('product_order', $another_arr);
 
-            $count = floatval($product['product_total_count']) - floatval(($product['product_count']));
+            $count = floatval($array['product_total_count']) - floatval(($product['product_count']));
             $this->db->set('total_count_in_store', $count);
             $this->db->where('id', $product['product_id']);
             $this->db->update('product');
@@ -352,8 +361,6 @@ class Order extends CI_Model
     //     }
     //     return $array;
     // }
-
-
 
     public function update($id, $array)
     {

@@ -4,11 +4,17 @@
         <h5>Укажите номер для отправки Вам ответа.</h5>
         <div class="recipe_phone_div" id="recipe_phone_div_phone_number" style="text-align: center;">
             <div class="recipe_phone_div_inp">
-                <h5>Введите номер телефона</h5>
+                <h5 class="mb-3">Введите номер телефона</h5>
                 <span>+992</span>
-                <input type="tel" max="9" class="recipe_phone_number" placeholder="Введите номер">
+                <input class="recipe_phone_number form-control" required type="number" pattern="\d*" maxlength="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="order_phone" name="cell_phone" placeholder="Введите свой номер">
             </div>
-            <h5 class="recipe_error_msg">Введите в формате 99999999(9 чисел)</h5>
+            <h5 class="recipe_error_msg">Введите в формате 987654321 (9 чисел)</h5>
+            <div class="recipe_name_div_inp py-3">
+                <input class="recipe_name form-control" maxlength="24" required name="name" id="order_name" type="text" placeholder="Имя Фамилия">
+            </div>
+            <div class="recipe_comment_div_inp pb-3">
+                <textarea class="recipe_comment form-control" maxlength="250" name="comment" id="order_comment" type="text" placeholder="Комментарий"></textarea>
+            </div>
             <button class="recipe_phone_div_button_send_sms" onclick="sendSms()">
                 Отправить смс
             </button>
@@ -60,8 +66,8 @@
         <h5>Вы так же можете отправить фото в мессенджерах:</h5>
         <div class="row recipe_social_main_div">
             <div class="col-md-4 col-12 col-sm-6 recipe_social_main_div_each">
-                <a href="viber://chat?number=+992888886006">
-                <div class="recipe_social_div">
+                <a href="viber://pa?chatURI=992888886006&text=Hello">
+                    <div class="recipe_social_div">
                         <img src="{base_url}img/viber_icon.png" alt="">
                         <div>
                             <p>Отправить на</p>
@@ -71,19 +77,19 @@
                 </a>
             </div>
             <div class="col-md-4 col-12 col-sm-6 recipe_social_main_div_each">
-                <a href="imo://chat?number=+992888886006">
-                <div class="recipe_social_div">
-                        <img src="{base_url}img/imo_icon.png" alt="">
+                <a href="https://wa.me/992888886006">
+                    <div class="recipe_social_div">
+                        <img src="{base_url}img/whatsapp_icon.png" alt="">
                         <div>
                             <p>Отправить на</p>
-                            <h5>Imo</h5>
+                            <h5>WhatsAPP</h5>
                         </div>
                     </div>
                 </a>
             </div class="recipe_social_div">
             <div class="col-md-4 col-12 col-sm-6 recipe_social_main_div_each">
                 <a href="https://t.me/Salomat6006" target="_blank">
-                <div class="recipe_social_div">
+                    <div class="recipe_social_div">
                         <img src="{base_url}img/telegram_icon.png" alt="">
                         <div>
                             <p>Отправить на</p>
@@ -125,6 +131,8 @@
     var recipe_pics = [];
     var recipe_id = null;
     var recipe_phone_number = '';
+    var recipe_name = '';
+    var recipe_comment = '';
     var uploadFinished = false;
     // var recipe_sms_id = '';
 
@@ -200,7 +208,7 @@
 
     function sendSms() {
         $('#loading').show();
-        var validate = validatePhone($('.recipe_phone_number').val());
+        var validate = validatePhone($('.recipe_phone_number')[2].value);
         if (validate) {
             var upload = $("#user_files").data("kendoUpload"),
                 files2 = upload.getFiles();
@@ -209,15 +217,15 @@
                 type: "POST",
                 dataType: "json",
                 data: {
-                    "recipe_phone": $('.recipe_phone_number').val(),
+                    "recipe_phone": $('.recipe_phone_number')[2].value,
+                    "recipe_name": $('.recipe_name').val(),
+                    "recipe_comment": $('.recipe_comment').val(),
                     "recipe_pics": recipe_pics
                 },
                 success: function(data) {
-                    console.log(data);
-                    console.log('data');
                     if (data.stat == 1) {
                         recipe_id = data.recipe_id;
-                        recipe_phone_number = $('.recipe_phone_number').val();
+                        recipe_phone_number = $('.recipe_phone_number')[2].value;
                         $('#recipe_phone_div_phone_number').hide();
                         $('#recipe_phone_div_phone_code').show();
                         begin();
@@ -235,18 +243,18 @@
     function begin() {
         $('#not_received_sms').hide();
         $('#recend_timer_sms').show();
-    
-       timing = 60;
-       $('#timer_recipe').html(timing);
-       myTimer = setInterval(function() {
-         --timing;
-         $('#timer_recipe').html(timing);
-         if (timing === 0) {
-            $('#recend_timer_sms').hide();
-            $('#not_received_sms').show();
-           clearInterval(myTimer);
-         }
-       }, 1000);
+
+        timing = 60;
+        $('#timer_recipe').html(timing);
+        myTimer = setInterval(function() {
+            --timing;
+            $('#timer_recipe').html(timing);
+            if (timing === 0) {
+                $('#recend_timer_sms').hide();
+                $('#not_received_sms').show();
+                clearInterval(myTimer);
+            }
+        }, 1000);
     }
 
     function resendSms() {
@@ -318,6 +326,7 @@
         var upload = $("#user_files").data("kendoUpload");
         upload.clearAllFiles();
     }
+    
     $(document).ready(function() {
         recipe_pics = [];
         recipe_ids = [];

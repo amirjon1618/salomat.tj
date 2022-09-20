@@ -26,6 +26,8 @@
               <tr>
                 <th>Телефон</th>
                 <th>Дата и время</th>
+                <th>Имя Фамилия</th>
+                <th>Комментарий</th>
                 <th>Статус</th>
                 <th style="text-align: center;">Подробно</th>
                 <th style="text-align: center;">Удалить</th>
@@ -36,6 +38,8 @@
                 <tr>
                   <td><?= $item['recipe_phone'] ?></td>
                   <td><?= $item['created_at'] ?></td>
+                  <td><?= $item['full_name'] ?></td>
+                  <td><?= $item['comment'] ?></td>
                   <td style="width: 100px;"><span class="label" style="background:<?=$item['status_color']?>;border-radius:.5em"><?= $item['status']?></span></td>
                   <td style="text-align: center;width: 100px;">
                     <a href="{base_url}index.php/admin/recipePics/<?= $item['id'] ?>">
@@ -94,7 +98,6 @@
     $('.recipe_pics_tbody').html('');
     $.getJSON('<?= $base_url ?>index.php/api/GetRecipePics/' + id, function(data, status) {
       $('.modal-title').text(data.recipe_phone + ' фотографии');
-      console.log(data.pics);
       data.pics.forEach(function(item, index) {
         var html = `<tr> +
                     <td>${item.id}</td>

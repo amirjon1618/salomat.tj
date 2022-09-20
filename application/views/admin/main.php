@@ -240,6 +240,14 @@
 
                     <li class="header">Меню</li>
 
+                    <?php if ($this->user->myData['access'] == 100 || $this->user->myData['access'] == 60) { ?>
+                        <li class="treeview">
+                            <a href="{base_url}index.php/Admin/orders">
+                                <i class="fa fa-globe" aria-hidden="true"></i> <span>Заказы </span>
+                            </a>
+                        </li>
+                    <?php } ?>
+
                     <?php if ($this->user->myData['access'] == 100) { ?>
                         <li class="treeview">
 
@@ -252,6 +260,15 @@
                         </li>
 
                     <?php } ?>
+
+                    <?php if ($this->user->myData['access'] == 100) { ?>
+                        <li class="treeview">
+                            <a href="{base_url}index.php/Admin/promo_codes">
+                                <i class="fa fa-codepen"></i> <span>Промокоды</span>
+                            </a>
+                        </li>
+                    <?php } ?>
+
 
                     <?php if ($this->user->myData['access'] == 100) { ?>
                         <li class="treeview">
@@ -270,7 +287,7 @@
                     <?php if ($this->user->myData['access'] == 100) { ?>
                         <li class="treeview">
                             <a href="{base_url}index.php/Admin/banners">
-                                <i class="fa fa-map"></i> <span>Баннер</span>
+                                <i class="fa fa-map"></i> <span>Слайдер</span>
                             </a>
                         </li>
                     <?php } ?>
@@ -350,13 +367,7 @@
                         </li>
 
                     <?php } ?>
-                    <?php if ($this->user->myData['access'] == 100 || $this->user->myData['access'] == 60) { ?>
-                        <li class="treeview">
-                            <a href="{base_url}index.php/Admin/orders">
-                                <i class="fa fa-globe" aria-hidden="true"></i> <span>Заказы </span>
-                            </a>
-                        </li>
-                    <?php } ?>
+
 
                     <?php if ($this->user->myData['access'] == 100 && false) { ?>
 
@@ -453,9 +464,6 @@
             doActiveLink.parent().parent().parent().addClass("active");
 
             doActiveLink.parent().addClass("active");
-
-
-            //console.log(doActiveLink.parent().parent().length);
 
         });
     </script>

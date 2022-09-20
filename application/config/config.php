@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 
 
@@ -106,7 +106,7 @@ $config['index_page'] = 'index.php';
 
 */
 
-$config['uri_protocol']	= 'REQUEST_URI';
+$config['uri_protocol']  = 'REQUEST_URI';
 
 
 
@@ -154,7 +154,7 @@ $config['url_suffix'] = '';
 
 */
 
-$config['language']	= 'english';
+$config['language']  = 'english';
 
 
 
@@ -802,15 +802,15 @@ $config['sess_regenerate_destroy'] = FALSE;
 
 */
 
-$config['cookie_prefix']	= '';
+$config['cookie_prefix']  = '';
 
-$config['cookie_domain']	= '';
+$config['cookie_domain']  = '';
 
-$config['cookie_path']		= '/';
+$config['cookie_path']    = '/';
 
-$config['cookie_secure']	= FALSE;
+$config['cookie_secure']  = FALSE;
 
-$config['cookie_httponly'] 	= FALSE;
+$config['cookie_httponly']   = FALSE;
 
 
 
@@ -1043,4 +1043,3 @@ $config['rewrite_short_tags'] = FALSE;
 */
 
 $config['proxy_ips'] = '';
-

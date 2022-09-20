@@ -67,7 +67,6 @@
 			var step = 30;
 			var dd = Math.ceil(text1.length/step);
 
-			console.log(text1.length+" "+dd+" "+text1);
 
 			var lastSpace = 0;
 			var beginString = 0;
@@ -88,7 +87,6 @@
 					ff[ff.length] = text1.substring(beginString, lastSpace);
 					beginString = lastSpace + 1;
 
-					console.log(text1);
 				}
 				
 				var t = ff[ff.length-1];
@@ -112,16 +110,10 @@
 		}
 		
 		$(document).keypress(function(event) {
-		  console.log( "Handler for .keypress() called." );
 		  if(event.key=="Enter")
 		  {
 			  
 		  }
-		  else
-		  {
-			console.log(event.key);
-		  }
-		  //console.log(event);
 		});
 
 		//	var textf = ne
@@ -135,6 +127,5 @@
 			text[text.length] = parse_text(object2.name, object2.count, object2.sum);
 			text[text.length] = parse_text(object3.name, object3.count, object3.sum);
 
-			console.log(text);
 
       </script>

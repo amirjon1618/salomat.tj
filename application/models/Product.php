@@ -10,6 +10,7 @@ class Product extends CI_Model
         parent::__construct();
         // Your own constructor code
         $this->load->database();
+        $this->load->library('session');
     }
 
     public function get_all_count()
@@ -89,7 +90,7 @@ class Product extends CI_Model
         return $id;
     }
 
-    public function get($id, $str = '')
+    public function get($id, $str = '' , $user_id = null)
     {
         $array = array();
         $this->db->select("*");
@@ -117,7 +118,21 @@ class Product extends CI_Model
             // $row['product_country'] = $this->get_other_fields($row['product_country'], 'country');
             $row['active_substance'] = $q->result_array();
             $row['categories'] = $q3->result_array();
+            if (!isset($user_id))
+                $user_id = $this->session->userdata('user_id');
+
+            $favorite = $this->get_favorite($row['id'],$user_id?:0);
+            if (sizeof($favorite) != 0) {
+                $row['is_favorite'] = true;
+            } else {
+                $row['is_favorite'] = false;
+            }
+            $array['total_prods'][] = $row;
+
+
+
             $array = $row;
+            
         }
         $array['product_pics'] = $this->get_img_by_id($id);
 
@@ -434,7 +449,7 @@ class Product extends CI_Model
     }
 
     private $per_page_admin = 30;
-    public function get_all($current_page, $brand_id = '', $price = '', $search_text = '', $export_status_sort = '')
+    public function get_all($current_page, $brand_id = '', $price = '', $search_text = '', $export_status_sort = '',$category_id = '')
     {
         //echo $current_page;
         $array = array('base_url' => base_url());
@@ -586,8 +601,10 @@ class Product extends CI_Model
     //...products with total_count > 0
     public function get_products_by_category($id, $sort_by, $current, $min_price = '', $max_price = '')
     {
-        if(isset($current)){
-             $current = 1;
+//        var_dump($current);
+
+        if(empty($current)){
+            $current = 1;
         }
         $this->load->model('category');
         $array = array();
@@ -711,6 +728,14 @@ class Product extends CI_Model
                 } else {
                     $row['prod_rating_average'] = '';
                     $row['review_count'] = 0;
+                }
+
+                $user_id = $this->session->userdata('user_id');
+                $favorite = $this->get_favorite($row['id'],$user_id?:0);
+                if (sizeof($favorite) != 0) {
+                    $row['is_favorite'] = true;
+                } else {
+                    $row['is_favorite'] = false;
                 }
 
                 $q = $this->db->query("SELECT active_substance_product.id as asp_id, active_substance.id, active_substance.tag_name FROM product 
@@ -844,19 +869,115 @@ class Product extends CI_Model
 
     public function get_prod_by_name_main($str)
     {
+//        $array = array();
+//        $this->db->select("*");
+//        $this->db->from('product');
+//        $this->db->like('product_name', $str);
+//        // $this->db->where('total_count_in_store >', 0);
+//        $this->db->where('product_status', 1);
+//        $this->db->limit(5);
+//        $query = $this->db->get();
+//        $arr = $query->result_array();
+//
+//
+//        return $arr;
+
+
+
+        if ($str == '')
+            return [];
         $array = array();
-        $this->db->select("*");
+        $this->db->select('*');
         $this->db->from('product');
         $this->db->like('product_name', $str);
+//        if ($min_price != '' && $max_price != '') {
+//            $this->db->where('product.product_price >=', $min_price);
+//            $this->db->where('product.product_price <= ', $max_price);
+//        }
         // $this->db->where('total_count_in_store >', 0);
         $this->db->where('product_status', 1);
-        $this->db->limit(5);
+        $this->db->limit(20);
         $query = $this->db->get();
-        $arr = $query->result_array();
-        return $arr;
+        $qe[0] = $query->result_array();
+
+        if (empty($qe[0]))
+        {
+            $this->db->select('*');
+            $this->db->from('product');
+//            if ($min_price != '' && $max_price != '') {
+//                $this->db->where('product.product_price >=', $min_price);
+//                $this->db->where('product.product_price <= ', $max_price);
+//            }
+            $this->db->where('product_status', 1);
+            $query = $this->db->get();
+            $qe = $query->result_array();
+            $prod = [];
+            foreach ($qe as $q => $key)
+            {
+                $product_name = explode(" ", $key['product_name']);
+                foreach ($product_name as $name) {
+                    similar_text($str, $name, $percent);
+                    if ($percent >= 80) {
+                        $prod[] = $key;
+                    }
+                }
+            }
+
+            $qe[0] = $prod;
+        }
+
+        foreach ($qe[0] as $row) {
+            $q = $this->db->query("SELECT active_substance_product.id as asp_id, active_substance.id, active_substance.tag_name FROM product 
+                LEFT JOIN active_substance_product ON active_substance_product.product_id = product.id
+                LEFT JOIN active_substance ON active_substance_product.active_substance_id = active_substance.id 
+                WHERE product.id = " . $row['id']);
+
+            $q3 = $this->db->query("SELECT category_product.id as cp_id, category.id,
+                  category.category_name FROM product 
+                LEFT JOIN category_product ON category_product.product_id = product.id
+                LEFT JOIN category ON category_product.category_id = category.id 
+                WHERE product.id = " . $row['id']);
+
+            $row['product_brand'] = $this->get_other_fields($row['product_brand'], 'brand');
+            $row['active_substance'] = $q->result_array();
+            $row['categories'] = $q3->result_array();
+
+            $row['base_url'] = base_url();
+            $rating = $this->get_rating($row['id']);
+
+            if (sizeof($rating) != 0) {
+                $row['prod_rating_average'] = $rating['prod_rating_average'];
+                $row['review_count'] = $rating['review_count'];
+            } else {
+                $row['prod_rating_average'] = '';
+                $row['review_count'] = 0;
+            }
+            if (!isset($user_id))
+                $user_id = $this->session->userdata('user_id');
+
+            $favorite = $this->get_favorite($row['id'],$user_id?:0);
+            if (sizeof($favorite) != 0) {
+                $row['is_favorite'] = true;
+            } else {
+                $row['is_favorite'] = false;
+            }
+
+
+            $array []= $row;
+        }
+        if (sizeof($query->result_array()) != 0) {
+            $newArray  = $array;
+            if (sizeof($newArray) != 0) {
+                array_multisort(array_column($newArray, 'product_price'), SORT_DESC, $newArray);
+//                $array['srch_prod_max_pr'] = $newArray[0]['product_price'];
+
+            }
+        }
+
+        return $array;
     }
 
-    public function get_prods_by_slider_type($str)
+    public function get_prods_by_slider_type($str,$user_id = 0)
     {
         $array = array();
         $this->db->select("*");
@@ -876,6 +997,12 @@ class Product extends CI_Model
             } else {
                 $row['prod_rating_average'] = '';
                 $row['review_count'] = 0;
+            }
+            $favorite = $this->get_favorite($row['id'],$user_id);
+            if (sizeof($favorite) != 0) {
+                $row['is_favorite'] = true;
+            } else {
+                $row['is_favorite'] = false;
             }
             $row['base_url'] = base_url();
             $array[] = $row;
@@ -948,7 +1075,7 @@ class Product extends CI_Model
         return $array;
     }
 
-    public function get_prods_in_categ($cat_id)
+    public function get_prods_in_categ($cat_id, $user_id)
     {
         $array = array();
         $this->load->model('category');
@@ -978,6 +1105,7 @@ class Product extends CI_Model
         foreach ($query->result_array() as $row) {
             $row['base_url'] = base_url();
             $rating = $this->get_rating($row['id']);
+            $row['product_brand'] = $this->get_other_fields($row['product_brand'], 'brand');
             if (sizeof($rating) != 0) {
                 $row['prod_rating_average'] = $rating['prod_rating_average'];
                 $row['review_count'] = $rating['review_count'];
@@ -985,12 +1113,42 @@ class Product extends CI_Model
                 $row['prod_rating_average'] = '';
                 $row['review_count'] = 0;
             }
+            $favorite = $this->get_favorite($row['id'],$user_id);
+            if (sizeof($favorite) != 0) {
+                $row['is_favorite'] = true;
+            } else {
+                $row['is_favorite'] = false;
+            }
             $array[] = $row;
         }
         return $array;
     }
 
-    public function search_for_prod($str, $min_price = '', $max_price = '')
+    public function get_favorite($id, $user_id)
+    {
+        $array = array();
+        $q_count = $this->db->query("SELECT COUNT(*) as count FROM `favorites` WHERE `favoriteable_id` = " . $id . " AND `user_id` = ".$user_id);
+        $arr_count = $q_count->result_array();
+        if ($arr_count[0]['count'] != 0) {
+            $this->db->select('*');
+            $this->db->from('favorites');
+            $this->db->where('favoriteable_id', $id);
+            $this->db->where('user_id', '61');
+            $query = $this->db->get();
+            $array['is_favorite'] = $query->result_array();
+
+        }
+        return $array;
+    }
+
+    /**
+     * Search for product
+     * @param $str
+     * @param $min_price
+     * @param $max_price
+     * @return array
+     */
+    public function search_for_prod($str, $min_price = '' , $max_price ='', $user_id = '')
     {
         if ($str == '')
             return [];
@@ -1006,7 +1164,35 @@ class Product extends CI_Model
         $this->db->where('product_status', 1);
         $this->db->limit(20);
         $query = $this->db->get();
-        foreach ($query->result_array() as $row) {
+        $qe[0] = $query->result_array();
+
+        if (empty($qe[0]))
+        {
+            $this->db->select('*');
+            $this->db->from('product');
+            if ($min_price != '' && $max_price != '') {
+                $this->db->where('product.product_price >=', $min_price);
+                $this->db->where('product.product_price <= ', $max_price);
+            }
+            $this->db->where('product_status', 1);
+            $query = $this->db->get();
+            $qe = $query->result_array();
+            $prod = [];
+            foreach ($qe as $q => $key)
+            {
+                $product_name = explode(" ", $key['product_name']);
+                foreach ($product_name as $name) {
+                    similar_text($str, $name, $percent);
+                    if ($percent >= 80) {
+                        $prod[] = $key;
+                    }
+                }
+            }
+
+            $qe[0] = $prod;
+        }
+
+        foreach ($qe[0] as $row) {
             $q = $this->db->query("SELECT active_substance_product.id as asp_id, active_substance.id, active_substance.tag_name FROM product 
                 LEFT JOIN active_substance_product ON active_substance_product.product_id = product.id
                 LEFT JOIN active_substance ON active_substance_product.active_substance_id = active_substance.id 
@@ -1032,16 +1218,28 @@ class Product extends CI_Model
                 $row['prod_rating_average'] = '';
                 $row['review_count'] = 0;
             }
+            if (!isset($user_id))
+                $user_id = $this->session->userdata('user_id');
 
-            $array[] = $row;
+            $favorite = $this->get_favorite($row['id'],$user_id?:0);
+            if (sizeof($favorite) != 0) {
+                $row['is_favorite'] = true;
+            } else {
+                $row['is_favorite'] = false;
+            }
+
+
+            $array []= $row;
         }
         if (sizeof($query->result_array()) != 0) {
-            $newArray = $array;
+            $newArray  = $array;
             if (sizeof($newArray) != 0) {
                 array_multisort(array_column($newArray, 'product_price'), SORT_DESC, $newArray);
+//                $array['srch_prod_max_pr'] = $newArray[0]['product_price'];
+
             }
-            $array['srch_prod_max_pr'] = $newArray[0]['product_price'];
         }
+
         return $array;
     }
 

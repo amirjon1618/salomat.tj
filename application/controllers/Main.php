@@ -6,6 +6,7 @@ class Main extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        $this->load->library('session');
         $this->load->helper('cookie');
         $this->load->helper('url');
         $this->load->model('user');
@@ -22,9 +23,9 @@ class Main extends CI_Controller
         $this->load->model('sms');
         $this->load->model('delivery');
         // if (true) {
-            // $this->techIssue();
+        // $this->techIssue();
         // } else {
-            $this->checkAuth();
+        $this->checkAuth();
         // }
     }
 
@@ -59,7 +60,7 @@ class Main extends CI_Controller
     }
 
     public function techIssue() {
-        redirect(base_url("../../technical_issues/index.html"));   
+        redirect(base_url("../../technical_issues/index.html"));
     }
 
     public function blog_pictures_upload()
@@ -83,6 +84,7 @@ class Main extends CI_Controller
         echo '';
         exit;
     }
+
     public function sm()
     {
         $type = $this->input->get('type');
@@ -106,6 +108,7 @@ class Main extends CI_Controller
     }
 
 
+
     // public function addRecipe()
     // {
     //     $this->load->model('recipe');
@@ -127,7 +130,9 @@ class Main extends CI_Controller
         $data['categories'] = $this->category->get_all();
         $data['main_slider'] = $this->slider->get_all('normal');
         $data['ad_mini'] = $this->advertisement->get_all('mini_pic');
-        $data['prods_of_the_day'] = $this->product->get_prods_by_slider_type('product_of_the_day');
+        $user_id = $this->session->userdata('user_id');
+
+        $data['prods_of_the_day'] = $this->product->get_prods_by_slider_type('product_of_the_day',isset($user_id)?$user_id:0);
 
         $isFromMyBabilon = $this->input->get('from');
         if ($isFromMyBabilon == 'babilon') {
@@ -146,7 +151,7 @@ class Main extends CI_Controller
             if ($categories[$i]['category_in_main'] == 1 && $j < 3) {
                 $array[$j]['categ'] = $categories[$i];
                 $array[$j]['categ_slider'] = $this->slider->get_by_slider_category($categories[$i]['id']);
-                $array[$j]['categ_prods'] = $this->product->get_prods_in_categ($categories[$i]['id']);
+                $array[$j]['categ_prods'] = $this->product->get_prods_in_categ($categories[$i]['id'] ,$user_id??0);
                 $j++;
             }
         }
@@ -156,12 +161,35 @@ class Main extends CI_Controller
         $data['meta_social_desc'] = 'Удобный поиск лекарств, можно заказать любые препараты недорого по выгодным ценам. Удобный каталог лекарств, инструкций и советы врачей! ☎ 9990 Salomat.tj';
         $data['title'] = 'Интернет аптека Salomat.tj, купить онлайн лекарственные препараты и товары для здоровья';
         $data['categories_for_main_page'] = $array;
+        $data['name'] =  $this->session->userdata('name');
         $data['content'] = $this->parser->parse('main', $data, TRUE);
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
+
+        $data['user_info'] =  $this->session->userdata('name');
+        $data['auth'] =   $this->input->cookie('auth_id');
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
         $this->parser->parse('template', $data);
     }
 
+    public function getUser($user_id)
+    {
+        $array = array();
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('user_id', $user_id);
+        $query = $this->db->get();
+        foreach ($query->result_array() as $row)
+        {
+            $array = $row;
+        }
+        return $array;
+    }
     public function categoryProducts($id)
     {
         $data = array('base_url' => base_url());
@@ -186,7 +214,7 @@ class Main extends CI_Controller
         $data['category_id'] = $id;
         $data['page'] = $current_page;
         $data['sort'] = $sort_by;
-        $res = $this->product->get_products_by_category($id, $current_page, $sort_by); //returns products with total count > 0
+        $res = $this->product->get_products_by_category($id,  $sort_by,$current_page); //returns products with total count > 0
         $data['total_products'] = $res['total_products'];
         $data['category_with_parents'] = $category_with_parents;
         unset($res['total_products']);
@@ -213,6 +241,13 @@ class Main extends CI_Controller
         $data['title'] = $category_with_parents['category_name'] . ' на Salomat.tj';
         $data['category_products'] = $res;
         $data['isOnlySecondCategory'] = $res['isOnlySecondCategory'];
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
         $data['content'] = $this->parser->parse('products_by_category', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
@@ -240,6 +275,12 @@ class Main extends CI_Controller
         }
         $data['meta_social_title'] = 'Salomat.tj ' . $sale['tag_name'];
         $data['title'] = $data['meta_social_title'];
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
 
         $data['content'] = $this->parser->parse('sales', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
@@ -262,7 +303,7 @@ class Main extends CI_Controller
                         $info["max_price"]
                     );
             }
-            
+
             $data['base_url'] = base_url();
             $data['total_products'] = $res;
             echo json_encode(array(
@@ -313,11 +354,11 @@ class Main extends CI_Controller
         } else {
             $data['meta_social_image'] = base_url('qwerty.png');
         }
-        
+
         $data['meta_social_title'] = 'Купить ' . $res['product_name'] . ' на Salomat.tj';
         $data['title'] = $data['meta_social_title'];
 
-       
+
         $data['meta_social_desc'] = strip_tags($res['product_about']);
         $data['comments'] = $this->rating->get_rating_info($id);
         $data['category_id'] = $category_id;
@@ -325,6 +366,13 @@ class Main extends CI_Controller
         $data['prods_suggestions'] = $this->product->get_prods_by_slider_type('product_suggestions');
 
         $data['content'] = $this->parser->parse('product', $data, TRUE);
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
 
@@ -337,6 +385,14 @@ class Main extends CI_Controller
         $data['categories'] = $this->category->get_all();
         $data['categories_for_main_page'] = [];
         $data['title'] = 'Корзина Salomat.tj';
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
+
         $data['content'] = $this->parser->parse('cart_shopping', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
@@ -357,12 +413,35 @@ class Main extends CI_Controller
         };
         $data['delivery'] = $this->delivery->get_all();
         $data['title'] = 'Оформление заказа на Salomat.tj';
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['phone'] =  $user['login'] ?? null;
+        $data['birth_date'] =  $user['birth_date'] ?? null;
+        $data['gender'] =  $user['gender'] ?? null;
+        $data['address'] =  $user['address'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+
+
         $data['content'] = $this->parser->parse('checkout', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
 
         $this->parser->parse('template', $data);
     }
+
+    public function searchProductForBlog()
+    {
+        $data['srch_inp'] = $this->input->get("srch_pr_inp");
+        var_dump($data);
+        $res = $this->product->search_for_prod(
+            $this->input->get("srch_pr_inp")
+        );
+        echo json_encode($res);
+    }
+
 
     public function searchProductResult()
     {
@@ -383,6 +462,14 @@ class Main extends CI_Controller
         $data['title'] = 'Поиск: '.$this->input->get("srch_pr_inp").' на Salomat.tj';
 
         $data['content'] = $this->parser->parse('product_search_result', $data, TRUE);
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
+
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
         $this->parser->parse('template', $data);
@@ -399,6 +486,13 @@ class Main extends CI_Controller
         }
         $data['categories'] = $this->category->get_all();
         $data['prods_of_the_day'] = $this->product->get_prods_by_slider_type('product_of_the_day');
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
         $data['content'] = $this->parser->parse('blog_list_item_inside', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
@@ -411,6 +505,13 @@ class Main extends CI_Controller
         $data['tags'] = $this->tag->get_all();
         $data['categories'] = $this->category->get_all();
         $data['content'] = $this->parser->parse('blog_list', $data, TRUE);
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
         $this->parser->parse('template', $data);
@@ -421,12 +522,22 @@ class Main extends CI_Controller
         $data = array('base_url' => base_url());
         $data['tags'] = $this->tag->get_all();
         $data['categories'] = $this->category->get_all();
+        $data['prods_suggestions'] = $this->product->get_prods_by_slider_type('product_suggestions');
+
         $data['title'] = 'Семь основных причин, почему вакцинироваться должен каждый';
         $data['content'] = $this->parser->parse('blog_info', $data, TRUE);
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
         $this->parser->parse('template', $data);
     }
+
     public function blogPopular()
     {
         $data = array('base_url' => base_url());
@@ -434,6 +545,13 @@ class Main extends CI_Controller
         $data['categories'] = $this->category->get_all();
         $data['title'] = 'Полулярное';
         $data['content'] = $this->parser->parse('blog_popular', $data, TRUE);
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
         $this->parser->parse('template', $data);
@@ -445,13 +563,61 @@ class Main extends CI_Controller
         $data['categories'] = $this->category->get_all();
         $data['categories_for_main_page'] = [];
         $data['title'] = 'Личная страница Salomat.tj';
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['phone'] =  $user['login'] ?? null;
+        $data['birth_date'] =  $user['birth_date'] ?? null;
+        $data['gender'] =  $user['gender'] ?? null;
+        $data['address'] =  $user['address'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+
+        $this->db->select('*');
+        $this->db->from('user_order');
+        $this->db->order_by("order_id", "desc");
+        $this->db->where('user_id', $this->session->userdata('user_id'));
+        $this->db->join('order', 'user_order.order_id = order.id');
+        $query = $this->db->get();
+        $order = $query->result();
+        foreach ( $order as $item) {
+            $this->db->select('*');
+            $this->db->from('product_order');
+            $this->db->where('order_id', $item->id);
+            $this->db->join('product', 'product_order.product_id = product.id');
+            $this->db->order_by('order_id ASC');
+            $product = $this->db->get();
+            if ($product){
+                $this->db->select('delivery_price');
+                $this->db->from('delivery');
+                $this->db->where('delivery_id', $item->delivery_type);
+                $delivery = $this->db->get();
+            }
+            if ($product){
+                $this->db->select('status_text');
+                $this->db->from('status');
+                $this->db->where('id', $item->status_id);
+                $status = $this->db->get();
+            }
+            $order_product [] = [
+                'order' => $item,
+                'status' => $status->result(),
+                'delivery' => $delivery->result(),
+                'products' => $product->result()
+            ];
+        }
+
+        $data['orders'] = $order_product ?? null;
+
+        $data['favorites'] = $this->user_favorite($this->session->userdata('user_id'));
         $data['content'] = $this->parser->parse('user_info', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
 
         $this->parser->parse('template', $data);
     }
-    
+
     public function get_srch_results()
     {
         $data['base_url'] = base_url();
@@ -481,13 +647,13 @@ class Main extends CI_Controller
     {
         if ($this->input->get("cat_id") && $this->input->get("page") && $this->input->get("sort")) {
             if ($this->input->get("min_price") == "" && $this->input->get("max_price") == "") {
-                $res = $this->product->get_products_by_category($this->input->get("cat_id"), $this->input->get("page"), $this->input->get("sort"));
+                $res = $this->product->get_products_by_category($this->input->get("cat_id"), $this->input->get("sort"), $this->input->get("page"));
             } else {
                 $res = $this->product
                     ->get_products_by_category(
                         $this->input->get("cat_id"),
-                        $this->input->get("page"),
                         $this->input->get("sort"),
+                        $this->input->get("page"),
                         $this->input->get("min_price"),
                         $this->input->get("max_price")
                     );
@@ -580,6 +746,8 @@ class Main extends CI_Controller
         $data['products'] = $answer;
         $data['categories'] = $this->category->get_all();
         $data['title'] = "Чек | Саломат-Аптека";
+
+
         $data['content'] = $this->parser->parse('user_order_receipt', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
@@ -621,6 +789,14 @@ class Main extends CI_Controller
             $data['text'] = $page_info['about'];
         }
         $data['content'] = $this->parser->parse('page', $data, TRUE);
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
+        ;
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
         $this->parser->parse('template', $data);
@@ -632,6 +808,13 @@ class Main extends CI_Controller
         $this->load->model('order');
         $data['categories'] = $this->category->get_all();
         $data['title'] = 'Отправить рецепт | Саломат-Аптека';
+        $data['auth'] =   $this->input->cookie('auth_id');
+        $this->load->library('session');
+        $user = $this->getUser( $this->session->userdata('user_id'));
+        $data['name'] =  $user['name'] ?? null;
+        $data['image'] =  $user['image'] ?? null;
+        $data['email'] =  $user['email'] ?? null;
+
         $data['content'] = $this->parser->parse('recipe', $data, TRUE);
         $data['header'] = $this->parser->parse('parts/header', $data, TRUE);
         $data['footer'] = $this->parser->parse('parts/footer', $data, TRUE);
@@ -668,8 +851,9 @@ class Main extends CI_Controller
             echo json_encode(-1);
         }
     }
+
     public function update_sms($sms_id, $array, $source_id, $source_name)
-    {   
+    {
         $date = new DateTime($array['msg']['timestamp']);
         $new_date = date_format($date, 'Y-m-d H:i:s');
         $new_arr = array(
@@ -752,7 +936,11 @@ class Main extends CI_Controller
             $rand_num = rand(1000, 9999);
             $array['code'] = $rand_num;
             $answer = $this->order->add($array);
-            
+            $this->load->library('session');
+            $user = $this->getUser( $this->session->userdata('user_id'));
+
+            $this->order->save_user_order_status_change($user['user_id'], $answer['order_id'], 1, 1, $this->input->post("comment"));
+
             $sms_id = $this->sms->add(array('sms_mobile' => $array["phone_number"], 'sms_text' => $rand_num));
             $sms_resp = $this->create_url_f55($array["phone_number"], $rand_num, $sms_id);
 
@@ -769,47 +957,47 @@ class Main extends CI_Controller
     }
 
     public function checkOrderCode()
-	{
-		$this->load->model('order');
-		$this->load->model('sms');
-		$obj = $this->input->get();
-		$answer = $this->order->check_order($obj['order_id'], $obj['order_phone'], $obj['order_code']);
-		if ($answer == 0) {
-			echo json_encode(0);
-		} else {
-			$this->order->change_status($obj['order_id'], 1);
-			$order = $this->order->get($obj['order_id']);
+    {
+        $this->load->model('order');
+        $this->load->model('sms');
+        $obj = $this->input->get();
+        $answer = $this->order->check_order($obj['order_id'], $obj['order_phone'], $obj['order_code']);
+        if ($answer == 0) {
+            echo json_encode(0);
+        } else {
+            $this->order->change_status($obj['order_id'], 1);
+            $order = $this->order->get($obj['order_id']);
 
             //sendTelegram
             $text = "Пришел заказ #".$obj['order_id'].' номер: '.$obj['order_phone'].' https://salomat.tj/index.php/Admin/orderProducts/'.$obj['order_id'];
             $this->sendTelegramText($text);
 
-			$sms_id = $this->sms->add(array('sms_mobile' => $obj['order_phone'], 'sms_text' => 'По данной ссылке вы можете проверить ваш заказ: ' . base_url() . 'index.php/main/userOrderReceipt/' . $order['hash']));
+            $sms_id = $this->sms->add(array('sms_mobile' => $obj['order_phone'], 'sms_text' => 'По данной ссылке вы можете проверить ваш заказ: ' . base_url() . 'index.php/main/userOrderReceipt/' . $order['hash']));
             $sms_resp = $this->create_url_f55($obj['order_phone'], 'По данной ссылке вы можете проверить ваш заказ: ' . base_url() . 'index.php/main/userOrderReceipt/' . $order['hash'], $sms_id);
-			
-			$this->update_sms($sms_id, $sms_resp, $obj['order_id'], 'order');   
 
-			$order_prods = $this->order->get_order_prods($obj['order_id']);
-			$array = array('stat' => 1, 'order' => $order, 'products' => $order_prods);
-			echo json_encode($array);
-		}
-	}
+            $this->update_sms($sms_id, $sms_resp, $obj['order_id'], 'order');
+
+            $order_prods = $this->order->get_order_prods($obj['order_id']);
+            $array = array('stat' => 1, 'order' => $order, 'products' => $order_prods);
+            echo json_encode($array);
+        }
+    }
 
     private function sendTelegramText($text)
-	{
-		$text = urlencode($text);
+    {
+        $text = urlencode($text);
 
-		$arrContextOptions=array(
-    			"ssl"=>array(
-       		 	"verify_peer"=>false,
-        		"verify_peer_name"=>false,
-		    ),
-		);  
+        $arrContextOptions=array(
+            "ssl"=>array(
+                "verify_peer"=>false,
+                "verify_peer_name"=>false,
+            ),
+        );
 
-		file_get_contents("https://salomat.tj/bot/tsend.php?text=".$text, false, stream_context_create($arrContextOptions));
-	}
+        file_get_contents("https://salomat.tj/bot/tsend.php?text=".$text, false, stream_context_create($arrContextOptions));
+    }
 
-    public function startTransMyBabilon() 
+    public function startTransMyBabilon()
     {
         $this->load->model("order");
         if ($this->input->post("products")) {
@@ -819,6 +1007,8 @@ class Main extends CI_Controller
                 $array["delivery_id"] = 1;
             }
             $res = $this->order->add($array);
+            $user = $this->getUser( $this->session->userdata('user_id'));
+            $this->order->save_user_order_status_change($user['user_id'], $res['order_id'], 1, 1, $this->input->post("comment"));
             $delivery_info = $this->delivery->get($array["delivery_id"]);
             $order_id = null;
             if ($res["stat"] == 1) {
@@ -873,14 +1063,15 @@ class Main extends CI_Controller
             }
             $returnArr = array('answ' => 1, 'info' => $result);
             if (isset($_COOKIE[$this->bUserInfoName])) {
-                unset($_COOKIE[$this->bUserInfoName]); 
-                setcookie($this->bUserInfoName, null, -1, '/'); 
+                unset($_COOKIE[$this->bUserInfoName]);
+                setcookie($this->bUserInfoName, null, -1, '/');
             }
-			echo json_encode($returnArr);
+            echo json_encode($returnArr);
         }
     }
 
-    public function marketPlaceWebHook(){
+    public function marketPlaceWebHook()
+    {
         $this->load->model("order");
         $returnedArray = json_decode(file_get_contents('php://input'), false);
         print_r($returnedArray);
@@ -908,10 +1099,10 @@ class Main extends CI_Controller
         $curl = curl_init($_url);
 
         curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
-            
+
         /* Define content type */
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-            
+
         /* Return json */
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
@@ -979,7 +1170,7 @@ class Main extends CI_Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => $method
         ));
-    
+
         $response = curl_exec($curl);
         $err = curl_error($curl);
         curl_close($curl);
@@ -1018,4 +1209,147 @@ class Main extends CI_Controller
     //     $data = file_get_contents($url);
     //     return $data;
     // }
+
+    public function user_favorite($user_id){
+
+        $this->db->select('product.*');
+        $this->db->from('product');
+        $this->db->join('favorites', 'product.id = favorites.favoriteable_id');
+        $this->db->where('favorites.user_id', $user_id);
+        $query = $this->db->get();
+        $array = $query->result_array();
+        $array = [];
+        foreach ($query->result_array() as $row) {
+            $rating = $this->get_rating($row['id']);
+            if (sizeof($rating) != 0) {
+                $row['prod_rating_average'] = $rating['prod_rating_average'];
+                $row['review_count'] = $rating['review_count'];
+            } else {
+                $row['prod_rating_average'] = '';
+                $row['review_count'] = 0;
+            }
+//
+//            $favorite = $this->get_favorite($row['id'],$user_id?:0);
+//            if (sizeof($favorite) != 0) {
+//                $row['is_favorite'] = true;
+//            } else {
+//                $row['is_favorite'] = false;
+//            }
+            $row['base_url'] = base_url();
+
+            $array[] = $row;
+        };
+//var_dump($array);
+        return $array;
+    }
+
+    public function get_rating($id)
+    {
+        $array = array();
+        $q_count = $this->db->query("SELECT COUNT(*) as count FROM `product_rating` WHERE `prod_id` = " . $id . " AND `status` = 1");
+        $arr_count = $q_count->result_array();
+        if ($arr_count[0]['count'] != 0) {
+            $this->db->select('*');
+            $this->db->from('product_rating');
+            $this->db->where('prod_id', $id);
+            $this->db->where('status', '1');
+            $query = $this->db->get();
+            $count = 0;
+            $ones = 0;
+            $twos = 0;
+            $threes = 0;
+            $fours = 0;
+            $fives = 0;
+            foreach ($query->result_array() as $pr) {
+                $count += $pr['star_rating'];
+                if ($pr['star_rating'] == 1) {
+                    $ones += 1;
+                } else if ($pr['star_rating'] == 2) {
+                    $twos += 1;
+                } else if ($pr['star_rating'] == 3) {
+                    $threes += 1;
+                } else if ($pr['star_rating'] == 4) {
+                    $fours += 1;
+                } else if ($pr['star_rating'] == 5) {
+                    $fives += 1;
+                }
+            }
+            $rating = round($count / $arr_count[0]['count']);
+            $array['prod_rating_average'] = $rating;
+
+            $array['prod_rating_each']['ones']['count'] = $ones;
+            $array['prod_rating_each']['ones']['percentage'] = round(($ones / $arr_count[0]['count']) * 100);
+
+            $array['prod_rating_each']['twos']['count'] = $twos;
+            $array['prod_rating_each']['twos']['percentage'] = round(($twos / $arr_count[0]['count']) * 100);
+
+            $array['prod_rating_each']['threes']['count'] = $threes;
+            $array['prod_rating_each']['threes']['percentage'] = round(($threes / $arr_count[0]['count']) * 100);
+
+            $array['prod_rating_each']['fours']['count'] = $fours;
+            $array['prod_rating_each']['fours']['percentage'] = round(($fours / $arr_count[0]['count']) * 100);
+
+            $array['prod_rating_each']['fives']['count'] = $fives;
+            $array['prod_rating_each']['fives']['percentage'] = round(($fives / $arr_count[0]['count']) * 100);
+
+            $array['review_count'] = $arr_count[0]['count'];
+        }
+
+        return $array;
+    }
+
+    public function get_favorite($id)
+    {
+        $array = array();
+        $q_count = $this->db->query("SELECT COUNT(*) as count FROM `favorites` WHERE `favoriteable_id` = " . $id . " AND `user_id` = 61");
+        $arr_count = $q_count->result_array();
+        if ($arr_count[0]['count'] != 0) {
+            $this->db->select('*');
+            $this->db->from('favorites');
+            $this->db->where('favoriteable_id', $id);
+            $this->db->where('user_id', '61');
+            $query = $this->db->get();
+            $array['is_favorite'] = $query->result_array();
+
+        }
+        return $array;
+    }
+
+    public function createOrder()
+    {
+        $this->load->model("order");
+        if ($this->input->post("products")) {
+            $array = $this->input->post();
+            $array['code'] = null;
+            if (!is_numeric($array["delivery_id"])) {
+                $array["delivery_id"] = 1;
+            }
+            $res = $this->order->add($array);
+            $user = $this->getUser( $this->session->userdata('user_id'));
+            $this->order->save_user_order_status_change($user['user_id'], $res['order_id'], 1, 1, $this->input->post("comment"));
+
+            echo $res['order_id'];
+        }
+    }
+
+    /**
+     * List PromoCode
+     *
+     * @return void
+     */
+    public function promo()
+    {
+        $this->load->model("PromoCode");
+
+        if ($this->input->get("promo_code")) {
+
+            $data = $this->PromoCode->get_promo_code($this->input->get("promo_code"));
+
+           echo json_encode($data[0]);
+
+        } else{
+            return false;
+        }
+    }
+
 }
