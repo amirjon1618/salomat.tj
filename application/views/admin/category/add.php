@@ -7,9 +7,9 @@
             <li><a href="{base_url}admin/categories"><i class="fa fa-dashboard"></i> Категории</a></li>
         <?php else : ?>
             <li><a href="{base_url}admin/categories"><i class="fa fa-dashboard"></i> Категории</a></li>
-            <!--        <li><a href="{base_url}admin/subCategories/--><?php //echo $parent_category['id'] 
+            <!--        <li><a href="{base_url}admin/subCategories/--><?php //echo $parent_category['id']
                                                                         ?>
-            <!--"><i class="fa fa-dashboard"></i> --><?php //echo $parent_category['category_name'] 
+            <!--"><i class="fa fa-dashboard"></i> --><?php //echo $parent_category['category_name']
                                                         ?>
             <!--</a></li>-->
             <li><a href="{base_url}admin/subCategories/{cat_parent_id}"><i class="fa fa-dashboard"></i> <?php echo $category['category_name'] ?></a></li>
@@ -48,44 +48,44 @@
                         <!--                -->
                         <!--                    <select name="categories" id="categories" class="form-control">-->
                         <!--                      <option value="0">-Выберите категорию-</option>-->
-                        <!--                --><?php //foreach ($categories as $cat): 
+                        <!--                --><?php //foreach ($categories as $cat):
                                                 ?>
                         <!---->
                         <!--                      <option value="--><?php //echo $cat['id']
                                                                     ?>
                         <!--">-->
-                        <!--                          --><?php //echo $cat['category_name']; 
+                        <!--                          --><?php //echo $cat['category_name'];
                                                             ?>
                         <!--                      </option>-->
-                        <!--                      --><?php //if (sizeof($cat['sub_cat']) != 0): 
+                        <!--                      --><?php //if (sizeof($cat['sub_cat']) != 0):
                                                         ?>
-                        <!--                        --><?php //foreach ($cat['sub_cat'] as $sub_c): 
+                        <!--                        --><?php //foreach ($cat['sub_cat'] as $sub_c):
                                                         ?>
                         <!--                                <option value="--><?php //echo $sub_c['id']
                                                                                 ?>
                         <!--">-->
-                        <!--                                --><?php //echo "-" . $sub_c['category_name']; 
+                        <!--                                --><?php //echo "-" . $sub_c['category_name'];
                                                                 ?>
                         <!--                                </option>-->
-                        <!--                                --><?php //if (sizeof($sub_c['sub_cat']) != 0): 
+                        <!--                                --><?php //if (sizeof($sub_c['sub_cat']) != 0):
                                                                 ?>
-                        <!--                                    --><?php //foreach ($sub_c['sub_cat'] as $val): 
+                        <!--                                    --><?php //foreach ($sub_c['sub_cat'] as $val):
                                                                     ?>
                         <!--                                      <option value="--><?php //echo $val['id']
                                                                                     ?>
                         <!--" disabled>-->
-                        <!--                                      --><?php // echo "--" . $val['category_name']; 
+                        <!--                                      --><?php // echo "--" . $val['category_name'];
                                                                         ?>
                         <!--                                      </option>-->
-                        <!--                                    --><?php //endforeach; 
+                        <!--                                    --><?php //endforeach;
                                                                     ?>
-                        <!--                                --><?php //endif; 
+                        <!--                                --><?php //endif;
                                                                 ?>
-                        <!--                                --><?php //endforeach; 
+                        <!--                                --><?php //endforeach;
                                                                 ?>
-                        <!--                           --><?php //endif; 
+                        <!--                           --><?php //endif;
                                                             ?>
-                        <!--                --><?php //endforeach; 
+                        <!--                --><?php //endforeach;
                                                 ?>
                         <!---->
                         <!--                    </select>-->

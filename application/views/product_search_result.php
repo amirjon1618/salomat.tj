@@ -84,7 +84,7 @@
 
     <script>
         var max_count_reached = false;
-   
+
         function add_to_cart(id, name, old_price, price, brand, pic, total_count, product_articule) {
             max_count_reached = false;
             var array = [];

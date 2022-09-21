@@ -551,16 +551,10 @@
 <script src="{base_url}js/jquery.validate.min.js"></script>
 <script src="{base_url}js/form_validation_messages_ru.js"></script>
 <script>
-    const idCount = count_input.parentElement.dataset.id
-    const _elem = JSON.parse(localStorage.getItem("product_list"))
-    let resCount;
-    try {
-        resCount = _elem.filter(elem => elem.product_id === idCount)[0].product_count;
-    } catch (error) {
-        resCount = 1
-    }
-    $('#count_input').val(resCount)
-
+    var count = 1;
+    var max_count_reached = false;
+    var total_count_global = '<?= $category_products['total_count_in_store']; ?>';
+    // var count_inp =
     function decrease_count() {
         $('#decrease_count').on('click', function() {
             resCount--;

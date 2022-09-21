@@ -25,7 +25,15 @@
 
         <div class="box-body">
           <br />
-
+            <?php if ( $user_info) : ?>
+                <table id="TableUser" class="table table-bordered table-hover">
+                   <tr> <thead><h3>Пользователь</h3></thead></tr>
+                    <tr>
+                        <th>Имя: <h4><?= $user_info[0]['name']?></h4></th>
+                        <th>Номер телефона: <h4><?= $user_info[0]['login']?></h4></th>
+                    </tr>
+                </table>
+            <?php endif; ?>
           <br />
           <table id="TableUser" class="table table-bordered table-hover">
             <thead>

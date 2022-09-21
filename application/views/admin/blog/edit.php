@@ -36,6 +36,7 @@
                         <div class="form-group">
                             <label for="srch_pr_inp">Продукты</label>
                             <select required data-placeholder="Выберите ..." multiple name="srch_pr_inp[]" id="srch_pr_inp" class="form-control">
+
                             </select>
                         </div>
                         <div class="box-footer">
