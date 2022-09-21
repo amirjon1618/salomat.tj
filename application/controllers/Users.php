@@ -77,7 +77,7 @@ class Users extends REST_Controller
                     'status' => FALSE,
                     'message' => $is_valid_token['message']
                 ];
-                $this->response($message, REST_Controller::HTTP_OK);
+                $this->response($message, REST_Controller::HTTP_UNAUTHORIZED);
             }
         }
     }
