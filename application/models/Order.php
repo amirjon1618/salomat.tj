@@ -534,6 +534,6 @@ class Order extends CI_Model
                 'products' => $product->result()
             ];
         }
-        return $order_product??null;
+        return $order??null;
     }
 }
