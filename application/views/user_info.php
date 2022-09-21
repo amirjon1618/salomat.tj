@@ -43,6 +43,7 @@
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab2" data-toggle="tab" href="#user-favorite" data-hash="#user-favorite" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-like.svg" alt="Icon">Избранное</a></li>
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab3" data-toggle="tab" href="#user-save" data-hash="#user-save" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-save.svg" alt="Icon">Безопасность</a></li>
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab4" data-toggle="tab" href="#phone-number" data-hash="#phone-number" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/header-phone.svg" alt="Icon" width="34px">Изменит телефон</a></li>
+                            <li class="nav-item5 px-5" role="presentation"><a style="color: #A8A8A8;" href="/" onclick="onRemoveLS()">Выход</a></li>
                         </ul>
                     </div>
                     <?php if (isset($auth)) : ?>
@@ -218,7 +219,7 @@
                                         <?php foreach ($favorites as $favorite) : ?>
 
                                             <div class="favorite-content" data-favoriteid="<?= $favorite['id'] ?>">
-                                                <div class="d-flex col-xs-3 col-lg-3 col-md-6 col-sm-6 pb-5 favorite-cc">
+                                                <div class="d-flex col-xs-3 col-lg-3 col-md-6 col-sm-6 favorite-cc">
                                                     <div class="ps-product ps-product--inner ps-product_of_the_day user-info_favorite">
                                                         <label>
                                                             <input onclick="deleteProduct(<?= $favorite['id'] ?>)" value="<?php $favorite['id'] ?>" <?php echo $favorite['id']  ?  'checked' : null  ?> type="checkbox" id="red">
@@ -307,7 +308,7 @@
                                     <div class="user-phone-content">
                                         <form class="up-content-info_form" id="changePhone">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-col col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-5" id="save-form">
+                                                <div class="form-col col-lg-12 col-md-12 col-sm-12 col-xs-12" id="save-form">
                                                     <label for="validationCustom02">Новый номер*</label>
                                                     <input type="number" pattern="\d*" maxlength="9" class="form-control" id="validationPhone" name="login" placeholder="+992 XXX XX XX XX" required value="<?php echo $phone ?>">
                                                     <button class="form-btn my-4">Изменить</button>
@@ -324,6 +325,17 @@
     </div>
 </div>
 <script>
+    function onRemoveLS() {
+        localStorage.removeItem("userId");
+        $.ajax({
+            type: "GET",
+            url: "{base_url}/users/web_log_out",
+            headers: {
+                "Accept": "application/json",
+            }
+        })
+
+    }
     $("#changePhone").on("submit", (e) => {
         e.preventDefault()
         if ($("#validationPhone").val() !== localStorage.getItem("ver-number")) {

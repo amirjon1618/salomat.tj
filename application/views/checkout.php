@@ -337,7 +337,7 @@
                 console.log(variantOne);
                 $('#prod_list_checkout').append(html);
             });
-            $('#prod_tot_pr_checkout').text(sum + ' смн.');
+            $('#prod_tot_pr_checkout').text(Math.round(sum) + ' смн.');
             countSumWithDelivery();
         }
     }
@@ -605,7 +605,7 @@
                     sum = Number(localStorage.getItem("promocode_discount")) || variant;
                 });
                 sum += ($('input[name=delivery]:checked').val() ? parseInt($('input[name=delivery]:checked').val()) : 0);
-                $('#tot_pr_checkout').text(sum + ' смн.');
+                $('#tot_pr_checkout').text(Math.round(sum) + ' смн.');
             }
         });
     }

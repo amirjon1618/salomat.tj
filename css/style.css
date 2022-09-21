@@ -5772,7 +5772,6 @@ textarea.form-control {
 }
 
 .ps-block--user-header .ps-block__right a {
-    display: flex !important;
     align-items: center;
     height: 44px;
     font-weight: 700;
