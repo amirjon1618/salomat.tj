@@ -1,25 +1,25 @@
 <div class="enter-btn-phone">
-        <div class="enter-btn-modal">
-            <div class="page-content">
-                <div class="form-v8-content">
-                    <div class="enter-form_pass">
-                        <div class="tab">
-                            <div class="tab-inner">
-                                <h3 class="tablinks text-center">Ваш номер изменён!</h3>
+    <div class="enter-btn-modal">
+        <div class="page-content">
+            <div class="form-v8-content">
+                <div class="enter-form_pass">
+                    <div class="tab">
+                        <div class="tab-inner">
+                            <h3 class="tablinks text-center">Ваш номер изменён!</h3>
+                        </div>
+                    </div>
+                    <form class="form-detail">
+                        <div class="tabcontent" id="sign-phone">
+                            <div class="form-row-last d-flex justify-content-center">
+                                <a href="#user-info" id="ok-btn" class="ok-btn" onclick="javascript:window.location.hash = '#user-info';window.location.reload()">OK</a>
                             </div>
                         </div>
-                        <form class="form-detail">
-                            <div class="tabcontent" id="sign-phone">
-                                <div class="form-row-last d-flex justify-content-center">
-                                    <a href="#user-info" id="ok-btn" class="ok-btn" onclick="javascript:window.location.hash = '#user-info';window.location.reload()">OK</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 <div id="homepage-3">
     <div class="ps-breadcrumb">
         <div class="container">
@@ -148,7 +148,7 @@
                                                             <?php foreach ($order['products'] as $product) : ?>
                                                                 <?php $price = $price + $product->product_sold_price ?>
                                                             <?php endforeach; ?>
-                                                            <td class="text-success"><?php echo $price + $order['delivery'][0]->delivery_price; ?></td>
+                                                            <td class="text-success"><?php echo $order['order']->total_price ?></td>
 
                                                             <td><img src="{base_url}img/arrow-down.svg" alt="Icon"></td>
                                                         </tr>
@@ -183,7 +183,7 @@
                                                                                 <td>Стоимост товаров: </td>
                                                                                 <td class="font-weight-bold"><?php echo $price; ?></td>
                                                                                 <td>Итого: </td>
-                                                                                <td class="font-weight-bold"> <?php echo $price + $order['delivery'][0]->delivery_price; ?></td>
+                                                                                <td class="font-weight-bold"> <?php echo $order['order']->total_price; ?></td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -403,20 +403,20 @@
 
 
     function delPhoto() {
-        
+
         <?= $image = null ?>
         let a = "<?php echo $image ?>"
         if (a === '') {
             var requestOptions = {
-            method: 'POST',
-            body: form,
-            redirect: 'follow'
-        };
+                method: 'POST',
+                body: form,
+                redirect: 'follow'
+            };
             fetch("{base_url}users/user_img?=save", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                window.location.reload()
-            })
+                .then(response => response.json())
+                .then(result => {
+                    window.location.reload()
+                })
 
             Array.from(document.querySelectorAll(".user_icon")).forEach(elem => elem.src = "{base_url}img/user.png")
         }
