@@ -679,8 +679,7 @@
                 <div class="ps-cart__footer">
                     <h3>Общая сумма:<strong class="total_cart_sum"></strong></h3>
                     <figure>
-                        <a class="ps-btn" href="{base_url}index.php/main/cart_shopping">Корзина</a>
-                        <a class="ps-btn checkout" href="{base_url}index.php/main/checkout">Оформление</a>
+                    <a class="ps-btn d-flex justify-content-center" href="{base_url}index.php/main/cart_shopping">Перейти в корзину</a>
                     </figure>
                 </div>
             </div>

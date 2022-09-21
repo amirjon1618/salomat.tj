@@ -499,66 +499,42 @@ class Order extends CI_Model
         $this->db->update('order', array('export' => 1), array('id' => $id));
     }
 
-//    public function user_orders($user_id)
-//    {
-//        $this->db->select('*');
-//        $this->db->from('user_order');
-//        $this->db->order_by("order_id", "desc");
-//        $this->db->where('user_id', $user_id);
-//        $this->db->join('order', 'user_order.order_id = order.id');
-//        $query = $this->db->get();
-//        $order = $query->result();
-//        foreach ($order as $item) {
-//            $this->db->select('*');
-//            $this->db->from('product_order');
-//            $this->db->where('order_id', $item->id);
-//            $this->db->join('product', 'product_order.product_id = product.id');
-//            $this->db->order_by('order_id ASC');
-//            $product = $this->db->get();
-//            if ($product) {
-//                $this->db->select('delivery_price');
-//                $this->db->from('delivery');
-//                $this->db->where('delivery_id', $item->delivery_type);
-//                $delivery = $this->db->get();
-//            }
-//            if ($product) {
-//                $this->db->select('status_text');
-//                $this->db->from('status');
-//                $this->db->where('id', $item->status_id);
-//                $status = $this->db->get();
-//            }
-//            $order_product[] = [
-//                'order' => $item,
-//                'status' => $status->result(),
-//                'delivery' => $delivery->result(),
-//                'products' => $product->result()
-//            ];
-//        }
-//        return $order_product??null;
-//    }
-
     public function user_orders($user_id)
     {
         $this->db->select('*');
         $this->db->from('user_order');
+        $this->db->order_by("order_id", "desc");
         $this->db->where('user_id', $user_id);
         $this->db->join('order', 'user_order.order_id = order.id');
-        $this->db->order_by("order_id", "desc");
         $query = $this->db->get();
         $order = $query->result();
-        $product = [];
-        foreach ($order as $item){
+
+        foreach ($order as $item) {
             $this->db->select('*');
             $this->db->from('product_order');
             $this->db->where('order_id', $item->id);
             $this->db->join('product', 'product_order.product_id = product.id');
             $this->db->order_by('order_id ASC');
-            $product  = $this->db->get();
+            $product = $this->db->get();
+            if ($product) {
+                $this->db->select('delivery_price');
+                $this->db->from('delivery');
+                $this->db->where('delivery_id', $item->delivery_type);
+                $delivery = $this->db->get();
+            }
+            if ($product) {
+                $this->db->select('status_text');
+                $this->db->from('status');
+                $this->db->where('id', $item->status_id);
+                $status = $this->db->get();
+            }
             $order_product[] = [
-
+                'order' => $item,
+                'status' => $status->result(),
+                'delivery' => $delivery->result(),
                 'products' => $product->result()
             ];
         }
-        return $order_product;
+        return $order_product??null;
     }
 }

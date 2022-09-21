@@ -84,7 +84,7 @@
 
                     </div>
                     <div class="ps-section__cart-actions">
-                        <a class="ps-btn ps-btn--outline checkout" href="{base_url}index.php/main/checkout">
+                        <a class="ps-btn ps-btn--outline checkout" onclick="orderCheckout()" href="{base_url}index.php/main/checkout">
                             Оформить заказ</a>
                     </div>
                 </div>
@@ -262,7 +262,7 @@
         if (localStorage.getItem("product_list") === null) {
             localStorage.removeItem("promocode_discount")
         }
-        $('.number-currency_total').text(`${localStorage.getItem('promocode_discount') || sum + 0}`);
+        $('.number-currency_total').text(`${sum + 0}`);
         totalSum = sum + 0;
         sum1 = sum;
     }
@@ -283,6 +283,8 @@
 
 
     // get PromoCode
+    let result = null;
+
     function onPromoCode() {
         var discount = "";
         var promo_code = $("#promo_code").val();
@@ -295,14 +297,13 @@
             dataType: 'json',
             success: function(data) {
                 discount = data.discount;
-                localStorage.setItem('promocode_discount', totalSum - (discount * sum1 / 100));
-                $('.number-currency_total').text(`${localStorage.getItem('promocode_discount')}`);
-                if (location.href !== ".checkout"){
-                    location.href = location.href(localStorage.removeItem("promocode_discount"))
-                }else {
-
-                }
+                result = totalSum - (discount * sum1 / 100);
+                $('.number-currency_total').text(`${result}`);
             }
         });
+    }
+
+    function orderCheckout() {
+        localStorage.setItem('promocode_discount', result);
     }
 </script>
