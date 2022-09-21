@@ -245,16 +245,15 @@ class Admin extends CI_Controller
      *
      * @return void
      */
-
     public function addPromoCode()
     {
         if ($this->user->myData['access'] != 100)
             die();
         $this->load->model("PromoCode");
-
+        $now = date('Y-m-d H:i');
         $data = array("base_url" => base_url(), "alert" => "");
         if ($this->input->post("AddBtn")) {
-            $dd = array("code" => $this->input->post("code"), "discount" => $this->input->post("discount"));
+            $dd = array("code" => $this->input->post("code"), "discount" => $this->input->post("discount"), "created_at" =>$now, 'updated_at' => $now);
             $this->PromoCode->add($dd);
             redirect(base_url("index.php/admin/promo_codes?do=addok"));
         }
@@ -265,19 +264,15 @@ class Admin extends CI_Controller
      *
      * @return void
      */
-
     public function editPromoCode($id)
     {
         if ($this->user->myData['access'] != 100)
             die();
         $this->load->model("PromoCode");
-
-        $data = array("base_url" => base_url(), "alert" => "");
-
         $data['tag'] = $this->PromoCode->get($id);
-
+        $now = date('Y-m-d H:i');
         if ($this->input->post("AddBtn")) {
-            $dd = array("code" => $this->input->post("code"), "discount" => $this->input->post("discount"));
+            $dd = array("code" => $this->input->post("code"), "discount" => $this->input->post("discount"), "created_at" => $now, 'updated_at' => $now);
             $this->PromoCode->update($id, $dd);
             redirect(base_url("index.php/admin/promo_codes?do=addok"));
         }
@@ -340,7 +335,9 @@ class Admin extends CI_Controller
             $dd = array(
                 "blog_title" => $this->input->post("blog_title"),
                 "blog_about" => $this->input->post("blog_about"),
-                "tags" => $this->input->post("tags")
+                "tags" => $this->input->post("tags"),
+                "products" => $this->input->post("srch_pr_inp"),
+
                 // "blog_created_at" => $now_date
             );
             $this->blog->add($dd);
@@ -361,7 +358,9 @@ class Admin extends CI_Controller
 
         $blog = $this->blog->get($id);
         $tags = $this->blog->get_blog_tags($id);
+        $srch_pr_inp = $this->blog->get_blog_procucts($id);
         $data['tags'] = $tags;
+        $data['srch_pr_inp'] = $srch_pr_inp;
         $data['blog_about'] = $blog['blog_about'];
         $data['blog_title'] = $blog['blog_title'];
         if ($this->input->post("AddBtn")) {

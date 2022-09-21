@@ -44,8 +44,8 @@
                             <select required data-placeholder="Выберите ..." multiple name="srch_pr_inp[]" id="srch_pr_inp" class="form-control">
                                 <?php if (sizeof($srch_pr_inp) != 0) : ?>
                                     <?php foreach ($srch_pr_inp as $value) : ?>
-                                        <option value="<?= $value['tag_id']; ?>" selected>
-                                            <?= $value['tag_name']; ?></option>
+                                        <option value="<?= $value['id']; ?>" selected>
+                                            <?= $value['text']; ?></option>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                             </select>
