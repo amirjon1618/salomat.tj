@@ -4,7 +4,7 @@ use Restserver\Libraries\REST_Controller;
 
 require APPPATH. 'libraries/REST_Controller.php';
 
-class PromoCode extends REST_Controller
+class PromoCodes extends REST_Controller
 {
     /**
      * Construction
@@ -13,14 +13,8 @@ class PromoCode extends REST_Controller
 
         parent::__construct();
 
-        $this->load->helper('security');
-        $this->load->model('product');
-        $this->load->library('form_validation');
         $this->load->database();
-        $this->load->helper('cookie');
-        $this->load->helper('url');
         $this->load->model('PromoCode');
-        $this->load->model('order');
 
     }
 
@@ -34,19 +28,16 @@ class PromoCode extends REST_Controller
         if ($this->input->get("promo_code")) {
 
             $data = $this->PromoCode->get_promo_code($this->input->get("promo_code"));
-
             $message = [
-                'status'    => true,
-                'data'      => $data[0]
+                'status'    => !empty($data[0]) ? true : false,
+                'data'      => $data[0] ?? null
             ];
-
             $this->response($message, REST_Controller::HTTP_OK);
         } else {
 
             $message = [
                 'status' => false
             ];
-
             $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
         }
     }

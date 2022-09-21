@@ -14,13 +14,31 @@ class Orders extends REST_Controller
         parent::__construct();
 
         $this->load->helper('security');
-        $this->load->model('product');
         $this->load->library('form_validation');
         $this->load->database();
-        $this->load->helper('cookie');
-        $this->load->helper('url');
-        $this->load->model('user');
         $this->load->model('order');
+
+    }
+
+    /**
+     * Get orders list
+     *
+     * @return void
+     */
+    public function index_get()
+    {
+        header("Access-Control-Allow-Origin: *");
+
+        $user_id = $this->input->get('user_id');
+        $headers = $this->input->request_headers();
+        $platform = $headers['platform'] ?? 'android';
+
+        if ($platform == 'IOS') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $_POST = $data;
+        }
+
+        $this->response($this->order->user_orders($user_id), REST_Controller::HTTP_OK);
 
     }
 
