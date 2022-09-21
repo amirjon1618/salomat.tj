@@ -4,7 +4,7 @@ use Restserver\Libraries\REST_Controller;
 
 require APPPATH. 'libraries/REST_Controller.php';
 
-class PromoCodes extends REST_Controller
+class Promos extends REST_Controller
 {
     /**
      * Construction
