@@ -508,6 +508,7 @@ class Order extends CI_Model
         $this->db->join('order', 'user_order.order_id = order.id');
         $query = $this->db->get();
         $order = $query->result();
+        $order_product = [];
         foreach ($order as $item) {
             $this->db->select('*');
             $this->db->from('product_order');
@@ -527,7 +528,7 @@ class Order extends CI_Model
                 $this->db->where('id', $item->status_id);
                 $status = $this->db->get();
             }
-            $order_product[] = [
+            $order_product = [
                 'order' => $item,
                 'status' => $status->result(),
                 'delivery' => $delivery->result(),
