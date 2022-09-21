@@ -528,7 +528,7 @@ class Order extends CI_Model
                 $this->db->where('id', $item->status_id);
                 $status = $this->db->get();
             }
-            $order_product = [
+            $order_product[] = [
                 'order' => $item,
                 'status' => $status->result(),
                 'delivery' => $delivery->result(),
