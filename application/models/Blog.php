@@ -305,6 +305,52 @@ class Blog extends CI_Model
         return $array;
     }
 
+    public function get_blog_procucts($id,$user_id = '')
+    {
+        $array = array();
+        $this->db->select('*');
+        $this->db->from('blog_product');
+        $this->db->where('blog_id', $id);
+        $this->db->join('product', 'blog_product.product_id = product.id');
+        $query = $this->db->get();
+        foreach ($query->result_array() as $row) {
+            $rating = $this->get_rating($row['id']);
+            $row['product_brand'] = $this->get_other_fields($row['product_brand'], 'brand');
+            if (sizeof($rating) != 0) {
+                $row['prod_rating_average'] = $rating['prod_rating_average'];
+                $row['review_count'] = $rating['review_count'];
+            } else {
+                $row['prod_rating_average'] = '';
+                $row['review_count'] = 0;
+            }
+            if (!isset($user_id))
+                $user_id = $this->session->userdata('user_id');
+            $favorite = $this->get_favorite($row['id'], $user_id);
+            if (sizeof($favorite) != 0) {
+                $row['is_favorite'] = true;
+            } else {
+                $row['is_favorite'] = false;
+            }
+            $row['base_url'] = base_url();
+            $array[] = $row;
+        }
+        return $array;
+    }
+
+    public function blog_procucts($id)
+    {
+        $array = array();
+        $this->db->select('*');
+        $this->db->from('blog_product');
+        $this->db->where('blog_id', $id);
+        $this->db->join('product', 'blog_product.product_id = product.id');
+        $qq = $this->db->get();
+        foreach ($qq->result_array() as $row) {
+            $array[] = $row;
+        }
+        return $array;
+    }
+
     public function get_blog_avatars($id)
     {
         $array = array();
@@ -387,7 +433,10 @@ class Blog extends CI_Model
     public function add($array)
     {
         $tags = $array['tags'];
+        $products = $array['products'];
+//        $products = $array['products'];
         unset($array['tags']);
+        unset($array['products']);
         $this->db->insert('blog', $array);
         $blog_id = $this->db->insert_id();
         if (sizeof($tags) != 0) {
@@ -396,6 +445,13 @@ class Blog extends CI_Model
                 $this->db->insert('blog_tag', $arr);
             }
         }
+        if (sizeof($products) != 0) {
+            foreach ($products as $product_id) {
+                $arr = array('product_id' => $product_id, 'blog_id' => $blog_id);
+                $this->db->insert('blog_product', $arr);
+            }
+        }
+
         return $this->db->insert_id();
     }
 

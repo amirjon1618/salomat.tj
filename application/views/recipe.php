@@ -202,7 +202,7 @@
     }
 
     function validatePhone(phoneNumber) {
-        var phoneNumberPattern = /^\d{9}$/;
+        var phoneNumberPattern = "";
         return phoneNumberPattern.test(phoneNumber);
     }
 

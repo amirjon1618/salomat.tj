@@ -287,11 +287,16 @@ class Order extends CI_Model
             return array('stat' => -1);
         }
         foreach ($array['products'] as $product) {
+            $this->db->select('*');
+            $this->db->from('product');
+            $this->db->where('id', $product['product_id']);
+            $q = $this->db->get();
+            $order_prods = $q->result_array();
             $another_arr = array(
                 'product_id' => $product['product_id'],
                 'order_id' => $id,
                 'total_count' => $product['product_count'],
-                'product_sold_price' => $product['product_price']
+                'product_sold_price' => $order_prods[0]['product_price']
             );
             $this->db->insert('product_order', $another_arr);
 
@@ -415,6 +420,20 @@ class Order extends CI_Model
         return $array;
     }
 
+    public function get_user($order_id)
+    {
+        $this->db->select('*');
+        $this->db->from('user_order');
+        $this->db->where('order_id', $order_id);
+        $this->db->join('users', 'users.user_id = user_order.user_id');
+        $query = $this->db->get();
+        $array = [];
+        foreach ($query->result_array() as $row) {
+            $array[] = $row;
+        }
+        return $array;
+    }
+
     public function filter_pages($arr)
     {
         if (sizeof($arr) > 3) {
@@ -478,5 +497,68 @@ class Order extends CI_Model
     public function update_export($id)
     {
         $this->db->update('order', array('export' => 1), array('id' => $id));
+    }
+
+//    public function user_orders($user_id)
+//    {
+//        $this->db->select('*');
+//        $this->db->from('user_order');
+//        $this->db->order_by("order_id", "desc");
+//        $this->db->where('user_id', $user_id);
+//        $this->db->join('order', 'user_order.order_id = order.id');
+//        $query = $this->db->get();
+//        $order = $query->result();
+//        foreach ($order as $item) {
+//            $this->db->select('*');
+//            $this->db->from('product_order');
+//            $this->db->where('order_id', $item->id);
+//            $this->db->join('product', 'product_order.product_id = product.id');
+//            $this->db->order_by('order_id ASC');
+//            $product = $this->db->get();
+//            if ($product) {
+//                $this->db->select('delivery_price');
+//                $this->db->from('delivery');
+//                $this->db->where('delivery_id', $item->delivery_type);
+//                $delivery = $this->db->get();
+//            }
+//            if ($product) {
+//                $this->db->select('status_text');
+//                $this->db->from('status');
+//                $this->db->where('id', $item->status_id);
+//                $status = $this->db->get();
+//            }
+//            $order_product[] = [
+//                'order' => $item,
+//                'status' => $status->result(),
+//                'delivery' => $delivery->result(),
+//                'products' => $product->result()
+//            ];
+//        }
+//        return $order_product??null;
+//    }
+
+    public function user_orders($user_id)
+    {
+        $this->db->select('*');
+        $this->db->from('user_order');
+        $this->db->where('user_id', $user_id);
+        $this->db->join('order', 'user_order.order_id = order.id');
+        $this->db->order_by("order_id", "desc");
+        $query = $this->db->get();
+        $order = $query->result();
+        $product = [];
+        foreach ($order as $item){
+            $this->db->select('*');
+            $this->db->from('product_order');
+            $this->db->where('order_id', $item->id);
+            $this->db->join('product', 'product_order.product_id = product.id');
+            $this->db->order_by('order_id ASC');
+            $product  = $this->db->get();
+            $order_product[] = [
+
+                'products' => $product->result()
+            ];
+        }
+        return $order_product;
     }
 }

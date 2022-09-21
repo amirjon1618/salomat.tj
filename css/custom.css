@@ -213,7 +213,7 @@ body {
 }
 
 .navigation .navigation__right {
-   padding-left: 70px;
+    padding-left: 55px;
 }
 
 .ps-tab {
@@ -409,14 +409,14 @@ body {
    font-size: 14px;
 }
 .recipe_div_main {
-   background-image: url("/img/pills.svg");
-   background-size: cover;
-   height: 160px;
-   padding-left: 40px;
-   padding-top: 80px;
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
+    background-image: url('/img/pills.svg');
+    background-size: cover;
+    height: 170px;
+    padding-left: 40px;
+    padding-top: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 @media (min-width: 320px) and (max-width: 480px) {
    .recipe_div_main {
@@ -571,12 +571,12 @@ body {
 }
 
 .prods_slider span {
-   font-style: normal;
-   font-weight: 700;
-   font-size: 14px;
-   color: #1e323c;
-   padding: 6px 15px;
-   line-height: 22px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    color: #1E323C;
+    padding: 6px 15px 6px 15px;
+    line-height: 22px;
 }
 
 .prods_slider del {
@@ -790,14 +790,13 @@ textarea.error {
 .sort_by_price_mobile,
 .srch_res_sort_by_price,
 .sales_res_sort_by_price {
-   padding: 10px;
-   background: #1ebebe;
-   border: 0;
-   font-size: 16px;
-   font-weight: bold;
-   /* margin-top: 30px; */
-   box-shadow: none !important;
-   width: 100%;
+    padding: 10px;
+    background: #89e486;
+    border: 0;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 30px;
+    box-shadow: none !important;
 }
 
 .sort_by_price:hover,
@@ -1691,10 +1690,10 @@ button {
 }
 
 #count_input {
-   padding: 0 25px 0px 25px !important;
-   border-radius: 5px;
-   font-size: 18px;
-   color: #6D6D6D;
+    padding: 0 28px 5px 40px !important;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #6D6D6D;
 }
 
 .pr_side_icons {
@@ -2172,3 +2171,5 @@ button {
    font-size: 14px;
 }
 /* CART SHOPPING ENDS HERE  */
+
+
