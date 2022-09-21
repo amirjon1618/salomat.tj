@@ -27,9 +27,16 @@ class Orders extends REST_Controller
      */
     public function index_get()
     {
+        header("Access-Control-Allow-Origin: *");
 
         $user_id = $this->input->get('user_id');
+        $headers = $this->input->request_headers();
+        $platform = $headers['platform'] ?? 'android';
 
+        if ($platform == 'IOS') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $_POST = $data;
+        }
 
         $this->response($this->order->user_orders($user_id), REST_Controller::HTTP_OK);
 
