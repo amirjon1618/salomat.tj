@@ -574,4 +574,92 @@ class Blog extends CI_Model
 
         $this->db->delete("blog_images", array('id' => $id));
     }
+
+    public function get_with_tag($page = 1, $tag_id = 0)
+    {
+
+        $tag_id = json_decode($tag_id);
+        $array = array();
+        $this->db->select("COUNT(*) as total_blog_items");
+        $this->db->from('blog_tag');
+        $this->db->where_in('blog_tag.tag_id', $tag_id);
+        if ($tag_id) {
+            $this->db->join('blog', 'blog.id = blog_tag.blog_id');
+            $this->db->join('tag', 'tag.id = blog_tag.tag_id');
+        }
+        $qq = $this->db->get();
+        $tags = $qq->result_array();
+//        var_dump($tags);
+        $total_pages = 0;
+
+        foreach ($qq->result_array() as $row) {
+            if ($row['total_blog_items'] > 0)
+                $total_pages = ceil($row['total_blog_items'] / $this->per_page_main);
+        }
+
+        $linkk = base_url("index.php/admin/blogs?");
+//        if ($tag_id != 0) {
+//            $linkk = $linkk . "tag_id=" . $tag_id . '&';
+//        }
+        $linkk = $linkk . 'page=';
+        // $array['link'] = $linkk;
+        $pages = array();
+        for ($i = 1; $i <= $total_pages; $i++) {
+            if ($i == $page) {
+                $pages[] = array(
+                    "page" => $i,
+                    "current_page" => $page,
+                    "total_pages" => $total_pages,
+                    "base_url" => base_url(),
+                    "link" => $linkk,
+                    "current" => 'active'
+                );
+            } else {
+                $pages[] = array(
+                    "page" => $i,
+                    "current_page" => $page,
+                    "total_pages" => $total_pages,
+                    "base_url" => base_url(),
+                    "link" => $linkk,
+                    "current" => ''
+                );
+            }
+        }
+        $rr = $this->filter_pages($pages, $page);
+        $array['pages_info']['pages'] = $rr;
+
+        if ($page > 1 & $page <= $total_pages) {
+            $array['pages_info']['prev_page'] = $page - 1;
+        }
+        if ($page < $total_pages) {
+            $array['pages_info']['next_page'] = $page + 1;
+        }
+        if ($page <= $total_pages) {
+            $querrry = "blog.*";
+            if ($tag_id != 0) {
+                $querrry .= ", blog_tag.blog_id, blog_tag.tag_id, tag.tag_name";
+            }
+            $this->db->select($querrry);
+            $this->db->from('blog');
+            if ($tag_id != 0) {
+                $this->db->join('blog_tag', 'blog_tag.blog_id = blog.id');
+                $this->db->join('tag', 'tag.id = blog_tag.tag_id');
+                $this->db->where_in('tag.id', $tag_id);
+            }
+            $this->db->limit($this->per_page_main, ($page - 1) * $this->per_page_main);
+            $query = $this->db->get();
+
+            $array=[];
+            foreach ($query->result_array() as $row) {
+                $row['base_url'] = base_url();
+                setlocale(LC_ALL, 'ru_RU.UTF-8');
+                $row['blog_date'] = strftime("%B %d, %Y", strtotime($row['blog_created_at']));
+                $row['blog_pic'] = $this->get_blog_avatar($row['id']);
+                $row['blog_tags'] = $this->get_blog_tags($row['id']);
+                $array []= $row;
+            }
+        } else {
+        }
+        return $array;
+    }
 }
