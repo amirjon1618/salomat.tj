@@ -44,13 +44,14 @@ class Blogs extends REST_Controller {
     public function blog_tag_post()
     {
         $tag_id = $this->input->post('tag_id');
+        $ttth= json_encode($tag_id);
+
         $page = $this->input->post('page');
-        $blogs = [];
-        foreach ($tag_id as $id){
-            $blog [] = $this->blog->get_all_main($page = 1,$id);
-            $blogs[]= $blog;
-        }
-        $data['blog'] = $blog;
+
+
+            $blog = $this->blog->get_with_tag($page ,$ttth);
+
+        $data['blogs'] = $blog;
         if (sizeof($blog) == '') {
             $this->response($data,REST_Controller::HTTP_NO_CONTENT);
             return;
