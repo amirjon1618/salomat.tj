@@ -5,7 +5,7 @@
                 <ul class="breadcrumb ">
                     <li><a href="{base_url}index.php/main">Главная </a></li>
                     <li>
-                        Блог </li>
+                    <a href="{base_url}main/blogpopular">Блог </a></li>
                     <li>
                         Семь основных причин, почему вакцинироваться должен каждый </li>
                 </ul>

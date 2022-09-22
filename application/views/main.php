@@ -1,6 +1,6 @@
 <div class="main-loader_icon">
-        <img class="rot" src="{base_url}img/preloader.png" alt="load" width="128px">
-    </div>
+    <img class="rot" src="{base_url}img/preloader.png" alt="load" width="128px">
+</div>
 <div id="homepage-3">
     <div class="ps-home-banner">
         <div class="container recipe_container_div rcd-position">
@@ -208,7 +208,9 @@
                             <div class="blog-articles__nav">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb bg-content bg-white">
-                                        <li class="breadcrumb-item ba-first"><a href="#">Блог </a></li>
+                                        <li class="breadcrumb-item ba-first">
+                                            <h3>Блог </h3>
+                                        </li>
                                         <a href="{base_url}main/blogpopular">
                                             <li class="active ba-last" aria-current="page" style="padding: 0 10px;">все статьи ></li>
                                         </a>
@@ -473,7 +475,9 @@
     //         $('#count_input').val(count);
     //     })
     // }
-
+    if (window.innerWidth <= 991) {
+        window.history.pushState({}, '', '?type=2')
+    }
 
     function addToCart(res) {
         max_count_reached = false;
@@ -581,6 +585,7 @@
         fill: #DD2E44;
         stroke: #DD2E44 !important;
     }
+
     img.rot {
         animation: 1s linear 0s normal none infinite running rot;
         -webkit-animation: 1s linear 0s normal none infinite running rot;

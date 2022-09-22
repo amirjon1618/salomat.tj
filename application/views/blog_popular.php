@@ -3,17 +3,15 @@
                 <div class="container">
                         <div class="ps-container category-products_breadcrumb padding">
                                 <ul class="breadcrumb">
-                                        <li><a href="{base_url}index.php/main">Главная /</a></li>
+                                        <li><a href="{base_url}index.php/main">Главная </a></li>
                                         <li>
                                                 Блог </li>
-                                        <li>
-                                                Все статьи </li>
                                 </ul>
                         </div>
                 </div>
         </div>
         <div class="container my-5 pb-5">
-                <h2 class="mb-5">Полулярное</h2>
+                <h2 class="mb-5">Блог</h2>
                 <div class="popular-blogs row pb-5">
 
                         
