@@ -367,7 +367,8 @@ class Admin extends CI_Controller
             $dd = array(
                 "blog_title" => $this->input->post("blog_title"),
                 "blog_about" => $this->input->post("blog_about"),
-                "tags" => $this->input->post("tags")
+                "tags" => $this->input->post("tags"),
+                "products" => $this->input->post("srch_pr_inp"),
             );
             $this->blog->update($id, $dd);
             redirect(base_url("index.php/admin/blogs?do=addok"));
@@ -794,6 +795,7 @@ class Admin extends CI_Controller
                 "slider_name" => $this->input->post("slider_name"),
                 "slider_link" => $this->input->post("slider_link"),
                 "slider_pic" => $img['file_name'],
+                "type" => $this->input->post("type"),
             );
             if ($cat_id != '') {
                 $dd['slider_category_id'] =  $cat_id;
@@ -844,6 +846,7 @@ class Admin extends CI_Controller
                 if ($this->upload->do_upload("userfile")) {
                     $img = $this->upload->data();
                     $img_link = $img['file_name'];
+
                 }
                 if ($this->upload->display_errors() != '') {
                     $data['alert'] = $this->createAlert($this->upload->display_errors());
@@ -853,6 +856,7 @@ class Admin extends CI_Controller
             $dd = array(
                 "slider_name" => $this->input->post("slider_name"),
                 "slider_link" => $this->input->post("slider_link"),
+                "type" => $this->input->post("type"),
             );
             if ($img_link != null)
                 $dd["slider_pic"] = $img['file_name'];

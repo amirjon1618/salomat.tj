@@ -314,24 +314,6 @@ class Blog extends CI_Model
         $this->db->join('product', 'blog_product.product_id = product.id');
         $query = $this->db->get();
         foreach ($query->result_array() as $row) {
-            $rating = $this->get_rating($row['id']);
-            if (sizeof($rating) != 0) {
-                $row['prod_rating_average'] = $rating['prod_rating_average'];
-                $row['review_count'] = $rating['review_count'];
-            } else {
-                $row['prod_rating_average'] = '';
-                $row['review_count'] = 0;
-            }
-            if (!isset($user_id))
-                $user_id = $this->session->userdata('user_id');
-
-            $favorite = $this->product->get_favorite($row['id'], $user_id);
-            if (sizeof($favorite) != 0) {
-                $row['is_favorite'] = true;
-            } else {
-                $row['is_favorite'] = false;
-            }
-            $row['base_url'] = base_url();
             $array[] = $row;
         }
         return $array;
@@ -541,11 +523,19 @@ class Blog extends CI_Model
     {
         $this->db->delete('blog_tag', array('blog_id' => $id));
         $tags = $array['tags'];
+        $products = $array['products'];
         unset($array['tags']);
+        unset($array['products']);
         if (sizeof($tags) != 0) {
             foreach ($tags as $tag_id) {
                 $arr = array('tag_id' => $tag_id, 'blog_id' => $id);
                 $this->db->insert('blog_tag', $arr);
+            }
+        }
+        if (sizeof($products) != 0) {
+            foreach ($products as $product_id) {
+                $arr = array('product_id' => $product_id, 'blog_id' => $id);
+                $this->db->insert('blog_product', $arr);
             }
         }
         $this->db->update('blog', $array, array('id' => $id));
