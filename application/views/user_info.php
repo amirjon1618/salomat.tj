@@ -287,17 +287,18 @@
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
                                                         <label for="exampleInputPassword1">Пароль*</label>
-                                                        <input type="password" class="form-control form-control-save" name="password" id="validationCustom01 first-password" placeholder="Введите новый пароль" required>
+                                                        <input type="password" class="form-control form-control-save" name="password" id="first-password" placeholder="Введите новый пароль" required>
                                                     </div>
                                                     <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                         <label for="exampleInputPassword2">Повторите пароль*</label>
-                                                        <input type="password" class="form-control form-control-save" name="password_confirm" id="validationCustom02 second-password" placeholder="Введите повторно пароль" required>
+                                                        <input type="password" class="form-control form-control-save" name="password_confirm" id="second-password" placeholder="Введите повторно пароль" required>
                                                     </div>
+                                                    <p class="validate-text validate-text4"></p>
+
                                                     <button class="form-btn my-4 mx-3">Сохранить</button>
                                                 </div>
                                             </form>
                                         </div>
-                                        <p class="validate-text validate-text4"></p>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -336,13 +337,9 @@
             }
         })
     }
-    $("#second-password").on('input', () => {
-        if ($("#second-password").val() !== $("#first-password").val()) {
-            $(".validate-text").text("Пароли не совпадают");
-        } else {
-            $(".validate-text").text("");
-        }
-    })
+
+    document.querySelector("#first-password").addEventListener('input', () => alert())
+
     $("#changePhone").on("submit", (e) => {
         e.preventDefault()
         if ($("#validationPhone").val() !== localStorage.getItem("ver-number")) {

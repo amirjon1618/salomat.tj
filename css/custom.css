@@ -274,7 +274,8 @@ body {
 }
 
 .ps-cart__content {
-   right: -3px !important;
+   right: -25px !important;
+   margin-top: 10px;
 }
 
 .header__actions {
