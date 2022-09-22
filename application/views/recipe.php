@@ -8,7 +8,7 @@
                 <span>+992</span>
                 <input class="recipe_phone_number form-control" required type="number" pattern="\d*" maxlength="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="order_phone" name="cell_phone" placeholder="Введите свой номер">
             </div>
-            <h5 class="recipe_error_msg">Введите в формате 987654321 (9 чисел)</h5>
+            <h5 class="recipe_error_msg">Введите 9 цифр</h5>
             <div class="recipe_name_div_inp py-3">
                 <input class="recipe_name form-control" maxlength="24" required name="name" id="order_name" type="text" placeholder="Имя Фамилия">
             </div>

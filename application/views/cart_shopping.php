@@ -298,7 +298,7 @@
             success: function(data) {
                 discount = data.discount;
                 result = totalSum - (discount * sum1 / 100);
-                $('.number-currency_total').text(`${result}`);
+                $('.number-currency_total').text(`${Math.round(result)}`);
             }
         });
     }

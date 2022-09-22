@@ -758,7 +758,7 @@
             </div>
             <div class="account-wrap" id="account-wrap2" style="display: none;">
                 <div class="user-image__link">
-                    <a href="{base_url}index.php/main/user_info#user-info"><img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" /></a>
+                    <a href="{base_url}index.php/main/user_info#user-info"><img class="rounded-circle" style="width: 40px;" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" /></a>
                 </div>
             </div>
         </div>
@@ -1923,6 +1923,7 @@
             $(".validate-text").text("");
         }
     })
+    
     $("#second-password2").on('input', () => {
         if ($("#second-password2").val() !== $("#first-password2").val()) {
             $(".validate-text").text("Пароли не совпадают");

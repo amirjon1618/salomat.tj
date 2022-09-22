@@ -113,6 +113,7 @@
         });
     });
 
+    
     $(document).ready(function() {
 
         $("#srch_pr_inp").select2({
