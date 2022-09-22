@@ -519,8 +519,8 @@ class Main extends CI_Controller
 
     public function blogInfo()
     {
+        $user_id = $this->session->userdata('user_id');
         $blog_id = $this->input->get("blog_id");
-        var_dump($blog_id);
         $data = array('base_url' => base_url());
         $data['tags'] = $this->tag->get_all();
         $data['categories'] = $this->category->get_all();
@@ -528,7 +528,7 @@ class Main extends CI_Controller
 
             $data['prods_suggestions'] = $this->product->get_prods_by_slider_type('product_suggestions');
         }else{
-            $data['prods_suggestions'] = $this->blog->blog_procucts($blog_id);
+            $data['prods_suggestions'] = $this->blog->blog_procucts($blog_id,$user_id??1);
         }
         $data['title'] = 'Семь основных причин, почему вакцинироваться должен каждый';
         $data['content'] = $this->parser->parse('blog_info', $data, TRUE);

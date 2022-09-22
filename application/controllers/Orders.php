@@ -33,13 +33,25 @@ class Orders extends REST_Controller
         $headers = $this->input->request_headers();
         $platform = $headers['platform'] ?? 'android';
 
-        if ($platform == 'IOS') {
-            $data = json_decode(file_get_contents('php://input'), true);
-            $_POST = $data;
+        $this->load->library('Authorization_Token');
+        $is_valid_token = $this->authorization_token->validateToken();
+
+        if (!empty($is_valid_token) && $is_valid_token['status'] === TRUE) {
+
+            if ($platform == 'IOS') {
+                $data = json_decode(file_get_contents('php://input'), true);
+                $_POST = $data;
+            }
+
+            $this->response($this->order->user_orders($user_id), REST_Controller::HTTP_OK);
+        } else {
+            $message = [
+                'status' => FALSE,
+                'message' => $is_valid_token['message']
+            ];
+
+            $this->response($message, REST_Controller::HTTP_UNAUTHORIZED);
         }
-
-        $this->response($this->order->user_orders($user_id), REST_Controller::HTTP_OK);
-
     }
 
     /**
@@ -49,16 +61,34 @@ class Orders extends REST_Controller
      */
     public function index_post()
     {
-        if ($this->input->post("products")) {
-            $array = $this->input->post();
-            $array['code'] = null;
-            if (!is_numeric($array["delivery_id"])) {
-                $array["delivery_id"] = 1;
-            }
-            $res = $this->order->add($array);
-            $this->order->save_user_order_status_change($array['user_id'], $res['order_id'], 1, 1, $this->input->post("comment"));
+        header("Access-Control-Allow-Origin: *");
 
-            echo $res['order_id'];
+        $this->load->library('Authorization_Token');
+        $is_valid_token = $this->authorization_token->validateToken();
+
+        if (!empty($is_valid_token) && $is_valid_token['status'] === TRUE) {
+            if ($this->input->post("products")) {
+                $array = $this->input->post();
+                $array['code'] = null;
+                if (!is_numeric($array["delivery_id"])) {
+                    $array["delivery_id"] = 1;
+                }
+                $res = $this->order->add($array);
+                $this->order->save_user_order_status_change($array['user_id'], $res['order_id'], 1, 1, $this->input->post("comment"));
+
+                $message = [
+                    'status' => true,
+                    'order_id' => $res['order_id']
+                ];
+                $this->response($message, REST_Controller::HTTP_OK);
+            }
+        } else {
+            $message = [
+                'status' => FALSE,
+                'message' => $is_valid_token['message']
+            ];
+
+            $this->response($message, REST_Controller::HTTP_UNAUTHORIZED);
         }
     }
 }
