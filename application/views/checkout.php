@@ -327,17 +327,14 @@
         if (localStorage.getItem("product_list")) {
             var mydata = JSON.parse(localStorage.getItem("product_list"));
             var sum = 0;
-            var variantOne = 0;
             mydata.forEach(function(item, index) {
-                var html = "<a href=\"<?= $base_url ?>index.php/main/product/" + item.product_id + "\"><strong>" + item.product_name + "</strong><span>x" + item.product_count + "</span>" +
-                    "<small style='margin-left:10px'> " + item.product_price + "</small>" +
+                var html = "<a href=\"<?= $base_url ?>index.php/main/product/" + item.product_id + "\"><strong>" + item.product_name + "</strong><div style='display: flex; justify-content: space-between;'><span style='margin-left:10px;'>x" + item.product_count + "</span>" +
+                    "<small style='margin-left:10px'> " + item.product_price + "</small></div>" +
                     "</a>";
-                    variantOne += (item.product_count * item.product_price)
-                    sum = Number(localStorage.getItem("promocode_discount")) || variantOne;
-                console.log(variantOne);
+                sum += (item.product_count * item.product_price);
                 $('#prod_list_checkout').append(html);
             });
-            $('#prod_tot_pr_checkout').text(Math.round(sum) + ' смн.');
+            $('#prod_tot_pr_checkout').text(sum + ' сом.');
             countSumWithDelivery();
         }
     }

@@ -14294,8 +14294,6 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     border: 1px solid #e1e1e1;
     border-bottom: none;
     border-radius: 5px 5px 0 0;
-    margin-right: -22px;
-    margin-top: 10px;
 }
 
 .ps-cart--mini .ps-cart__items:before {
