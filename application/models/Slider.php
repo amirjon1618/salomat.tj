@@ -88,11 +88,12 @@ class Slider extends CI_Model
         return $sliders;
     }
 
-    public function get_by_slider_category($id) 
+    public function get_by_slider_category($id,$type)
     {
         $array = array();
         $this->db->select("*");
         $this->db->where('slider_category_id', $id);
+        $this->db->where('type', $type);
         $this->db->from('slider');
         $query = $this->db->get();
         foreach ($query->result_array() as $row) {

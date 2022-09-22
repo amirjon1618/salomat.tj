@@ -29,6 +29,22 @@
               <label>Ссылка (полная) </label>
               <input type="text" id="slider_link" name="slider_link" class="form-control" placeholder="Вводите ...">
             </div>
+              <div class="form-group">
+                  <label>Тип </label>
+                  <select class="form-control" name="type">
+                      <?php if ($type == '1') : ?>
+                          <option selected value="1">ДЛЯ ПК ВЕРСИИ</option>
+                          <option value="2">ДЛЯ МОБИЛЬНОЙ ВЕРСИИ</option>
+                      <?php elseif ($type == '2') : ?>
+                          <option selected value="2">ДЛЯ МОБИЛЬНОЙ ВЕРСИИ</option>
+                          <option value="1">ДЛЯ ПК ВЕРСИИ</option>
+                      <?php else : ?>
+                          <option selected value="2">ДЛЯ МОБИЛЬНОЙ ВЕРСИИ</option>
+                          <option value="1">ДЛЯ ПК ВЕРСИИ</option>
+                      <?php endif; ?>
+                  </select>
+
+              </div>
             <div class="form-group" id="file_div">
               <label class="userfile_label">Изображение </label>
               <input type="file" name="userfile" class="file_inp" size="50" />
@@ -68,6 +84,9 @@
           required: true,
           url: true
         },
+          type: {
+              required: true,
+          },
         userfile: {
           required: false,
           accept: "image/jpg,image/jpeg,image/png",
