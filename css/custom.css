@@ -222,7 +222,7 @@ body {
    -o-transition: all 1s ease 0s;
    transition: all 1s ease 0s;
 }
-.breadcrumb a {
+.breadcrumb h3 {
    font-style: normal;
    font-weight: 700;
    font-size: 23px;
