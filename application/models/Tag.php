@@ -52,7 +52,7 @@ class Tag extends CI_Model
         }
         return $array;
     }
-    
+
     public function add($array)
     {
         $this->db->insert('tag', $array);

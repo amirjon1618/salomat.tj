@@ -104,7 +104,6 @@ class Users extends REST_Controller
 
         #Getting key from DB for hash
         $key = $this->user->get_keys();
-        $key = $key[0]->key;
 
         #Form Validation
         $this->form_validation->set_rules('phone', 'Телефон', 'xss_clean|trim|required');

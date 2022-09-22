@@ -315,7 +315,6 @@ class Blog extends CI_Model
         $query = $this->db->get();
         foreach ($query->result_array() as $row) {
             $rating = $this->get_rating($row['id']);
-            $row['product_brand'] = $this->get_other_fields($row['product_brand'], 'brand');
             if (sizeof($rating) != 0) {
                 $row['prod_rating_average'] = $rating['prod_rating_average'];
                 $row['review_count'] = $rating['review_count'];
@@ -325,7 +324,8 @@ class Blog extends CI_Model
             }
             if (!isset($user_id))
                 $user_id = $this->session->userdata('user_id');
-            $favorite = $this->get_favorite($row['id'], $user_id);
+
+            $favorite = $this->product->get_favorite($row['id'], $user_id);
             if (sizeof($favorite) != 0) {
                 $row['is_favorite'] = true;
             } else {
@@ -337,19 +337,93 @@ class Blog extends CI_Model
         return $array;
     }
 
-    public function blog_procucts($id)
+    public function blog_procucts($id,$user_id = '')
     {
         $array = array();
         $this->db->select('*');
         $this->db->from('blog_product');
         $this->db->where('blog_id', $id);
         $this->db->join('product', 'blog_product.product_id = product.id');
-        $qq = $this->db->get();
-        foreach ($qq->result_array() as $row) {
+        $query = $this->db->get();
+        foreach ($query->result_array() as $row) {
+            $rating = $this->get_rating($row['id']);
+            if (sizeof($rating) != 0) {
+                $row['prod_rating_average'] = $rating['prod_rating_average'];
+                $row['review_count'] = $rating['review_count'];
+            } else {
+                $row['prod_rating_average'] = '';
+                $row['review_count'] = 0;
+            }
+            if (!isset($user_id))
+                $user_id = $this->session->userdata('user_id');
+            $favorite = $this->product->get_favorite($row['id'], $user_id);
+            if (sizeof($favorite) != 0) {
+                $row['is_favorite'] = true;
+            } else {
+                $row['is_favorite'] = false;
+            }
+            $row['base_url'] = base_url();
             $array[] = $row;
         }
         return $array;
     }
+
+
+    public function get_rating($id)
+    {
+        $array = array();
+        $q_count = $this->db->query("SELECT COUNT(*) as count FROM `product_rating` WHERE `prod_id` = " . $id . " AND `status` = 1");
+        $arr_count = $q_count->result_array();
+        if ($arr_count[0]['count'] != 0) {
+            $this->db->select('*');
+            $this->db->from('product_rating');
+            $this->db->where('prod_id', $id);
+            $this->db->where('status', '1');
+            $query = $this->db->get();
+            $count = 0;
+            $ones = 0;
+            $twos = 0;
+            $threes = 0;
+            $fours = 0;
+            $fives = 0;
+            foreach ($query->result_array() as $pr) {
+                $count += $pr['star_rating'];
+                if ($pr['star_rating'] == 1) {
+                    $ones += 1;
+                } else if ($pr['star_rating'] == 2) {
+                    $twos += 1;
+                } else if ($pr['star_rating'] == 3) {
+                    $threes += 1;
+                } else if ($pr['star_rating'] == 4) {
+                    $fours += 1;
+                } else if ($pr['star_rating'] == 5) {
+                    $fives += 1;
+                }
+            }
+            $rating = round($count / $arr_count[0]['count']);
+            $array['prod_rating_average'] = $rating;
+
+            $array['prod_rating_each']['ones']['count'] = $ones;
+            $array['prod_rating_each']['ones']['percentage'] = round(($ones / $arr_count[0]['count']) * 100);
+
+            $array['prod_rating_each']['twos']['count'] = $twos;
+            $array['prod_rating_each']['twos']['percentage'] = round(($twos / $arr_count[0]['count']) * 100);
+
+            $array['prod_rating_each']['threes']['count'] = $threes;
+            $array['prod_rating_each']['threes']['percentage'] = round(($threes / $arr_count[0]['count']) * 100);
+
+            $array['prod_rating_each']['fours']['count'] = $fours;
+            $array['prod_rating_each']['fours']['percentage'] = round(($fours / $arr_count[0]['count']) * 100);
+
+            $array['prod_rating_each']['fives']['count'] = $fives;
+            $array['prod_rating_each']['fives']['percentage'] = round(($fives / $arr_count[0]['count']) * 100);
+
+            $array['review_count'] = $arr_count[0]['count'];
+        }
+
+        return $array;
+    }
+
 
     public function get_blog_avatars($id)
     {
