@@ -432,37 +432,24 @@
 
 
     function delPhoto() {
-
-        <?= $image = null ?>
-        let a = "<?php echo $image ?>"
-        if (a === '') {
-            var requestOptions = {
-                method: 'POST',
-                body: form,
-                redirect: 'follow'
-            };
-            fetch("{base_url}users/user_img?=save", requestOptions)
-                .then(response => response.json())
-                .then(result => {
-                    window.location.reload()
-                })
-
-            Array.from(document.querySelectorAll(".user_icon")).forEach(elem => elem.src = "{base_url}img/user.png")
-        }
-        // const myFile = document.getElementById("user_icon");
-        // var form = new FormData();
-        // form.append("img", myFile.files[0], `${null}`);
-        // form.append("user_id", JSON.parse(localStorage.getItem("userId")).user_id);
-        // var requestOptions = {
-        //     method: 'POST',
-        //     body: form,
-        //     redirect: 'follow'
-        // };
-        // fetch("{base_url}users/user_img?=save", requestOptions)
-        //     .then(response => response.json())
-        //     .then(result => {
-        //         window.location.reload()
-        //     })
+        $.ajax({
+            type: "POST",
+            url: "{base_url}users/deletePhoto",
+            headers: {
+                "Accept": "application/json",
+            },
+            data: {
+                image: 'user.png',
+                id:JSON.parse(localStorage.getItem("userId")).user_id,
+            },
+            success: function(data){
+                if(data == true){ // if true (1)
+                    setTimeout(function(){// wait for 5 secs(2)
+                        location.reload(); // then reload the page.(3)
+                    }, 100);
+                }
+            }
+        })
     }
 
     $(document).ready(function() {

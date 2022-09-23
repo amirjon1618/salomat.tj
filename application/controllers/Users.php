@@ -489,6 +489,15 @@ class Users extends REST_Controller
         $this->response($userData, REST_Controller::HTTP_OK);
     }
 
+    public function deletePhoto_post()
+    {
+        $user_id = $this->input->post('id');
+        $data['image'] = $this->input->post('image');
+        $this->db->where('user_id', $user_id);
+        $this->db->update('users', $data);
+        $this->response(true, REST_Controller::HTTP_OK);
+    }
+
     public function getUser($user_id)
     {
         $array = array();

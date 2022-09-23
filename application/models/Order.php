@@ -259,6 +259,7 @@ class Order extends CI_Model
 
     public function add($array)
     {
+
         // date_default_timezone_set('Asia/Dushanbe');
         // $created_at = date('Y-m-d H:i:s');
         if (!isset($array['wallet_name'])) {
@@ -309,6 +310,61 @@ class Order extends CI_Model
 
         return $arr2;
     }
+
+    public function row_add($array)
+    {
+
+        // date_default_timezone_set('Asia/Dushanbe');
+        // $created_at = date('Y-m-d H:i:s');
+        if (!isset($array->wallet_name)) {
+            $array->wallet_name = "";
+        }
+        $new_arr = array(
+            'total_price'  =>  $array->total_price,
+            'full_name' => $array->name,
+            'phone_number' => $array->phone_number,
+            'address' => $array->address,
+            'comment' => $array->comment,
+            'wallet_name' => $array->wallet_name,
+            'delivery_type' => $array->delivery_id,
+            // 'cash_type' => $array['cash_type'],
+            'code' => $array->code,
+            'status_id' => 1
+            // 'created_at' => $created_at
+        );
+        $this->db->insert('order', $new_arr);
+        // print_r($new_arr);
+        // print_r($this->db->last_query());
+        $id = $this->db->insert_id();
+        $err = $this->db->error();;
+
+        if ($err['code'] != 0) {
+            return array('stat' => -1);
+        }
+        foreach ($array->products as $product) {
+            $this->db->select('*');
+            $this->db->from('product');
+            $this->db->where('id', $product->product_id);
+            $q = $this->db->get();
+            $order_prods = $q->result_array();
+            $another_arr = array(
+                'product_id' => $product->product_id,
+                'order_id' => $id,
+                'total_count' => $product->product_count,
+                'product_sold_price' => $order_prods[0]['product_price']
+            );
+            $this->db->insert('product_order', $another_arr);
+
+            $count = floatval($array->product_total_count) - floatval(($product->product_count));
+            $this->db->set('total_count_in_store', $count);
+            $this->db->where('id', $product->product_id);
+            $this->db->update('product');
+        }
+        $arr2 = array('stat' => 1, 'order_id' => $id);
+
+        return $arr2;
+    }
+
     public function add_order_admin($array)
     {
         $new_arr = array(
