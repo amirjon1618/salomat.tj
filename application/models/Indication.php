@@ -6,6 +6,7 @@ class Indication extends CI_Model
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('session');
         // Your own constructor code
         $this->load->database();
     }

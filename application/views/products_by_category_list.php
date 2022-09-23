@@ -1,11 +1,11 @@
 <div class="ps-tabs">
     <div class="ps-tab active" id="tab-1">
         <div class="ps-shopping-product">
-            <div class="row">
+            <div class="row" style="gap: 10px;">
                 <?php foreach ($category_products['products'] as $cat_p) : ?>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 pb-5">
-                        <div class="ps-product ps-product--inner ps-product_of_the_day">
-                            <label>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 p-0 ps-product--inner-sales" data-id="<?php echo  $cat_p['id'] ?>">
+                        <div class=" ps-product ps-product--inner ps-product_of_the_day">
+                            <label class="main-like_btn">
                                 <input value="<?php $cat_p['id'] ?>" <?php echo $cat_p['is_favorite'] == 1 ?  'checked' : null  ?> type="checkbox" id="red">
                                 <svg id="shape" fill="none" data-id="<?= $cat_p['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
                                     <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -39,14 +39,12 @@
                                             <?php endif; ?>
                                         </select><span>(<?= $cat_p['review_count'] ?>)</span>
                                     </div>
-                                    <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span">
-                                            <input class="form-control height50" id="count_input" type="number" value="1" style="display: none;">
+                                    <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span ">
                                             <?php if ($cat_p['product_old_price'] != 0) : ?><del><?= $cat_p['product_old_price'] ?> </del><?php endif; ?>
-                                            <?= $cat_p['product_price'] ?>c. </span><button onclick='addToCart(res = <?= json_encode($cat_p) ?>)' class="ps-btn btn-cart_cat">В корзину</button></p>
-                                </div>
-                                <div class="product_add_notification_div" style="display: none;">
-                                    <i class="fa fa-check-circle" aria-hidden="true"></i>
-                                    <span class="prod_add_notification_text">"<span class="span_added_prod_name"></span>" успешно добавлен в вашу корзину.</span>
+                                            <?= $cat_p['product_price'] ?>c. </span><button onclick='addToCart(res = <?= json_encode($cat_p) ?>)' class="ps-btn btn-cart_cat">В корзину</button>
+
+                                    </p>
+
                                 </div>
                             </div>
                         </div>
@@ -399,12 +397,16 @@
                 //     path: '/'
                 // });
                 localStorage.setItem("product_list", JSON.stringify(mydata))
+                onAddBorder()
+
             } else {
                 array.push(obj);
                 // $.cookie("product_list", JSON.stringify(array), {
                 //     path: '/'
                 // });
                 localStorage.setItem("product_list", JSON.stringify(array))
+                onAddBorder()
+
             }
             if (!max_count_reached) {
                 $('.span_added_prod_name').text('' + name);
@@ -418,6 +420,11 @@
             set_prods_header();
         }
     }
+    document.getElementsByClassName('blog_about').offsetWidth / 100;
+    if (document.querySelector(".ps-product__content i")) document.querySelector(".ps-product__content i").addEventListener("click", onAddBorder())
+
+
+    onAddBorder();
 </script>
 <style>
     label {

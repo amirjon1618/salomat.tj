@@ -219,7 +219,7 @@
                                         <?php foreach ($favorites as $favorite) : ?>
 
                                             <div class="favorite-content" data-favoriteid="<?= $favorite['id'] ?>">
-                                                <div class="d-flex col-xs-3 col-lg-3 col-md-6 col-sm-6 favorite-cc">
+                                                <div class="col-xs-3 col-lg-3 col-md-6 col-sm-6 favorite-cc ps-product--inner-sales" data-id="<?php echo  $favorite['id'] ?>" style="margin: 0 10px 10px 0;">
                                                     <div class="ps-product ps-product--inner ps-product_of_the_day user-info_favorite">
                                                         <label>
                                                             <input onclick="deleteProduct(<?= $favorite['id'] ?>)" value="<?php $favorite['id'] ?>" <?php echo $favorite['id']  ?  'checked' : null  ?> type="checkbox" id="red">
@@ -432,11 +432,9 @@
 
 
     function delPhoto() {
-        var image = "";
-        var user_id = "";
         $.ajax({
             type: "POST",
-            url: "{base_url}users/edit_user",
+            url: "{base_url}users/deletePhoto",
             headers: {
                 "Accept": "application/json",
             },
@@ -444,6 +442,13 @@
                 image: 'user.png',
                 id:JSON.parse(localStorage.getItem("userId")).user_id,
             },
+            success: function(data){
+                if(data == true){ // if true (1)
+                    setTimeout(function(){// wait for 5 secs(2)
+                        location.reload(); // then reload the page.(3)
+                    }, 100);
+                }
+            }
         })
     }
 
@@ -629,12 +634,16 @@
                 //     path: '/'
                 // });
                 localStorage.setItem("product_list", JSON.stringify(mydata))
+                onAddBorder()
+
             } else {
                 array.push(obj);
                 // $.cookie("product_list", JSON.stringify(array), {
                 //     path: '/'
                 // });
                 localStorage.setItem("product_list", JSON.stringify(array))
+                onAddBorder()
+
             }
             if (!max_count_reached) {
                 $('.span_added_prod_name').text('' + name);
@@ -648,6 +657,11 @@
             set_prods_header();
         }
     }
+    document.getElementsByClassName('blog_about').offsetWidth / 100;
+    if (document.querySelector(".ps-product__content i")) document.querySelector(".ps-product__content i").addEventListener("click", onAddBorder())
+
+
+    onAddBorder();
 </script>
 
 <style>

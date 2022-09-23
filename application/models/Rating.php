@@ -17,6 +17,7 @@ class Rating extends CI_Model
         $array = array();
         $this->db->select('*');
         $this->db->from('product_rating');
+        $this->db->order_by("id", "desc");
         $result = $this->db->get();
         foreach ($result->result_array() as $row) {
             $row['base_url'] = base_url();
