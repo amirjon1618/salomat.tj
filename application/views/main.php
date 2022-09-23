@@ -290,6 +290,9 @@
 </div>
 
 <script>
+    if (window.innerWidth <= 991) {
+        window.history.pushState({}, '', '?type=2')
+    }
     window.onload = () => {
         $(".main-loader_icon").css("display", "none")
     }
@@ -435,8 +438,10 @@
                 blogShow.content.blogs.forEach(blogShow => {
                     document.querySelector(".blog_show").innerHTML = `
                        <img class="blog_pic img-fluid pb-3" src="{base_url}upload_blog/${blogShow.blog_pic}" alt="...">
-                       <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3></a>
-                     <span class="blog_created_at">${blogShow.blog_created_at}</span>
+                       <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3>
+                       <span class="blog_created_at">${blogShow.blog_created_at}</span>
+                       </a>
+                     
                      <div class="text-justify blog_about-main">${blogShow.blog_about}</div>
                      <a style="display: flex; justify-content: flex-end; padding-top: 10px;" href="{base_url}main/blogInfo?blog_id=${blogShow.id}"> читать дальше...</a>
                 `;
@@ -445,8 +450,9 @@
                 const filtered = sorted.filter((elem, ind) => ind === 1 || ind === 2 || ind === 3)
                 filtered.forEach(blogShow => {
                     document.querySelector(".popular-blogs").innerHTML += `
-                    <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3></a>
-                     <span class="blog_created_at">${blogShow.blog_created_at}</span>
+                    <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3>
+                    <span class="blog_created_at">${blogShow.blog_created_at}</span>
+                    </a>
                      <div class="text-justify blog_about">${blogShow.blog_about}</div>
                      <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}" class="pb-4"> читать дальше...</a>
                 `;
@@ -475,9 +481,7 @@
     //         $('#count_input').val(count);
     //     })
     // }
-    if (window.innerWidth <= 991) {
-        window.history.pushState({}, '', '?type=2')
-    }
+
 
     function addToCart(res) {
         max_count_reached = false;

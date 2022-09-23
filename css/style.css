@@ -2947,6 +2947,9 @@ body {
     .container {
         min-width: 1230px;
     }
+    .ps-product--inner-sales {
+        max-width: 24% !important;
+    }
 }
 
 .ps-list--social {
@@ -6193,6 +6196,7 @@ ba-btn {
     color: #1EBEBE;
     font-size: 16px;
     font-weight: 300;
+    padding-bottom: 10px;
 }
 .blog-articles_left a:hover{
     text-decoration: none;
@@ -6553,11 +6557,10 @@ ba-btn {
 
 .ps-block--products-of-category .ps-block__product-box {
     display: -webkit-box;
-    display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     flex-flow: row wrap;
-    padding-left: 10px;
+    padding-left: 5px;
 }
 
 .ps-block--products-of-category .ps-block__product-box>* {
@@ -6639,7 +6642,7 @@ ba-btn {
         flex-basis: 44%;
     }
     .ps-block--products-of-category .ps-product--simple {
-        padding: 20px;
+        padding: 5px 10px;
         border: 1px solid #e1e1e1;
         border-radius: 5px;
         margin: 10px;
@@ -6653,7 +6656,7 @@ ba-btn {
         padding: 0 10px 20px 10px;
     }
     .ps-block--products-of-category .ps-product--simple {
-        padding: 10px;
+        padding: 10px 10px 0 10px;
 
     }
 }
@@ -19560,7 +19563,7 @@ opacity: 0;
         display: block;
         background-color: #fff;
         border-bottom: 1px solid #e5e5e5;
-        padding-bottom: 20px;
+        padding-bottom: 10px;
     }
 }
 
@@ -34296,6 +34299,19 @@ box-orient: vertical;
 .fa-navicon:before, .fa-reorder:before, .fa-bars:before {
 color: #A8A8A8;
 }
+.blog-articles-mini h3 {
+    overflow: hidden;
+text-overflow: ellipsis;
+display: -moz-box;
+-moz-box-orient: vertical;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+-moz-line-clamp: 2;
+-moz-box-orient: vertical;
+line-clamp: 2;
+box-orient: vertical;
+}
 
 .btn-link:hover {
 text-decoration: none !important;
@@ -34308,7 +34324,7 @@ color:red;
 font-size: 14px;
 }
 .btn-cart_cat {
-padding: 0 15px !important;
+padding: 0 12px !important;
 border-radius: 0 5px 5px 0 !important;
 }
 .btn-cart_products {
