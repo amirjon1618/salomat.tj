@@ -515,7 +515,6 @@
                                 <div class="ps-cart__items" id="ps-cart__items">
 
                                 </div>
-                                <a href="" id=""></a>
                                 <div class="ps-cart__footer">
                                     <hr>
                                     <h3 class="cart_sum_h">Общая сумма:<strong class="total_cart_sum"></strong></h3>
@@ -758,7 +757,7 @@
             </div>
             <div class="account-wrap" id="account-wrap2" style="display: none;">
                 <div class="user-image__link">
-                    <a href="{base_url}index.php/main/user_info#user-info"><img class="rounded-circle" src="{base_url}img/user.png" alt="User Icon" /></a>
+                    <a href="{base_url}index.php/main/user_info#user-info"><img class="rounded-circle" style="width: 40px;" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" /></a>
                 </div>
             </div>
         </div>
@@ -1923,8 +1922,25 @@
             $(".validate-text").text("");
         }
     })
+    
     $("#second-password2").on('input', () => {
         if ($("#second-password2").val() !== $("#first-password2").val()) {
+            $(".validate-text").text("Пароли не совпадают");
+        } else {
+            $(".validate-text").text("");
+        }
+    })
+
+    $("#first-password").on('input', () => {
+        if ($("#first-password").val() !== $("#second-password").val()) {
+            $(".validate-text").text("Пароли не совпадают");
+        } else {
+            $(".validate-text").text("");
+        }
+    })
+    
+    $("#first-password2").on('input', () => {
+        if ($("#first-password2").val() !== $("#second-password2").val()) {
             $(".validate-text").text("Пароли не совпадают");
         } else {
             $(".validate-text").text("");

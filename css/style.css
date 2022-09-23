@@ -5771,7 +5771,6 @@ textarea.form-control {
 }
 
 .ps-block--user-header .ps-block__right a {
-    display: flex !important;
     align-items: center;
     height: 44px;
     font-weight: 700;
@@ -6157,7 +6156,6 @@ textarea.form-control {
     display: inline-block;
 }
 .bi-right-sidebar h3{
-    padding-bottom: 40px;
     color: #1E323C;
 }
 .bi-right-sidebar p{
@@ -6214,6 +6212,7 @@ ba-btn {
 }
 .blog-articles-mini h3{
     margin-bottom: 7px;
+    color: #1E323C;
 }
 .blog-articles-mini h3:hover{
     color: #4d4dbf;
@@ -6263,7 +6262,7 @@ ba-btn {
     color: #A8A8A8;
 }
 .blog-articles-btn a{
-    margin-right: 15px;
+    margin-right: 44px;
 }
 .blog-articles-btn img{
     max-width: 25px;
@@ -14290,7 +14289,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .ps-cart--mini .ps-cart__items {
     position: relative;
-    padding: 20px;
+    padding: 20px 20px 0 20px;
     background-color: #fff;
     border: 1px solid #e1e1e1;
     border-bottom: none;
@@ -14815,6 +14814,19 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 @media (min-width: 320px) and (max-width: 576px) {
     .owl-carousel .owl-item img {
         height: 80%;
+    }
+    .widget:last-child {
+        padding-bottom: 0 !important;
+    }
+    .send_recipe_btn {
+        width: 95%;
+    }
+    .recipe_social_main_div_each {
+        display: flex;
+        justify-content: center;
+    }
+    .recipe_phone_div_inp input {
+        padding-left: 55px !important;
     }
     .popular-blog_col {
         border-bottom: 1px solid #E5E5E5 !important;

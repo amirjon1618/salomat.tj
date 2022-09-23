@@ -127,6 +127,7 @@ class Main extends CI_Controller
 
     public function index()
     {
+        $type = $this->input->get('type');
         $data = array('base_url' => base_url(), 'alert' => '');
         $data['categories'] = $this->category->get_all();
         $data['main_slider'] = $this->slider->get_all('normal');
@@ -151,7 +152,7 @@ class Main extends CI_Controller
         for ($i = 0; $i < sizeof($categories); $i++) {
             if ($categories[$i]['category_in_main'] == 1 && $j < 3) {
                 $array[$j]['categ'] = $categories[$i];
-                $array[$j]['categ_slider'] = $this->slider->get_by_slider_category($categories[$i]['id']);
+                $array[$j]['categ_slider'] = $this->slider->get_by_slider_category($categories[$i]['id'],$type??1);
                 $array[$j]['categ_prods'] = $this->product->get_prods_in_categ($categories[$i]['id'], $user_id ?? 0);
                 $j++;
             }
@@ -519,8 +520,8 @@ class Main extends CI_Controller
 
     public function blogInfo()
     {
+        $user_id = $this->session->userdata('user_id');
         $blog_id = $this->input->get("blog_id");
-        var_dump($blog_id);
         $data = array('base_url' => base_url());
         $data['tags'] = $this->tag->get_all();
         $data['categories'] = $this->category->get_all();
@@ -528,7 +529,7 @@ class Main extends CI_Controller
 
             $data['prods_suggestions'] = $this->product->get_prods_by_slider_type('product_suggestions');
         }else{
-            $data['prods_suggestions'] = $this->blog->blog_procucts($blog_id);
+            $data['prods_suggestions'] = $this->blog->blog_procucts($blog_id,$user_id??1);
         }
         $data['title'] = 'Семь основных причин, почему вакцинироваться должен каждый';
         $data['content'] = $this->parser->parse('blog_info', $data, TRUE);

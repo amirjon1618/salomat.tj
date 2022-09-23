@@ -33,7 +33,29 @@ class Blogs extends REST_Controller {
             $this->response($data,REST_Controller::HTTP_NO_CONTENT);
             return;
         }
+        $data['tags'] = $this->blog->get_blog_tags($id);
+        $this->response($data,REST_Controller::HTTP_OK);
+    }
 
+    /**
+     * Get blog by tag
+     *
+     */
+    public function blog_tag_post()
+    {
+        $tag_id = $this->input->post('tag_id');
+        $ttth= json_encode($tag_id);
+
+        $page = $this->input->post('page');
+
+
+            $blog = $this->blog->get_with_tag($page ,$ttth);
+
+        $data['blogs'] = $blog;
+        if (sizeof($blog) == '') {
+            $this->response($data,REST_Controller::HTTP_NO_CONTENT);
+            return;
+        }
         $this->response($data,REST_Controller::HTTP_OK);
     }
 

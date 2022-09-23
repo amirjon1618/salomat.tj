@@ -31,12 +31,23 @@
                         <div class="form-group">
                             <label for="tags">Тэги </label>
                             <select required data-placeholder="Выберите ..." multiple name="tags[]" id="tags" class="form-control">
+                                <?php if (sizeof($tags) != 0) : ?>
+                                    <?php foreach ($tags as $value) : ?>
+                                        <option value="<?= $value['tag_id']; ?>" selected>
+                                            <?= $value['tag_name']; ?></option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="srch_pr_inp">Продукты</label>
                             <select required data-placeholder="Выберите ..." multiple name="srch_pr_inp[]" id="srch_pr_inp" class="form-control">
-
+                                <?php if (sizeof($srch_pr_inp) != 0) : ?>
+                                    <?php foreach ($srch_pr_inp as $value) : ?>
+                                        <option value="<?= $value['id']; ?>" selected>
+                                            <?= $value['product_name']; ?></option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </select>
                         </div>
                         <div class="box-footer">
@@ -92,27 +103,8 @@
             }
         });
     });
-    $(document).ready(function() {
-        $("#tags").select2({
-            minimumInputLength: 1,
-            allowClear: true,
-            ajax: {
-                url: '{base_url}Api/GetTag',
-                dataType: "json",
-                data: function(term) {
-                    return {
-                        term: term.term
-                    };
-                },
-                processResults: function(data) {
-                    return {
-                        results: data
-                    };
-                }
-            }
-        });
-    });
 
+    
     $(document).ready(function() {
 
         $("#srch_pr_inp").select2({

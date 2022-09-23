@@ -8,89 +8,90 @@
             </button>
         </div>
     </div>
-
-    <div class="mycart col-lg-8 col-md-6 col-sm-12 col-xs-12 p-0">
-
-        <div class="ps-section--shopping ps-shopping-cart">
-            <div class="container">
-                <div class="ps-section__header">
-                    <h3>Моя корзина</h3>
-                </div>
-                <div class="ps-section__content">
-                    <div class="table-responsive">
-                        <table class="table ps-table--shopping-cart col-lg-8 col-md-8 col-sm-12 col-xs-12 mb-5">
-                            <thead>
-                                <tr>
-                                    <th>Товар</th>
-                                    <th>Цена</th>
-                                    <th>Кол-во</th>
-                                    <th>Итого</th>
-                                </tr>
-                            </thead>
-                            <tbody class="pr-list">
-                                <!--PRODUCT LIST-->
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="mycart col-lg-4 col-md-6 col-sm-12 col-xs-12" style="display: flex; justify-content: center; align-items: center; padding-top: 8%;">
-        <div class="toast toast_empty2 fade hide">
-            <div class="toast-body">
-                <i class="fa fa-exclamation-triangle"></i>
-                Корзина пуста!
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-        <div class="ps-page--simple">
+    <div class="parent-mycart">
+        <div class="mycart col-lg-8 col-md-6 col-sm-12 col-xs-12 p-0">
             <div class="ps-section--shopping ps-shopping-cart">
-                <div class="order-content">
-                    <div class="ps-section__content ps-section__border">
-                        <div class="ps-section__header">
-                            <h3 class="fw-bold">Ваш заказ</h3>
-                        </div>
-                        <div class="price-product px-3 justify-content-between">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td class="border-0 fw-bolder table-text-bold" style="font-weight: 500;">Стоимост товаров: </td>
-                                        <td class="border-0 table-text-end table-text-bold"><span class="number-currency"> </span><span class="text-currency"> смн.</span></td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="px-3">
-                            <table class="table py-5 justify-content-between">
-                                <tbody>
-                                    <tr>
-                                        <td class="border-0 table-text-bold" style="font-weight: 500;">Итого: </td>
-                                        <td class="border-0 table-text-end table-text-bold"><span class="number-currency_total"> </span><span class="text-currency"> смн.</span></td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="price-text px-4 pb-4">
-                            <input type="text" name="promo_code" id="promo_code" class="border price-text__input" placeholder="Активировать промо код">
-                            <button class="price-text__btn" onclick="onPromoCode()"><img src="{base_url}img/right-arrow.svg" alt=""></button>
-                        </div>
-
+                <div class="container">
+                    <div class="ps-section__header">
+                        <h3>Моя корзина</h3>
                     </div>
-                    <div class="ps-section__cart-actions">
-                        <a class="ps-btn ps-btn--outline checkout" onclick="orderCheckout()" href="{base_url}index.php/main/checkout">
-                            Оформить заказ</a>
+                    <div class="ps-section__content">
+                        <div class="table-responsive">
+                            <table class="table ps-table--shopping-cart col-lg-8 col-md-8 col-sm-12 col-xs-12 mb-5">
+                                <thead>
+                                    <tr>
+                                        <th>Товар</th>
+                                        <th>Цена</th>
+                                        <th>Кол-во</th>
+                                        <th>Итого</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="pr-list">
+                                    <!--PRODUCT LIST-->
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="mycart col-lg-4 col-md-6 col-sm-12 col-xs-12" style="display: flex; justify-content: center; align-items: center; padding-top: 8%;">
+            <div class="toast toast_empty2 fade hide">
+                <div class="toast-body">
+                    <i class="fa fa-exclamation-triangle"></i>
+                    Корзина пуста!
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="ps-page--simple">
+                <div class="ps-section--shopping ps-shopping-cart">
+                    <div class="order-content">
+                        <div class="ps-section__content ps-section__border">
+                            <div class="ps-section__header">
+                                <h3 class="fw-bold">Ваш заказ</h3>
+                            </div>
+                            <div class="price-product px-3 justify-content-between">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="border-0 fw-bolder table-text-bold" style="font-weight: 500;">Стоимост товаров: </td>
+                                            <td class="border-0 table-text-end table-text-bold"><span class="number-currency"> </span><span class="text-currency"> смн.</span></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="px-3">
+                                <table class="table py-5 justify-content-between">
+                                    <tbody>
+                                        <tr>
+                                            <td class="border-0 table-text-bold" style="font-weight: 500;">Итого: </td>
+                                            <td class="border-0 table-text-end table-text-bold"><span class="number-currency_total"> </span><span class="text-currency"> смн.</span></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="price-text px-4 pb-4">
+                                <input type="text" name="promo_code" id="promo_code" class="border price-text__input" placeholder="Активировать промо код">
+                                <button class="price-text__btn" onclick="onPromoCode()"><img src="{base_url}img/right-arrow.svg" alt=""></button>
+                            </div>
+
+                        </div>
+                        <div class="ps-section__cart-actions">
+                            <a class="ps-btn ps-btn--outline checkout" onclick="orderCheckout()" href="{base_url}index.php/main/checkout">
+                                Оформить заказ</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
 <script>
@@ -298,7 +299,7 @@
             success: function(data) {
                 discount = data.discount;
                 result = totalSum - (discount * sum1 / 100);
-                $('.number-currency_total').text(`${result}`);
+                $('.number-currency_total').text(`${Math.round(result)}`);
             }
         });
     }

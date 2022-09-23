@@ -222,7 +222,7 @@ body {
    -o-transition: all 1s ease 0s;
    transition: all 1s ease 0s;
 }
-.breadcrumb a {
+.breadcrumb h3 {
    font-style: normal;
    font-weight: 700;
    font-size: 23px;
@@ -274,7 +274,8 @@ body {
 }
 
 .ps-cart__content {
-   right: -3px !important;
+   right: -25px !important;
+   margin-top: 10px;
 }
 
 .header__actions {
@@ -1331,7 +1332,7 @@ button {
    padding: 12px;
    border-radius: 7px;
    display: flex;
-   height: 48px;
+   height: 50px;
    align-items: center;
 }
 

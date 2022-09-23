@@ -104,7 +104,6 @@ class Users extends REST_Controller
 
         #Getting key from DB for hash
         $key = $this->user->get_keys();
-        $key = $key[0]->key;
 
         #Form Validation
         $this->form_validation->set_rules('phone', 'Телефон', 'xss_clean|trim|required');
@@ -459,7 +458,7 @@ class Users extends REST_Controller
         }
     }
 
-    public function edit_user_post($id)
+    public function edit_user_post($id='')
     {
         $name       = $this->input->post('name');
         $email      = $this->input->post('email');
@@ -468,7 +467,9 @@ class Users extends REST_Controller
         $address    = $this->input->post('address');
         $gender     = $this->input->post('gender');
         $password    = $this->input->post('password');
-        if (isset($id)) {
+        $image    = $this->input->post('image');
+        $user_id    = $this->input->post('id');
+        if (isset($id) || isset($user_id)) {
             if (!empty($name))
                 $userData['name'] = $name;
             if (!empty($password))
@@ -483,7 +484,9 @@ class Users extends REST_Controller
                 $userData['address'] = $address;
             if (!empty($gender))
                 $userData['gender'] = $gender;
-            $this->db->where("user_id", $id);
+            if (!empty($image))
+                $userData['image'] = $image;
+            $this->db->where("user_id", $id??$user_id);
             $this->db->update("users", $userData);
         }
 

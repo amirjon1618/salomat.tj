@@ -70,14 +70,14 @@ class Products extends REST_Controller {
 //                    $j++;
 //                }
 //            }
-            $data['meta_social_image'] = base_url('salomat_apteka.jpg');
-            $data['meta_social_url'] = base_url();
-            $data['meta_social_title'] = 'Интернет аптека Salomat.tj, купить онлайн лекарственные препараты и товары для здоровья';
-            $data['meta_social_desc'] = 'Удобный поиск лекарств, можно заказать любые препараты недорого по выгодным ценам. Удобный каталог лекарств, инструкций и советы врачей! ☎ 9990 Salomat.tj';
-            $data['title'] = 'Интернет аптека Salomat.tj, купить онлайн лекарственные препараты и товары для здоровья';
+        $data['meta_social_image'] = base_url('salomat_apteka.jpg');
+        $data['meta_social_url'] = base_url();
+        $data['meta_social_title'] = 'Интернет аптека Salomat.tj, купить онлайн лекарственные препараты и товары для здоровья';
+        $data['meta_social_desc'] = 'Удобный поиск лекарств, можно заказать любые препараты недорого по выгодным ценам. Удобный каталог лекарств, инструкций и советы врачей! ☎ 9990 Salomat.tj';
+        $data['title'] = 'Интернет аптека Salomat.tj, купить онлайн лекарственные препараты и товары для здоровья';
 //            $data['categories_for_main_page'] = $array;
 
-            $this->response($data, REST_Controller::HTTP_OK);
+        $this->response($data, REST_Controller::HTTP_OK);
 
 //        } else {
 //            $message = [
@@ -455,13 +455,13 @@ class Products extends REST_Controller {
         $array = $this->input->post('sort');
 
         $categories = $this->category->get_by_sort_all($array);
-            foreach (array_values($categories) as $order => $key){
-                $update_rows = array(
-                    'order_id' => $order,
-                );
-                $this->db->where('id', $key['id'] );
-                $result = $this->db->update('category', $update_rows);
-            }
+        foreach (array_values($categories) as $order => $key){
+            $update_rows = array(
+                'order_id' => $order,
+            );
+            $this->db->where('id', $key['id'] );
+            $result = $this->db->update('category', $update_rows);
+        }
 
         $this->response($array, REST_Controller::HTTP_OK);
     }

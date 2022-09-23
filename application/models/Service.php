@@ -8,17 +8,17 @@ class Service extends CI_Model {
         // Your own constructor code
         $this->load->database();
     }
-    
+
     public function add($array)
-	{
-		$this->db->insert('service', $array);
-	}
+    {
+        $this->db->insert('service', $array);
+    }
 
     public function get($id)
-	{
-		$array = array();
+    {
+        $array = array();
         $this->db->select("*");
-		$this->db->where('id', $id);
+        $this->db->where('id', $id);
         $this->db->from('service');
         $query = $this->db->get();
         foreach($query->result_array() as $row)
@@ -26,25 +26,25 @@ class Service extends CI_Model {
             $array = $row;
         }
         return $array;
-	}
+    }
 
     public function remove($id)
-	{
+    {
         $dd = $this->get($id);
 
         @unlink("upload_banner/".$dd['image']);
 
-		$this->db->delete("service",array('id' => $id));
-	}
+        $this->db->delete("service",array('id' => $id));
+    }
 
     public function update($id, $array)
-	{
-		$this->db->update('service', $array, array('id' => $id));
-	}
+    {
+        $this->db->update('service', $array, array('id' => $id));
+    }
 
     public function get_all()
-	{
-		$array = array();
+    {
+        $array = array();
         $this->db->select("*");
         $this->db->from('service');
         $query = $this->db->get();
@@ -54,7 +54,7 @@ class Service extends CI_Model {
             $array[] = $row;
         }
         return $array;
-	}
+    }
 }
 
 ?>
