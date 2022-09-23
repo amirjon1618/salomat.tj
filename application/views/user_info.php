@@ -432,11 +432,9 @@
 
 
     function delPhoto() {
-        var image = "";
-        var user_id = "";
         $.ajax({
             type: "POST",
-            url: "{base_url}users/edit_user",
+            url: "{base_url}users/deletePhoto",
             headers: {
                 "Accept": "application/json",
             },
@@ -444,6 +442,13 @@
                 image: 'user.png',
                 id:JSON.parse(localStorage.getItem("userId")).user_id,
             },
+            success: function(data){
+                if(data == true){ // if true (1)
+                    setTimeout(function(){// wait for 5 secs(2)
+                        location.reload(); // then reload the page.(3)
+                    }, 100);
+                }
+            }
         })
     }
 
