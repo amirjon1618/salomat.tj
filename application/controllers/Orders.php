@@ -63,18 +63,21 @@ class Orders extends REST_Controller
     {
         header("Access-Control-Allow-Origin: *");
 
+        $json = $this->input->raw_input_stream;
+        $array = json_decode($json);
+
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
 
         if (!empty($is_valid_token) && $is_valid_token['status'] === TRUE) {
-            if ($this->input->post("products")) {
-                $array = $this->input->post();
-                $array['code'] = null;
-                if (!is_numeric($array["delivery_id"])) {
-                    $array["delivery_id"] = 1;
+            if ($array->products) {
+                $array->code = null;
+                if (!is_numeric($array->delivery_id)) {
+                    $array->delivery_id = 1;
                 }
-                $res = $this->order->add($array);
-                $this->order->save_user_order_status_change($array['user_id'], $res['order_id'], 1, 1, $this->input->post("comment"));
+
+                $res = $this->order->row_add($array);
+                $this->order->save_user_order_status_change($array->user_id, $res['order_id'], 1, 1,$array->comment);
 
                 $message = [
                     'status' => true,
