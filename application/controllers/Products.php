@@ -512,4 +512,38 @@ class Products extends REST_Controller {
 
         $this->response($array, REST_Controller::HTTP_OK);
     }
+
+    /**
+     * Add review
+     *
+     * @return void
+     */
+    public function send_review_post()
+    {
+        $this->load->model('rating');
+        if (
+            $this->input->post("prod_id")
+            && $this->input->post("review_rating")
+            && $this->input->post("review_name")
+            && $this->input->post("review_comment")
+        ) {
+            $array = $this->input->post();
+            $answer = $this->rating->add($array);
+            if ($answer == 1) {
+                $massage = [
+                    "status"    => true,
+                    "data"      => "Отзыв Добавлен!"
+                ];
+                $this->response($massage, REST_Controller::HTTP_OK);
+            } else {
+                $massage = [
+                    "status"    => false,
+                    "data"      => "Ошибка!"
+                ];
+                $this->response($massage, REST_Controller::HTTP_BAD_REQUEST);
+            }
+        } else {
+            $this->response(false, REST_Controller::HTTP_BAD_REQUEST);
+        }
+    }
 }
