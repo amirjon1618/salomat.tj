@@ -49,7 +49,7 @@
             </div>
             <div class="ps-layout__right">
                 <div class="ps-shopping-product sales_res_products">
-					
+
                 </div>
             </div>
         </div>
@@ -72,8 +72,8 @@
     function get_sales_product_list(id, min_price = '', max_price = '') {
         $('#loading').css('display', 'block');
         $.getJSON("{base_url}index.php/main/get_sales_prods?" +
-            "sales_id=" + id + 
-            "&page="+ page +
+            "sales_id=" + id +
+            "&page=" + page +
             "&min_price=" + min_price +
             "&max_price=" + max_price,
             function(data, status) {
@@ -109,10 +109,12 @@
             get_sales_product_list(sales_id, min_pr, max_pr);
         });
     }
+
     function topage(p) {
         page = p;
         get_sales_product_list(sales_id, min_pr, max_pr);
     }
+
     function filterSliderMobileAside(price) {
         var nonLinearSliderMobile = document.querySelector('.nonlinear_mobile_aside');
         if (typeof nonLinearSliderMobile != 'undefined' && nonLinearSliderMobile != null) {

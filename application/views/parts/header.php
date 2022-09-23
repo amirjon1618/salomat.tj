@@ -678,7 +678,7 @@
                 <div class="ps-cart__footer">
                     <h3>Общая сумма:<strong class="total_cart_sum"></strong></h3>
                     <figure>
-                    <a class="ps-btn d-flex justify-content-center" href="{base_url}index.php/main/cart_shopping">Перейти в корзину</a>
+                        <a class="ps-btn d-flex justify-content-center" href="{base_url}index.php/main/cart_shopping">Перейти в корзину</a>
                     </figure>
                 </div>
             </div>
@@ -1186,7 +1186,6 @@
     .ok-btn input:hover {
         color: #fff !important;
     }
-
 </style>
 <script>
     const al = () => alert()
@@ -1199,8 +1198,23 @@
         $(".account-wrap").css("display", "block")
     }
 
+    function onAddBorder() {
+        const __products = JSON.parse(localStorage.getItem("product_list"));
+        const __categores = Array.from(document.querySelectorAll(".ps-product--simple,.main-ps-product,.ps-product--inner-sales"));
+
+        if (__products !== null) {
+            __categores.forEach(elem => {
+                __products.forEach(product => {
+                    if (elem.dataset.id === product.product_id) {
+                        elem.classList.add("main-products_border");
+                    }
+                })
+            })
+        }
+    }
+
     function remove_from_header_cart(id) {
-        const __categores = Array.from(document.querySelectorAll(".ps-product--simple,.main-ps-product"));
+        const __categores = Array.from(document.querySelectorAll(".ps-product--simple,.main-ps-product, .ps-product--inner-sales"));
         __categores.forEach(elem => {
             if (Number(elem.dataset.id) === id) {
                 elem.classList.remove("main-products_border")
@@ -1922,7 +1936,7 @@
             $(".validate-text").text("");
         }
     })
-    
+
     $("#second-password2").on('input', () => {
         if ($("#second-password2").val() !== $("#first-password2").val()) {
             $(".validate-text").text("Пароли не совпадают");
@@ -1938,7 +1952,7 @@
             $(".validate-text").text("");
         }
     })
-    
+
     $("#first-password2").on('input', () => {
         if ($("#first-password2").val() !== $("#second-password2").val()) {
             $(".validate-text").text("Пароли не совпадают");
