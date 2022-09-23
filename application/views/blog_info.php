@@ -87,7 +87,6 @@
                                             </select><span>(<?= $prod_sugg['review_count'] ?>)</span>
                                         </div>
                                         <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span ">
-                                                <input class="form-control height50" id="count_input" type="number" value="1" style="display: none;">
                                                 <?php if ($prod_sugg['product_old_price'] != 0) : ?><del><?= $prod_sugg['product_old_price'] ?> </del><?php endif; ?>
                                                 <?= $prod_sugg['product_price'] ?>c. </span><button onclick='addToCart(res = <?= json_encode($prod_sugg) ?>)' class="ps-btn btn-cart_cat">В корзину</button>
                                         </p>
