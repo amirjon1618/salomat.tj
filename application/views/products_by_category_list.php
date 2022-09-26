@@ -1,7 +1,7 @@
 <div class="ps-tabs">
     <div class="ps-tab active" id="tab-1">
         <div class="ps-shopping-product">
-            <div class="row" style="gap: 10px;">
+            <div class="row gap-dn" style="gap: 10px; justify-content: center;">
                 <?php foreach ($category_products['products'] as $cat_p) : ?>
                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 p-0 ps-product--inner-sales" data-id="<?php echo  $cat_p['id'] ?>">
                         <div class=" ps-product ps-product--inner ps-product_of_the_day">
@@ -12,7 +12,7 @@
                                 </svg>
                             </label>
                             <div class="ps-product__thumbnail ps-product__thumbnail_img_div  hover01">
-                                <a href="<?= $base_url ?>index.php/main/product/<?= $cat_p['id'] ?>?from=main">
+                                 <a href="<?= $base_url ?>index.php/main/product/<?= $cat_p['id'] ?>?from=main">
                                     <img class="imgs" src="<?= $base_url ?>upload_product/<?= $cat_p['product_pic'] ?>" alt="Product IMG">
                                 </a>
                             </div>

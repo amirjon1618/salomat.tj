@@ -36,14 +36,14 @@
         <section class="section-forms section-tabs">
             <div class="container my-5">
                 <div class="user-info">
-                    <div class="up-left-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12 p-0 mb-3">
-                        <ul class="user-info_ul nav nav-pills" id="myTab" role="tablist">
+                    <div class="up-left-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12 p-0">
+                        <ul class="user-info_ul nav nav-pills dragscroll" id="myTab" role="tablist">
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab0" data-toggle="tab" href="#user-info" data-hash="#user-info" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-user.svg" alt="Icon">Личная информация</a></li>
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab1" data-toggle="tab" href="#user-order" data-hash="#user-order" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-cart.svg" alt="Icon">Мои заказы</a></li>
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab2" data-toggle="tab" href="#user-favorite" data-hash="#user-favorite" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-like.svg" alt="Icon">Избранное</a></li>
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab3" data-toggle="tab" href="#user-save" data-hash="#user-save" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-save.svg" alt="Icon">Безопасность</a></li>
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab4" data-toggle="tab" href="#phone-number" data-hash="#phone-number" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/header-phone.svg" alt="Icon" width="34px">Изменит телефон</a></li>
-                            <li class="nav-item5 px-5" role="presentation"><a style="color: #A8A8A8;" href="/" onclick="onRemoveLS()">Выход</a></li>
+                            <li class="nav-item5" role="presentation"><a style="color: #A8A8A8;" href="/" onclick="onRemoveLS()">Выход</a></li>
                         </ul>
                     </div>
                     <?php if (isset($auth)) : ?>
@@ -55,18 +55,12 @@
                                         <form action="{base_url}users/update_user_web" method="post" class="up-content-info_form">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                 <div class="form-col">
-                                                    <label for="validationCustom01">Имя фамилия*</label>
+                                                    <label for="validationCustom01">Имя фамилия <span class="red-star">*</span></label>
                                                     <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="Имя Фамилия" required value="<?php echo $name ?>">
-                                                    <div class="valid-feedback">
-                                                        Правильно!
-                                                    </div>
                                                 </div>
                                                 <div class="form-col">
-                                                    <label for="validationCustom02">Номер телефона*</label>
+                                                    <label for="validationCustom02">Номер телефона <span class="red-star">*</span></label>
                                                     <input type="tel" title="Изменить номер телефона на вкладке (Изменить телефон)" class="form-control" id="validationCustom02" readonly name="login" placeholder="+992 XXX XX XX XX" required value="<?php echo $phone ?>">
-                                                    <div class="valid-feedback">
-                                                        Правильно!
-                                                    </div>
                                                 </div>
                                                 <div class="form-col">
                                                     <label for="validationCustom03">Пол</label>
@@ -326,6 +320,7 @@
         </section>
     </div>
 </div>
+<script defer src="/js/dragscroll.js"></script>
 <script>
     function onRemoveLS() {
         localStorage.removeItem("userId");
