@@ -17,7 +17,6 @@ class Orders extends REST_Controller
         $this->load->library('form_validation');
         $this->load->database();
         $this->load->model('order');
-
     }
 
     /**
