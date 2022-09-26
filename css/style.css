@@ -5246,6 +5246,7 @@ textarea.form-control {
     border-radius: 4px 4px 0px 0px;
     border-right: 3px solid #4a4ac3;
 }
+
 .user-info_ul a{
     font-style: normal;
     font-weight: 600;
@@ -10159,7 +10160,6 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .owl-carousel .ps-product {
-    margin-bottom: 10px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -11037,11 +11037,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     display: none;
 }
 
-.ps-product--wide .ps-product__shopping {
+/* .ps-product--wide .ps-product__shopping {
     flex-basis: 250px;
     display: grid;
     justify-content: end;
-}
+} */
 .validate-text {
     text-align: center !important;
     color: red !important;
@@ -14767,6 +14767,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     .sort_by_price_mobile {
         display: flex;
         justify-content: flex-start;
+        width: 120px;
+        height: 44px;
+        align-items: center;
+        margin-bottom: 20px;
+        font-size: 12px !important;
     }
 }
 
@@ -14786,6 +14791,23 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 @media (min-width: 320px) and (max-width: 576px) {
     .owl-carousel .owl-item img {
         height: 80%;
+    }
+    .nav-item {
+        background: none !important;
+        border-radius: 0 0 5px 5px !important;
+        border-right: none !important;
+        border-bottom: 4px solid #4839C3 !important;
+    }
+    .user-info_ul li:hover {
+        background: none !important;
+        border-radius: none !important;
+        border-right: none !important;
+    }
+    .user-info_ul li a:hover {
+        text-decoration: none;
+    }
+    .user-info_ul li img {
+        display: none;
     }
     .ps-product--inner-sales {
         border: 1px solid #E5E5E5;
@@ -14814,6 +14836,22 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     }
     ul#myTab {
         display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 1rem;
+        width: 360px;
+        margin: 0 8px;
+    }
+    ul#myTab::-webkit-scrollbar {
+        display: none;
+      }
+    .up-left-sidebar {
+        margin-bottom: 0 !important;
+        border-radius: 5px 5px 0 0 !important;
+    }
+    .up-content h2 {
+        display: none;
     }
     .header_phone_number > p {
         display: none;
@@ -15067,6 +15105,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
         width: 30% !important;
         margin-right: 10px;
         margin-bottom: 0 !important;
+        width: 44px !important;
+        height: 44px !important;
     }
     .like-button:active {
         background-color: red;
@@ -15076,14 +15116,19 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     }
     .ps-product--wide .ps-product__shopping {
         display: flex;
+        justify-content: space-between;
+        width: 100%;
     }
-    .ps-product--wide .ps-product__price {
+    /* .ps-product--wide .ps-product__price {
         padding-right: 32px;
-    }
+    } */
     .ps-product--wide .ps-product__shopping .ps-btn {
         padding: 10px 40px;
         white-space: nowrap;
-        height: 50px;
+        height: 44px;
+        display: flex !important;
+        justify-content: center;
+        width: 120px;
     }
     .like-button label {
         margin-bottom: 0 !important;
@@ -18213,6 +18258,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 @media (min-width: 320px) and (max-width: 992px) {
     .ps-page--shop .container {
         max-width: 100%;
+        padding-left: 25px;
     }
     .widget:last-child {
         border-bottom: none;
@@ -34325,7 +34371,7 @@ padding: 10px;
 padding: 10px 35px 35px 35px;
 }
 #favorite-parent {
-min-height: 520px;
+min-height: 500px;
 }
 .pps-custom {
 padding: 6px 12px !important;
@@ -34337,5 +34383,8 @@ padding: 6px 12px !important;
     padding: 0 !important;
 }
 .user-info_favorite button {
-    padding: 0 7px !important;
+    padding: 0 6px !important;
+}
+.red-star {
+    color: red;
 }

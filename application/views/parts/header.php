@@ -505,7 +505,7 @@
                             <p class="text-muted">09:00-18:00</p>
                         </a>
                         <div class="ps-cart--mini">
-                            <a class="header__extra header_cart_a" href="#">
+                            <a class="header__extra header_cart_a" href="{base_url}index.php/main/cart_shopping">
                                 <img src="{base_url}img/header-basket.svg" style="margin-bottom: -30px;">
                                 <span class="header_cart_tot_span">
                                     <i id="total_count_in_cart_header">0</i>
