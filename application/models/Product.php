@@ -1025,7 +1025,7 @@ class Product extends CI_Model
         $this->db->update('product', array('product_suggestions' => $stat), array('id' => $prod_id));
     }
 
-    public function get_similar_products($prod_id)
+    public function get_similar_products($prod_id, $user_id = '')
     {
         $q = $this->db->query("SELECT active_substance.id FROM product 
                           LEFT JOIN active_substance_product ON active_substance_product.product_id = product.id
@@ -1053,6 +1053,15 @@ class Product extends CI_Model
                 $row['review_count'] = $rating['review_count'];
             } else {
                 $row['review_count'] = 0;
+            }
+            if (!isset($user_id))
+                $user_id = $this->session->userdata('user_id');
+
+            $favorite = $this->get_favorite($row['id'],$user_id?:0);
+            if (sizeof($favorite) != 0) {
+                $row['is_favorite'] = true;
+            } else {
+                $row['is_favorite'] = false;
             }
             $row['base_url'] = base_url();
             $array[] = $row;

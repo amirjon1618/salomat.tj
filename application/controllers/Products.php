@@ -438,7 +438,7 @@ class Products extends REST_Controller {
         }
 
         $data['comments'] = $this->rating->get_rating_info($id);
-        $data['similar_products'] = $this->product->get_similar_products($id);
+        $data['similar_products'] = $this->product->get_similar_products($id, $user_id);
         $data['prods_suggestions'] = $this->product->get_prods_by_slider_type('product_suggestions');
 
         $this->response($data, REST_Controller::HTTP_OK);

@@ -7,6 +7,7 @@ class Favorite extends CI_Model
     {
         parent::__construct();
 
+        $this->load->model('product');
         $this->load->database();
     }
 
@@ -25,9 +26,20 @@ class Favorite extends CI_Model
         $favorites = $query->result_array();
         $data = [];
         foreach ($favorites as $favorite => $key){
-                $key['is_favorite'] = true;
-                $data [] = $key;
+            $key['is_favorite'] = true;
+            $rating = $this->product->get_rating($key['id']);
+            if (sizeof($rating) != 0) {
+                $key['prod_rating_average'] = $rating['prod_rating_average'];
+                $key['prod_rating_each'] = $rating['prod_rating_each'];
+                $key['review_count'] = $rating['review_count'];
+            } else {
+                $key['prod_rating_average'] = '';
+                $key['prod_rating_each'] = '';
+                $key['review_count'] = 0;
+            }
+            $data [] = $key;
         }
+
         return $data;
     }
 
