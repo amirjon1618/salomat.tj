@@ -88,6 +88,7 @@
                                             </select><span>(<?= $prod_sugg['review_count'] ?>)</span>
                                         </div>
                                         <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span ">
+                                                <input class="form-control height50" id="count_input" type="number" value="1" style="display: none;">
                                                 <?php if ($prod_sugg['product_old_price'] != 0) : ?><del><?= $prod_sugg['product_old_price'] ?> </del><?php endif; ?>
                                                 <?= $prod_sugg['product_price'] ?>c. </span><button onclick='addToCart(res = <?= json_encode($prod_sugg) ?>)' class="ps-btn btn-cart_cat">В корзину</button>
                                         </p>
@@ -115,7 +116,7 @@
         var brand = res.product_brand;
         var pic = res.product_pic;
         var name = res.product_name;
-        var total_count = res.product_total_count;
+        var total_count = res.total_count_in_store;
         var product_articule = res.product_articule;
         var obj = {
             product_id: id,
@@ -128,7 +129,6 @@
             product_total_count: total_count,
             prod_articule: product_articule
         };
-
         var found = false;
         if (total_count <= 0) {
             $('.product_add_notification_div_error').css({
@@ -188,6 +188,7 @@
             set_prods_header();
         }
     }
+
     document.getElementsByClassName('blog_about').offsetWidth / 100;
     if (document.querySelector(".ps-product__content i")) document.querySelector(".ps-product__content i").addEventListener("click", onAddBorder())
 
@@ -277,7 +278,6 @@
                 page: 1
             },
             success: function(blogShow) {
-                console.log(blogShow);
                 const filtered = blogShow.blogs.filter(elem => elem.id !== blogId);
                 filtered.forEach(elem => {
                     document.querySelector(".bi-left-sidebar").innerHTML += `

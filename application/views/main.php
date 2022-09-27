@@ -89,7 +89,6 @@
                                                 <input class="form-control height50" id="count_input" type="number" value="1" style="display: none;">
                                                 <?php if ($prod_of_the_day['product_old_price'] != 0) : ?><del><?= $prod_of_the_day['product_old_price'] ?> </del><?php endif; ?>
                                                 <?= $prod_of_the_day['product_price'] ?>c. </span><button onclick='addToCart(res = <?= json_encode($prod_of_the_day) ?>)' class="ps-btn btn-cart_cat">В корзину</button>
-
                                         </p>
 
                                     </div>
@@ -462,25 +461,6 @@
         })
     }
     getBlog();
-
-    // function decrease_count() {
-    //     $('#decrease_count').on('click', function() {
-    //         count--;
-    //         if (count < 1) {
-    //             count = 1;
-    //         }
-    //         $('#count_input').val(count);
-    //     })
-    // }
-
-    // function increase_count() {
-    //     $('#increase_count').on('click', function() {
-    //         // if (count < total_count_global) {
-    //         count++;
-    //         // }
-    //         $('#count_input').val(count);
-    //     })
-    // }
 
 
     function addToCart(res) {
