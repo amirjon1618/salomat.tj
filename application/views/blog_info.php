@@ -276,7 +276,6 @@
                 page: 1
             },
             success: function(blogShow) {
-                console.log(blogShow);
                 const filtered = blogShow.blogs.filter(elem => elem.id !== blogId);
                 filtered.forEach(elem => {
                     document.querySelector(".bi-left-sidebar").innerHTML += `
