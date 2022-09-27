@@ -1746,6 +1746,7 @@
     })
     $(".rf4").click((e) => {
         e.preventDefault();
+        alert()
         $(".efr4").hide();
         $(".efr1").css("display", "block");
     })
@@ -1919,10 +1920,30 @@
                 password: $("#first-password").val()
             },
             success: function(result) {
+                $.ajax({
+                    type: "POST",
+                    url: "{base_url}users/login",
+                    headers: {
+                        "Accept": "application/json",
+                    },
+                    data: {
+                        phone: Number(localStorage.getItem("ver-number")),
+                        password: $("#first-password").val()
+                    },
+                    success: function(result) {
+                        $(".validate-text2").text("");
+                        userInfo();
+                    },
+                    error: function(error) {
+                        $(".validate-text2").text("Неправильный логин или пароль");
+                    }
+                })
+
                 $(".enter-btn-bg").css("display", "none");
                 $(".account-btn").css("display", "none");
                 document.getElementById("account-wrap").style.display = "block";
                 document.getElementById("account-wrap2").style.display = "block";
+                window.location.href = `{base_url}index.php/main/user_info#user-info`
             },
             error: function(error) {
 
@@ -1974,10 +1995,31 @@
                 password: $("#first-password2").val()
             },
             success: function(result) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "{base_url}users/login",
+                    headers: {
+                        "Accept": "application/json",
+                    },
+                    data: {
+                        phone: Number(localStorage.getItem("restore-phone")),
+                        password: $("#first-password2").val()
+                    },
+                    success: function(result) {
+                        $(".validate-text2").text("");
+                        userInfo();
+                    },
+                    error: function(error) {
+                        $(".validate-text2").text("Неправильный логин или пароль");
+                    }
+                })
+
                 $(".enter-btn-bg").css("display", "none");
                 $(".account-btn").css("display", "none");
                 document.getElementById("account-wrap").style.display = "block";
                 document.getElementById("account-wrap2").style.display = "block";
+                window.location.href = `{base_url}index.php/main/user_info#user-info`
             },
             error: function(error) {
 

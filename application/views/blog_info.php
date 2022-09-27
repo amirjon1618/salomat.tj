@@ -14,9 +14,10 @@
         </div>
     </div>
     <div class="ps-section--gray">
+
         <div class="container">
             <div class="ps-block--products-of-category blog-articles bg-blog_transparent">
-                <div class="bi-left-sidebar col-lg-2 col-md-10 col-sm-12 col-xs-12 pt-3">
+                <div class="bi-left-sidebar sticky col-lg-2 col-md-10 col-sm-12 col-xs-12 pt-3" id='js-bi-left-sidebar'>
                     <h2>Похожие статьи</h2>
 
                 </div>
