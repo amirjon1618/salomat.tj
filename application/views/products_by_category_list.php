@@ -12,7 +12,7 @@
                                 </svg>
                             </label>
                             <div class="ps-product__thumbnail ps-product__thumbnail_img_div  hover01">
-                                 <a href="<?= $base_url ?>index.php/main/product/<?= $cat_p['id'] ?>?from=main">
+                                <a href="<?= $base_url ?>index.php/main/product/<?= $cat_p['id'] ?>?from=main">
                                     <img class="imgs" src="<?= $base_url ?>upload_product/<?= $cat_p['product_pic'] ?>" alt="Product IMG">
                                 </a>
                             </div>
@@ -40,6 +40,7 @@
                                         </select><span>(<?= $cat_p['review_count'] ?>)</span>
                                     </div>
                                     <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span ">
+                                            <input class="form-control height50" id="count_input" type="number" value="1" style="display: none;">
                                             <?php if ($cat_p['product_old_price'] != 0) : ?><del><?= $cat_p['product_old_price'] ?> </del><?php endif; ?>
                                             <?= $cat_p['product_price'] ?>c. </span><button onclick='addToCart(res = <?= json_encode($cat_p) ?>)' class="ps-btn btn-cart_cat">В корзину</button>
 
@@ -188,6 +189,7 @@
     var max_count_reached = false;
 
     function add_to_cart(id, name, old_price, price, brand, pic, total_count, product_articule) {
+
         max_count_reached = false;
         var array = [];
         var count = 1;
@@ -420,6 +422,7 @@
             set_prods_header();
         }
     }
+
     document.getElementsByClassName('blog_about').offsetWidth / 100;
     if (document.querySelector(".ps-product__content i")) document.querySelector(".ps-product__content i").addEventListener("click", onAddBorder())
 
