@@ -1,6 +1,6 @@
 <?php if (sizeof($search_result) != 0) : ?>
     <?php foreach ($search_result as $cat_p) : ?>
-        <div class="ps-product ps-product--wide">
+        <div class="ps-product ps-product--wide" data-id="<?php echo  $cat_p['id'] ?>">
             <div class="ps-product__thumbnail">
                 <a href="{base_url}main/product/<?= $cat_p['id'] ?>">
                     <img class="prod_img_in_categ_by_list" src="<?= $cat_p['base_url'] ?>upload_product/<?= $cat_p['product_pic'] ?>" alt="">
@@ -138,6 +138,12 @@
             }
         })
     }
+
+    document.getElementsByClassName('blog_about').offsetWidth / 100;
+    if (document.querySelector(".ps-product__content i")) document.querySelector(".ps-product__content i").addEventListener("click", onAddBorder())
+
+
+    onAddBorder();
 </script>
 <style>
     .like-button {

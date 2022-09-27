@@ -14792,6 +14792,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     .owl-carousel .owl-item img {
         height: 80%;
     }
+    .userinfo-exit_btn {
+        padding: 0 !important;
+    }
     .nav-item {
         background: none !important;
         border-radius: 0 0 5px 5px !important;
@@ -14870,8 +14873,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     display: block !important;
     }
     .status-delivered {
-        background-color: #1EBEBE !important;
-        color: #fff;
+        background-color: #fff !important;
+        color: #1EBEBE;
+        border: 2px solid #1EBEBE;
+        border-radius: 12px;
+        padding: 1px;
         font-size: 14px;
         font-weight: 600;
         padding: 5px;
@@ -34387,4 +34393,7 @@ padding: 6px 12px !important;
 }
 .red-star {
     color: red;
+}
+.userinfo-exit_btn {
+    padding: 0 35px;
 }

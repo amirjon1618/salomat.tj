@@ -43,7 +43,7 @@
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab2" data-toggle="tab" href="#user-favorite" data-hash="#user-favorite" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-like.svg" alt="Icon">Избранное</a></li>
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab3" data-toggle="tab" href="#user-save" data-hash="#user-save" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/up-save.svg" alt="Icon">Безопасность</a></li>
                             <li class="nav-item5" role="presentation"><a id="webdisign-tab4" data-toggle="tab" href="#phone-number" data-hash="#phone-number" role="tab" aria-controls="webdisign" aria-selected="true"><img src="{base_url}img/header-phone.svg" alt="Icon" width="34px">Изменит телефон</a></li>
-                            <li class="nav-item5" role="presentation"><a style="color: #A8A8A8;" href="/" onclick="onRemoveLS()">Выход</a></li>
+                            <li class="nav-item5" role="presentation"><a class="userinfo-exit_btn" style="color: #A8A8A8;" href="/" onclick="onRemoveLS()">Выход</a></li>
                         </ul>
                     </div>
                     <?php if (isset($auth)) : ?>
@@ -124,10 +124,10 @@
                                     </div>
                                     <?php if (!empty($orders)) : ?>
                                         <?php foreach ($orders as $order) : ?>
-                                            <div class="table-content pb-5">
+                                            <div class="table-content">
                                                 <table class="table table-borderless" style="border-collapse:collapse;">
                                                     <thead>
-                                                        <tr>
+                                                        <tr style="border-bottom: 1px solid #E5E5E5;">
                                                             <th></th>
                                                             <th>Дата</th>
                                                             <th>Статус</th>
@@ -161,7 +161,7 @@
                                                                                                 <tbody>
                                                                                                     <tr>
                                                                                                         <th scope="row"><img style="max-width: 100px" src="{base_url}upload_product/<?php echo $product->product_pic; ?>" alt="IMG"></th>
-                                                                                                        <td class="align-middle"><?php echo $product->product_name; ?></td>
+                                                                                                        <td class="align-middle" style="color: #4839C3; font-weight: 500;"><?php echo $product->product_name; ?></td>
                                                                                                         <td class="align-middle"><?php echo $product->total_count; ?> шт</td>
                                                                                                         <td class="align-middle"><?php echo $product->product_sold_price; ?> смн.</td>
                                                                                                     </tr>
@@ -174,11 +174,15 @@
                                                                             </tr>
                                                                         </tbody>
                                                                         <tbody>
+                                                                            <tr class="order-total-price">
+                                                                                <td style="font-size: 16px; color: #000; font-weight: 500;">Стоимост товаров: </td>
+                                                                                <td class="font-weight-bold" style="color: #000; font-weight: 500;"><?php echo $price; ?><span style="color: #4839C3; font-weight: 400;"> смн</span></td>
+                                                                                <td style="font-size: 16px; color: #000; font-weight: 500;">Итого: </td>
+                                                                                <td class="font-weight-bold" style="color: #000; font-weight: 500;"><?php echo $price; ?><span style="color: #4839C3; font-weight: 400;"> смн</span></td>
+                                                                            </>
                                                                             <tr>
-                                                                                <td>Стоимост товаров: </td>
-                                                                                <td class="font-weight-bold"><?php echo $price; ?></td>
-                                                                                <td>Итого: </td>
-                                                                                <td class="font-weight-bold"> <?php echo $order['order']->total_price; ?></td>
+                                                                                <td>Стоимост доставки: </td>
+                                                                                <td class="font-weight-bold" style="color: #000; font-weight: 500;"> <?php echo $order['order']->total_price; ?> <span style="color: #4839C3; font-weight: 400;"> смн</span></td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -686,5 +690,13 @@
 
     .user-active+tr div {
         display: block !important;
+        background: #F9F9F9;
+        border-radius: 5px;
+    }
+    .table-content tr {
+        border-bottom: none;
+    }
+    .order-total-price {
+        border-top: 1px solid #E5E5E5;
     }
 </style>

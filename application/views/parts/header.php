@@ -1200,7 +1200,7 @@
 
     function onAddBorder() {
         const __products = JSON.parse(localStorage.getItem("product_list"));
-        const __categores = Array.from(document.querySelectorAll(".ps-product--simple,.main-ps-product,.ps-product--inner-sales"));
+        const __categores = Array.from(document.querySelectorAll(".ps-product--simple, .main-ps-product, .ps-product--inner-sales, .ps-product--wide"));
 
         if (__products !== null) {
             __categores.forEach(elem => {
@@ -1214,7 +1214,7 @@
     }
 
     function remove_from_header_cart(id) {
-        const __categores = Array.from(document.querySelectorAll(".ps-product--simple,.main-ps-product, .ps-product--inner-sales"));
+        const __categores = Array.from(document.querySelectorAll(".ps-product--simple, .main-ps-product, .ps-product--inner-sales, .ps-product--wide"));
         __categores.forEach(elem => {
             if (Number(elem.dataset.id) === id) {
                 elem.classList.remove("main-products_border")
@@ -1579,26 +1579,24 @@
     let __sec = 59;
     $('.min-time').text(`${__min}`);
     $('.sec-time').text(`${__sec}`);
-    const userTimer = () => {
-        const countDown = setInterval(function() {
-            __sec--;
-            if (__min === 0 && __sec === 0) {
-                $('.showTimer').css("display", "none");
-                $('.hideTimer').css("display", "flex");
-                __min = 1;
-                $('.min-time').text(`${__min}`);
-                __sec = 59;
-                clearInterval(countDown);
+
+    function userTimer() {
+        $('#not_received_sms').hide();
+        $('#recend_timer_sms').show();
+
+        timing = 60;
+        $('#timer_recipe').html(timing);
+        myTimer = setInterval(function() {
+            --timing;
+            $('#timer_recipe').html(timing);
+            if (timing === 0) {
+                $('#recend_timer_sms').hide();
+                $('#not_received_sms').show();
+                clearInterval(myTimer);
             }
-            if (__sec === 0) {
-                __min = 0;
-                $('.min-time').text(`${__min}`);
-                __sec = 59;
-                __sec--;
-            }
-            $('.sec-time').text(`${__sec}`);
         }, 1000);
     }
+
     $(".forgot-pass_a").click(() => {
         $(".efr2").css("display", "none")
         $(".efr5").css("display", "block")
