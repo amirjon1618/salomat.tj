@@ -435,11 +435,11 @@
             },
             data: {
                 image: 'user.png',
-                id:JSON.parse(localStorage.getItem("userId")).user_id,
+                id: JSON.parse(localStorage.getItem("userId")).user_id,
             },
-            success: function(data){
-                if(data == true){ // if true (1)
-                    setTimeout(function(){// wait for 5 secs(2)
+            success: function(data) {
+                if (data == true) { // if true (1)
+                    setTimeout(function() { // wait for 5 secs(2)
                         location.reload(); // then reload the page.(3)
                     }, 100);
                 }
