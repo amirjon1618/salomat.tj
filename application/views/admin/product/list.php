@@ -153,13 +153,13 @@
             </div>
             <ul class="pagination" id="admin_products_pagination">
               <?php if (isset($info['prev_page'])) : ?>
-                <li><a href="<?= $info['link'] . '' . $info['prev_page'] ?>"><i class="icon-chevron-left"></i>Пред. стр.</a></li>
+                <li><a href="<?= $info['link'] . '' . $info['prev_page'] ?>"><i class="icon-chevron-left"></i><span class="dnone-text_btn">Пред. стр.</span></a></li>
               <?php endif; ?>
               <?php foreach ($info['pages'] as $page) : ?>
                 <li class="<?= $page['current'] ?>"><a href="<?= $page['link'] . '' . $page['page'] ?>"><?= $page['page'] ?></a></li>
               <?php endforeach; ?>
               <?php if (isset($info['next_page'])) : ?>
-                <li><a href="<?= $info['link'] . '' . $info['next_page'] ?>">След. стр.<i class="icon-chevron-right"></i></a></li>
+                <li><a href="<?= $info['link'] . '' . $info['next_page'] ?>"><span class="dnone-text_btn">След. стр.</span><i class="icon-chevron-right"></i></a></li>
               <?php endif; ?>
             </ul>
           </nav>

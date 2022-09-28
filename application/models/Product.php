@@ -774,7 +774,7 @@ class Product extends CI_Model
 
     public function filter_pages($arr, $c_page)
     {
-        $count = 6;
+        $count = 5;
         if (sizeof($arr) > $count) {
             $new_arr = array();
             $dd = 0;

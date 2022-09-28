@@ -153,7 +153,7 @@
             <div class="page-content">
                 <div class="form-v8-content">
                     <div class="enter-form" style="display: none;">
-                        <div class="close-form_btn" onclick="javascript:window.location.reload()">
+                        <div class="close-form_btn" onclick="onConfirm()">
                             <img src=" {base_url}img/plus-close_form.svg" alt="X">
                         </div>
                         <div class="registration-form">
@@ -738,7 +738,7 @@
                 <img src="{base_url}img/3inactive.icon.png" alt="icon">
                 <span> э-Рецепт</span>
             </a>
-            <a class="navigation__item ps-toggle--sidebar navigation-cart" href="#cart-mobile" data-id="4" data-src="{base_url}img/4inactive.icon.svg">
+            <a class="navigation__item navigation-cart" href="{base_url}index.php/main/cart_shopping" data-id="4" data-src="{base_url}img/4inactive.icon.svg">
                 <img src="{base_url}img/4inactive.icon.svg" alt="icon">
                 <span> Корзина</span>
                 <span class="footer_cart_tot_span">
@@ -2054,5 +2054,12 @@
                 clearInterval(myTimer);
             }
         }, 1000);
+    }
+
+    function onConfirm() {
+        let closeBtn = confirm("Вы уверены? Все введенные данные стираются!");
+        if (closeBtn) {
+            window.location.reload();
+        }
     }
 </script>
