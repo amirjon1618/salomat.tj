@@ -79,6 +79,7 @@
                                                 '<?= $cat_p['product_old_price'] ?>',
                                                 '<?= $cat_p['product_price'] ?>',
                                                 '<?= $cat_p['product_brand']['id'] ?>',
+                                                '<?= $cat_p['product_brand']['brand_name'] ?>',
                                                 '<?= $cat_p['product_pic'] ?>',
                                                 '<?= $cat_p['total_count_in_store'] ?>',
                                                 '<?= $cat_p['product_articule'] ?>'

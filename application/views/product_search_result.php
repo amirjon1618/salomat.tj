@@ -85,7 +85,10 @@
     <script>
         var max_count_reached = false;
 
-        function add_to_cart(id, name, old_price, price, brand, pic, total_count, product_articule) {
+        function add_to_cart(id, name, old_price, price, brand,brand_name, pic, total_count, product_articule) {
+            const me = Object.create(null)
+            me.id = brand; // "name" is a property set on "me", but not on "person"
+            me.brand_name = brand_name;
             max_count_reached = false;
             var array = [];
             var count = 1;
@@ -95,7 +98,7 @@
                 product_count: count,
                 product_old_price: old_price,
                 product_price: price,
-                product_brand: brand,
+                product_brand: me,
                 product_pic: pic,
                 product_total_count: total_count,
                 prod_articule: product_articule

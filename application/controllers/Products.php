@@ -152,7 +152,7 @@ class Products extends REST_Controller {
         for ($i = 0; $i < sizeof($categories); $i++) {
             if ($categories[$i]['category_in_main'] == 1 && $j < 3) {
                 $array[$j]['categ'] = $categories[$i];
-                $array[$j]['categ_slider'] = $this->slider->get_by_slider_category($categories[$i]['id']);
+                $array[$j]['categ_slider'] = $this->slider->get_by_slider_category($categories[$i]['id'],2);
                 $array[$j]['categ_prods'] = $this->product->get_prods_in_categ($categories[$i]['id'],$user_id?:0);
                 $j++;
             }
@@ -438,7 +438,7 @@ class Products extends REST_Controller {
         }
 
         $data['comments'] = $this->rating->get_rating_info($id);
-        $data['similar_products'] = $this->product->get_similar_products($id);
+        $data['similar_products'] = $this->product->get_similar_products($id, $user_id);
         $data['prods_suggestions'] = $this->product->get_prods_by_slider_type('product_suggestions');
 
         $this->response($data, REST_Controller::HTTP_OK);
@@ -511,5 +511,39 @@ class Products extends REST_Controller {
         }
 
         $this->response($array, REST_Controller::HTTP_OK);
+    }
+
+    /**
+     * Add review
+     *
+     * @return void
+     */
+    public function send_review_post()
+    {
+        $this->load->model('rating');
+        if (
+            $this->input->post("prod_id")
+            && $this->input->post("review_rating")
+            && $this->input->post("review_name")
+            && $this->input->post("review_comment")
+        ) {
+            $array = $this->input->post();
+            $answer = $this->rating->add($array);
+            if ($answer == 1) {
+                $massage = [
+                    "status"    => true,
+                    "data"      => "Отзыв Добавлен!"
+                ];
+                $this->response($massage, REST_Controller::HTTP_OK);
+            } else {
+                $massage = [
+                    "status"    => false,
+                    "data"      => "Ошибка!"
+                ];
+                $this->response($massage, REST_Controller::HTTP_BAD_REQUEST);
+            }
+        } else {
+            $this->response(false, REST_Controller::HTTP_BAD_REQUEST);
+        }
     }
 }

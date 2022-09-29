@@ -420,6 +420,13 @@ class Users extends REST_Controller
             $this->form_validation->set_rules('address', 'Адрес', 'xss_clean|trim|max_length[20]');
             $this->form_validation->set_rules('gender', 'Пол', 'xss_clean|trim|max_length[20]');
             $this->form_validation->set_rules('birth_date', 'Дата рождения', 'xss_clean|trim|max_length[20]');
+            $name       = $this->input->post('name');
+            $email      = $this->input->post('email');
+            $login      = $this->input->post('login');
+            $birth_date = $this->input->post('birth_date');
+            $address    = $this->input->post('address');
+            $gender     = $this->input->post('gender');
+            $password    = $this->input->post('password');
             if ($this->form_validation->run() == FALSE) {
                 $message = array(
                     'status'    => false,
@@ -432,17 +439,24 @@ class Users extends REST_Controller
                 $this->load->library('session');
                 $user = $this->getUser($id);
 
-                if (isset($user))
-                    $userData['name'] = $this->input->post('name') ?? $user['name'];
-                $userData['email'] = $this->input->post('email') ?? $user['email'];
-                $userData['login'] = $this->input->post('login') ?? $user['login'];
-                $userData['birth_date'] = $this->input->post('birth_date') ?? $user['birth_date'];
-                $userData['address'] = $this->input->post('address') ?? $user['address'];
-                $userData['gender'] = $this->input->post('gender') ?? $user['gender'];
-
-                $this->db->where("user_id", $user['user_id']);
-                $this->db->update("users", $userData);
-
+                if (isset($id)) {
+                    if (!empty($name))
+                        $userData['name'] = $name;
+                    if (!empty($password))
+                        $userData['password'] = $this->hash_pass($password);
+                    if (!empty($email))
+                        $userData['email'] = $email;
+                    if (!empty($login))
+                        $userData['login'] = $login;
+                    if (!empty($birth_date))
+                        $userData['birth_date'] = $birth_date;
+                    if (!empty($address))
+                        $userData['address'] = $address;
+                    if (!empty($gender))
+                        $userData['gender'] = $gender;
+                    $this->db->where("user_id", $id);
+                    $this->db->update("users", $userData);
+                }
                 $message = [
                     'status'   => true,
                     'message'  => 'Successful'
