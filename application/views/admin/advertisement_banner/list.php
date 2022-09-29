@@ -54,6 +54,7 @@
               <?php endforeach; ?>
             </tbody>
           </table>
+          <button class="form-btn" onclick="javascript:window.location.reload()">Сохранить</button>
         </div><!-- /.box-body -->
       </div><!-- /.box -->
     </div><!-- /.col -->
@@ -334,5 +335,18 @@
     border: none;
     color: #fff;
     font-size: 18px;
+  }
+  .form-btn {
+    float: right;
+    color: #fff;
+    background: #1EBEBE;
+    border-radius: 5px;
+    border: none;
+    margin: 30px 10px 20px 0;
+    padding: 10px 40px;
+  }
+
+  .form-btn:hover {
+    background: #18A1A1;
   }
 </style>

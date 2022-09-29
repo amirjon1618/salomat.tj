@@ -132,13 +132,16 @@
                     // $.cookie("product_list", JSON.stringify(mydata), {
                     //     path: '/'
                     // });
-                    localStorage.setItem("product_list", JSON.stringify(mydata))
+                    localStorage.setItem("product_list", JSON.stringify(mydata));
+                    onAddBorder();
                 } else {
                     array.push(obj);
                     // $.cookie("product_list", JSON.stringify(array), {
                     //     path: '/'
                     // });
-                    localStorage.setItem("product_list", JSON.stringify(array))
+                    localStorage.setItem("product_list", JSON.stringify(array));
+                    onAddBorder();
+
                 }
                 if (!max_count_reached) {
                     $('.span_added_prod_name').text('' + name);

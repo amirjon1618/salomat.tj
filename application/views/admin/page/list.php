@@ -29,7 +29,7 @@
                                 <th style="text-align: center;">Изменить</th>
                             </tr>
                         </thead>
-                        <tbody id="dragAndDrop" draggable="true">
+                        <tbody id="#" draggable="false">
                             {list}
                             <tr>
                                 <td>{id}</td>
@@ -49,12 +49,12 @@
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
 <script>
-/*===== DRAG and DROP =====*/
-      const dropItems = document.getElementById('dragAndDrop')
+    /*===== DRAG and DROP =====*/
+    const dropItems = document.getElementById('dragAndDrop')
 
-      new Sortable(dropItems, {
-          animation: 350,
-          chosenClass: "sortable-chosen",
-          dragClass: "sortable-drag"
-      });
+    new Sortable(dropItems, {
+        animation: 350,
+        chosenClass: "sortable-chosen",
+        dragClass: "sortable-drag"
+    });
 </script>

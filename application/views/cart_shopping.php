@@ -13,12 +13,13 @@
             <div class="ps-section--shopping ps-shopping-cart">
                 <div class="container">
                     <div class="ps-section__header">
-                        <h3>Моя корзина</h3>
+                        <h3>Корзина</h3>
+                        <img class="img-fluid" src="/img/status-order.svg" alt="- -">
                     </div>
                     <div class="ps-section__content">
                         <div class="table-responsive">
                             <table class="table ps-table--shopping-cart col-lg-8 col-md-8 col-sm-12 col-xs-12 mb-5">
-                                <thead>
+                                <thead class="shopping-cart_th">
                                     <tr>
                                         <th>Товар</th>
                                         <th>Цена</th>

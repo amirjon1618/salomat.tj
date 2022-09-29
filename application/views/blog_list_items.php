@@ -30,13 +30,13 @@
         <ul class="pagination">
             <?php if (isset($pages['prev_page'])) : ?>
                 <li><a href="javascript:blogtopage(<?= $pages['prev_page'] ?>)">
-                        <i class="icon-chevron-left" style="margin-right:4px;margin-left:0;"></i>Пред. стр.</a></li>
+                        <i class="icon-chevron-left" style="margin-right:4px;margin-left:0;"></i><span class="dnone-text_btn">Пред. стр.</span></a></li>
             <?php endif; ?>
             <?php foreach ($pages['pages'] as $page) : ?>
                 <li class="<?= $page['current'] ?>"><a href="javascript:blogtopage(<?= $page['page'] ?>)"><?= $page['page'] ?></a></li>
             <?php endforeach; ?>
             <?php if (isset($pages['next_page'])) : ?>
-                <li><a href="javascript:blogtopage(<?= $pages['next_page'] ?>)">След. стр.<i class="icon-chevron-right"></i></a></li>
+                <li><a href="javascript:blogtopage(<?= $pages['next_page'] ?>)"><span class="dnone-text_btn">След. стр.</span><i class="icon-chevron-right"></i></a></li>
             <?php endif; ?>
         </ul>
     </div>

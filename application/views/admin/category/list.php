@@ -27,11 +27,11 @@
             <thead>
               <tr>
                 <th>ID</th>
-                  <th style="text-align: center;">Иконка</th>
-                  <th>Название</th>
-                  <!-- <th>Подкатегория</th> -->
-                  <!-- <th>Под-подкатегория</th> -->
-                  <!-- <th>Изображение</th> -->
+                <th style="text-align: center;">Иконка</th>
+                <th>Название</th>
+                <!-- <th>Подкатегория</th> -->
+                <!-- <th>Под-подкатегория</th> -->
+                <!-- <th>Изображение</th> -->
                 <th style="text-align: center;">Подкатегории</th>
                 <th style="text-align: center;">Изменить</th>
                 <th style="text-align: center;">Добавить в главную</th>
@@ -42,25 +42,26 @@
             </thead>
             <tbody id="dragAndDrop" draggable="true">
               <?php foreach ($list as $item) : ?>
-                  <tr ondrop="onDrop()">
-                      <td style="text-align: center;width: 50px;"><?= $item['id'] ?></td>
-                      <td style="text-align: center;width: 60px;"><img src="<?= $item['base_url'] ?>img/icons/<?= $item['icon'] ?>" style="width: 30px;" /></a></td>
-                      <td><?= $item['category_name'] ?></td>
-                      <!-- <td>{category_name}</td> -->
-                      <!-- <td>{category_name}</td> -->
-                      <!-- <td><a target="_blank" href="/upload_banner/{product_pic}"><img src="/upload_product/{product_pic}" style="width: 100px;" /></a></td>-->
-                      <td style="text-align: center;width: 96px;"> <a href="<?= base_url() ?>index.php/Admin/subCategories/<?= $item['id'] ?>"><i style="font-size: 24px;" class="fa fa-list"> </i></a></td>
-                      <td style="text-align: center;width: 100px;"> <a class="" href="<?= base_url() ?>index.php/Admin/editCategory/<?= $item['id'] ?>"><i style="font-size: 24px;" class="fa fa-edit"> </i></a></td>
-                      <td style="text-align: center;width: 100px;">
-                          <input id="stat_checkbox<?= $item['id'] ?>" type="checkbox" onclick="change_status(<?= $item['id'] ?>)" <?php if ($item['category_in_main'] == 1) echo 'checked="checked"'; ?> <?php if ($item['total_cat_in_main'] == 3 && !($item['category_in_main'] != 0)) echo 'disabled' ?>>
-                      </td>
-                      <td style="text-align: center;width: 100px;"> <a class="" href="<?= base_url() ?>index.php/Admin/addBanner/<?= $item['id'] ?>"><i style="font-size: 24px;" class="fa fa-plus-square-o"> </i></a></td>
-                      <td style="text-align: center;width: 100px;"> <a class="" href="<?= base_url() ?>index.php/Admin/categoryBanners/<?= $item['id'] ?>"><i style="font-size: 24px;" class="fa fa-list"> </i></a></td>
-                      <td style="text-align: center;width: 100px;"> <a class="" onclick="onPsBlockRight(<?php echo $item['id']  ?>)" href="#"><i style="font-size: 24px;color:red" class="fa fa-remove"> </i></a></td>
-                  </tr>
+                <tr ondrop="onDrop()">
+                  <td style="text-align: center;width: 50px;"><?= $item['id'] ?></td>
+                  <td style="text-align: center;width: 60px;"><img src="<?= $item['base_url'] ?>img/icons/<?= $item['icon'] ?>" style="width: 30px;" /></a></td>
+                  <td><?= $item['category_name'] ?></td>
+                  <!-- <td>{category_name}</td> -->
+                  <!-- <td>{category_name}</td> -->
+                  <!-- <td><a target="_blank" href="/upload_banner/{product_pic}"><img src="/upload_product/{product_pic}" style="width: 100px;" /></a></td>-->
+                  <td style="text-align: center;width: 96px;"> <a href="<?= base_url() ?>index.php/Admin/subCategories/<?= $item['id'] ?>"><i style="font-size: 24px;" class="fa fa-list"> </i></a></td>
+                  <td style="text-align: center;width: 100px;"> <a class="" href="<?= base_url() ?>index.php/Admin/editCategory/<?= $item['id'] ?>"><i style="font-size: 24px;" class="fa fa-edit"> </i></a></td>
+                  <td style="text-align: center;width: 100px;">
+                    <input id="stat_checkbox<?= $item['id'] ?>" type="checkbox" onclick="change_status(<?= $item['id'] ?>)" <?php if ($item['category_in_main'] == 1) echo 'checked="checked"'; ?> <?php if ($item['total_cat_in_main'] == 3 && !($item['category_in_main'] != 0)) echo 'disabled' ?>>
+                  </td>
+                  <td style="text-align: center;width: 100px;"> <a class="" href="<?= base_url() ?>index.php/Admin/addBanner/<?= $item['id'] ?>"><i style="font-size: 24px;" class="fa fa-plus-square-o"> </i></a></td>
+                  <td style="text-align: center;width: 100px;"> <a class="" href="<?= base_url() ?>index.php/Admin/categoryBanners/<?= $item['id'] ?>"><i style="font-size: 24px;" class="fa fa-list"> </i></a></td>
+                  <td style="text-align: center;width: 100px;"> <a class="" onclick="onPsBlockRight(<?php echo $item['id']  ?>)" href="#"><i style="font-size: 24px;color:red" class="fa fa-remove"> </i></a></td>
+                </tr>
               <?php endforeach; ?>
             </tbody>
           </table>
+          <button class="form-btn" onclick="javascript:window.location.reload()">Сохранить</button>
         </div><!-- /.box-body -->
       </div><!-- /.box -->
     </div><!-- /.col -->
@@ -208,5 +209,19 @@
     border: none;
     color: #fff;
     font-size: 18px;
+  }
+
+  .form-btn {
+    float: right;
+    color: #fff;
+    background: #1EBEBE;
+    border-radius: 5px;
+    border: none;
+    margin: 30px 10px 20px 0;
+    padding: 10px 40px;
+  }
+
+  .form-btn:hover {
+    background: #18A1A1;
   }
 </style>

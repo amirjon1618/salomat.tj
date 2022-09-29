@@ -202,7 +202,7 @@
     }
 
     function validatePhone(phoneNumber) {
-        var phoneNumberPattern = "";
+        var phoneNumberPattern = /^\d{9}$/;
         return phoneNumberPattern.test(phoneNumber);
     }
 
@@ -223,6 +223,7 @@
                     "recipe_pics": recipe_pics
                 },
                 success: function(data) {
+                    console.log(data)
                     if (data.stat == 1) {
                         recipe_id = data.recipe_id;
                         recipe_phone_number = $('.recipe_phone_number')[2].value;
