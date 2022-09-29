@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="ps-section__content">
-                <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
+                <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="15" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
                     <?php foreach ($prods_of_the_day as $prod_of_the_day) : ?>
                         <div class="main-ps-product " data-id="<?php echo  $prod_of_the_day['id'] ?>">
                             <div class=" ps-product ps-product--inner ps-product_of_the_day">
@@ -89,7 +89,6 @@
                                                 <input class="form-control height50" id="count_input" type="number" value="1" style="display: none;">
                                                 <?php if ($prod_of_the_day['product_old_price'] != 0) : ?><del><?= $prod_of_the_day['product_old_price'] ?> </del><?php endif; ?>
                                                 <?= $prod_of_the_day['product_price'] ?>c. </span><button onclick='addToCart(res = <?= json_encode($prod_of_the_day) ?>)' class="ps-btn btn-cart_cat">В корзину</button>
-
                                         </p>
 
                                     </div>
@@ -222,16 +221,21 @@
                                     <div class="blog_show">
 
                                     </div>
-                                    <div class="blog-articles-btn">
-                                        <a href="{base_url}main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все статьи</button></a>
-                                        <a href="https://www.t.me/Salomat9990" target="_blank">
-                                            <img src="{base_url}img/telegram.svg" alt=""></a>
-                                        <a href="salomat.tj" target="_blank">
-                                            <img src="{base_url}img/facebook.svg" alt=""></a>
-                                        <a href="https://www.instagram.com/salomat.tj" target="_blank">
-                                            <img src="{base_url}img/instagram.svg" alt=""></a>
-                                        <a href="https://salomat.tj" target="_blank">
-                                            <img src="{base_url}img/link.svg" alt=""></a>
+                                    <div class="blog-articles-btn bab_pc">
+                                        <div>
+                                            <a href="{base_url}main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все статьи</button></a>
+                                        </div>
+                                        <div class="main-social_links">
+                                            <a href="https://www.t.me/Salomat9990" target="_blank">
+                                                <img src="{base_url}img/telegram.svg" alt=""></a>
+                                            <a href="salomat.tj" target="_blank">
+                                                <img src="{base_url}img/facebook.svg" alt=""></a>
+                                            <a href="https://www.instagram.com/salomat.tj" target="_blank">
+                                                <img src="{base_url}img/instagram.svg" alt=""></a>
+                                            <a href="https://salomat.tj" target="_blank">
+                                                <img src="{base_url}img/link.svg" alt=""></a>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="blog-articles_right col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -239,17 +243,20 @@
 
                                     </div>
                                     <div class="blog-articles-btn bab_mobile">
-                                        <div></div>
-                                        <a href="{base_url}main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все статьи</button></a>
-                                        <a href="https://www.t.me/Salomat9990" target="_blank">
-                                            <img src="{base_url}img/telegram.svg" alt=""></a>
-                                        <a href="salomat.tj" target="_blank">
-                                            <img src="{base_url}img/facebook.svg" alt=""></a>
-                                        <a href="https://www.instagram.com/salomat.tj" target="_blank">
-                                            <img src="{base_url}img/instagram.svg" alt=""></a>
+                                        <div>
+                                            <a href="{base_url}main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все статьи</button></a>
+                                        </div>
+                                        <div class="main-social_links">
+                                            <a href="https://www.t.me/Salomat9990" target="_blank">
+                                                <img src="{base_url}img/telegram.svg" alt=""></a>
+                                            <a href="salomat.tj" target="_blank">
+                                                <img src="{base_url}img/facebook.svg" alt=""></a>
+                                            <a href="https://www.instagram.com/salomat.tj" target="_blank">
+                                                <img src="{base_url}img/instagram.svg" alt=""></a>
 
-                                        <a href="https://salomat.tj" target="_blank">
-                                            <img src="{base_url}img/link.svg" alt=""></a>
+                                            <a href="https://salomat.tj" target="_blank">
+                                                <img src="{base_url}img/link.svg" alt=""></a>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -462,25 +469,6 @@
         })
     }
     getBlog();
-
-    // function decrease_count() {
-    //     $('#decrease_count').on('click', function() {
-    //         count--;
-    //         if (count < 1) {
-    //             count = 1;
-    //         }
-    //         $('#count_input').val(count);
-    //     })
-    // }
-
-    // function increase_count() {
-    //     $('#increase_count').on('click', function() {
-    //         // if (count < total_count_global) {
-    //         count++;
-    //         // }
-    //         $('#count_input').val(count);
-    //     })
-    // }
 
 
     function addToCart(res) {

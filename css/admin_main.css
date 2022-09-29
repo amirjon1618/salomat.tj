@@ -70,10 +70,6 @@ table thead th {
     display: block;
 }
 
-.box {
-    overflow-x: auto;
-}
-
 input.error,
 textarea.error {
     border: 1px solid red;

@@ -153,7 +153,7 @@
             <div class="page-content">
                 <div class="form-v8-content">
                     <div class="enter-form" style="display: none;">
-                        <div class="close-form_btn" onclick="javascript:window.location.reload()">
+                        <div class="close-form_btn" onclick="onConfirm()">
                             <img src=" {base_url}img/plus-close_form.svg" alt="X">
                         </div>
                         <div class="registration-form">
@@ -738,7 +738,7 @@
                 <img src="{base_url}img/3inactive.icon.png" alt="icon">
                 <span> э-Рецепт</span>
             </a>
-            <a class="navigation__item ps-toggle--sidebar navigation-cart" href="#cart-mobile" data-id="4" data-src="{base_url}img/4inactive.icon.svg">
+            <a class="navigation__item navigation-cart" href="{base_url}index.php/main/cart_shopping" data-id="4" data-src="{base_url}img/4inactive.icon.svg">
                 <img src="{base_url}img/4inactive.icon.svg" alt="icon">
                 <span> Корзина</span>
                 <span class="footer_cart_tot_span">
@@ -1200,7 +1200,7 @@
 
     function onAddBorder() {
         const __products = JSON.parse(localStorage.getItem("product_list"));
-        const __categores = Array.from(document.querySelectorAll(".ps-product--simple,.main-ps-product,.ps-product--inner-sales"));
+        const __categores = Array.from(document.querySelectorAll(".ps-product--simple, .main-ps-product, .ps-product--inner-sales, .ps-product--wide"));
 
         if (__products !== null) {
             __categores.forEach(elem => {
@@ -1214,7 +1214,7 @@
     }
 
     function remove_from_header_cart(id) {
-        const __categores = Array.from(document.querySelectorAll(".ps-product--simple,.main-ps-product, .ps-product--inner-sales"));
+        const __categores = Array.from(document.querySelectorAll(".ps-product--simple, .main-ps-product, .ps-product--inner-sales, .ps-product--wide"));
         __categores.forEach(elem => {
             if (Number(elem.dataset.id) === id) {
                 elem.classList.remove("main-products_border")
@@ -1579,26 +1579,24 @@
     let __sec = 59;
     $('.min-time').text(`${__min}`);
     $('.sec-time').text(`${__sec}`);
-    const userTimer = () => {
-        const countDown = setInterval(function() {
-            __sec--;
-            if (__min === 0 && __sec === 0) {
-                $('.showTimer').css("display", "none");
-                $('.hideTimer').css("display", "flex");
-                __min = 1;
-                $('.min-time').text(`${__min}`);
-                __sec = 59;
-                clearInterval(countDown);
+
+    function userTimer() {
+        $('#not_received_sms').hide();
+        $('#recend_timer_sms').show();
+
+        timing = 60;
+        $('#timer_recipe').html(timing);
+        myTimer = setInterval(function() {
+            --timing;
+            $('#timer_recipe').html(timing);
+            if (timing === 0) {
+                $('#recend_timer_sms').hide();
+                $('#not_received_sms').show();
+                clearInterval(myTimer);
             }
-            if (__sec === 0) {
-                __min = 0;
-                $('.min-time').text(`${__min}`);
-                __sec = 59;
-                __sec--;
-            }
-            $('.sec-time').text(`${__sec}`);
         }, 1000);
     }
+
     $(".forgot-pass_a").click(() => {
         $(".efr2").css("display", "none")
         $(".efr5").css("display", "block")
@@ -2056,5 +2054,12 @@
                 clearInterval(myTimer);
             }
         }, 1000);
+    }
+
+    function onConfirm() {
+        let closeBtn = confirm("Вы уверены? Все введенные данные стираются!");
+        if (closeBtn) {
+            window.location.reload();
+        }
     }
 </script>

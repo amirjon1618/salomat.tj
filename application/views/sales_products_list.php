@@ -65,13 +65,13 @@
             <ul class="pagination">
                 <?php if (isset($total_products['prev_page'])) : ?>
                     <li><a href="javascript:topage(<?= $total_products['prev_page'] ?>)">
-                            <i class="icon-chevron-left" style="margin-right:4px;margin-left:0;"></i>Пред. стр.</a></li>
+                            <i class="icon-chevron-left" style="margin-right:4px;margin-left:0;"></i><span class="dnone-text_btn">Пред. стр.</span></a></li>
                 <?php endif; ?>
                 <?php foreach ($total_products['pages'] as $page) : ?>
                     <li class="<?= $page['current'] ?>"><a href="javascript:topage(<?= $page['page'] ?>)"><?= $page['page'] ?></a></li>
                 <?php endforeach; ?>
                 <?php if (isset($total_products['next_page'])) : ?>
-                    <li><a href="javascript:topage(<?= $total_products['next_page'] ?>)">След. стр.<i class="icon-chevron-right"></i></a></li>
+                    <li><a href="javascript:topage(<?= $total_products['next_page'] ?>)"><span class="dnone-text_btn">След. стр.</span><i class="icon-chevron-right"></i></a></li>
                 <?php endif; ?>
             </ul>
         </div>

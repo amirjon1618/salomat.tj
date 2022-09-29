@@ -69,19 +69,7 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <nav aria-label="">
-                        <ul class="pagination" id="admin_orders_pagination">
-                            <?php if (isset($info['prev_page'])) : ?>
-                                <li><a href="<?= $info['link'] . '' . $info['prev_page'] ?>"><i class="icon-chevron-left"></i>Prev Page</a></li>
-                            <?php endif; ?>
-                            <?php foreach ($info['pages'] as $page) : ?>
-                                <li class="<?= $page['current'] ?>"><a href="<?= $page['link'] . '' . $page['page'] ?>"><?= $page['page'] ?></a></li>
-                            <?php endforeach; ?>
-                            <?php if (isset($info['next_page'])) : ?>
-                                <li><a href="<?= $info['link'] . '' . $info['next_page'] ?>">Next Page<i class="icon-chevron-right"></i></a></li>
-                            <?php endif; ?>
-                        </ul>
-                    </nav>
+                    <button class="form-btn" onclick="javascript:window.location.reload()">Сохранить</button>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div><!-- /.col -->
@@ -100,23 +88,23 @@
 
 <script>
     function onDrop() {
-    const sort = [];
-    const childs = document.querySelectorAll("#dragAndDrop tr td:first-child");
-    childs.forEach(elem => {
-      const numbers = Number(elem.textContent);
-      sort.push(Number(elem.textContent));
-    })
-    $.ajax({
-      type: "POST",
-      url: "{base_url}products/updateOrderInBlog",
-      headers: {
-        "Accept": "application/json",
-      },
-      data: {
-        sort
-      },
-    })
-  }
+        const sort = [];
+        const childs = document.querySelectorAll("#dragAndDrop tr td:first-child");
+        childs.forEach(elem => {
+            const numbers = Number(elem.textContent);
+            sort.push(Number(elem.textContent));
+        })
+        $.ajax({
+            type: "POST",
+            url: "{base_url}products/updateOrderInBlog",
+            headers: {
+                "Accept": "application/json",
+            },
+            data: {
+                sort
+            },
+        })
+    }
     $(function() {
         $('#TableUser').DataTable({
             "paging": false,
@@ -128,11 +116,26 @@
         });
     });
     /*===== DRAG and DROP =====*/
-  const dropItems = document.getElementById('dragAndDrop')
+    const dropItems = document.getElementById('dragAndDrop')
 
-new Sortable(dropItems, {
-    animation: 350,
-    chosenClass: "sortable-chosen",
-    dragClass: "sortable-drag"
-});
+    new Sortable(dropItems, {
+        animation: 350,
+        chosenClass: "sortable-chosen",
+        dragClass: "sortable-drag"
+    });
 </script>
+<style>
+    .form-btn {
+    float: right;
+    color: #fff;
+    background: #1EBEBE;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 10px 20px 0;
+    padding: 10px 40px;
+  }
+
+  .form-btn:hover {
+    background: #18A1A1;
+  }
+</style>

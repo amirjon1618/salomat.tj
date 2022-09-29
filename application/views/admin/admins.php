@@ -71,7 +71,7 @@
 
             </thead>
 
-            <tbody id="dragAndDrop" draggable="true">
+            <tbody id="#" draggable="false">
 
               {clientList}
 

@@ -12,6 +12,7 @@
         <div class="container">
             <div class="ps-section__header">
                 <h3>Информация по доставке</h3>
+                <img class="img-fluid" src="/img/status-order2.svg" alt="- -">
             </div>
             <div class="ps-section__content">
                 <form class="ps-form--checkout">
