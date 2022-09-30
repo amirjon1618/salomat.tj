@@ -162,7 +162,26 @@
                                                             <td class="table-id"><?php echo $order['order']->id; ?></td>
                                                             <td><?php echo $order['order']->created_at;
                                                                 $price = 0;  ?></td>
-                                                            <td><span class="status-delivered"><?php echo $order['status'][0]->status_text; ?></span></td>
+                                                    
+                                                            <td style="width: 170px;"><span class="label"  style="display: flex; justify-content: center; padding: 5px 0px;color: #fff; display: flex; text-align: center; background:<?php 
+                                                            if($order['status'][0]->status_text == 'В ожидании'){
+                                                                echo '#ffcc00';
+                                                            };
+                                                            if($order['status'][0]->status_text == 'Доставлен'){
+                                                                echo '#18e364';
+                                                            };
+                                                            if($order['status'][0]->status_text == 'Отменен'){
+                                                                echo '#eb1414';
+                                                            };
+                                                            if($order['status'][0]->status_text == 'Не подтвержён'){
+                                                                echo '#c4c4c4';
+                                                            };
+                                                            if($order['status'][0]->status_text == 'На обработку'){
+                                                                echo '#9814eb';
+                                                            };
+                                                            
+                                                            ?>; border-radius:.5em"><?= $order['status'][0]->status_text; ?></span></td>
+                                                            <!-- <td><span class="status-delivered"><?php echo $order['status'][0]->status_text; ?></span></td> -->
                                                             <?php foreach ($order['products'] as $product) : ?>
                                                                 <?php $price = $price + $product->product_sold_price ?>
                                                             <?php endforeach; ?>
@@ -353,7 +372,7 @@
 
 <script>
     function validate_chekout() {
-      
+
 
         $('.up-content-info_form').validate({
             lang: 'ru',
