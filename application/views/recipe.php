@@ -16,7 +16,7 @@
                 <textarea class="recipe_comment form-control" maxlength="250" name="comment" id="order_comment" type="text" placeholder="Комментарий"></textarea>
             </div>
             <button class="recipe_phone_div_button_send_sms" onclick="sendSms()">
-                Отправить смс
+                Отправить рецепт
             </button>
         </div>
         <div class="recipe_phone_div" id="recipe_phone_div_phone_code">

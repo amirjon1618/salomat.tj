@@ -9669,9 +9669,6 @@ ba-btn {
 }
 
 .widget_shop figure {
-    margin-top: 15px;
-    padding-bottom: 15px;
-    padding-top: 15px;
     border-bottom: 1px solid #ccc;
 }
 
@@ -13693,7 +13690,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .ps-table--shopping-cart thead tr th {
-    padding: 15px 20px;
+    padding: 15px;
     color: #000;
     text-align: center;
     font-weight: 600;
@@ -13703,6 +13700,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     font-size: 20px;
     line-height: 20px;
     color: #000000;
+}
+.margBot0 del {
+    color: red;
 }
 
 .ps-table--shopping-cart thead tr th:first-child {
@@ -14796,6 +14796,19 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     .ps-table--shopping-cart tbody tr td {
         min-width: 50px !important;
     }
+    #table-scroll {
+        margin-bottom: 10px !important;
+    }
+    .ps-section__header img {
+        display: block !important;
+    }
+    .sort_by_price, .sort_by_price_mobile, .srch_res_sort_by_price, .sales_res_sort_by_price {
+        width: auto !important;
+        padding: 15px 30px !important;
+    }
+    .widget_shop .widget-title {
+        text-align: left;
+    }
     .pagination li>a {
         padding: 0 14px !important;
         font-size: 14px !important;
@@ -14808,7 +14821,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
         font-size: 24px !important;
     }
     .ps-section__header img {
-        padding: 0px 0 24px 0 !important;
+        padding: 0px 10px 24px 0 !important;
+        width: 100%;
 
     }
     .ps-section--account .ps-section__header h3 {
@@ -18342,7 +18356,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     }
     .widget:last-child {
         border-bottom: none;
-        padding: 0 30px;
+        padding: 20px;
     }
     .delivery-form {
         display: inline-block;
@@ -34482,4 +34496,13 @@ padding: 6px 12px !important;
 .bab_pc {
     display: flex;
     justify-content: space-between;
+}
+.ps-section__header img {
+    display: none;
+}
+#table-scroll {
+    height: 450px;
+    overflow: auto;
+    margin-top: 20px;
+    margin-bottom: 150px;
 }

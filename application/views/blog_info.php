@@ -314,4 +314,7 @@
         fill: #DD2E44;
         stroke: #DD2E44 !important;
     }
+    .blog-articles-btn a {
+        padding-right: 15px;
+    }
 </style>

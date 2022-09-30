@@ -168,7 +168,7 @@
                                         <div class="form-row">
                                             <span class="text-label">Телефон</span>
                                             <label class="form-row-inner">
-                                                <input type="number" name="restore-sms" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
+                                                <input type="number" name="restore-sms" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
                                                 <span class="border"></span>
                                             </label>
                                         </div>
@@ -1144,6 +1144,21 @@
     }
 
     .enter-btn-phone {
+        padding: 45px;
+        border-radius: 5px;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 10000;
+        width: 100vw;
+        height: 100vh;
+        transition: 1000ms;
+        display: none;
+
+    }
+    .enter-btn-password {
         padding: 45px;
         border-radius: 5px;
         justify-content: center;
