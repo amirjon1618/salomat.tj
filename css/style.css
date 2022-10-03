@@ -14741,6 +14741,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
         border: none;
         background-color: #f4f5f5;
     }
+    .up-content {
+        padding: 0 !important;
+    }
     .fa-bars {
         font-size: 30px;
         color: #4a4ac3;
@@ -14795,6 +14798,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 @media (min-width: 320px) and (max-width: 576px) {
     .ps-table--shopping-cart tbody tr td {
         min-width: 50px !important;
+    }
+    .tbody-cart {
+        max-width: 60px !important;
     }
     #table-scroll {
         margin-bottom: 10px !important;
@@ -14932,7 +14938,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
         white-space: nowrap;
         padding-bottom: 1rem;
         width: 360px;
-        margin: 0 8px;
+        padding: 0 10px;
     }
     ul#myTab::-webkit-scrollbar {
         display: none;

@@ -446,7 +446,7 @@
                     document.querySelector(".blog_show").innerHTML = `
                        <img class="blog_pic img-fluid pb-3" src="{base_url}upload_blog/${blogShow.blog_pic}" alt="...">
                        <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3>
-                       <span class="blog_created_at">${blogShow.blog_created_at}</span>
+                       <span class="blog_created_at">${blogShow.blog_created_at.slice(0,10)}</span>
                        </a>
                      
                      <div class="text-justify blog_about-main">${blogShow.blog_about}</div>
@@ -458,7 +458,7 @@
                 filtered.forEach(blogShow => {
                     document.querySelector(".popular-blogs").innerHTML += `
                     <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3>
-                    <span class="blog_created_at">${blogShow.blog_created_at}</span>
+                    <span class="blog_created_at">${blogShow.blog_created_at.slice(0,10)}</span>
                     </a>
                      <div class="text-justify blog_about">${blogShow.blog_about}</div>
                      <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}" class="pb-4"> читать дальше...</a>
@@ -469,7 +469,6 @@
         })
     }
     getBlog();
-
 
     function addToCart(res) {
         console.log(res)
