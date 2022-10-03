@@ -202,7 +202,7 @@
                                                                                             <?php foreach ($order['products'] as $product) : ?>
                                                                                                 <tbody>
                                                                                                     <tr>
-                                                                                                        <th scope="row"><img style="max-width: 100px" src="{base_url}upload_product/<?php echo $product->product_pic; ?>" alt="IMG"></th>
+                                                                                                        <th scope="row"><img class="tbody-cart" style="max-width: 100px" src="{base_url}upload_product/<?php echo $product->product_pic; ?>" alt="IMG"></th>
                                                                                                         <td class="align-middle" style="color: #4839C3; font-weight: 500;"><?php echo $product->product_name; ?></td>
                                                                                                         <td class="align-middle"><?php echo $product->total_count; ?> шт</td>
                                                                                                         <td class="align-middle"><?php echo $product->product_sold_price; ?> смн.</td>
