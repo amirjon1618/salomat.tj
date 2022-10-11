@@ -20,7 +20,7 @@ class Sales extends REST_Controller
     }
 
     /**
-     * Sales for header
+     * Sales list
      *
      * @return void
      */
@@ -43,5 +43,18 @@ class Sales extends REST_Controller
         }
 
         $this->response($data, REST_Controller::HTTP_OK);
+    }
+
+    /**
+     * Sales for header
+     *
+     * @return void
+     */
+    public function header_get()
+    {
+        $res = $this->indication->get_all();
+
+
+        $this->response($res, REST_Controller::HTTP_OK);
     }
 }
