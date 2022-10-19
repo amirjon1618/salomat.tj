@@ -1684,7 +1684,6 @@ button {
 
 .product_more {
    color: #0073bf !important;
-   border-bottom: 1px dotted #59bdff;
    font-size: 16px;
    line-height: 17px;
    margin-right: 20px;
@@ -1696,7 +1695,7 @@ button {
 }
 
 #count_input {
-    padding: 0 28px 5px 40px !important;
+    padding: 0 28px 0 28px !important;
     border-radius: 5px;
     font-size: 20px;
     color: #6D6D6D;
@@ -1713,6 +1712,7 @@ button {
    align-items: center;
    font-weight: 700;
    margin-bottom: 12px;
+   font-size: 14px;
 }
 
 .widget_pr_p {

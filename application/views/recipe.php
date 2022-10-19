@@ -65,18 +65,7 @@
 
         <h5>Вы так же можете отправить фото в мессенджерах:</h5>
         <div class="row recipe_social_main_div">
-            <div class="col-md-4 col-12 col-sm-6 recipe_social_main_div_each">
-                <a href="viber://pa?chatURI=992888886006&text=Hello">
-                    <div class="recipe_social_div">
-                        <img src="{base_url}img/viber_icon.png" alt="">
-                        <div>
-                            <p>Отправить на</p>
-                            <h5>Viber</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-12 col-sm-6 recipe_social_main_div_each">
+            <div class="col-md-6 col-12 col-sm-6 recipe_social_main_div_each">
                 <a href="https://wa.me/992888886006">
                     <div class="recipe_social_div">
                         <img src="{base_url}img/whatsapp_icon.png" alt="">
@@ -87,7 +76,7 @@
                     </div>
                 </a>
             </div class="recipe_social_div">
-            <div class="col-md-4 col-12 col-sm-6 recipe_social_main_div_each">
+            <div class="col-md-6 col-12 col-sm-6 recipe_social_main_div_each">
                 <a href="https://t.me/Salomat6006" target="_blank">
                     <div class="recipe_social_div">
                         <img src="{base_url}img/telegram_icon.png" alt="">

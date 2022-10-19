@@ -313,53 +313,6 @@
 
     // let resCount;
 
-
-    let counterInput;
-
-    function decrease_count() {
-        $('#decrease_count').on('click', function(e) {
-            const prod_id = e.parentNode.dataset.id;
-            let countInput = e.parentNode[2];
-            try {
-                resCount = filteredCount.filter(elem => elem.product_id === idCount)[0].product_count;
-            } catch (error) {
-                resCount = 1
-            }
-            resCount--;
-            if (resCount < 1) {
-                resCount = 1;
-            }
-            countInput.value = resCount;
-        })
-    }
-
-    function increase_count() {
-        $('#increase_count').on('click', function() {
-            const prod_id = e.parentNode.dataset.id;
-            let countInput = e.parentNode[2];
-            try {
-                resCount = filteredCount.filter(elem => elem.product_id === idCount)[0].product_count;
-            } catch (error) {
-                resCount = 1
-            }
-            resCount++;
-            countInput.value = resCount;
-        })
-    }
-
-    function change_count() {
-        $('#count_input').change(function() {
-
-            if ($('#count_input').val() > 0) {
-                resCount = $('#count_input').val();
-            } else {
-                resCount = 1;
-                $('#count_input').val(resCount);
-            }
-            // else if ($('#count_input').val() < 1 || Number($('#count_input').val()) == 0)
-        })
-    }
-
     document.getElementsByClassName('blog_about').offsetWidth / 100;
     if (document.querySelector(".ps-product__content i")) document.querySelector(".ps-product__content i").addEventListener("click", onAddBorder())
 

@@ -5447,7 +5447,7 @@ textarea.form-control {
 
 .ps-breadcrumb .breadcrumb a {
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 14px;
     line-height: 19px;
     color: #4a4ac3;
@@ -9817,6 +9817,7 @@ ba-btn {
     padding-left: 50px;
     color: #000;
     line-height: 1.4em;
+    font-size: 14px;
 }
 
 .widget_features p i {
@@ -11492,6 +11493,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .ps-product--detail .ps-product__desc p {
     color: #000;
+    font-size: 14px;
 }
 
 .ps-product--detail .ps-product__desc p a {
@@ -11521,6 +11523,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .ps-product--detail .ps-product__desc ul li {
     color: #666;
+    font-size: 14px;
 }
 
 .ps-product--detail .ps-product__desc ul li:before {
@@ -11645,7 +11648,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     justify-content: space-between;
     -webkit-box-align: end;
     align-items: baseline;
-    max-width: 420px;
+    max-width: 465px;
 }
 
 .ps-product--detail .ps-product__shopping.extend .ps-product__btn-group .ps-btn {
@@ -14799,6 +14802,30 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     .ps-table--shopping-cart tbody tr td {
         min-width: 50px !important;
     }
+    .mob-order-content {
+        display: none;
+    }
+    .gap-dn {
+        justify-content: center;
+    }
+    .ps-product--detail .ps-product__shopping {
+        margin-bottom: 0 !important;
+    }
+    .product-group_btn {
+        padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #fff;
+    border: none;
+    width: 256px !important;
+    font-weight: 600;
+    border-radius: 4px;
+    background-color: #1EBEBE;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+    cursor: pointer;
+    }
     .tbody-cart {
         max-width: 60px !important;
     }
@@ -15990,7 +16017,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
         margin: 0 -2px;
     }
     .ps-shopping-product .row>* {
-        padding: 0 5px !important;
+        padding: 5px !important;
     }
     .ps-shopping-product .ps-product {
         padding-bottom: 30px;
@@ -18330,7 +18357,6 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
         display: block;
         left: 0;
         padding: 0 10px 20px;
-        border-bottom: 1px solid #dfdfdf;
         border-top: none;
     }
     .ps-page--shop .ps-shop-banner,
@@ -21141,7 +21167,7 @@ html .bg--parallax {
     font-size: 24px;
     line-height: 34px;
     padding-bottom: 20px;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 .padding0 {
@@ -34511,4 +34537,19 @@ padding: 6px 12px !important;
     overflow: auto;
     margin-top: 20px;
     margin-bottom: 150px;
+}
+.product-group_btn {
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #fff;
+    border: none;
+    width: 192px;
+    font-weight: 600;
+    border-radius: 4px;
+    background-color: #1EBEBE;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+    cursor: pointer;
 }

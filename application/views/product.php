@@ -161,26 +161,14 @@
                             <div class="ps-product__shopping extend">
                                 <div class="ps-product__btn-group">
                                     <figure>
-                                        <div class=" form-group--number" data-id="<?= $category_products['id'] ?>">
+                                        <div class="form-group--number" data-id="<?= $category_products['id'] ?>">
                                             <button class=" up" id="increase_count">+</button>
                                             <button class="down" id="decrease_count">-</i>
                                             </button>
                                             <input class="form-control height50" id="count_input" type="number" value="1">
                                         </div>
                                     </figure>
-                                    <button style="padding: 15px 30px;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 20px;
-    color: #fff;
-    border: none;
-    width: 160px;
-    font-weight: 600;
-    border-radius: 4px;
-    background-color: #1EBEBE;
-    -webkit-transition: all .4s ease;
-    transition: all .4s ease;
-    cursor: pointer;" onclick='addToCart(prod = <?= json_encode($category_products) ?>)' class="product-group_btn">Купить</button>
+                                    <button onclick='addToCart(prod = <?= json_encode($category_products) ?>)' class="product-group_btn">Купить</button>
                                 </div>
                             </div>
                         </div>
@@ -551,10 +539,20 @@
 <script src="{base_url}js/jquery.validate.min.js"></script>
 <script src="{base_url}js/form_validation_messages_ru.js"></script>
 <script>
+    const idCount = count_input.parentElement.dataset.id
+    const _elem = JSON.parse(localStorage.getItem("product_list"))
+    let resCount;
+    try {
+        resCount = _elem.filter(elem => elem.product_id === idCount)[0].product_count;
+    } catch (error) {
+        resCount = 1
+    }
+    $('#count_input').val(resCount)
+
     var count = 1;
     var max_count_reached = false;
     var total_count_global = '<?= $category_products['total_count_in_store']; ?>';
-    // var count_inp =
+
     function decrease_count() {
         $('#decrease_count').on('click', function() {
             resCount--;
