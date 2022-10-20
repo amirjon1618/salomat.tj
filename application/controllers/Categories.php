@@ -81,4 +81,12 @@ class Categories extends REST_Controller
 
         $this->response($data, REST_Controller::HTTP_OK);
     }
+
+    public function sliders_get($id)
+    {
+        $ad_slider = $this->advertisement->get_slider_by_category($id, 'slider');
+        $data['sliders'] = $ad_slider;
+
+        $this->response($data, REST_Controller::HTTP_OK);
+    }
 }
