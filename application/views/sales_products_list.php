@@ -1,7 +1,7 @@
 <div class="ps-tabs">
     <div class="ps-tab active" id="tab-1">
         <div class="ps-shopping-product">
-            <div class="row" style="gap: 10px;">
+            <div class="row gap-dn" style="gap: 10px;">
                 <?php foreach ($total_products['total_prods'] as $cat_p) : ?>
                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 p-0 ps-product--inner-sales" data-id="<?php echo  $cat_p['id'] ?>">
                         <div class=" ps-product ps-product--inner ps-product_of_the_day">

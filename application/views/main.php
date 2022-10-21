@@ -192,9 +192,9 @@
                                                 <?php endif; ?>
                                             </select><span>(<?= $cat_p['review_count'] ?>)</span>
                                         </div>
-                                        <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span pps-custom">
+                                        <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span pps-custom ps-pp_db">
                                                 <?php if ($cat_p['product_old_price'] != 0) : ?><del><?= $cat_p['product_old_price'] ?> </del><?php endif; ?>
-                                                <?= $cat_p['product_price'] ?> c. </span><button onclick='addToCart(res = <?= json_encode($cat_p) ?>)' class="ps-btn btn-cart_cat bcc-custom">В корзину</button></p>
+                                                <?= $cat_p['product_price'] ?> c. </span><span class="ps-product__price ps-pp_dn">_ _._ _ смн.</span><button onclick='addToCart(res = <?= json_encode($cat_p) ?>)' class="ps-btn btn-cart_cat bcc-custom">В корзину</button></p>
                                     </div>
                                 </div>
                             </div>
@@ -312,53 +312,6 @@
     // document.querySelector(".valueCount").value
 
     // let resCount;
-
-
-    let counterInput;
-
-    function decrease_count() {
-        $('#decrease_count').on('click', function(e) {
-            const prod_id = e.parentNode.dataset.id;
-            let countInput = e.parentNode[2];
-            try {
-                resCount = filteredCount.filter(elem => elem.product_id === idCount)[0].product_count;
-            } catch (error) {
-                resCount = 1
-            }
-            resCount--;
-            if (resCount < 1) {
-                resCount = 1;
-            }
-            countInput.value = resCount;
-        })
-    }
-
-    function increase_count() {
-        $('#increase_count').on('click', function() {
-            const prod_id = e.parentNode.dataset.id;
-            let countInput = e.parentNode[2];
-            try {
-                resCount = filteredCount.filter(elem => elem.product_id === idCount)[0].product_count;
-            } catch (error) {
-                resCount = 1
-            }
-            resCount++;
-            countInput.value = resCount;
-        })
-    }
-
-    function change_count() {
-        $('#count_input').change(function() {
-
-            if ($('#count_input').val() > 0) {
-                resCount = $('#count_input').val();
-            } else {
-                resCount = 1;
-                $('#count_input').val(resCount);
-            }
-            // else if ($('#count_input').val() < 1 || Number($('#count_input').val()) == 0)
-        })
-    }
 
     document.getElementsByClassName('blog_about').offsetWidth / 100;
     if (document.querySelector(".ps-product__content i")) document.querySelector(".ps-product__content i").addEventListener("click", onAddBorder())
@@ -552,6 +505,15 @@
             }
             set_prods_header();
         }
+    }
+    if (document.querySelector(".global-product-not-exist") === null) {
+        $('.ps-pp_dn').css("display", "none");
+        $('.ps-pp_db').css("display", "block");
+        $('.ps-pp_db-del').css("display", "block");
+    } else {
+        $('.ps-pp_db').css("display", "none");
+        $('.ps-pp_db-del').css("display", "none");
+        $('.ps-product__price-top').css("display", "none");
     }
 
     decrease_count();

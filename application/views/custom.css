@@ -1164,7 +1164,6 @@ button {
 .recipe_phone_div_inp span {
    position: absolute;
    left: 0px;
-   bottom: 1px;
    background: #e3e3e3;
    padding: 12px;
    border-radius: 7px;
@@ -1482,7 +1481,6 @@ button {
 
 .product_more {
    color: #0073bf !important;
-   border-bottom: 1px dotted #59bdff;
    font-size: 16px;
    line-height: 17px;
    margin-right: 20px;
@@ -1494,7 +1492,7 @@ button {
 }
 
 #count_input {
-   padding: 0 28px 4px 25px !important;
+   padding: 0 28px 0 28px !important;
    border-radius: 5px;
 }
 
@@ -1509,6 +1507,7 @@ button {
    align-items: center;
    font-weight: 700;
    margin-bottom: 12px;
+   font-size: 14px;
 }
 
 .widget_pr_p {

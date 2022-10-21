@@ -168,7 +168,7 @@
                                         <div class="form-row">
                                             <span class="text-label">Телефон</span>
                                             <label class="form-row-inner">
-                                                <input type="number" name="restore-sms" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
+                                                <input type="number" name="restore-sms" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
                                                 <span class="border"></span>
                                             </label>
                                         </div>
@@ -233,13 +233,13 @@
                                         <div class="timer-agree">
                                             <div class="showTimer">
                                                 <p>Повторная отправка сообщения будет доступна через:</p>
-                                                <div class="text-center pb-4">
-                                                    <span class="min-time"></span>
-                                                    <span>:</span>
-                                                    <span class="sec-time"></span>
+                                                <div id="timer" class="text-center pb-4">
+                                                    <span id="minutes"></span>
+                                                    <span> : </span>
+                                                    <span id="seconds"></span>
                                                 </div>
                                             </div>
-                                            <div class="hideTimer  justify-content-center" style="display: none;">
+                                            <div class="hideTimer text-center justify-content-center pb-4" style="display: none;">
                                                 <a href="#" class="hideTimer_a">Повторная отправка</a>
                                             </div>
                                             <svg class="mx-auto mb-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -247,7 +247,7 @@
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 15C12.1621 15 12.494 14.6642 12.494 14.25V11.25C12.494 10.8358 12.1621 10.5 11.7526 10.5C11.3431 10.5 11.0111 10.8358 11.0111 11.25V14.25C11.0111 14.6642 11.3431 15 11.7526 15Z" fill="#7A769D" />
                                                 <path d="M12.7412 8.25C12.7412 7.69771 12.2986 7.25 11.7526 7.25C11.2065 7.25 10.7639 7.69771 10.7639 8.25C10.7639 8.80229 11.2065 9.25 11.7526 9.25C12.2986 9.25 12.7412 8.80229 12.7412 8.25Z" fill="#7A769D" />
                                             </svg>
-                                            <p class="mb-0">Нажав на кнопку “Продолжить”, я принимаю <a href="#" class="text-primary">условия пользования</a></p>
+                                            <p class="mb-0">Нажав на кнопку “Продолжить”, я принимаю <a href="{base_url}index.php/main/page/3" class="text-primary">условия пользования</a></p>
                                         </div>
                                         <div class="form-row-last d-flex justify-content-between">
                                             <a href="#"><input type="submit" name="register" class="enter ef3" value="Продолжить"></a>
@@ -289,7 +289,7 @@
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 15C12.1621 15 12.494 14.6642 12.494 14.25V11.25C12.494 10.8358 12.1621 10.5 11.7526 10.5C11.3431 10.5 11.0111 10.8358 11.0111 11.25V14.25C11.0111 14.6642 11.3431 15 11.7526 15Z" fill="#7A769D" />
                                                 <path d="M12.7412 8.25C12.7412 7.69771 12.2986 7.25 11.7526 7.25C11.2065 7.25 10.7639 7.69771 10.7639 8.25C10.7639 8.80229 11.2065 9.25 11.7526 9.25C12.2986 9.25 12.7412 8.80229 12.7412 8.25Z" fill="#7A769D" />
                                             </svg>
-                                            <p class="mb-0">Нажав на кнопку “Регистрация”, я принимаю <a href="#" class="text-primary">условия пользования</a></p>
+                                            <p class="mb-0">Нажав на кнопку “Регистрация”, я принимаю <a href="{base_url}index.php/main/page/3" class="text-primary">условия пользования</a></p>
                                         </div>
                                         <div class="form-row-last d-flex justify-content-between">
                                             <a href="{base_url}index.php/main/user_info#user-info"><input type="submit" name="register" class="enter ef4" value="Регистрация"></a>
@@ -339,13 +339,13 @@
                                         <div class="timer-agree">
                                             <div class="showTimer">
                                                 <p>Повторная отправка сообщения будет доступна через:</p>
-                                                <div class="text-center pb-4">
-                                                    <span class="min-time"></span>
-                                                    <span>:</span>
-                                                    <span class="sec-time"></span>
+                                                <div id="timer" class="text-center pb-4">
+                                                    <span id="minutesx"></span>
+                                                    <span> : </span>
+                                                    <span id="secondsx"></span>
                                                 </div>
                                             </div>
-                                            <div class="hideTimer  justify-content-center" style="display: none;">
+                                            <div class="hideTimer text-center justify-content-center pb-4" style="display: none;">
                                                 <a href="#" class="hideTimer_a">Повторная отправка</a>
                                             </div>
                                         </div>
@@ -384,7 +384,7 @@
                                         </div>
                                         <p class="validate-text validate-text7"></p>
                                         <div class="form-row-last d-flex justify-content-between">
-                                            <a href="{base_url}index.php/main/user_info#user-info"><input type="submit" name="register" class="enter ef4" value="Продолжить"></a>
+                                            <a href="{base_url}index.php/main/user_info#user-info"><input type="submit" name="register" class="enter ef7" value="Продолжить"></a>
                                             <a href="#"><input type="submit" name="register" class="register cancel-btn2" value="Отмена"></a>
                                         </div>
                                     </div>
@@ -409,13 +409,13 @@
                                         <div class="timer-agree">
                                             <div class="showTimer">
                                                 <p>Повторная отправка сообщения будет доступна через:</p>
-                                                <div class="text-center pb-4">
-                                                    <span class="min-time"></span>
-                                                    <span>:</span>
-                                                    <span class="sec-time"></span>
+                                                <div id="timer" class="text-center pb-4">
+                                                    <span id="minutesy"></span>
+                                                    <span> : </span>
+                                                    <span id="secondsy"></span>
                                                 </div>
                                             </div>
-                                            <div class="hideTimer  justify-content-center" style="display: none;">
+                                            <div class="hideTimer text-center justify-content-center pb-4" id="hidetimer" style="display: none;">
                                                 <a href="#" class="hideTimer_a">Повторная отправка</a>
                                             </div>
                                         </div>
@@ -502,7 +502,7 @@
                             <strong>
                                 <img src="{base_url}img/header-phone.svg " alt="" style="width: 25px; margin-right: 10px; margin-top: 10px;"> 99-90
                             </strong>
-                            <p class="text-muted">09:00-18:00</p>
+                            <p class="text-muted">09:00-00:00</p>
                         </a>
                         <div class="ps-cart--mini">
                             <a class="header__extra header_cart_a" href="{base_url}index.php/main/cart_shopping">
@@ -533,13 +533,13 @@
                         <div class="account-wrap" id="account-wrap" style="display: none;">
                             <div class="account-item clearfix js-item-menu">
                                 <div class="image">
-                                    <img class="rounded-circle user_icon" style="min-height: 40px;" id="user_icon1" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" />
+                                    <img class="rounded-circle user_icon" style="width: 45px; height: 45px;" id="user_icon1" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" />
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img class="rounded-circle user_icon" id="user_icon1" style="min-height: 60px;" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" />
+                                                <img class="rounded-circle user_icon" id="user_icon1" style="width: 50px; height: 50px;" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" />
                                             </a>
                                         </div>
                                         <div class="content">
@@ -757,7 +757,7 @@
             </div>
             <div class="account-wrap" id="account-wrap2" style="display: none;">
                 <div class="user-image__link">
-                    <a href="{base_url}index.php/main/user_info#user-info"><img class="rounded-circle" style="width: 40px;" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" /></a>
+                    <a href="{base_url}index.php/main/user_info#user-info"><img class="rounded-circle" style="width: 40px; height: 40px;" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" /></a>
                 </div>
             </div>
         </div>
@@ -1129,7 +1129,7 @@
         }
 
         .form-v8-content .form-detail .register {
-            margin-bottom: 80px;
+            margin-bottom: 0px;
         }
     }
 
@@ -1158,6 +1158,7 @@
         display: none;
 
     }
+
     .enter-btn-password {
         padding: 45px;
         border-radius: 5px;
@@ -1203,7 +1204,52 @@
     }
 </style>
 <script>
-    const al = () => alert()
+    var timer;
+
+    var compareDate = new Date();
+    compareDate.setDate(compareDate.getDate() + 7); //just for this demo today + 7 days
+
+    function userTimer() {
+        timer = setInterval(function() {
+            timeBetweenDates(compareDate);
+        }, 1000);
+    }
+
+    function timeBetweenDates(toDate) {
+        var dateEntered = toDate;
+        var now = new Date();
+        var difference = dateEntered.getTime() - now.getTime();
+
+        if (difference <= 0) {
+            if (minutes === 0 && seconds === 0) {
+                $('.showTimer').hide();
+                $('.hideTimer').css("display", "block");
+            }
+
+            // Timer done
+            clearInterval(timer);
+
+        } else {
+
+            var seconds = Math.floor(difference / 1000);
+            var minutes = Math.floor(seconds / 60);
+
+            minutes %= 2;
+            seconds %= 60;
+            if (minutes === 0 && seconds === 0) {
+                $('.showTimer').hide();
+                $('.hideTimer').css("display", "block");
+            }
+
+            $("#minutes").text(minutes);
+            $("#seconds").text(seconds);
+            $("#minutesx").text(minutes);
+            $("#secondsx").text(seconds);
+            $("#minutesy").text(minutes);
+            $("#secondsy").text(seconds);
+        }
+    }
+
     const __userIcons = Array.from(document.querySelectorAll(".image  img"));
 
 
@@ -1590,27 +1636,8 @@
         document.querySelector(".enter-btn-bg").classList.add("active-animation");
         document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
     }
-    let __min = 1;
-    let __sec = 59;
-    $('.min-time').text(`${__min}`);
-    $('.sec-time').text(`${__sec}`);
 
-    function userTimer() {
-        $('#not_received_sms').hide();
-        $('#recend_timer_sms').show();
 
-        timing = 60;
-        $('#timer_recipe').html(timing);
-        myTimer = setInterval(function() {
-            --timing;
-            $('#timer_recipe').html(timing);
-            if (timing === 0) {
-                $('#recend_timer_sms').hide();
-                $('#not_received_sms').show();
-                clearInterval(myTimer);
-            }
-        }, 1000);
-    }
 
     $(".forgot-pass_a").click(() => {
         $(".efr2").css("display", "none")
@@ -1627,8 +1654,8 @@
             },
             success: function(result) {
                 if (result.filter(elem => elem.login === String(errorPhone.value)).length > 0) {
-                    $(".efr5").css("display", "none");
                     userTimer();
+                    $(".efr5").css("display", "none");
                     $(".efr6").css("display", "block");
                     $(".validate-text5").text("");
                     localStorage.setItem("restore-phone", errorPhone.value);
@@ -1723,10 +1750,12 @@
             }
         })
     }
+
     $("#form1").submit((e) => {
         e.preventDefault();
         onPost();
     })
+
     $(".hideTimer_a").click(() => {
         sendSms();
         $(".showTimer").css("display", "block");
@@ -1742,6 +1771,7 @@
     $("#form3").submit((e) => {
         e.preventDefault();
         verSms();
+        userTimer();
     })
     $("#form4").submit((e) => {
         e.preventDefault();
@@ -1759,7 +1789,6 @@
     })
     $(".rf4").click((e) => {
         e.preventDefault();
-        alert()
         $(".efr4").hide();
         $(".efr1").css("display", "block");
     })
@@ -2032,11 +2061,7 @@
                 $(".account-btn").css("display", "none");
                 document.getElementById("account-wrap").style.display = "block";
                 document.getElementById("account-wrap2").style.display = "block";
-                window.location.href = `{base_url}index.php/main/user_info#user-info`
             },
-            error: function(error) {
-
-            }
         })
     })
     const __navItems = Array.from(document.querySelectorAll(" .navigation__content .navigation__item"));

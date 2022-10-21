@@ -471,7 +471,7 @@
     <script type="text/javascript">
         $('.confirmation').on('click', function() {
 
-            return confirm('Are you sure?');
+            return confirm('Вы уверены что хотите удалить?');
 
         });
     </script>
