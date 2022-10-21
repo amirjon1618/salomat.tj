@@ -10,10 +10,10 @@
             </div>
             <h5 class="recipe_error_msg">Введите 9 цифр</h5>
             <div class="recipe_name_div_inp py-3">
-                <input class="recipe_name form-control" maxlength="24" required name="name" id="order_name" type="text" placeholder="Имя Фамилия">
+                <input class="recipe_name form-control" minlength="3" maxlength="24" required name="name" id="order_name" type="text" placeholder="Имя Фамилия">
             </div>
             <div class="recipe_comment_div_inp pb-3">
-                <textarea class="recipe_comment form-control" maxlength="250" name="comment" id="order_comment" type="text" placeholder="Комментарий"></textarea>
+                <textarea class="recipe_comment form-control" minlength="3" maxlength="250" required name="comment" id="order_comment" type="text" placeholder="Комментарий"></textarea>
             </div>
             <button class="recipe_phone_div_button_send_sms" onclick="sendSms()">
                 Отправить рецепт

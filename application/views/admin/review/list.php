@@ -55,7 +55,7 @@
                                     <input id="stat_checkbox<?= $item['id']?>" type="checkbox" onclick="change_status(<?= $item['id'] ?>)" <?php if ($item['status'] != 0) echo 'checked="checked"'; ?>>
                                     </td>
                                     <td style="text-align: center;width: 100px;">
-                                        <a href="{base_url}index.php/admin/reviews?do=remove&review_id=<?= $item['id'] ?>"><i style="font-size: 24px;color:red;" class="fa fa-trash"> </i></a>
+                                        <a class="confirmation" href="{base_url}index.php/admin/reviews?do=remove&review_id=<?= $item['id'] ?>"><i style="font-size: 24px;color:red;" class="fa fa-trash"> </i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

@@ -192,9 +192,9 @@
                                                 <?php endif; ?>
                                             </select><span>(<?= $cat_p['review_count'] ?>)</span>
                                         </div>
-                                        <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span pps-custom">
+                                        <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span pps-custom ps-pp_db">
                                                 <?php if ($cat_p['product_old_price'] != 0) : ?><del><?= $cat_p['product_old_price'] ?> </del><?php endif; ?>
-                                                <?= $cat_p['product_price'] ?> c. </span><button onclick='addToCart(res = <?= json_encode($cat_p) ?>)' class="ps-btn btn-cart_cat bcc-custom">В корзину</button></p>
+                                                <?= $cat_p['product_price'] ?> c. </span><span class="ps-product__price ps-pp_dn">_ _._ _ смн.</span><button onclick='addToCart(res = <?= json_encode($cat_p) ?>)' class="ps-btn btn-cart_cat bcc-custom">В корзину</button></p>
                                     </div>
                                 </div>
                             </div>
@@ -505,6 +505,15 @@
             }
             set_prods_header();
         }
+    }
+    if (document.querySelector(".global-product-not-exist") === null) {
+        $('.ps-pp_dn').css("display", "none");
+        $('.ps-pp_db').css("display", "block");
+        $('.ps-pp_db-del').css("display", "block");
+    } else {
+        $('.ps-pp_db').css("display", "none");
+        $('.ps-pp_db-del').css("display", "none");
+        $('.ps-product__price-top').css("display", "none");
     }
 
     decrease_count();

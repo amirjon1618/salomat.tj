@@ -340,9 +340,9 @@
                                             <div class="showTimer">
                                                 <p>Повторная отправка сообщения будет доступна через:</p>
                                                 <div id="timer" class="text-center pb-4">
-                                                    <span id="minutes"></span>
+                                                    <span id="minutesx"></span>
                                                     <span> : </span>
-                                                    <span id="seconds"></span>
+                                                    <span id="secondsx"></span>
                                                 </div>
                                             </div>
                                             <div class="hideTimer text-center justify-content-center pb-4" style="display: none;">
@@ -384,7 +384,7 @@
                                         </div>
                                         <p class="validate-text validate-text7"></p>
                                         <div class="form-row-last d-flex justify-content-between">
-                                            <a href="{base_url}index.php/main/user_info#user-info"><input type="submit" name="register" class="enter ef4" value="Продолжить"></a>
+                                            <a href="{base_url}index.php/main/user_info#user-info"><input type="submit" name="register" class="enter ef7" value="Продолжить"></a>
                                             <a href="#"><input type="submit" name="register" class="register cancel-btn2" value="Отмена"></a>
                                         </div>
                                     </div>
@@ -410,9 +410,9 @@
                                             <div class="showTimer">
                                                 <p>Повторная отправка сообщения будет доступна через:</p>
                                                 <div id="timer" class="text-center pb-4">
-                                                    <span id="minutes"></span>
+                                                    <span id="minutesy"></span>
                                                     <span> : </span>
-                                                    <span id="seconds"></span>
+                                                    <span id="secondsy"></span>
                                                 </div>
                                             </div>
                                             <div class="hideTimer text-center justify-content-center pb-4" id="hidetimer" style="display: none;">
@@ -533,13 +533,13 @@
                         <div class="account-wrap" id="account-wrap" style="display: none;">
                             <div class="account-item clearfix js-item-menu">
                                 <div class="image">
-                                    <img class="rounded-circle user_icon" style="min-height: 40px;" id="user_icon1" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" />
+                                    <img class="rounded-circle user_icon" style="width: 45px; height: 45px;" id="user_icon1" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" />
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img class="rounded-circle user_icon" id="user_icon1" style="min-height: 60px;" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" />
+                                                <img class="rounded-circle user_icon" id="user_icon1" style="width: 50px; height: 50px;" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" />
                                             </a>
                                         </div>
                                         <div class="content">
@@ -757,7 +757,7 @@
             </div>
             <div class="account-wrap" id="account-wrap2" style="display: none;">
                 <div class="user-image__link">
-                    <a href="{base_url}index.php/main/user_info#user-info"><img class="rounded-circle" style="width: 40px;" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" /></a>
+                    <a href="{base_url}index.php/main/user_info#user-info"><img class="rounded-circle" style="width: 40px; height: 40px;" src="{base_url}user_img/<?php echo $image ?? 'user.png' ?>" alt="User Icon" /></a>
                 </div>
             </div>
         </div>
@@ -1129,7 +1129,7 @@
         }
 
         .form-v8-content .form-detail .register {
-            margin-bottom: 80px;
+            margin-bottom: 0px;
         }
     }
 
@@ -1204,7 +1204,52 @@
     }
 </style>
 <script>
-    const al = () => alert()
+    var timer;
+
+    var compareDate = new Date();
+    compareDate.setDate(compareDate.getDate() + 7); //just for this demo today + 7 days
+
+    function userTimer() {
+        timer = setInterval(function() {
+            timeBetweenDates(compareDate);
+        }, 1000);
+    }
+
+    function timeBetweenDates(toDate) {
+        var dateEntered = toDate;
+        var now = new Date();
+        var difference = dateEntered.getTime() - now.getTime();
+
+        if (difference <= 0) {
+            if (minutes === 0 && seconds === 0) {
+                $('.showTimer').hide();
+                $('.hideTimer').css("display", "block");
+            }
+
+            // Timer done
+            clearInterval(timer);
+
+        } else {
+
+            var seconds = Math.floor(difference / 1000);
+            var minutes = Math.floor(seconds / 60);
+
+            minutes %= 2;
+            seconds %= 60;
+            if (minutes === 0 && seconds === 0) {
+                $('.showTimer').hide();
+                $('.hideTimer').css("display", "block");
+            }
+
+            $("#minutes").text(minutes);
+            $("#seconds").text(seconds);
+            $("#minutesx").text(minutes);
+            $("#secondsx").text(seconds);
+            $("#minutesy").text(minutes);
+            $("#secondsy").text(seconds);
+        }
+    }
+
     const __userIcons = Array.from(document.querySelectorAll(".image  img"));
 
 
@@ -1591,8 +1636,8 @@
         document.querySelector(".enter-btn-bg").classList.add("active-animation");
         document.querySelector(".enter-btn-bg").classList.remove("disactive-animation");
     }
-    
-    
+
+
 
     $(".forgot-pass_a").click(() => {
         $(".efr2").css("display", "none")
@@ -1609,8 +1654,8 @@
             },
             success: function(result) {
                 if (result.filter(elem => elem.login === String(errorPhone.value)).length > 0) {
-                    $(".efr5").css("display", "none");
                     userTimer();
+                    $(".efr5").css("display", "none");
                     $(".efr6").css("display", "block");
                     $(".validate-text5").text("");
                     localStorage.setItem("restore-phone", errorPhone.value);
@@ -1705,52 +1750,12 @@
             }
         })
     }
-    var timer;
 
-    var compareDate = new Date();
-    compareDate.setDate(compareDate.getDate() + 7); //just for this demo today + 7 days
-
-    function userTimer() {
-        timer = setInterval(function() {
-            timeBetweenDates(compareDate);
-        }, 1000);
-    }
-
-    function timeBetweenDates(toDate) {
-        var dateEntered = toDate;
-        var now = new Date();
-        var difference = dateEntered.getTime() - now.getTime();
-
-        if (difference <= 0) {
-            if (minutes === 0 && seconds === 0) {
-                $('.showTimer').hide();
-                $('.hideTimer').css("display", "block");
-            }
-
-            // Timer done
-            clearInterval(timer);
-
-        } else {
-
-            var seconds = Math.floor(difference / 1000);
-            var minutes = Math.floor(seconds / 60);
-
-            minutes %= 2;
-            seconds %= 60;
-            if (minutes === 0 && seconds === 0) {
-                $('.showTimer').hide();
-                $('.hideTimer').css("display", "block");
-            }
-
-            $("#minutes").text(minutes);
-            $("#seconds").text(seconds);
-        }
-    }
     $("#form1").submit((e) => {
         e.preventDefault();
         onPost();
-        userTimer();
     })
+
     $(".hideTimer_a").click(() => {
         sendSms();
         $(".showTimer").css("display", "block");
@@ -1766,6 +1771,7 @@
     $("#form3").submit((e) => {
         e.preventDefault();
         verSms();
+        userTimer();
     })
     $("#form4").submit((e) => {
         e.preventDefault();
@@ -1783,7 +1789,6 @@
     })
     $(".rf4").click((e) => {
         e.preventDefault();
-        alert()
         $(".efr4").hide();
         $(".efr1").css("display", "block");
     })
@@ -2056,11 +2061,7 @@
                 $(".account-btn").css("display", "none");
                 document.getElementById("account-wrap").style.display = "block";
                 document.getElementById("account-wrap2").style.display = "block";
-                window.location.href = `{base_url}index.php/main/user_info#user-info`
             },
-            error: function(error) {
-
-            }
         })
     })
     const __navItems = Array.from(document.querySelectorAll(" .navigation__content .navigation__item"));
