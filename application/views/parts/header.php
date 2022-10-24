@@ -292,7 +292,7 @@
                                             <p class="mb-0">Нажав на кнопку “Регистрация”, я принимаю <a href="{base_url}index.php/main/page/3" class="text-primary">условия пользования</a></p>
                                         </div>
                                         <div class="form-row-last d-flex justify-content-between">
-                                            <a href="{base_url}index.php/main/user_info#user-info"><input type="submit" name="register" class="enter ef4" value="Регистрация"></a>
+                                            <a href="{base_url}index.php/main/user_info#user-info"><input type="submit" name="register" class="enter ef4" id="ef4" value="Регистрация"></a>
                                             <a href="#"><input type="submit" name="register" class="register rf4" value="Отмена"></a>
                                         </div>
                                     </div>
@@ -384,7 +384,7 @@
                                         </div>
                                         <p class="validate-text validate-text7"></p>
                                         <div class="form-row-last d-flex justify-content-between">
-                                            <a href="{base_url}index.php/main/user_info#user-info"><input type="submit" name="register" class="enter ef7" value="Продолжить"></a>
+                                            <a href="{base_url}index.php/main/user_info#user-info"><input type="submit" name="register" class="enter ef7" id="ef7" value="Продолжить"></a>
                                             <a href="#"><input type="submit" name="register" class="register cancel-btn2" value="Отмена"></a>
                                         </div>
                                     </div>
@@ -1705,7 +1705,6 @@
         }
     })
 
-
     $("#form8").submit((e) => {
         e.preventDefault();
         if ($("#ver-sms8").val() === String(localStorage.getItem("res-sms"))) {
@@ -1995,32 +1994,47 @@
     $("#second-password").on('input', () => {
         if ($("#second-password").val() !== $("#first-password").val()) {
             $(".validate-text").text("Пароли не совпадают");
-        } else {
-            $(".validate-text").text("");
-        }
-    })
+            $("#ef4").prop("disabled", true)
 
-    $("#second-password2").on('input', () => {
-        if ($("#second-password2").val() !== $("#first-password2").val()) {
-            $(".validate-text").text("Пароли не совпадают");
         } else {
             $(".validate-text").text("");
+            $("#ef4").prop("disabled", false)
+
         }
     })
 
     $("#first-password").on('input', () => {
         if ($("#first-password").val() !== $("#second-password").val()) {
             $(".validate-text").text("Пароли не совпадают");
+            $("#ef4").prop("disabled", true)
+
         } else {
             $(".validate-text").text("");
+            $("#ef4").prop("disabled", false)
+
+        }
+    })
+
+    $("#second-password2").on('input', () => {
+        if ($("#second-password2").val() !== $("#first-password2").val()) {
+            $(".validate-text").text("Пароли не совпадают");
+            $("#ef7").prop("disabled", true)
+
+        } else {
+            $(".validate-text").text("");
+            $("#ef7").prop("disabled", false)
+
         }
     })
 
     $("#first-password2").on('input', () => {
         if ($("#first-password2").val() !== $("#second-password2").val()) {
             $(".validate-text").text("Пароли не совпадают");
+            $("#ef7").prop("disabled", true)
+
         } else {
             $(".validate-text").text("");
+            $("#ef7").prop("disabled", false)
         }
     })
 
