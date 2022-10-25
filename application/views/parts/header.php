@@ -167,7 +167,8 @@
                                     <div class="tabcontent" id="sign-phone">
                                         <div class="form-row">
                                             <span class="text-label">Телефон</span>
-                                            <label class="form-row-inner">
+                                            <label class="form-row-inner recipe_phone_div_inp recipe_phone_span">
+                                                <span>+992</span>
                                                 <input type="text" pattern="[0-9]+" title="987654321" name="restore-sms" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
                                                 <span class="border"></span>
                                             </label>
@@ -189,7 +190,7 @@
                                         <div class="form-row">
                                             <span class="text-label">Пароль</span>
                                             <label class="form-row-inner position-relative">
-                                                <input type="password" data-active="0" name="password" id="enter-password" minlength="8" maxlength="32" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" class="input-text hide-pass" required placeholder="* * * * * * * * * *">
+                                                <input type="password" data-active="0" name="password" id="enter-password" minlength="8" maxlength="32" pattern="^[a-zA-Z0-9]+$" title="только английские буквы и цифры" class="input-text hide-pass" required placeholder="* * * * * * * * * *">
                                                 <div class="hide-btn-pass">
                                                     <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass1">
                                                 </div>
@@ -247,7 +248,7 @@
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 15C12.1621 15 12.494 14.6642 12.494 14.25V11.25C12.494 10.8358 12.1621 10.5 11.7526 10.5C11.3431 10.5 11.0111 10.8358 11.0111 11.25V14.25C11.0111 14.6642 11.3431 15 11.7526 15Z" fill="#7A769D" />
                                                 <path d="M12.7412 8.25C12.7412 7.69771 12.2986 7.25 11.7526 7.25C11.2065 7.25 10.7639 7.69771 10.7639 8.25C10.7639 8.80229 11.2065 9.25 11.7526 9.25C12.2986 9.25 12.7412 8.80229 12.7412 8.25Z" fill="#7A769D" />
                                             </svg>
-                                            <p class="mb-0">Нажав на кнопку “Продолжить”, я принимаю <a href="{base_url}index.php/main/page/3" class="text-primary">условия пользования</a></p>
+                                            <p class="mb-0">Нажав на кнопку “Продолжить”, я принимаю <a href="{base_url}index.php/main/page/3" target="_blank" class="text-primary">условия пользования</a></p>
                                         </div>
                                         <div class="form-row-last d-flex justify-content-between">
                                             <a href="#"><input type="submit" name="register" class="enter ef3" value="Продолжить"></a>
@@ -267,7 +268,7 @@
                                         <div class="form-row">
                                             <span class="text-label">Пароль</span>
                                             <label class="form-row-inner position-relative">
-                                                <input type="password" name="password" id="first-password" minlength="8" maxlength="32" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
+                                                <input type="password" name="password" id="first-password" minlength="8" maxlength="32" pattern="^[a-zA-Z0-9]+$" title="только английские буквы и цифры" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
                                                 <div class="hide-btn-pass" data-active="0">
                                                     <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass2">
                                                 </div>
@@ -276,7 +277,7 @@
                                         <div class="form-row">
                                             <span class="text-label">Повторный пароль</span>
                                             <label class="form-row-inner position-relative">
-                                                <input type="password" name="password" id="second-password" minlength="8" maxlength="32" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
+                                                <input type="password" name="password" id="second-password" minlength="8" maxlength="32" pattern="^[a-zA-Z0-9]+$" title="только английские буквы и цифры" pattern="^[a-zA-Z0-9]+$" title="только английские буквы и цифры" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
                                                 <div class="hide-btn-pass" data-active="0">
                                                     <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass3">
                                                 </div>
@@ -367,7 +368,7 @@
                                         <div class="form-row">
                                             <span class="text-label">Пароль</span>
                                             <label class="form-row-inner position-relative">
-                                                <input type="password" name="password" id="first-password2" minlength="8" maxlength="32" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
+                                                <input type="password" name="password" id="first-password2" minlength="8" maxlength="32" pattern="^[a-zA-Z0-9]+$" title="только английские буквы и цифры" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
                                                 <div class="hide-btn-pass" data-active="0">
                                                     <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass4">
                                                 </div>
@@ -376,7 +377,7 @@
                                         <div class="form-row">
                                             <span class="text-label">Повторный пароль</span>
                                             <label class="form-row-inner position-relative">
-                                                <input type="password" name="password" id="second-password2" minlength="8" maxlength="32" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
+                                                <input type="password" name="password" id="second-password2" minlength="8" maxlength="32" pattern="^[a-zA-Z0-9]+$" title="только английские буквы и цифры" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
                                                 <div class="hide-btn-pass" data-active="0">
                                                     <img src=" {base_url}img/show-pass.svg" alt="Icon" id="hidePass5">
                                                 </div>
@@ -1208,6 +1209,7 @@
 
     var compareDate = new Date();
     compareDate.setDate(compareDate.getDate() + 7);
+
     function userTimer() {
         timer = setInterval(function() {
             timeBetweenDates(compareDate);
@@ -1801,7 +1803,7 @@
     })
     $('.ef1').on('click', () => {
         localStorage.setItem("ver-number", $('#tel-number').val());
-        
+
     })
 
     $("#form2").on("submit", (e) => {

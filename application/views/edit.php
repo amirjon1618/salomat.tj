@@ -26,7 +26,7 @@
             <div class="col-12">
                 <div class="order-delivery-block">
                     <label for="order-delivery-bar-code" class="order-delivery-block-label">Новый пароль:</label>
-                    <input type="password" minlength="8" maxlength="32" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" autocomplete="off" class="order-delivery-input" id="edit-password">
+                    <input type="password" minlength="8" maxlength="32" pattern="^[a-zA-Z0-9]+$" title="только английские буквы и цифры" autocomplete="off" class="order-delivery-input" id="edit-password">
                 </div>
             </div>
             <div class="col-12">

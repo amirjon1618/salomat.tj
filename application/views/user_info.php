@@ -162,25 +162,25 @@
                                                             <td class="table-id"><?php echo $order['order']->id; ?></td>
                                                             <td><?php echo $order['order']->created_at;
                                                                 $price = 0;  ?></td>
-                                                    
-                                                            <td style="width: 170px;"><span class="label"  style="display: flex; justify-content: center; padding: 5px 0px;color: #fff; display: flex; text-align: center; background:<?php 
-                                                            if($order['status'][0]->status_text == 'В ожидании'){
-                                                                echo '#ffcc00';
-                                                            };
-                                                            if($order['status'][0]->status_text == 'Доставлен'){
-                                                                echo '#18e364';
-                                                            };
-                                                            if($order['status'][0]->status_text == 'Отменен'){
-                                                                echo '#eb1414';
-                                                            };
-                                                            if($order['status'][0]->status_text == 'Не подтвержён'){
-                                                                echo '#c4c4c4';
-                                                            };
-                                                            if($order['status'][0]->status_text == 'На обработку'){
-                                                                echo '#9814eb';
-                                                            };
-                                                            
-                                                            ?>; border-radius:.5em"><?= $order['status'][0]->status_text; ?></span></td>
+
+                                                            <td style="width: 170px;"><span class="label" style="display: flex; justify-content: center; padding: 5px 0px;color: #fff; display: flex; text-align: center; background:<?php
+                                                                                                                                                                                                                                        if ($order['status'][0]->status_text == 'В ожидании') {
+                                                                                                                                                                                                                                            echo '#ffcc00';
+                                                                                                                                                                                                                                        };
+                                                                                                                                                                                                                                        if ($order['status'][0]->status_text == 'Доставлен') {
+                                                                                                                                                                                                                                            echo '#18e364';
+                                                                                                                                                                                                                                        };
+                                                                                                                                                                                                                                        if ($order['status'][0]->status_text == 'Отменен') {
+                                                                                                                                                                                                                                            echo '#eb1414';
+                                                                                                                                                                                                                                        };
+                                                                                                                                                                                                                                        if ($order['status'][0]->status_text == 'Не подтвержён') {
+                                                                                                                                                                                                                                            echo '#c4c4c4';
+                                                                                                                                                                                                                                        };
+                                                                                                                                                                                                                                        if ($order['status'][0]->status_text == 'На обработку') {
+                                                                                                                                                                                                                                            echo '#9814eb';
+                                                                                                                                                                                                                                        };
+
+                                                                                                                                                                                                                                        ?>; border-radius:.5em"><?= $order['status'][0]->status_text; ?></span></td>
                                                             <!-- <td><span class="status-delivered"><?php echo $order['status'][0]->status_text; ?></span></td> -->
                                                             <?php foreach ($order['products'] as $product) : ?>
                                                                 <?php $price = $price + $product->product_sold_price ?>
@@ -326,11 +326,11 @@
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
                                                         <label for="exampleInputPassword1">Пароль*</label>
-                                                        <input type="password" class="form-control form-control-save" minlength="8" maxlength="32" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" name="password" id="first-validate" placeholder="Введите новый пароль" required>
+                                                        <input type="password" class="form-control form-control-save" minlength="8" maxlength="32" pattern="^[a-zA-Z0-9]+$" title="только английские буквы и цифры" name="password" id="first-validate" placeholder="Введите новый пароль" required>
                                                     </div>
                                                     <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                         <label for="exampleInputPassword2">Повторите пароль*</label>
-                                                        <input type="password" class="form-control form-control-save" minlength="8" maxlength="32" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" name="password_confirm" id="second-validate" placeholder="Введите повторно пароль" required>
+                                                        <input type="password" class="form-control form-control-save" minlength="8" maxlength="32" pattern="^[a-zA-Z0-9]+$" title="только английские буквы и цифры" name="password_confirm" id="second-validate" placeholder="Введите повторно пароль" required>
                                                     </div>
                                                     <p class="validate-text validate-text4"></p>
 
@@ -371,11 +371,12 @@
 <script src="{base_url}js/form_validation_messages_ru.js"></script>
 
 <script>
-        $('.confirmation').on('click', function() {
+    $('.confirmation').on('click', function() {
 
-            return confirm('Вы уверены что хотите удалить?');
+        return confirm('Вы уверены что хотите удалить?');
 
-        });
+    });
+
     function validate_chekout() {
 
 
