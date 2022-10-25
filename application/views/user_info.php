@@ -326,11 +326,11 @@
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
                                                         <label for="exampleInputPassword1">Пароль*</label>
-                                                        <input type="password" class="form-control form-control-save" minlength="4" name="password" id="first-validate" placeholder="Введите новый пароль" required>
+                                                        <input type="password" class="form-control form-control-save" minlength="8" maxlength="32" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" name="password" id="first-validate" placeholder="Введите новый пароль" required>
                                                     </div>
                                                     <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                         <label for="exampleInputPassword2">Повторите пароль*</label>
-                                                        <input type="password" class="form-control form-control-save" minlength="4" name="password_confirm" id="second-validate" placeholder="Введите повторно пароль" required>
+                                                        <input type="password" class="form-control form-control-save" minlength="8" maxlength="32" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" name="password_confirm" id="second-validate" placeholder="Введите повторно пароль" required>
                                                     </div>
                                                     <p class="validate-text validate-text4"></p>
 

@@ -168,7 +168,7 @@
                                         <div class="form-row">
                                             <span class="text-label">Телефон</span>
                                             <label class="form-row-inner">
-                                                <input type="number" name="restore-sms" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
+                                                <input type="text" pattern="[0-9]+" title="987654321" name="restore-sms" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
                                                 <span class="border"></span>
                                             </label>
                                         </div>
@@ -189,7 +189,7 @@
                                         <div class="form-row">
                                             <span class="text-label">Пароль</span>
                                             <label class="form-row-inner position-relative">
-                                                <input type="password" data-active="0" name="password" id="enter-password" minlength="4" maxlength="32" class="input-text hide-pass" required placeholder="* * * * * * * * * *">
+                                                <input type="password" data-active="0" name="password" id="enter-password" minlength="8" maxlength="32" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" class="input-text hide-pass" required placeholder="* * * * * * * * * *">
                                                 <div class="hide-btn-pass">
                                                     <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass1">
                                                 </div>
@@ -267,7 +267,7 @@
                                         <div class="form-row">
                                             <span class="text-label">Пароль</span>
                                             <label class="form-row-inner position-relative">
-                                                <input type="password" name="password" id="first-password" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
+                                                <input type="password" name="password" id="first-password" minlength="8" maxlength="32" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
                                                 <div class="hide-btn-pass" data-active="0">
                                                     <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass2">
                                                 </div>
@@ -276,7 +276,7 @@
                                         <div class="form-row">
                                             <span class="text-label">Повторный пароль</span>
                                             <label class="form-row-inner position-relative">
-                                                <input type="password" name="password" id="second-password" minlength="4" maxlength="32" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
+                                                <input type="password" name="password" id="second-password" minlength="8" maxlength="32" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
                                                 <div class="hide-btn-pass" data-active="0">
                                                     <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass3">
                                                 </div>
@@ -367,7 +367,7 @@
                                         <div class="form-row">
                                             <span class="text-label">Пароль</span>
                                             <label class="form-row-inner position-relative">
-                                                <input type="password" name="password" id="first-password2" minlength="4" maxlength="32" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
+                                                <input type="password" name="password" id="first-password2" minlength="8" maxlength="32" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" class="input-text hide-pass2" required placeholder="* * * * * * * * * *">
                                                 <div class="hide-btn-pass" data-active="0">
                                                     <img src="{base_url}img/show-pass.svg" alt="Icon" id="hidePass4">
                                                 </div>
@@ -376,7 +376,7 @@
                                         <div class="form-row">
                                             <span class="text-label">Повторный пароль</span>
                                             <label class="form-row-inner position-relative">
-                                                <input type="password" name="password" id="second-password2" minlength="4" maxlength="32" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
+                                                <input type="password" name="password" id="second-password2" minlength="8" maxlength="32" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Строчные и прописные английские буквы, цифры" class="input-text hide-pass3" required placeholder="* * * * * * * * * *">
                                                 <div class="hide-btn-pass" data-active="0">
                                                     <img src=" {base_url}img/show-pass.svg" alt="Icon" id="hidePass5">
                                                 </div>
@@ -1207,8 +1207,7 @@
     var timer;
 
     var compareDate = new Date();
-    compareDate.setDate(compareDate.getDate() + 7); //just for this demo today + 7 days
-
+    compareDate.setDate(compareDate.getDate() + 7);
     function userTimer() {
         timer = setInterval(function() {
             timeBetweenDates(compareDate);
@@ -1802,6 +1801,7 @@
     })
     $('.ef1').on('click', () => {
         localStorage.setItem("ver-number", $('#tel-number').val());
+        
     })
 
     $("#form2").on("submit", (e) => {
@@ -2092,23 +2092,6 @@
             link.childNodes[1].src = `{base_url}/img/inactive.icon${link.dataset.id}.svg`
         }
     })
-
-    function begin() {
-        $('#not_received_sms_order').hide();
-        $('#recend_timer_sms_order').show();
-
-        timing = 60;
-        $('#timer_order').html(timing);
-        myTimer = setInterval(function() {
-            --timing;
-            $('#timer_order').html(timing);
-            if (timing === 0) {
-                $('#recend_timer_sms_order').hide();
-                $('#not_received_sms_order').show();
-                clearInterval(myTimer);
-            }
-        }, 1000);
-    }
 
     function onConfirm() {
         let closeBtn = confirm("Вы уверены? Все введенные данные стираются!");

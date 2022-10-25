@@ -177,7 +177,7 @@
 <div class="ps-search" id="site-search"><a class="ps-btn--close" href="#"></a>
     <div class="ps-search__content">
         <form class="ps-form--primary-search" action="do_action" method="post">
-            <input class="form-control" type="text" placeholder="Search for...">
+            <input class="form-control" type="text" placeholder="Поиск по...">
             <button><i class="aroma-magnifying-glass"></i></button>
         </form>
     </div>

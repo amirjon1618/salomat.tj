@@ -3,21 +3,23 @@
         <h3 class="recipe_header">Расшифровка рецепта</h3>
         <h5>Укажите номер для отправки Вам ответа.</h5>
         <div class="recipe_phone_div" id="recipe_phone_div_phone_number" style="text-align: center;">
-            <div class="recipe_phone_div_inp">
-                <h5 class="mb-3">Введите номер телефона</h5>
-                <span>+992</span>
-                <input class="recipe_phone_number form-control" required type="number" pattern="\d*" maxlength="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="order_phone" name="cell_phone" placeholder="Введите свой номер">
-            </div>
-            <h5 class="recipe_error_msg">Введите 9 цифр</h5>
-            <div class="recipe_name_div_inp py-3">
-                <input class="recipe_name form-control" minlength="3" maxlength="24" required name="name" id="order_name" type="text" placeholder="Имя Фамилия">
-            </div>
-            <div class="recipe_comment_div_inp pb-3">
-                <textarea class="recipe_comment form-control" minlength="3" maxlength="250" required name="comment" id="order_comment" type="text" placeholder="Комментарий"></textarea>
-            </div>
-            <button class="recipe_phone_div_button_send_sms" onclick="sendSms()">
-                Отправить рецепт
-            </button>
+            <form id="formSms">
+                <div class="recipe_phone_div_inp">
+                    <h5 class="mb-3">Введите номер телефона</h5>
+                    <span>+992</span>
+                    <input class="recipe_phone_number form-control" type="text" pattern="[0-9]+" title="987654321" required type="number" minlength="9" maxlength="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="order_phone" name="cell_phone" placeholder="Введите свой номер">
+                </div>
+                <h5 class="recipe_error_msg_code">Введите 9 цифр</h5>
+                <div class="recipe_name_div_inp py-3">
+                    <input class="recipe_name form-control" minlength="3" maxlength="24" pattern="[A-Za-zА-Яа-я]+" title="Русские или английские буквы" required name="name" id="order_name" type="text" placeholder="Имя Фамилия">
+                </div>
+                <div class="recipe_comment_div_inp pb-3">
+                    <textarea class="recipe_comment form-control" minlength="3" maxlength="250" required name="comment" id="order_comment" type="text" placeholder="Комментарий"></textarea>
+                </div>
+                <button class="recipe_phone_div_button_send_sms">
+                    Отправить рецепт
+                </button>
+            </form>
         </div>
         <div class="recipe_phone_div" id="recipe_phone_div_phone_code">
             <div class="recipe_phone_div_inp">
@@ -124,6 +126,11 @@
     var recipe_comment = '';
     var uploadFinished = false;
     // var recipe_sms_id = '';
+
+    $("#formSms").on('submit', (e) => {
+        e.preventDefault();
+        sendSms()
+    })
 
     function file_click() {
         $('#recipe_userfile').click();
@@ -248,13 +255,14 @@
     }
 
     function resendSms() {
+        console.log($('.recipe_phone_number'));
         $('#loading').show();
         $.ajax({
             url: "<?= base_url() ?>index.php/main/recipeResendSms",
             type: "POST",
             dataType: "json",
             data: {
-                "recipe_phone": $('.recipe_phone_number').val(),
+                "recipe_phone": $('.recipe_phone_number')[2].value,
                 "recipe_id": recipe_id
             },
             success: function(data) {
@@ -316,7 +324,7 @@
         var upload = $("#user_files").data("kendoUpload");
         upload.clearAllFiles();
     }
-    
+
     $(document).ready(function() {
         recipe_pics = [];
         recipe_ids = [];
