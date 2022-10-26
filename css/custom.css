@@ -1282,7 +1282,7 @@ button {
 
 .recipe_phone_div_inp {
    position: relative;
-   width: 25vw;
+   /* width: 25vw; */
 }
 
 .recipe_phone_div_button_send_sms {

@@ -14950,9 +14950,6 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
         display: flex;
         justify-content: center;
     }
-    .recipe_phone_div_inp input {
-        padding-left: 55px !important;
-    }
     .popular-blog_col {
         border-bottom: 1px solid #E5E5E5 !important;
         padding-bottom: 20px !important;
