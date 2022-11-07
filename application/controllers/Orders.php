@@ -1,15 +1,16 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 use Restserver\Libraries\REST_Controller;
 
-require APPPATH. 'libraries/REST_Controller.php';
+require APPPATH . 'libraries/REST_Controller.php';
 
 class Orders extends REST_Controller
 {
     /**
      * Construction
      */
-    public function __construct(){
+    public function __construct()
+    {
 
         parent::__construct();
 
@@ -42,7 +43,7 @@ class Orders extends REST_Controller
                 $_POST = $data;
             }
 
-            $this->response($this->order->user_orders($user_id), REST_Controller::HTTP_OK);
+            $this->response($this->order->user_orders($user_id) ?? [], REST_Controller::HTTP_OK);
         } else {
             $message = [
                 'status' => FALSE,
@@ -76,7 +77,7 @@ class Orders extends REST_Controller
                 }
 
                 $res = $this->order->row_add($array);
-                $this->order->save_user_order_status_change($array->user_id, $res['order_id'], 1, 1,$array->comment);
+                $this->order->save_user_order_status_change($array->user_id, $res['order_id'], 1, 1, $array->comment);
 
                 $message = [
                     'status' => true,
