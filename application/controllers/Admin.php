@@ -1,4 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+require APPPATH . 'helpers/PushNotifications.php';
 
 class Admin extends CI_Controller
 {
@@ -253,7 +254,7 @@ class Admin extends CI_Controller
         $now = date('Y-m-d H:i');
         $data = array("base_url" => base_url(), "alert" => "");
         if ($this->input->post("AddBtn")) {
-            $dd = array("code" => $this->input->post("code"), "discount" => $this->input->post("discount"), "created_at" =>$now, 'updated_at' => $now);
+            $dd = array("code" => $this->input->post("code"), "discount" => $this->input->post("discount"), "created_at" => $now, 'updated_at' => $now);
             $this->PromoCode->add($dd);
             redirect(base_url("index.php/admin/promo_codes?do=addok"));
         }
@@ -846,7 +847,6 @@ class Admin extends CI_Controller
                 if ($this->upload->do_upload("userfile")) {
                     $img = $this->upload->data();
                     $img_link = $img['file_name'];
-
                 }
                 if ($this->upload->display_errors() != '') {
                     $data['alert'] = $this->createAlert($this->upload->display_errors());
@@ -1642,6 +1642,9 @@ class Admin extends CI_Controller
             $auth_id = $this->input->cookie('auth_id', TRUE);
             $user = $this->user->GetUserData($auth_id);
             $order = $this->order->get($id);
+            $order_user = $this->order->get_user($id);
+            PushNotifications::send($order_user[0]['onesignal_id'], 'TEST');
+
             $prev_status_id = ($this->order->get($id))['status_id'];
 
             if ($order["wallet_name"] && $order["transaction_id"]) {
@@ -2090,7 +2093,7 @@ class Admin extends CI_Controller
                     $prev_status_id,
                     $this->input->post('status'),
                     $this->input->post('user_recipe_comment')
-                // $now_date
+                    // $now_date
                 );
             }
             redirect(base_url("index.php/admin/recipePics/" . $id . "?do=updateok"));

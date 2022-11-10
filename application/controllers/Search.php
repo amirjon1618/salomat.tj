@@ -1,8 +1,8 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 use Restserver\Libraries\REST_Controller;
 
-require APPPATH. 'libraries/REST_Controller.php';
+require APPPATH . 'libraries/REST_Controller.php';
 
 class Search extends REST_Controller
 {
@@ -48,7 +48,7 @@ class Search extends REST_Controller
 
         $result = [
             'data' => $data,
-            'products' => $newArray
+            'products' => $newArray ?? []
         ];
 
         $this->response($result, REST_Controller::HTTP_OK);
@@ -81,10 +81,10 @@ class Search extends REST_Controller
         }
 
         if (isset($res['srch_prod_max_pr'])) {
-        $data['srch_prod_max_price'] = $res['srch_prod_max_pr'];
-         } else {
-        $data['srch_prod_max_price'] = 9999;
-         }
+            $data['srch_prod_max_price'] = $res['srch_prod_max_pr'];
+        } else {
+            $data['srch_prod_max_price'] = 9999;
+        }
 
         $result = [
             'data' => $data,
