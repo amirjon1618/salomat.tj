@@ -164,14 +164,14 @@
                                     </svg>
                                 </label>
                                 <div class="ps-product__thumbnail ">
-                                    <a href="{base_url}main/product/<?= $cat_p['id'] ?>">
+                                    <a href="{base_url}index.php/main/product/<?= $cat_p['id'] ?>">
                                         <img class="category_imgs" src="<?= $cat_p['base_url'] ?>upload_product/<?= $cat_p['product_pic'] ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="ps-product__container">
                                     <div class="ps-product__content" data-mh="garden">
                                         <a class="ps-product__title product_title_new
-                                        " href="{base_url}main/product/<?= $cat_p['id'] ?>"><?= $cat_p['product_name'] ?></a>
+                                        " href="{base_url}index.php/main/product/<?= $cat_p['id'] ?>"><?= $cat_p['product_name'] ?></a>
                                         <div class="ps-product__rating">
                                             <select class="ps-rating" data-read-only="true">
                                                 <?php if ($cat_p['review_count'] != 0) : ?>
@@ -210,7 +210,7 @@
                                         <li class="breadcrumb-item ba-first">
                                             <h3>Блог </h3>
                                         </li>
-                                        <a href="{base_url}main/blogpopular">
+                                        <a href="{base_url}index.php/main/blogpopular">
                                             <li class="active ba-last" aria-current="page" style="padding: 0 10px;">все статьи ></li>
                                         </a>
                                     </ol>
@@ -223,7 +223,7 @@
                                     </div>
                                     <div class="blog-articles-btn bab_pc">
                                         <div>
-                                            <a href="{base_url}main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все статьи</button></a>
+                                            <a href="{base_url}index.php/main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все статьи</button></a>
                                         </div>
                                         <div class="main-social_links">
                                             <a href="https://www.t.me/Salomat9990" target="_blank">
@@ -244,7 +244,7 @@
                                     </div>
                                     <div class="blog-articles-btn bab_mobile">
                                         <div>
-                                            <a href="{base_url}main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все статьи</button></a>
+                                            <a href="{base_url}index.php/main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все статьи</button></a>
                                         </div>
                                         <div class="main-social_links">
                                             <a href="https://www.t.me/Salomat9990" target="_blank">
@@ -398,23 +398,23 @@
                 blogShow.content.blogs.forEach(blogShow => {
                     document.querySelector(".blog_show").innerHTML = `
                        <img class="blog_pic img-fluid pb-3" src="{base_url}upload_blog/${blogShow.blog_pic}" alt="...">
-                       <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3>
+                       <a href="{base_url}index.php/main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3>
                        <span class="blog_created_at">${blogShow.blog_created_at.slice(0,10)}</span>
                        </a>
                      
                      <div class="text-justify blog_about-main">${blogShow.blog_about}</div>
-                     <a style="display: flex; justify-content: flex-end; padding-top: 10px;" href="{base_url}main/blogInfo?blog_id=${blogShow.id}"> читать дальше...</a>
+                     <a style="display: flex; justify-content: flex-end; padding-top: 10px;" href="{base_url}index.php/main/blogInfo?blog_id=${blogShow.id}"> читать дальше...</a>
                 `;
                 })
                 const sorted = blogShow.content.blogs.sort((a, b) => b.id - a.id);
                 const filtered = sorted.filter((elem, ind) => ind === 1 || ind === 2 || ind === 3)
                 filtered.forEach(blogShow => {
                     document.querySelector(".popular-blogs").innerHTML += `
-                    <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3>
+                    <a href="{base_url}index.php/main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3>
                     <span class="blog_created_at">${blogShow.blog_created_at.slice(0,10)}</span>
                     </a>
                      <div class="text-justify blog_about">${blogShow.blog_about}</div>
-                     <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}" class="pb-4"> читать дальше...</a>
+                     <a href="{base_url}index.php/main/blogInfo?blog_id=${blogShow.id}" class="pb-4"> читать дальше...</a>
                 `;
                 })
 
