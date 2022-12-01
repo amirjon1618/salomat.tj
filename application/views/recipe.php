@@ -3,21 +3,23 @@
         <h3 class="recipe_header">Расшифровка рецепта</h3>
         <h5>Укажите номер для отправки Вам ответа.</h5>
         <div class="recipe_phone_div" id="recipe_phone_div_phone_number" style="text-align: center;">
-            <div class="recipe_phone_div_inp">
-                <h5 class="mb-3">Введите номер телефона</h5>
-                <span>+992</span>
-                <input class="recipe_phone_number form-control" required type="number" pattern="\d*" maxlength="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="order_phone" name="cell_phone" placeholder="Введите свой номер">
-            </div>
-            <h5 class="recipe_error_msg">Введите 9 цифр</h5>
-            <div class="recipe_name_div_inp py-3">
-                <input class="recipe_name form-control" maxlength="24" required name="name" id="order_name" type="text" placeholder="Имя Фамилия">
-            </div>
-            <div class="recipe_comment_div_inp pb-3">
-                <textarea class="recipe_comment form-control" maxlength="250" name="comment" id="order_comment" type="text" placeholder="Комментарий"></textarea>
-            </div>
-            <button class="recipe_phone_div_button_send_sms" onclick="sendSms()">
-                Отправить смс
-            </button>
+            <form id="formSms">
+                <div class="recipe_phone_div_inp">
+                    <h5 class="mb-3">Введите номер телефона</h5>
+                    <span>+992</span>
+                    <input class="recipe_phone_number form-control" type="text" pattern="[0-9]+" title="987654321" required type="number" minlength="9" maxlength="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="order_phone" name="cell_phone" placeholder="Введите свой номер">
+                </div>
+                <h5 class="recipe_error_msg_code">Введите 9 цифр</h5>
+                <div class="recipe_name_div_inp py-3">
+                    <input class="recipe_name form-control" minlength="3" maxlength="24" pattern="[A-Za-zА-Яа-я]+" title="Русские или английские буквы" required name="name" id="order_name" type="text" placeholder="Имя Фамилия">
+                </div>
+                <div class="recipe_comment_div_inp pb-3">
+                    <textarea class="recipe_comment form-control" minlength="3" maxlength="250" name="comment" id="order_comment" type="text" placeholder="Комментарий"></textarea>
+                </div>
+                <button class="recipe_phone_div_button_send_sms">
+                    Отправить рецепт
+                </button>
+            </form>
         </div>
         <div class="recipe_phone_div" id="recipe_phone_div_phone_code">
             <div class="recipe_phone_div_inp">
@@ -65,18 +67,7 @@
 
         <h5>Вы так же можете отправить фото в мессенджерах:</h5>
         <div class="row recipe_social_main_div">
-            <div class="col-md-4 col-12 col-sm-6 recipe_social_main_div_each">
-                <a href="viber://pa?chatURI=992888886006&text=Hello">
-                    <div class="recipe_social_div">
-                        <img src="{base_url}img/viber_icon.png" alt="">
-                        <div>
-                            <p>Отправить на</p>
-                            <h5>Viber</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-12 col-sm-6 recipe_social_main_div_each">
+            <div class="col-md-6 col-12 col-sm-6 recipe_social_main_div_each">
                 <a href="https://wa.me/992888886006">
                     <div class="recipe_social_div">
                         <img src="{base_url}img/whatsapp_icon.png" alt="">
@@ -87,7 +78,7 @@
                     </div>
                 </a>
             </div class="recipe_social_div">
-            <div class="col-md-4 col-12 col-sm-6 recipe_social_main_div_each">
+            <div class="col-md-6 col-12 col-sm-6 recipe_social_main_div_each">
                 <a href="https://t.me/Salomat6006" target="_blank">
                     <div class="recipe_social_div">
                         <img src="{base_url}img/telegram_icon.png" alt="">
@@ -135,6 +126,11 @@
     var recipe_comment = '';
     var uploadFinished = false;
     // var recipe_sms_id = '';
+
+    $("#formSms").on('submit', (e) => {
+        e.preventDefault();
+        sendSms()
+    })
 
     function file_click() {
         $('#recipe_userfile').click();
@@ -259,13 +255,14 @@
     }
 
     function resendSms() {
+        console.log($('.recipe_phone_number'));
         $('#loading').show();
         $.ajax({
             url: "<?= base_url() ?>index.php/main/recipeResendSms",
             type: "POST",
             dataType: "json",
             data: {
-                "recipe_phone": $('.recipe_phone_number').val(),
+                "recipe_phone": $('.recipe_phone_number')[2].value,
                 "recipe_id": recipe_id
             },
             success: function(data) {
@@ -327,7 +324,7 @@
         var upload = $("#user_files").data("kendoUpload");
         upload.clearAllFiles();
     }
-    
+
     $(document).ready(function() {
         recipe_pics = [];
         recipe_ids = [];

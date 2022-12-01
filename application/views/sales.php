@@ -1,10 +1,3 @@
-<header class="header header--mobile header--mobile-categories header_class_sort" data-sticky="true">
-    <div class="header__filter">
-        <button class="ps-shop__filter-mb" id="filter-sidebar">
-            <i class="icon-equalizer"></i><span>Фильтр</span></button>
-    </div>
-</header>
-
 <div class="ps-breadcrumb">
     <div class="container">
         <div class="ps-container padding0">
@@ -15,7 +8,23 @@
         </div>
     </div>
 </div>
-
+<header class="header header--mobile header--mobile-categories header_class_sort" data-sticky="true">
+    <aside class="widget widget_shop srch_sort_pr_aside">
+        <aside class="widget widget_shop widget_shop_price_sort">
+            <figure>
+                <h4 class="widget-title">По цене</h4>
+                <div class="nonlinear_mobile_aside"></div>
+                <p class="ps-slider__meta">
+                    <span class="ps-slider__value slider__value_min"><span class="ps-slider__min_mobile"></span> смн.</span>
+                    <span class="ps-slider__value slider__value_max"><span class="ps-slider__max_mobile"></span> смн.</span>
+                </p>
+                <div style="text-align: center" class="mt-5">
+                    <button class="btn btn-info btn-lg sort_by_price" type="button">Показать</button>
+                </div>
+            </figure>
+        </aside>
+    </aside>
+</header>
 
 <div class="ps-page--shop" id="shop-sidebar">
     <div class="container">

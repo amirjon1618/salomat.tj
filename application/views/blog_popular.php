@@ -16,7 +16,9 @@
 
                         
                 </div>
+                
         </div>
+        
 </div>
 
 <script>
@@ -28,9 +30,6 @@
                                 "Accept": "application/json",
                         },
                         success: function(blogShow) {
-                                // $(".blog_created_at").text(blogShow.content.blog_created_at);
-                                // $(".blog_title").text(blogShow.content.blog_title);
-                                // $(".blog_about").html(blogShow.content.blog_about);
                                 blogShow.content.blogs.forEach((elem, ind) => {
                                         const img = document.createElement("img");
                                         img.className += "blog_pic"
@@ -43,7 +42,7 @@
                                                         <a href="{base_url}main/blogInfo?blog_id=${elem['id']}" class="blog_title">
                                                                 <h3 class="blog_title">${elem.blog_title}</h3>
                                                         </a>
-                                                        <span class="blog_created_at">${elem.blog_created_at}</span>
+                                                        <span class="blog_created_at">${elem.blog_created_at.slice(0,10)}</span>
                                                         <div class="blog-about_p pbc_blog">${elem.blog_about}</div>
                                                         <a href="{base_url}main/blogInfo?blog_id=${elem['id']}" class="pbc_blog"> читать дальше ...</a>
                                                 </article> `;

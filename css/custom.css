@@ -798,6 +798,9 @@ textarea.error {
     font-weight: bold;
     margin-top: 30px;
     box-shadow: none !important;
+   display: flex;
+   justify-content: center;
+   width: 100%;
 }
 
 .sort_by_price:hover,
@@ -994,6 +997,8 @@ textarea.error {
    font-size: 12px;
    text-align: end;
    padding: 10px 0;
+   display: flex !important;
+   justify-content: center;
 }
 
 .recipe_error_msg_code {
@@ -1219,7 +1224,7 @@ button {
 }
 
 .recipe_phone_div {
-   padding: 45px 140px;
+   /* padding: 45px 140px; */
    /* border: 1px solid #e3dede; */
    /* box-shadow: 0 2px 3px 0 rgba(108, 108, 108, 0.17); */
    border-radius: 7px;
@@ -1231,6 +1236,7 @@ button {
 
 #recipe_div_phone {
    display: none;
+   width: 33%;
 }
 
 #recipe_phone_div_phone_code {
@@ -1250,12 +1256,12 @@ button {
 }
 
 .recipe_phone_div_button_confirm_sms {
-   width: 70%;
+   width: 50%;
    margin-top: 10px;
-   padding: 8px;
+   padding: 15px 0;
    border-radius: 7px;
    color: white;
-   background: #28d7b5;
+   background: #1ebebe;
    font-weight: bold;
    border-color: transparent;
 }
@@ -1277,7 +1283,7 @@ button {
 
 .recipe_phone_div_inp {
    position: relative;
-   width: 25vw;
+   /* width: 25vw; */
 }
 
 .recipe_phone_div_button_send_sms {
@@ -1327,7 +1333,6 @@ button {
 .recipe_phone_div_inp span {
    position: absolute;
    left: 0px;
-   bottom: 1px;
    background: #e3e3e3;
    padding: 12px;
    border-radius: 7px;
@@ -1679,7 +1684,6 @@ button {
 
 .product_more {
    color: #0073bf !important;
-   border-bottom: 1px dotted #59bdff;
    font-size: 16px;
    line-height: 17px;
    margin-right: 20px;
@@ -1691,7 +1695,7 @@ button {
 }
 
 #count_input {
-    padding: 0 28px 5px 40px !important;
+    padding: 0 28px 0 28px !important;
     border-radius: 5px;
     font-size: 20px;
     color: #6D6D6D;
@@ -1708,6 +1712,7 @@ button {
    align-items: center;
    font-weight: 700;
    margin-bottom: 12px;
+   font-size: 14px;
 }
 
 .widget_pr_p {

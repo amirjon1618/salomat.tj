@@ -177,7 +177,7 @@
 <div class="ps-search" id="site-search"><a class="ps-btn--close" href="#"></a>
     <div class="ps-search__content">
         <form class="ps-form--primary-search" action="do_action" method="post">
-            <input class="form-control" type="text" placeholder="Search for...">
+            <input class="form-control" type="text" placeholder="Поиск по...">
             <button><i class="aroma-magnifying-glass"></i></button>
         </form>
     </div>
@@ -328,14 +328,16 @@
         if (localStorage.getItem("product_list")) {
             var mydata = JSON.parse(localStorage.getItem("product_list"));
             var sum = 0;
+            var variant = 0;
             mydata.forEach(function(item, index) {
                 var html = "<a href=\"<?= $base_url ?>index.php/main/product/" + item.product_id + "\"><strong>" + item.product_name + "</strong><div style='display: flex; justify-content: space-between;'><span style='margin-left:10px;'>x" + item.product_count + "</span>" +
                     "<small style='margin-left:10px'> " + item.product_price + "</small></div>" +
                     "</a>";
-                sum += (item.product_count * item.product_price);
+                variant += (item.product_count * item.product_price)
+                sum = Number(localStorage.getItem("promocode_discount")) || variant;
                 $('#prod_list_checkout').append(html);
             });
-            $('#prod_tot_pr_checkout').text(sum + ' сом.');
+            $('#prod_tot_pr_checkout').text(Math.round(sum) + ' сом.');
             countSumWithDelivery();
         }
     }

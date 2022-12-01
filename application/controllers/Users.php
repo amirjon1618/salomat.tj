@@ -1,8 +1,10 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
 use Restserver\Libraries\REST_Controller;
+// use helpers/PushNotifications.php;
 
 require APPPATH . 'libraries/REST_Controller.php';
+require APPPATH . 'helpers/PushNotifications.php';
 
 class Users extends REST_Controller
 {
@@ -190,7 +192,7 @@ class Users extends REST_Controller
             $this->response($error, REST_Controller::HTTP_OK);
         } else {
             $data = array($this->upload->data());
-            $user_pic= $data[0]['file_name'];
+            $user_pic = $data[0]['file_name'];
 
             $user_id = $this->input->post('user_id');
             if (isset($user_id)) {
@@ -343,6 +345,7 @@ class Users extends REST_Controller
 
             $phone      = $this->input->post('phone');
             $password   = $this->input->post('password');
+            $oneSignalId = $this->input->post('oneSignalId');
             $output     = $this->user->user_login($phone, $password);
 
             $this->response($output, REST_Controller::HTTP_OK);
@@ -365,6 +368,7 @@ class Users extends REST_Controller
                 setcookie("auth_id", $auth_id, time() + 3600 * 24 * 15, '/');
 
                 $user_token = $this->authorization_token->generateToken($token_data);
+                $onesignal = $this->user->set_onesignal_id($phone, $oneSignalId);
 
                 $return_data = [
                     'user_id'   => $output->user_id,

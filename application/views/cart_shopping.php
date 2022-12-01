@@ -1,24 +1,22 @@
 <div class="container main-mycart p-0">
-    <div class="toast toast_empty2 fade hide">
-        <div class="toast-body">
-            <i class="fa fa-exclamation-triangle"></i>
-            Корзина пуста!
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    </div>
     <div class="parent-mycart">
         <div class="mycart col-lg-8 col-md-6 col-sm-12 col-xs-12 p-0">
             <div class="ps-section--shopping ps-shopping-cart">
-                <div class="container">
+                <div class="">
                     <div class="ps-section__header">
                         <h3>Корзина</h3>
                         <img class="img-fluid" src="/img/status-order.svg" alt="- -">
                     </div>
+                    <div class="board-show">
+                        <div class="toast-body my-5" style="text-align:center;">
+                            <img class="mb-5" src="{base_url}img/cart-icon.svg" alt="Cart">
+                            <h3 class="mb-3" style="color: #6D6D6D; font-size: 16px; ">Ваша корзина пуста</h3>
+                            <p>для совершения покупки воспользуйтесь каталогом товаров</p>
+                        </div>
+                    </div>
                     <div class="ps-section__content">
-                        <div class="table-responsive">
-                            <table class="table ps-table--shopping-cart col-lg-8 col-md-8 col-sm-12 col-xs-12 mb-5">
+                        <div class="table-responsive" id="table-scroll">
+                            <table class="table ps-table--shopping-cart mb-5">
                                 <thead class="shopping-cart_th">
                                     <tr>
                                         <th>Товар</th>
@@ -34,20 +32,10 @@
                             </table>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
         <div class="mycart col-lg-4 col-md-6 col-sm-12 col-xs-12" style="display: flex; justify-content: center; align-items: center; padding-top: 8%;">
-            <div class="toast toast_empty2 fade hide">
-                <div class="toast-body">
-                    <i class="fa fa-exclamation-triangle"></i>
-                    Корзина пуста!
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
             <div class="ps-page--simple">
                 <div class="ps-section--shopping ps-shopping-cart">
                     <div class="order-content">
@@ -96,6 +84,13 @@
 </div>
 
 <script>
+    if (!localStorage.getItem("product_list")) {
+        $(".board-show").show();
+        $(".order-content").addClass("mob-order-content");
+    } else {
+        $(".board-show").hide();
+    }
+
     function decrease_count_cart(id) {
 
         var mydata = $.parseJSON(localStorage.getItem("product_list"));
@@ -174,6 +169,12 @@
             //     path: '/'
             // });
             localStorage.removeItem("product_list")
+            if (!localStorage.getItem("product_list")) {
+                $(".board-show").show();
+                $(".order-content").addClass("mob-order-content");
+            } else {
+                $(".board-show").hide();
+            }
             $('.pr-list').html('');
         } else {
             mydata.forEach(function(elem, index) {

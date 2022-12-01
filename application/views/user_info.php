@@ -1,3 +1,25 @@
+<div class="enter-btn-password" style="display: none;">
+    <div class="enter-btn-modal">
+        <div class="page-content">
+            <div class="form-v8-content">
+                <div class="enter-form_pass">
+                    <div class="tab">
+                        <div class="tab-inner">
+                            <h3 class="tablinks text-center">Ваш пароль изменён!</h3>
+                        </div>
+                    </div>
+                    <form class="form-detail">
+                        <div class="tabcontent" id="sign-pass">
+                            <div class="form-row-last d-flex justify-content-center">
+                                <a href="#user-info" id="ok-btn" class="ok-btn" onclick="javascript:window.location.hash = '#user-save';window.location.reload()">OK</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="enter-btn-phone">
     <div class="enter-btn-modal">
         <div class="page-content">
@@ -11,7 +33,7 @@
                     <form class="form-detail">
                         <div class="tabcontent" id="sign-phone">
                             <div class="form-row-last d-flex justify-content-center">
-                                <a href="#user-info" id="ok-btn" class="ok-btn" onclick="javascript:window.location.hash = '#user-info';window.location.reload()">OK</a>
+                                <a href="#user-info" id="ok-btn" class="ok-btn" onclick="javascript:window.location.hash = '#phone-number';window.location.reload()">OK</a>
                             </div>
                         </div>
                     </form>
@@ -20,6 +42,7 @@
         </div>
     </div>
 </div>
+
 <div id="homepage-3">
     <div class="ps-breadcrumb">
         <div class="container">
@@ -51,12 +74,12 @@
                             <div class="tab-pane fade show" data-hash="#user-info" id="user-info" role="tabpanel" aria-labelledby="webdisign-tab">
                                 <div class="up-content col-lg-6 col-md-6 col-sm-12 col-xs-12 p-4 mb-3">
                                     <div class="up-content-info">
-                                        <h2>Личная информация</h2>
+                                        <h2 class="pb-3">Личная информация</h2>
                                         <form action="{base_url}users/update_user_web" method="post" class="up-content-info_form">
-                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                <div class="form-col">
-                                                    <label for="validationCustom01">Имя фамилия <span class="red-star">*</span></label>
-                                                    <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="Имя Фамилия" required value="<?php echo $name ?>">
+                                            <div class="form-input col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="form-group form-col">
+                                                    <label>Имя Фамилия <span class="red-star">*</span></label>
+                                                    <input class="form-control" maxlength="24" required name="name" value="<?php echo $name ?>" id="order_name" type="text" placeholder="Имя Фамилия">
                                                 </div>
                                                 <div class="form-col">
                                                     <label for="validationCustom02">Номер телефона <span class="red-star">*</span></label>
@@ -92,7 +115,7 @@
                                                     <input type="text" class="form-control" id="validationTooltipUsername" name="email" placeholder="youraddress@mail.ru" aria-describedby="validationTooltipUsernamePrepend" value="<?php echo $email ?>">
                                                 </div>
                                                 <div class="form-col">
-                                                    <label for="validationCustom03">Адресс</label>
+                                                    <label for="validationCustom03">Адресс <span class="red-star">*</span></label>
                                                     <input type="text" class="form-control" id="validationTooltiAddress" name="address" placeholder="А.Навои 34/2" aria-describedby="validationTooltipAddress" value="<?php echo $address ?>" required>
                                                 </div>
                                             </div>
@@ -139,7 +162,26 @@
                                                             <td class="table-id"><?php echo $order['order']->id; ?></td>
                                                             <td><?php echo $order['order']->created_at;
                                                                 $price = 0;  ?></td>
-                                                            <td><span class="status-delivered"><?php echo $order['status'][0]->status_text; ?></span></td>
+
+                                                            <td style="width: 170px;"><span class="label" style="display: flex; justify-content: center; padding: 5px 0px;color: #fff; display: flex; text-align: center; background:<?php
+                                                                                                                                                                                                                                        if ($order['status'][0]->status_text == 'В ожидании') {
+                                                                                                                                                                                                                                            echo '#ffcc00';
+                                                                                                                                                                                                                                        };
+                                                                                                                                                                                                                                        if ($order['status'][0]->status_text == 'Доставлен') {
+                                                                                                                                                                                                                                            echo '#18e364';
+                                                                                                                                                                                                                                        };
+                                                                                                                                                                                                                                        if ($order['status'][0]->status_text == 'Отменен') {
+                                                                                                                                                                                                                                            echo '#eb1414';
+                                                                                                                                                                                                                                        };
+                                                                                                                                                                                                                                        if ($order['status'][0]->status_text == 'Не подтвержён') {
+                                                                                                                                                                                                                                            echo '#c4c4c4';
+                                                                                                                                                                                                                                        };
+                                                                                                                                                                                                                                        if ($order['status'][0]->status_text == 'На обработку') {
+                                                                                                                                                                                                                                            echo '#9814eb';
+                                                                                                                                                                                                                                        };
+
+                                                                                                                                                                                                                                        ?>; border-radius:.5em"><?= $order['status'][0]->status_text; ?></span></td>
+                                                            <!-- <td><span class="status-delivered"><?php echo $order['status'][0]->status_text; ?></span></td> -->
                                                             <?php foreach ($order['products'] as $product) : ?>
                                                                 <?php $price = $price + $product->product_sold_price ?>
                                                             <?php endforeach; ?>
@@ -160,7 +202,7 @@
                                                                                             <?php foreach ($order['products'] as $product) : ?>
                                                                                                 <tbody>
                                                                                                     <tr>
-                                                                                                        <th scope="row"><img style="max-width: 100px" src="{base_url}upload_product/<?php echo $product->product_pic; ?>" alt="IMG"></th>
+                                                                                                        <th scope="row"><img class="tbody-cart" style="max-width: 100px" src="{base_url}upload_product/<?php echo $product->product_pic; ?>" alt="IMG"></th>
                                                                                                         <td class="align-middle" style="color: #4839C3; font-weight: 500;"><?php echo $product->product_name; ?></td>
                                                                                                         <td class="align-middle"><?php echo $product->total_count; ?> шт</td>
                                                                                                         <td class="align-middle"><?php echo $product->product_sold_price; ?> смн.</td>
@@ -178,11 +220,10 @@
                                                                                 <td style="font-size: 16px; color: #000; font-weight: 500;">Стоимост товаров: </td>
                                                                                 <td class="font-weight-bold" style="color: #000; font-weight: 500;"><?php echo $price; ?><span style="color: #4839C3; font-weight: 400;"> смн</span></td>
                                                                                 <td style="font-size: 16px; color: #000; font-weight: 500;">Итого: </td>
-                                                                                <td class="font-weight-bold" style="color: #000; font-weight: 500;"><?php echo $price; ?><span style="color: #4839C3; font-weight: 400;"> смн</span></td>
-                                                                            </>
+                                                                                <td class="font-weight-bold" style="color: #000; font-weight: 500;"><?php echo $order['order']->total_price; ?><span style="color: #4839C3; font-weight: 400;"> смн</span></td>
                                                                             <tr>
                                                                                 <td>Стоимост доставки: </td>
-                                                                                <td class="font-weight-bold" style="color: #000; font-weight: 500;"> <?php echo $order['order']->total_price; ?> <span style="color: #4839C3; font-weight: 400;"> смн</span></td>
+                                                                                <td class="font-weight-bold" style="color: #000; font-weight: 500;"><?php echo $order['delivery'][0]->delivery_price; ?><span style="color: #4839C3; font-weight: 400;"> смн</span></td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -221,7 +262,7 @@
                                                     <div class="ps-product ps-product--inner ps-product_of_the_day user-info_favorite">
                                                         <label>
                                                             <input onclick="deleteProduct(<?= $favorite['id'] ?>)" value="<?php $favorite['id'] ?>" <?php echo $favorite['id']  ?  'checked' : null  ?> type="checkbox" id="red">
-                                                            <svg id="shape" fill="none" data-id="<?= $favorite['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
+                                                            <svg class="confirmation" id="shape" fill="none" data-id="<?= $favorite['id']   ?>" data-like="0" class="likeClick" width="24" height="24" style="cursor: pointer; float: right;" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
                                                                 <path class="seat" d="M6.20208 0.884277C3.51425 0.884277 1.33459 3.04155 1.33459 5.70309C1.33459 7.85159 2.1864 12.9508 10.5711 18.1054C10.7213 18.1968 10.8938 18.2452 11.0696 18.2452C11.2454 18.2452 11.4178 18.1968 11.568 18.1054C19.9527 12.9508 20.8045 7.85159 20.8045 5.70309C20.8045 3.04155 18.6249 0.884277 15.937 0.884277C13.2492 0.884277 11.0696 3.80477 11.0696 3.80477C11.0696 3.80477 8.8899 0.884277 6.20208 0.884277Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                                             </svg>
                                                         </label>
@@ -281,15 +322,15 @@
                                     </div>
                                     <?php if (isset($auth)) : ?>
                                         <div class="user-save-content">
-                                            <form action="{base_url}users/update_user_web" method="post" class="up-content-info_form">
+                                            <form class="up-content-info_pass" id="changePass">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
                                                         <label for="exampleInputPassword1">Пароль*</label>
-                                                        <input type="password" class="form-control form-control-save" name="password" id="first-validate" placeholder="Введите новый пароль" required>
+                                                        <input type="password" class="form-control form-control-save" minlength="8" maxlength="32" pattern="^[a-zA-Z0-9]+$" title="только английские буквы и цифры" name="password" id="first-validate" placeholder="Введите новый пароль" required>
                                                     </div>
                                                     <div class="form-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                         <label for="exampleInputPassword2">Повторите пароль*</label>
-                                                        <input type="password" class="form-control form-control-save" name="password_confirm" id="second-validate" placeholder="Введите повторно пароль" required>
+                                                        <input type="password" class="form-control form-control-save" minlength="8" maxlength="32" pattern="^[a-zA-Z0-9]+$" title="только английские буквы и цифры" name="password_confirm" id="second-validate" placeholder="Введите повторно пароль" required>
                                                     </div>
                                                     <p class="validate-text validate-text4"></p>
 
@@ -310,7 +351,8 @@
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="form-col col-lg-12 col-md-12 col-sm-12 col-xs-12" id="save-form">
                                                     <label for="validationCustom02">Новый номер*</label>
-                                                    <input type="number" pattern="\d*" maxlength="9" class="form-control" id="validationPhone" name="login" placeholder="+992 XXX XX XX XX" required value="<?php echo $phone ?>">
+                                                    <span class="phone-mask-cabinet">+992</span>
+                                                    <input type="number" style="padding-left: 50px" maxlength="9" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" id="validationPhone" name="login" placeholder="Введите свой номер без +992" required value="<?php echo $phone ?>">
                                                     <button class="form-btn my-4">Изменить</button>
                                                 </div>
                                             </div>
@@ -325,7 +367,39 @@
     </div>
 </div>
 <script defer src="/js/dragscroll.js"></script>
+<script src="{base_url}plugins/jquery.form.validation.min.js"></script>
+<script src="{base_url}js/jquery.validate.min.js"></script>
+<script src="{base_url}js/form_validation_messages_ru.js"></script>
+
 <script>
+    $('.confirmation').on('click', function() {
+
+        return confirm('Вы уверены что хотите удалить?');
+
+    });
+
+    function validate_chekout() {
+
+
+        $('.up-content-info_form').validate({
+            lang: 'ru',
+            rules: {
+                name: {
+                    required: true,
+                    maxlength: 80,
+                    minlength: 3
+                }
+            },
+
+        });
+    }
+    validate_chekout();
+
+
+    $(".up-content-info_pass").on('submit', () => {
+        $(".enter-btn-password").css("display", "block")
+    })
+
     function onRemoveLS() {
         localStorage.removeItem("userId");
         $.ajax({
@@ -358,6 +432,7 @@
             onPsBlockRight();
             $(".efr1").css("display", "none");
             $(".efr8").css("display", "block");
+            userTimer();
             localStorage.setItem("ver-number", Number($("#validationPhone").val()))
             $.ajax({
                 type: "POST",
@@ -376,7 +451,9 @@
 
         }
     })
-
+    $("#changePass").on("submit", (e) => {
+        e.preventDefault()
+    })
 
     function deleteProduct(id) {
         const favoriteId = document.querySelector(`[data-favoriteid="${id}"]`);
@@ -693,9 +770,11 @@
         background: #F9F9F9;
         border-radius: 5px;
     }
+
     .table-content tr {
         border-bottom: none;
     }
+
     .order-total-price {
         border-top: 1px solid #E5E5E5;
     }

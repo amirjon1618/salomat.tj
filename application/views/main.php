@@ -164,14 +164,14 @@
                                     </svg>
                                 </label>
                                 <div class="ps-product__thumbnail ">
-                                    <a href="{base_url}main/product/<?= $cat_p['id'] ?>">
+                                    <a href="{base_url}index.php/main/product/<?= $cat_p['id'] ?>">
                                         <img class="category_imgs" src="<?= $cat_p['base_url'] ?>upload_product/<?= $cat_p['product_pic'] ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="ps-product__container">
                                     <div class="ps-product__content" data-mh="garden">
                                         <a class="ps-product__title product_title_new
-                                        " href="{base_url}main/product/<?= $cat_p['id'] ?>"><?= $cat_p['product_name'] ?></a>
+                                        " href="{base_url}index.php/main/product/<?= $cat_p['id'] ?>"><?= $cat_p['product_name'] ?></a>
                                         <div class="ps-product__rating">
                                             <select class="ps-rating" data-read-only="true">
                                                 <?php if ($cat_p['review_count'] != 0) : ?>
@@ -192,9 +192,9 @@
                                                 <?php endif; ?>
                                             </select><span>(<?= $cat_p['review_count'] ?>)</span>
                                         </div>
-                                        <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span pps-custom">
+                                        <p class="ps-product__price sale prods_slider"> <span class="ps-product__price-span pps-custom ps-pp_db">
                                                 <?php if ($cat_p['product_old_price'] != 0) : ?><del><?= $cat_p['product_old_price'] ?> </del><?php endif; ?>
-                                                <?= $cat_p['product_price'] ?> c. </span><button onclick='addToCart(res = <?= json_encode($cat_p) ?>)' class="ps-btn btn-cart_cat bcc-custom">В корзину</button></p>
+                                                <?= $cat_p['product_price'] ?> c. </span><span class="ps-product__price ps-pp_dn">_ _._ _ смн.</span><button onclick='addToCart(res = <?= json_encode($cat_p) ?>)' class="ps-btn btn-cart_cat bcc-custom">В корзину</button></p>
                                     </div>
                                 </div>
                             </div>
@@ -210,7 +210,7 @@
                                         <li class="breadcrumb-item ba-first">
                                             <h3>Блог </h3>
                                         </li>
-                                        <a href="{base_url}main/blogpopular">
+                                        <a href="{base_url}index.php/main/blogpopular">
                                             <li class="active ba-last" aria-current="page" style="padding: 0 10px;">все статьи ></li>
                                         </a>
                                     </ol>
@@ -223,7 +223,7 @@
                                     </div>
                                     <div class="blog-articles-btn bab_pc">
                                         <div>
-                                            <a href="{base_url}main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все статьи</button></a>
+                                            <a href="{base_url}index.php/main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все статьи</button></a>
                                         </div>
                                         <div class="main-social_links">
                                             <a href="https://www.t.me/Salomat9990" target="_blank">
@@ -244,7 +244,7 @@
                                     </div>
                                     <div class="blog-articles-btn bab_mobile">
                                         <div>
-                                            <a href="{base_url}main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все статьи</button></a>
+                                            <a href="{base_url}index.php/main/blogpopular"><button type="button" class="btn btn-info btn-lg">Все статьи</button></a>
                                         </div>
                                         <div class="main-social_links">
                                             <a href="https://www.t.me/Salomat9990" target="_blank">
@@ -312,53 +312,6 @@
     // document.querySelector(".valueCount").value
 
     // let resCount;
-
-
-    let counterInput;
-
-    function decrease_count() {
-        $('#decrease_count').on('click', function(e) {
-            const prod_id = e.parentNode.dataset.id;
-            let countInput = e.parentNode[2];
-            try {
-                resCount = filteredCount.filter(elem => elem.product_id === idCount)[0].product_count;
-            } catch (error) {
-                resCount = 1
-            }
-            resCount--;
-            if (resCount < 1) {
-                resCount = 1;
-            }
-            countInput.value = resCount;
-        })
-    }
-
-    function increase_count() {
-        $('#increase_count').on('click', function() {
-            const prod_id = e.parentNode.dataset.id;
-            let countInput = e.parentNode[2];
-            try {
-                resCount = filteredCount.filter(elem => elem.product_id === idCount)[0].product_count;
-            } catch (error) {
-                resCount = 1
-            }
-            resCount++;
-            countInput.value = resCount;
-        })
-    }
-
-    function change_count() {
-        $('#count_input').change(function() {
-
-            if ($('#count_input').val() > 0) {
-                resCount = $('#count_input').val();
-            } else {
-                resCount = 1;
-                $('#count_input').val(resCount);
-            }
-            // else if ($('#count_input').val() < 1 || Number($('#count_input').val()) == 0)
-        })
-    }
 
     document.getElementsByClassName('blog_about').offsetWidth / 100;
     if (document.querySelector(".ps-product__content i")) document.querySelector(".ps-product__content i").addEventListener("click", onAddBorder())
@@ -445,23 +398,23 @@
                 blogShow.content.blogs.forEach(blogShow => {
                     document.querySelector(".blog_show").innerHTML = `
                        <img class="blog_pic img-fluid pb-3" src="{base_url}upload_blog/${blogShow.blog_pic}" alt="...">
-                       <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3>
-                       <span class="blog_created_at">${blogShow.blog_created_at}</span>
+                       <a href="{base_url}index.php/main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3>
+                       <span class="blog_created_at">${blogShow.blog_created_at.slice(0,10)}</span>
                        </a>
                      
                      <div class="text-justify blog_about-main">${blogShow.blog_about}</div>
-                     <a style="display: flex; justify-content: flex-end; padding-top: 10px;" href="{base_url}main/blogInfo?blog_id=${blogShow.id}"> читать дальше...</a>
+                     <a style="display: flex; justify-content: flex-end; padding-top: 10px;" href="{base_url}index.php/main/blogInfo?blog_id=${blogShow.id}"> читать дальше...</a>
                 `;
                 })
                 const sorted = blogShow.content.blogs.sort((a, b) => b.id - a.id);
                 const filtered = sorted.filter((elem, ind) => ind === 1 || ind === 2 || ind === 3)
                 filtered.forEach(blogShow => {
                     document.querySelector(".popular-blogs").innerHTML += `
-                    <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3>
-                    <span class="blog_created_at">${blogShow.blog_created_at}</span>
+                    <a href="{base_url}index.php/main/blogInfo?blog_id=${blogShow.id}"><h3 class="blog_title">${blogShow.blog_title}</h3>
+                    <span class="blog_created_at">${blogShow.blog_created_at.slice(0,10)}</span>
                     </a>
                      <div class="text-justify blog_about">${blogShow.blog_about}</div>
-                     <a href="{base_url}main/blogInfo?blog_id=${blogShow.id}" class="pb-4"> читать дальше...</a>
+                     <a href="{base_url}index.php/main/blogInfo?blog_id=${blogShow.id}" class="pb-4"> читать дальше...</a>
                 `;
                 })
 
@@ -469,7 +422,6 @@
         })
     }
     getBlog();
-
 
     function addToCart(res) {
         console.log(res)
@@ -553,6 +505,15 @@
             }
             set_prods_header();
         }
+    }
+    if (document.querySelector(".global-product-not-exist") === null) {
+        $('.ps-pp_dn').css("display", "none");
+        $('.ps-pp_db').css("display", "block");
+        $('.ps-pp_db-del').css("display", "block");
+    } else {
+        $('.ps-pp_db').css("display", "none");
+        $('.ps-pp_db-del').css("display", "none");
+        $('.ps-product__price-top').css("display", "none");
     }
 
     decrease_count();

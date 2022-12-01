@@ -250,7 +250,7 @@
             },
             success: function(blogShow) {
 
-                $(".blog_created_at").text(blogShow.blog.blog_created_at);
+                $(".blog_created_at").text(blogShow.blog.blog_created_at.slice(0,10));
                 $(".blog_title").text(blogShow.blog.blog_title);
                 $(".blog_about-full").html(blogShow.blog.blog_about);
                 blogShow.blog.blog_pics.forEach((elem) => {
@@ -284,14 +284,12 @@
                       <div class="blog-articles-mini">
                         <a href="{base_url}main/blogInfo?blog_id=${elem.blog_id}">
                             <h3>${elem.blog_title}</h3>
-                            <span>${elem.blog_created_at}</span>
+                            <span>${elem.blog_created_at.slice(0,10)}</span>
                         </a>
                     </div>
                       
                       `
                 })
-                // $(".blog_created_at").text(blogShow.blog.blog_created_at);
-                // $(".blog_title").text(blogShow.blog.blog_title);
             }
         })
     }
@@ -313,5 +311,8 @@
     #red:checked+#shape path {
         fill: #DD2E44;
         stroke: #DD2E44 !important;
+    }
+    .blog-articles-btn a {
+        padding-right: 15px;
     }
 </style>
