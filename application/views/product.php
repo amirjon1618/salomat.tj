@@ -11,7 +11,7 @@
                             <li class="third"><a href="#tab-4">Отзывы (<?= $category_products['review_count'] ?>)</a></li>
                         </ul>
                     </div>
-                    <div class="ps-product__shopping"><span class="ps-product__price-top"><span><?= $category_products['product_price'] ?> смн.</span>
+                    <div class="ps-product__shopping"><span class="ps-product__price-top pr-3"><span><?= $category_products['product_price'] ?> смн.</span>
                             <?php if ($category_products['product_old_price'] != 0) : ?>
                                 <del><?= $category_products['product_old_price'] ?> смн.</del><?php endif; ?>
                         </span>
