@@ -103,8 +103,9 @@
             this.dataset.like === "0" ? (this.dataset.like = "1") : (this.dataset.like = "0");
             let isLike = Boolean(Number(this.dataset.like));
             let _like = window.getComputedStyle(this);
+            console.log(_like.fill);
             if (localStorage.getItem("userId")) {
-                if (_like.fill === "none") {
+                if (_like.fill === "rgb(0, 0, 0)") {
                     $.ajax({
                         type: "POST",
                         url: "{base_url}favorites",
@@ -117,7 +118,7 @@
                         },
                     })
 
-                } else {
+                } else  if(_like.fill !== "rgb(0, 0, 0)"){
                     $.ajax({
                         type: "POST",
                         url: "{base_url}favorites/delete",
