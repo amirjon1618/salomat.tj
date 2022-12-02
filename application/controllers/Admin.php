@@ -214,6 +214,34 @@ class Admin extends CI_Controller
         }
     }
 
+
+    /**
+     * List PromoCode
+     *
+     * @return void
+     */
+    public function notification()
+    {
+        if ($this->user->myData['access'] != 100)
+            die();
+        $this->load->model("PromoCode");
+
+        $data = array("base_url" => base_url(), "alert" => "");
+
+        if ($this->input->get("do") == "remove") {
+            $this->PromoCode->remove($this->input->get("id"));
+            $data['alert'] = $this->createAlertInfo('Данные успешно удалены');
+        } else if ($this->input->get("do") == "addok") {
+            $data['alert'] = $this->createAlertInfo('Данные успешно обновлены');
+        }
+
+        $code = $this->PromoCode->get_all();
+        $data['list'] = $code;
+
+        $data['content'] = $this->parser->parse('admin/promo_code/list', $data, true);
+        $this->template($data);
+    }
+
     /**
      * List PromoCode
      *
