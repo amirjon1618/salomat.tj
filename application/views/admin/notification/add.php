@@ -4,8 +4,11 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="{base_url}admin"><i class="fa fa-dashboard"></i> Главная</a></li>
-        <li><a href="{base_url}index.php/admin/blogs"><i class="fa fa-list"></i> Статьи</a></li>
-        <li class="active">Изменить рассылку #<?=  $notification['id']?></li>
+        <?php if (isset($category)) : ?>
+            <li><a href="{base_url}index.php/admin/categories">Категории</a></li>
+            <li class="active"><?= $category['category_name'] ?></li>
+        <?php endif; ?>
+        <li class="active">Добавить рассылку</li>
     </ol>
 </section>
 {alert}
@@ -14,20 +17,18 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Изменить рассылку</h3>
+                    <h3 class="box-title">Добавить рассылку</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <form role="form" action="" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Наименование  рассылки</label>
-                            <input type="text" id="name" name="name" class="form-control" value="<?= $notification['name']?>" placeholder="Вводите ...">
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Вводите ...">
                         </div>
                         <div class="form-group">
                             <label>Текст сообщения</label>
-                            <input type="text" id="description" name="description" class="form-control" value="<?= $notification['description']?>" placeholder="Вводите ...">
+                            <input type="text" id="description" name="description" class="form-control" placeholder="Вводите ...">
                         </div>
-
-                        <td style="text-align: center;width: 400px;"><a target="_blank" href="{base_url}img/icons/{img}"><img src="{base_url}img/icons/<?= $notification['img']?>" style="width: 400px;" /></a></td>
                         <div class="form-group" id="file_div">
                             <label class="userfile_label">Изображение рассылки</label>
                             <input type="file" name="userfile" class="file_inp" size="50" />
@@ -35,7 +36,7 @@
                         </div>
                         <div class="box-footer">
                             <button type="button" onclick="javascript:window.location.href='{base_url}index.php/admin/notification'" class="btn btn-default">Отмена</button>
-                            <input type="submit" name="AddBtn" value="Изменить" class="btn btn-primary pull-right" />
+                            <input type="submit" name="AddBtn" value="Создать" class="btn btn-primary pull-right" />
                         </div>
                     </form>
                 </div><!-- /.box-body -->
