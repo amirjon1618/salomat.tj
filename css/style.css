@@ -19433,9 +19433,11 @@ opacity: 0;
     border: 1px solid #e1e1e1;
     border-left: none;
     height: 44px !important;
-    box-shadow: none !important;
 }
 
+.header--standard .ps-form--quick-search input:focus {
+    border: 1px solid #33c6a5;
+}
 /******/
 /******/
 
@@ -34541,24 +34543,4 @@ padding: 6px 12px !important;
     -webkit-transition: all .4s ease;
     transition: all .4s ease;
     cursor: pointer;
-}
-.phone-mask {
-    position: absolute;
-    left: 0px;
-    background: none !important;
-    padding: 12px;
-    border-radius: 7px;
-    display: flex;
-    height: 50px;
-    align-items: center;
-}
-.phone-mask-cabinet {
-    position: absolute;
-    left: 12px;
-    background: none !important;
-    padding: 12px;
-    border-radius: 7px;
-    display: flex;
-    height: 51px;
-    align-items: center;
 }

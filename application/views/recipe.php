@@ -14,7 +14,7 @@
                     <input class="recipe_name form-control" minlength="3" maxlength="24" pattern="[A-Za-zА-Яа-я]+" title="Русские или английские буквы" required name="name" id="order_name" type="text" placeholder="Имя Фамилия">
                 </div>
                 <div class="recipe_comment_div_inp pb-3">
-                    <textarea class="recipe_comment form-control" minlength="3" maxlength="250" name="comment" id="order_comment" type="text" placeholder="Комментарий"></textarea>
+                    <textarea class="recipe_comment form-control" minlength="3" maxlength="250" required name="comment" id="order_comment" type="text" placeholder="Комментарий"></textarea>
                 </div>
                 <button class="recipe_phone_div_button_send_sms">
                     Отправить рецепт
