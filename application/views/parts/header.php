@@ -166,9 +166,9 @@
                                 <form id="form1" class="form-detail" method="post">
                                     <div class="tabcontent" id="sign-phone">
                                         <div class="form-row">
-                                            <span class="text-label">Телефон</span>
+                                            <span class="text-label">Телефон </span>
                                             <label class="form-row-inner recipe_phone_div_inp recipe_phone_span">
-                                            <span class="phone-mask">+992</span>
+                                            <span class="phone-mask">+992 </span>
                                                 <input type="number" style="padding-left: 50px" min="9" title="987654321" name="restore-sms" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
                                                 <span class="border"></span>
                                             </label>

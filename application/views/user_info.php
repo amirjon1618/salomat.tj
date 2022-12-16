@@ -115,7 +115,7 @@
                                                     <input type="text" class="form-control" id="validationTooltipUsername" name="email" placeholder="youraddress@mail.ru" aria-describedby="validationTooltipUsernamePrepend" value="<?php echo $email ?>">
                                                 </div>
                                                 <div class="form-col">
-                                                    <label for="validationCustom03">Адресс <span class="red-star">*</span></label>
+                                                    <label for="validationCustom03">Адресс</label>
                                                     <input type="text" class="form-control" id="validationTooltiAddress" name="address" placeholder="А.Навои 34/2" aria-describedby="validationTooltipAddress" value="<?php echo $address ?>" required>
                                                 </div>
                                             </div>
@@ -351,8 +351,7 @@
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="form-col col-lg-12 col-md-12 col-sm-12 col-xs-12" id="save-form">
                                                     <label for="validationCustom02">Новый номер*</label>
-                                                    <span class="phone-mask-cabinet">+992</span>
-                                                    <input type="number" style="padding-left: 50px" maxlength="9" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" id="validationPhone" name="login" placeholder="Введите свой номер без +992" required value="<?php echo $phone ?>">
+                                                    <input type="number" pattern="\d*" maxlength="9" class="form-control" id="validationPhone" name="login" placeholder="+992 XXX XX XX XX" required value="<?php echo $phone ?>">
                                                     <button class="form-btn my-4">Изменить</button>
                                                 </div>
                                             </div>
@@ -432,7 +431,6 @@
             onPsBlockRight();
             $(".efr1").css("display", "none");
             $(".efr8").css("display", "block");
-            userTimer();
             localStorage.setItem("ver-number", Number($("#validationPhone").val()))
             $.ajax({
                 type: "POST",
