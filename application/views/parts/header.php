@@ -166,9 +166,10 @@
                                 <form id="form1" class="form-detail" method="post">
                                     <div class="tabcontent" id="sign-phone">
                                         <div class="form-row">
-                                            <span class="text-label">Телефон</span>
+                                            <span class="text-label">Телефон </span>
                                             <label class="form-row-inner recipe_phone_div_inp recipe_phone_span">
-                                                <input type="text" pattern="[0-9]+" title="987654321" name="restore-sms" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
+                                            <span class="phone-mask">+992 </span>
+                                                <input type="number" style="padding-left: 50px" min="9" title="987654321" name="restore-sms" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="9" maxlength="9" id="tel-number" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
                                                 <span class="border"></span>
                                             </label>
                                         </div>
@@ -247,7 +248,7 @@
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7526 15C12.1621 15 12.494 14.6642 12.494 14.25V11.25C12.494 10.8358 12.1621 10.5 11.7526 10.5C11.3431 10.5 11.0111 10.8358 11.0111 11.25V14.25C11.0111 14.6642 11.3431 15 11.7526 15Z" fill="#7A769D" />
                                                 <path d="M12.7412 8.25C12.7412 7.69771 12.2986 7.25 11.7526 7.25C11.2065 7.25 10.7639 7.69771 10.7639 8.25C10.7639 8.80229 11.2065 9.25 11.7526 9.25C12.2986 9.25 12.7412 8.80229 12.7412 8.25Z" fill="#7A769D" />
                                             </svg>
-                                            <p class="mb-0">Нажав на кнопку “Продолжить”, я принимаю <a href="{base_url}index.php/main/page/3" target="_blank" class="text-primary">условия пользования</a></p>
+                                            <p class="mb-0">Нажав на кнопку “Продолжить”, я принимаю <a href="{base_url}index.php/main/page/5" target="_blank" class="text-primary">условия пользования</a></p>
                                         </div>
                                         <div class="form-row-last d-flex justify-content-between">
                                             <a href="#"><input type="submit" name="register" class="enter ef3" value="Продолжить"></a>
@@ -309,7 +310,8 @@
                                         <div class="form-row">
                                             <span class="text-label">Телефон</span>
                                             <label class="form-row-inner">
-                                                <input type="number" name="tel-number" id="errorPhone" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
+                                                <span class="phone-mask">+992</span>
+                                                <input type="number" style="padding-left: 50px" min="9" name="tel-number" id="errorPhone" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" class="input-text recipe_phone_number" required placeholder="Введите свой номер без +992">
                                                 <span class="border"></span>
                                             </label>
                                         </div>
@@ -331,7 +333,7 @@
                                         <div class="form-row user-phone">
                                             <span class="text-label">Введите код из смс</span>
                                             <label class="form-row-inner">
-                                                <input type="number" name="tel-number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" minlength="4" id="ver-sms2" class="input-text" required placeholder=" __ __ __ __ ">
+                                                <input type="number" style="padding-left: 50px" name="tel-number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" minlength="4" id="ver-sms2" class="input-text" required placeholder=" __ __ __ __ ">
                                                 <span class="border"></span>
                                             </label>
                                         </div>
@@ -477,7 +479,7 @@
                     <a class="ps-logo" href="{base_url}"><img src="{base_url}img/logo.png" alt=""></a>
                 </div>
                 <div class="header__content-center" id="srch_res_list">
-                    <form class="ps-form--quick-search" action="<?= base_url("main/searchProductResult") ?>" method="get">
+                    <form class="ps-form--quick-search" action="<?= base_url("index.php/main/searchProductResult") ?>" method="get">
                         <div class="form-group--icon"><i class="icon-magnifier"></i>
 
                         </div>
@@ -650,7 +652,7 @@
         </div>
         </div>
         <div class="ps-search--mobile srch_inp_div">
-            <form class="ps-form--search-mobile" action="<?= base_url("main/searchProductResult") ?>" method="get">
+            <form class="ps-form--search-mobile" action="<?= base_url("index.php/main/searchProductResult") ?>" method="get">
                 <div class="form-group--nest">
                     <input class="form-control srch_pr_inp_mobile" name="srch_pr_inp" onkeyup="input_type_mobile('srch_pr_inp_mobile', 'mobile')" type="text" placeholder="Искать по названию среди 5 000 лекарств и товаров...">
                     <button type="submit" class="search_icon_btn"><i class="icon-magnifier"></i></button>
@@ -944,8 +946,6 @@
         border-bottom-color: #4a4ac3;
     }
 
-    .form-v8-content .form-detail {}
-
     .form-v8-content .form-row {
         width: 100%;
         position: relative;
@@ -1026,6 +1026,13 @@
         -ms-transition: all .15s ease;
     }
 
+    .form-v8-content .form-detail .input-text {
+        border: 1px solid #E0E0E0;
+        border-radius: 3px;
+        height: 45px;
+        width: 350px;
+        padding: 5px 0 0 20px;
+    }
     .form-v8-content .form-detail .input-text {
         border: 1px solid #E0E0E0;
         border-radius: 3px;
@@ -1216,6 +1223,7 @@
     }
 
     function timeBetweenDates(toDate) {
+
         var dateEntered = toDate;
         var now = new Date();
         var difference = dateEntered.getTime() - now.getTime();
